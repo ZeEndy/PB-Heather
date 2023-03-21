@@ -1,6 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://c0g778dscf5ii"]
+[gd_scene load_steps=55 format=3 uid="uid://c0g778dscf5ii"]
 
 [ext_resource type="PackedScene" uid="uid://bqyo8eokcablc" path="res://Data/DEFAULT/ENTS/ENT_DOOR.tscn" id="2"]
+[ext_resource type="AudioStream" uid="uid://dq0tq58bq5nm8" path="res://Data/Music/mu_Rumble.ogg" id="2_64l3s"]
 [ext_resource type="Script" path="res://Scripts/HUD/CAMERA_TOPLEVEL.gd" id="3"]
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="5"]
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_ASTAR.gd" id="5_4vnoa"]
@@ -12630,6 +12631,7 @@ sources/10 = SubResource("TileSetAtlasSource_a27kb")
 
 [node name="Sex Level" type="Node2D" groups=["Current_room", "Level"]]
 script = ExtResource("5")
+song = ExtResource("2_64l3s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

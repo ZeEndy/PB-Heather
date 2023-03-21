@@ -23,7 +23,7 @@ func _ready():
 			checkpoint=save_level()
 			restart=save_level()
 		if level_complete==false && song!=null:
-			GAME.play_song(song)
+			AudioManager.play_song(song)
 
 func _process(_delta):
 	if get_tree().get_nodes_in_group("EDITOR").size()==0:
@@ -37,9 +37,9 @@ func _process(_delta):
 				load_level(restart)
 			else:
 				load_level(checkpoint)
-#		if get_tree().get_nodes_in_group("Enemy").size()==0 && get_tree().get_nodes_in_group("CUTSCENE").size()==0 && level_complete==false:
-#			level_complete=true
-#			GAME.play_song("res://Data/Music/mu_Rot.ogg")
+		if get_tree().get_nodes_in_group("Enemy").size()==0 && get_tree().get_nodes_in_group("CUTSCENE").size()==0 && level_complete==false:
+			level_complete=true
+			AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
 func _save_checkpoint():
 #	GAME.save_node_state("checkpoint",self)
 	checkpoint=save_level()
