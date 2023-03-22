@@ -189,7 +189,6 @@ func _physics_process(delta):
 		body_direction=sprite_legs.global_rotation
 		if sprite_legs.speed_scale==0:
 			collision_body.set_collision_layer_value(7,false)
-			CharacterBody2D
 		else:
 			collision_body.set_collision_layer_value(7,true)
 		return

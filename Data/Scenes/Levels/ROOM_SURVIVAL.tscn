@@ -12694,6 +12694,7 @@ script = ExtResource("10_ydypb")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewportContainer/Floor 1/FollowCamera"]
 light_mask = 2
 material = SubResource("CanvasItemMaterial_jmlyv")
+emitting = false
 amount = 2000
 process_material = SubResource("ShaderMaterial_1ow78")
 texture = ExtResource("12_jrs5a")
