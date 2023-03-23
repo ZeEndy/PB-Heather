@@ -105,8 +105,8 @@ const weapon_database={
 		"trigger_pressed":false,
 	}
 	,
-	"M9":{
-		"id":"M9",
+	"M9-S":{
+		"id":"M9-S",
 		#ammo of the gun
 		"ammo":17,
 		"max_ammo":17,

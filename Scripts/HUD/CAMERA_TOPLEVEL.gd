@@ -55,7 +55,7 @@ func _process(delta):
 #	var breath_noise_inst=breathing_noise.new()
 	offset.x = (noise.get_noise_3d(time * time_scale,0,0) * max_x * shaking)
 	offset.y = (noise.get_noise_3d(0,time * time_scale,0) * max_y * shaking)
-	rot=(noise.get_noise_3d(time * time_scale,0,0) * max_r * shaking)
+#	rot=(noise.get_noise_3d(time * time_scale,0,0) * max_r * shaking)
 	#
 	zoom=Vector2(lerp(zoom.x,3.8*added_zoom,20*delta/Engine.time_scale),lerp(zoom.y,3.8*added_zoom,20*delta/Engine.time_scale))
 	if shake > 0: 

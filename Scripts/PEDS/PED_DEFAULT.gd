@@ -27,14 +27,14 @@ enum ped_states{
 @export var state = ped_states.alive
 #ALIVE STATE VARIABLES
 @export var health=100.0
-@export var armour=300.0
+@export var armour=0.0
 @export var start_with_gun=false
 
 
 # Movement variables
-const MAX_SPEED = 100
-const ACCELERATION = 6.0
-const DECEL_MULTIP = 9.0
+const MAX_SPEED = 180
+const ACCELERATION = 15.0
+const DECEL_MULTIP = 15.0
 @export var my_velocity=Vector2()
 var friction_multip = 1
 var axis = Vector2()

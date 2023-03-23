@@ -1,4 +1,4 @@
-[gd_scene load_steps=406 format=3 uid="uid://h5egxor26nl0"]
+[gd_scene load_steps=407 format=3 uid="uid://h5egxor26nl0"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Enemy.gd" id="2"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_85y2x"]
@@ -50,6 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://dw6au3fa8jyv2" path="res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Punch.wav" id="46_nks4o"]
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_MELEE_AREA.gd" id="46_wxqx7"]
 [ext_resource type="Script" path="res://addons/random_audio_player/nodes/random_audio_player.gd" id="47_6bgfc"]
+[ext_resource type="AudioStream" uid="uid://cwjhcpn8vcq5e" path="res://Data/Sounds/Combat/PickUp.wav" id="50_wtf7g"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 8.0
@@ -5829,6 +5830,7 @@ stream = ExtResource("24_2bs8r")
 [node name="Throw" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Other"]
 
 [node name="PickUp" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Other"]
+stream = ExtResource("50_wtf7g")
 
 [node name="Knife" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
 

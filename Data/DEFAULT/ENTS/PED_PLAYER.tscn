@@ -1,4 +1,4 @@
-[gd_scene load_steps=366 format=3 uid="uid://dvj8wuvgn4i2c"]
+[gd_scene load_steps=372 format=3 uid="uid://dvj8wuvgn4i2c"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Player.gd" id="1_lwlbx"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_6rt3n"]
@@ -21,13 +21,19 @@
 [ext_resource type="Texture2D" uid="uid://cd31gko45wk" path="res://Data/DEFAULT/SPRITES/Char/Dead/Char_DeadSlash_strip3.png" id="20_fj2di"]
 [ext_resource type="Texture2D" uid="uid://cihwxms4eetxm" path="res://Data/DEFAULT/SPRITES/Char/Walk/Char_WalkLegs_strip16.png" id="21_0u0fg"]
 [ext_resource type="Texture2D" uid="uid://5q76rxtlw6dy" path="res://Data/DEFAULT/SPRITES/Char/Dead/Char_DeadBash_strip2.png" id="21_vnfn8"]
-[ext_resource type="AudioStream" uid="uid://bs6y706lj2r0q" path="res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_M9.wav" id="22_2gyb0"]
-[ext_resource type="AudioStream" uid="uid://g88078iq8iw5" path="res://Data/DEFAULT/SOUNDS/GAMEPLAY/sndM16.wav" id="23_bs2jx"]
-[ext_resource type="AudioStream" uid="uid://d70o1b2cawpk" path="res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Swing/snd_Swing1.wav" id="24_gfech"]
-[ext_resource type="AudioStream" uid="uid://dc8sd0gywy2no" path="res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Swing/snd_Swing2.wav" id="25_q26cw"]
+[ext_resource type="AudioStream" uid="uid://360xm26mraef" path="res://Data/Sounds/Combat/Weapons/9mmS.wav" id="22_e515i"]
+[ext_resource type="AudioStream" uid="uid://us10y3l0obab" path="res://Data/Sounds/Combat/Weapons/9mm.wav" id="23_62kno"]
+[ext_resource type="AudioStream" uid="uid://bi6f6r84wdhqm" path="res://Data/Sounds/Combat/Weapons/M16.wav" id="23_ticki"]
+[ext_resource type="AudioStream" uid="uid://covlv0c45i78f" path="res://Data/Sounds/Combat/Punch.wav" id="24_8hfog"]
+[ext_resource type="AudioStream" uid="uid://dtc1uqi4smqeu" path="res://Data/Sounds/Combat/Swing1.wav" id="25_6obma"]
+[ext_resource type="AudioStream" uid="uid://bnbvrdvpl7ybn" path="res://Data/Sounds/Combat/Weapons/AK.wav" id="25_diy4p"]
+[ext_resource type="AudioStream" uid="uid://bkotl1jg8ojin" path="res://Data/Sounds/Combat/Weapons/Shotgun.wav" id="26_0i4no"]
+[ext_resource type="AudioStream" uid="uid://r2iw25kl1cmw" path="res://Data/Sounds/Combat/Swing2.wav" id="26_7bed5"]
 [ext_resource type="Texture2D" uid="uid://bfx4ds4ye0iox" path="res://Data/Sprites/Characters/Richter/Combat/Bat/Attack.png" id="26_lhq72"]
 [ext_resource type="Texture2D" uid="uid://cixkb34nyff4m" path="res://Data/Sprites/Characters/Richter/Combat/Bat/Execute.png" id="27_lpejh"]
+[ext_resource type="AudioStream" uid="uid://djr5mhjn5pid2" path="res://Data/Sounds/Combat/Throw.wav" id="27_rq28s"]
 [ext_resource type="Texture2D" uid="uid://lx0r33vye508" path="res://Data/Sprites/Characters/Richter/Combat/Bat/Walk.png" id="28_dj1ag"]
+[ext_resource type="Script" path="res://addons/random_audio_player/nodes/random_audio_player.gd" id="28_ry5pv"]
 [ext_resource type="Texture2D" uid="uid://bhweltpfyepyi" path="res://Data/Sprites/Characters/Richter/Combat/Knife/Attack.png" id="29_42okl"]
 [ext_resource type="Texture2D" uid="uid://dvejme4sc0lpm" path="res://Data/Sprites/Characters/Richter/Combat/Knife/Execute.png" id="30_ry020"]
 [ext_resource type="Texture2D" uid="uid://dqn32hotl0itl" path="res://Data/Sprites/Characters/Richter/Combat/Knife/Walk.png" id="31_s71vh"]
@@ -3010,8 +3016,22 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [0.3, true],
+"args": [0.7, false],
 "method": &"shake_screen"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sound Library/M16/Fire")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -3112,7 +3132,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.09375),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(11, 0), Vector2(11, 0)]
+"values": [Vector2(13.5, 0), Vector2(13.5, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3124,7 +3144,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.09375),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [&"M9 Attack", &"M9 Attack"]
+"values": [&"M9-S Attack", &"M9-S Attack"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -3217,7 +3237,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Sound Library/M9/Fire:playing")
+tracks/9/path = NodePath("Sound Library/M9-S/Fire:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -3241,7 +3261,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.616),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(11, 0), Vector2(11, 0)]
+"values": [Vector2(13.5, 0), Vector2(13.5, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3265,7 +3285,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.615385),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [&"M9 Walk", &"M9 Walk"]
+"values": [&"M9-S Walk", &"M9-S Walk"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -3386,6 +3406,34 @@ tracks/6/keys = {
 "values": [{
 "args": ["Pump"],
 "method": &"pump"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sound Library/Shotgun/Fire")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.8, false],
+"method": &"shake_screen"
 }]
 }
 
@@ -3599,10 +3647,10 @@ tracks/3/path = NodePath("anim:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.2307, 0.307692, 0.384615, 0.461538),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [5, 6, 7, 8, 9, 10, 11]
+"values": [5, 6, 7, 8, 9, 10, 11, 12]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -3611,10 +3659,10 @@ tracks/4/path = NodePath("anim/Bullet_Spawn:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 0), Vector2(1, 0)]
+"values": [Vector2(21, 0.0144953)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -3739,10 +3787,10 @@ tracks/0/path = NodePath("anim:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.388889),
+"times": PackedFloat32Array(0, 0.3892),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(9, 0), Vector2(9, 0)]
+"values": [Vector2(4, 0), Vector2(4, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -3751,7 +3799,7 @@ tracks/1/path = NodePath("anim:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.388889),
+"times": PackedFloat32Array(0, 0.3892),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [&"Unarmed Attack", &"Unarmed Attack"]
@@ -3799,12 +3847,9 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0555556, 0.388889),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.388889),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [[false, "res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Swing/snd_Swing1.wav", "res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Swing/snd_Swing2.wav"]],
-"method": &"play_audio"
-}, {
 "args": ["Walk"],
 "method": &"flip_sprite_switch"
 }]
@@ -3844,6 +3889,20 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [[null], []]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sound Library/Unarmed/Swing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_34jda"]
@@ -5258,7 +5317,6 @@ height = 8.0
 texture_filter = 1
 script = ExtResource("1_lwlbx")
 override_attack = true
-sprite_index = "WalkShotgun"
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["PED", "Player"]]
 collision_layer = 4
@@ -5317,33 +5375,58 @@ libraries = {
 
 [node name="Sound Library" type="Node2D" parent="PED_SPRITES/Body"]
 
+[node name="M9-S" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
+
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/M9-S"]
+stream = ExtResource("22_e515i")
+max_polyphony = 20
+bus = &"Gunfire"
+
 [node name="M9" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/M9"]
-stream = ExtResource("22_2gyb0")
+stream = ExtResource("23_62kno")
 max_polyphony = 20
 bus = &"Gunfire"
 
 [node name="M16" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/M16"]
-stream = ExtResource("23_bs2jx")
+stream = ExtResource("23_ticki")
+max_polyphony = 20
+
+[node name="AK" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
+
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/AK"]
+stream = ExtResource("25_diy4p")
+max_polyphony = 20
+
+[node name="Shotgun" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
+
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Shotgun"]
+stream = ExtResource("26_0i4no")
+max_polyphony = 20
 
 [node name="Unarmed" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
 
 [node name="Punch" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Unarmed"]
+stream = ExtResource("24_8hfog")
 
-[node name="Swing" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Unarmed"]
-stream = ExtResource("24_gfech")
+[node name="Swing" type="Node2D" parent="PED_SPRITES/Body/Sound Library/Unarmed"]
+script = ExtResource("28_ry5pv")
+
+[node name="Swing" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Unarmed/Swing"]
+stream = ExtResource("25_6obma")
 max_polyphony = 5
 
-[node name="Swing2" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Unarmed"]
-stream = ExtResource("25_q26cw")
+[node name="Swing2" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Unarmed/Swing"]
+stream = ExtResource("26_7bed5")
 max_polyphony = 5
 
 [node name="Other" type="Node2D" parent="PED_SPRITES/Body/Sound Library"]
 
 [node name="Throw" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Other"]
+stream = ExtResource("27_rq28s")
 max_polyphony = 20
 
 [node name="PickUp" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound Library/Other"]
@@ -5372,8 +5455,6 @@ collision_layer = 65535
 collision_mask = 65535
 monitorable = false
 script = ExtResource("66_1vi4r")
-attack_type = 1
-hit_sound = ["res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Cut1.wav", "res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Cut2.wav"]
 death_sprite = "DeadSlash"
 death_lean_sprite = "DeadLeanMelee"
 
