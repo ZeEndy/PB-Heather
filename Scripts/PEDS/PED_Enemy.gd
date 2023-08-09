@@ -110,7 +110,7 @@ func _physics_process(delta):
 				if (random_timer <= 0):
 					direction = randi() % 360
 					axis=Vector2((randi() % 2)*0.25,0).rotated(deg_to_rad(direction)) 
-					print(axis)
+					#print(axis)
 					random_timer = 60 + (randi() % 61)
 				var v = Vector2(12,0).rotated(deg_to_rad(direction))
 				#this causes a masive memory leak. too bad
@@ -189,6 +189,7 @@ func _physics_process(delta):
 		body_direction=sprite_legs.global_rotation
 		if sprite_legs.speed_scale==0:
 			collision_body.set_collision_layer_value(7,false)
+			CharacterBody2D
 		else:
 			collision_body.set_collision_layer_value(7,true)
 		return

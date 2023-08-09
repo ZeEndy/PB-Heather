@@ -1,0 +1,29 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=9 format=3 uid="uid://bh68dwnei86hy"]
+
+[ext_resource type="AudioStream" uid="uid://bhxq2mkdcjm2a" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_0.ogg" id="1_8aar3"]
+[ext_resource type="AudioStream" uid="uid://by84g2io0dtd8" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_1.ogg" id="2_ijyit"]
+[ext_resource type="AudioStream" uid="uid://b84m1wqhk520s" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_2.ogg" id="3_a3feo"]
+[ext_resource type="AudioStream" uid="uid://njlur0ckqc4a" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_3.ogg" id="4_rvoiu"]
+[ext_resource type="AudioStream" uid="uid://k7qtddoccval" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_4.ogg" id="5_vugkk"]
+[ext_resource type="AudioStream" uid="uid://xyxk8cuj24pf" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_5.ogg" id="6_nvq6t"]
+[ext_resource type="AudioStream" uid="uid://d1bqcvwhn1gag" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_6.ogg" id="7_uag8o"]
+[ext_resource type="AudioStream" uid="uid://mw1iev3j8brm" path="res://Data/Sounds/Character/Movement/Thighs/Cloth_Thighs_7.ogg" id="8_djqst"]
+
+[resource]
+streams_count = 8
+stream_0/stream = ExtResource("1_8aar3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_ijyit")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_a3feo")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_rvoiu")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_vugkk")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_nvq6t")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("7_uag8o")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("8_djqst")
+stream_7/weight = 1.0

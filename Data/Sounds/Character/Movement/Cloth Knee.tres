@@ -1,0 +1,35 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=11 format=3 uid="uid://b0rw48svxkh3r"]
+
+[ext_resource type="AudioStream" uid="uid://b35mycjwt0ftn" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_0.ogg" id="1_yhee2"]
+[ext_resource type="AudioStream" uid="uid://i6135kwnffh3" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_1.ogg" id="2_668i3"]
+[ext_resource type="AudioStream" uid="uid://ct38ynr3ppfqb" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_2.ogg" id="3_d01qh"]
+[ext_resource type="AudioStream" uid="uid://db0fqah6cx0og" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_3.ogg" id="4_huhbx"]
+[ext_resource type="AudioStream" uid="uid://bpkjuxgf4i7pm" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_4.ogg" id="5_5nm8u"]
+[ext_resource type="AudioStream" uid="uid://bjk2dqnv3ovj3" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_5.ogg" id="6_xxxxk"]
+[ext_resource type="AudioStream" uid="uid://b3wvgak27aqby" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_6.ogg" id="7_cj5pl"]
+[ext_resource type="AudioStream" uid="uid://drhnv6remnsni" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_7.ogg" id="8_smsyd"]
+[ext_resource type="AudioStream" uid="uid://b6807b5378jmf" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_8.ogg" id="9_gonco"]
+[ext_resource type="AudioStream" uid="uid://chrea5bnxoha4" path="res://Data/Sounds/Character/Movement/Knee/Cloth_Knee_9.ogg" id="10_c3w43"]
+
+[resource]
+streams_count = 10
+stream_0/stream = ExtResource("1_yhee2")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_668i3")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_d01qh")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_huhbx")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_5nm8u")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_xxxxk")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("7_cj5pl")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("8_smsyd")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("9_gonco")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("10_c3w43")
+stream_9/weight = 1.0

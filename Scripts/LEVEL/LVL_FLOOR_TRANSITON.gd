@@ -1,7 +1,7 @@
 extends Area2D
 
-@export_node_path(SubViewport) var targetPath
-@export_node_path(Area2D) var next_transiton
+@export_node_path("SubViewport") var targetPath
+@export_node_path("Area2D") var next_transiton
 var x_pos = 0
 @export var let_trough=false
 @export var pull_out=false
@@ -42,14 +42,12 @@ func _physics_process(_delta):
 						await get_tree().create_timer(0.02)
 			else:
 				b.get_parent().movement((Vector2(-160,0)).rotated(global_rotation),_delta)
-				
 
 
-
-func reparent(node: Node, new_parent: Node):
-	var old_parent: Node = node.get_parent()
-	old_parent.remove_child(node)
-	new_parent.add_child(node)
+#func reparent(node: Node, new_parent: Node):
+#	var old_parent: Node = node.get_parent()
+#	old_parent.remove_child(node)
+#	new_parent.add_child(node)
 
 
 func _on_NextFloor_body_exited(b):

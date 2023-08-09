@@ -27,14 +27,14 @@ enum ped_states{
 @export var state = ped_states.alive
 #ALIVE STATE VARIABLES
 @export var health=100.0
-@export var armour=0.0
+@export var armour=0
 @export var start_with_gun=false
 
 
 # Movement variables
-const MAX_SPEED = 180
-const ACCELERATION = 15.0
-const DECEL_MULTIP = 15.0
+const MAX_SPEED = 125
+const ACCELERATION = 6.0
+const DECEL_MULTIP = 9.0
 @export var my_velocity=Vector2()
 var friction_multip = 1
 var axis = Vector2()
@@ -196,7 +196,7 @@ func _process(delta):
 		var walking = (gun.walk_sprite in sprite_index)
 		
 		if walking:
-			sprite_body_anim.speed_scale = (abs(collision_body.velocity.length()/220))
+			sprite_body_anim.speed_scale = (abs(collision_body.velocity.length()/125))
 		else:
 			if gun.type=="melee" && ("Attack" in sprite_index):
 				sprite_body_anim.speed_scale=motion_multiplier
@@ -287,10 +287,11 @@ func leg_sprites(delta):
 			if sprite_legs_anim.speed_scale!=0:
 				sprite_legs_anim.seek(0)
 				sprite_legs_anim.speed_scale=0
+				leg_index="WalkLegs_start"
 
 	else:
 		sprite_legs.rotation=lerp_angle(sprite_legs.rotation,atan2(collision_body.velocity.y,collision_body.velocity.x),clamp(50*delta,0,1))
-		sprite_legs_anim.speed_scale = (abs(collision_body.get_real_velocity().length()/220))
+		sprite_legs_anim.speed_scale = (abs(collision_body.get_real_velocity().length()/125))
 
 
 #This script functions by reading through the poperty list of the gun variable and spawning
@@ -592,7 +593,7 @@ func do_execution():
 				execute_target.get_parent().sprite_legs.play(gun.ground_sprite,false,0)
 			else:
 				drop_weapon()
-				sprite_body.play(default_gun.execution_sprite)
+				sprite_body.play(default_gun.id+"/"+default_gun.execution_sprite)
 				execute_target.get_parent().sprite_legs.play(default_gun.ground_sprite,false,0)
 		else:
 				sprite_body.play("ExecuteWall")

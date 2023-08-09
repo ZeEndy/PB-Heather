@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://vexgxcuivrjd"]
+
+[ext_resource type="AudioStream" uid="uid://bijhggp02wr5w" path="res://Data/Sounds/Character/PB/Bang/Bang_0.wav" id="1_egals"]
+[ext_resource type="AudioStream" uid="uid://chtvbu5yuj08m" path="res://Data/Sounds/Character/PB/Bang/Bang_1.wav" id="2_q23sf"]
+[ext_resource type="AudioStream" uid="uid://c3y4pnl7lkp5k" path="res://Data/Sounds/Character/PB/Bang/Bang_2.wav" id="3_bp5ha"]
+[ext_resource type="AudioStream" uid="uid://ck0bw5laepyah" path="res://Data/Sounds/Character/PB/Bang/Bang_3.wav" id="4_rt82n"]
+[ext_resource type="AudioStream" uid="uid://bfk5tfue5o7m3" path="res://Data/Sounds/Character/PB/Bang/Bang_4.wav" id="5_ak00w"]
+[ext_resource type="AudioStream" uid="uid://ct33p28f7x2j2" path="res://Data/Sounds/Character/PB/Bang/Bang_5.wav" id="6_nsk81"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_egals")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_q23sf")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_bp5ha")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_rt82n")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_ak00w")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_nsk81")
+stream_5/weight = 1.0

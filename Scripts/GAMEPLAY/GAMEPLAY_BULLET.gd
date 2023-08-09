@@ -45,8 +45,9 @@ func _physics_process(delta):
 #				spawn_smoke(-collision.normal.angle(),exit_wound_pos,Color.red,0)
 				get_destroyed=false
 			else:
-				get_destroyed=false
-				queue_free()
+				if collision[0].collider.get_parent().health>0:
+					get_destroyed=false
+					queue_free()
 			if !(collision[0].collider in exclusion):
 				if "Lean" in collision[0].collider.get_parent().sprites.get_node("Legs").animation:
 					if signal_!="":
@@ -64,7 +65,6 @@ func _physics_process(delta):
 						destroy()
 					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,global_rotation-PI)
 					exclusion.append(collision[0].collider)
-					
 		elif collision[0].collider.get_parent().has_method("destroy_window"):
 			collision[0].collider.get_parent().destroy_window()
 			

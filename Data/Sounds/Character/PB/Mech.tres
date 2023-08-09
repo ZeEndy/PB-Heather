@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://wo2thng2cude"]
+
+[ext_resource type="AudioStream" uid="uid://dfokbwk3jlm2x" path="res://Data/Sounds/Character/PB/Mech/Mech_0.wav" id="1_cl6b3"]
+[ext_resource type="AudioStream" uid="uid://b1jvp8ck2x5xw" path="res://Data/Sounds/Character/PB/Mech/Mech_1.wav" id="2_cjvnb"]
+[ext_resource type="AudioStream" uid="uid://dbqx858enf13t" path="res://Data/Sounds/Character/PB/Mech/Mech_2.wav" id="3_y6xdl"]
+[ext_resource type="AudioStream" uid="uid://cy7vd5lrh2k3y" path="res://Data/Sounds/Character/PB/Mech/Mech_3.wav" id="4_feo8m"]
+[ext_resource type="AudioStream" uid="uid://b3d1mo5ihkxri" path="res://Data/Sounds/Character/PB/Mech/Mech_4.wav" id="5_e15pt"]
+[ext_resource type="AudioStream" uid="uid://cuk7js1xbt6al" path="res://Data/Sounds/Character/PB/Mech/Mech_5.wav" id="6_yeokt"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_cl6b3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_cjvnb")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_y6xdl")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_feo8m")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_e15pt")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_yeokt")
+stream_5/weight = 1.0

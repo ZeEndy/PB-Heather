@@ -201,3 +201,5 @@ metadata/_edit_vertical_guides_ = [-121.0]
 position = Vector2(873, 690)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4ya8v")
+frame = 5
+frame_progress = 0.275019

@@ -105,8 +105,8 @@ const weapon_database={
 		"trigger_pressed":false,
 	}
 	,
-	"M9-S":{
-		"id":"M9-S",
+	"M9":{
+		"id":"PB",
 		#ammo of the gun
 		"ammo":17,
 		"max_ammo":17,
@@ -133,7 +133,7 @@ const weapon_database={
 		#random on attack
 		"random_sprite":false,
 		"attack_sound":"res://Data/Sounds/Maxim 9/Fire.wav",
-		"damage":75,
+		"damage":100,
 		"added_recoil":0.2,
 		"recoil":4,
 		
@@ -181,7 +181,7 @@ const weapon_database={
 		"attack_sound":"res://Data/Sounds/Vector/Fire.wav",
 		"dry_fire":"PED_SPRITES/Body/Sound Library/AR-57/Trigger Pressed",
 		
-		"damage":75,
+		"damage":100,
 		"added_recoil":0.1,
 		"recoil":4,
 		
@@ -209,7 +209,7 @@ const weapon_database={
 		#trigger
 		"trigger_pressed":false,
 		"trigger_bullets":0,
-		"trigger_reset":0.055,
+		"trigger_reset":0.0705882352941176,
 		"trigger_shot":0,
 		"shoot_bullets":1
 	}

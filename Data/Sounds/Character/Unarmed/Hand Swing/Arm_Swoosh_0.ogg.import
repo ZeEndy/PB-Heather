@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://240laywaxhxi"
+path="res://.godot/imported/Arm_Swoosh_0.ogg-6fc1e57506a7040f7dc0671427867855.oggvorbisstr"
+
+[deps]
+
+source_file="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_0.ogg"
+dest_files=["res://.godot/imported/Arm_Swoosh_0.ogg-6fc1e57506a7040f7dc0671427867855.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

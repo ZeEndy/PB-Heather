@@ -11,5 +11,3 @@ export_presets.cfg
 data_*/
 *.sfk
 .godot
-Data/DEFAULT/SPRITES/Char/Walk/Char_WalkM9_strip8.png.import
-*.import

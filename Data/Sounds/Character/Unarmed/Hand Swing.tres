@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://m2j5y2n0lexf"]
+
+[ext_resource type="AudioStream" uid="uid://240laywaxhxi" path="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_0.ogg" id="1_6dxgb"]
+[ext_resource type="AudioStream" uid="uid://b7jlc5n7arufb" path="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_1.ogg" id="2_qo114"]
+[ext_resource type="AudioStream" uid="uid://bh8yqo4nng4tl" path="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_2.ogg" id="3_lbtip"]
+[ext_resource type="AudioStream" uid="uid://utemn60jadu7" path="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_3.ogg" id="4_iwt3b"]
+[ext_resource type="AudioStream" uid="uid://f4y6bqarmuev" path="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_4.ogg" id="5_d87bc"]
+[ext_resource type="AudioStream" uid="uid://6hcvum1dorua" path="res://Data/Sounds/Character/Unarmed/Hand Swing/Arm_Swoosh_5.ogg" id="6_m54n5"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_6dxgb")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_qo114")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_lbtip")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_iwt3b")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_d87bc")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_m54n5")
+stream_5/weight = 1.0

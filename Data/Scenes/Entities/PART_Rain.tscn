@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://yva00iplrwby"]
+
+[ext_resource type="Shader" path="res://Scripts/SHADERS/rain.gdshader" id="1_24uu1"]
+[ext_resource type="Texture2D" uid="uid://o336fael88ln" path="res://Data/Sprites/VFX/Rain_Splash_strip5.png" id="2_72lo4"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jmlyv"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ow78"]
+shader = ExtResource("1_24uu1")
+shader_parameter/hue_variation_min = null
+shader_parameter/hue_variation_max = null
+shader_parameter/color_value = null
+shader_parameter/gravity = null
+shader_parameter/anim_dur = 0.35
+shader_parameter/camera_pos = Vector2(0, 9)
+shader_parameter/emission_box_extents = Vector3(500, 500, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+light_mask = 2
+material = SubResource("CanvasItemMaterial_jmlyv")
+amount = 2000
+process_material = SubResource("ShaderMaterial_1ow78")
+texture = ExtResource("2_72lo4")
+lifetime = 0.5
+fixed_fps = 0
+interpolate = false

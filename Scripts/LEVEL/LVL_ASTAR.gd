@@ -45,8 +45,8 @@ func _process(delta):
 
 func _bake_grid():
 #	var time_start = OS.get_ticks_msec()
-	var shape = RectangleShape2D.new()
-	shape.extents=(tile_set.tile_size*1.25)
+	var shape = CircleShape2D.new()
+	shape.radius=6
 	var query = PhysicsShapeQueryParameters2D.new()
 	query.set_shape(shape)
 	query.collision_mask=collision_layer

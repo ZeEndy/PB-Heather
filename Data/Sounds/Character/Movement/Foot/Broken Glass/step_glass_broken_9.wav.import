@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://8aokt7hf7vnq"
+path="res://.godot/imported/step_glass_broken_9.wav-f9e82038dc49943204f2f2fd329e1583.sample"
+
+[deps]
+
+source_file="res://Data/Sounds/Character/Movement/Foot/Broken Glass/step_glass_broken_9.wav"
+dest_files=["res://.godot/imported/step_glass_broken_9.wav-f9e82038dc49943204f2f2fd329e1583.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -71,6 +71,8 @@ func _physics_process(delta):
 		if in_combat==true && override_pick_up==false:
 			if Input.is_action_just_pressed("interact"):
 				switch_weapon()
+			if Input.is_action_just_pressed("Inject"):
+				_play_animation("Inject"+sprite_index.replace(gun["id"]+"/Walk",""))
 		if in_combat==true && Input.is_action_just_pressed("execute"):
 			do_execution()
 		
@@ -158,6 +160,7 @@ func _process(delta):
 		if execute_click==true:
 			if Input.is_action_just_pressed("attack"):
 				execute_do_click()
+				print("fuck")
 
 func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
 	get_tree().get_nodes_in_group("Glob_Camera_pos")[0].add_shake(damage/10,true)
@@ -322,7 +325,7 @@ func get_classd():
 
 func debug_rand_weapon():
 		if Input.is_action_just_pressed("DEBUG_SPAWN_GUN"):
-			var rand_list=["M9-S","Shotgun","M16"]
+			var rand_list=["M9","Shotgun","M16"]
 			var random_select=int(round(randf_range(0,rand_list.size()-1)))
 			drop_weapon()
 			gun=Database.get_wep(rand_list[random_select])

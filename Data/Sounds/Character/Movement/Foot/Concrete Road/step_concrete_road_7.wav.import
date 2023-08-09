@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7j5sxr2gjyvs"
+path="res://.godot/imported/step_concrete_road_7.wav-8fd6816c6e1bf69f8e0e8b6f5efb6b51.sample"
+
+[deps]
+
+source_file="res://Data/Sounds/Character/Movement/Foot/Concrete Road/step_concrete_road_7.wav"
+dest_files=["res://.godot/imported/step_concrete_road_7.wav-8fd6816c6e1bf69f8e0e8b6f5efb6b51.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

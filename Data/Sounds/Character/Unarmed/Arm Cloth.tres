@@ -1,0 +1,20 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=6 format=3 uid="uid://btboum63yvwf5"]
+
+[ext_resource type="AudioStream" uid="uid://2efdbsku7tgm" path="res://Data/Sounds/Character/Unarmed/Arm Cloth/Arm_Cloth_0.wav" id="1_goqjh"]
+[ext_resource type="AudioStream" uid="uid://kkjj163wmwf6" path="res://Data/Sounds/Character/Unarmed/Arm Cloth/Arm_Cloth_1.wav" id="2_yia5g"]
+[ext_resource type="AudioStream" uid="uid://0psy4een78nk" path="res://Data/Sounds/Character/Unarmed/Arm Cloth/Arm_Cloth_2.wav" id="3_cafc0"]
+[ext_resource type="AudioStream" uid="uid://b7ctvlbdnjdnc" path="res://Data/Sounds/Character/Unarmed/Arm Cloth/Arm_Cloth_3.wav" id="4_vcw8r"]
+[ext_resource type="AudioStream" uid="uid://7qcc8lycmnmm" path="res://Data/Sounds/Character/Unarmed/Arm Cloth/Arm_Cloth_4.wav" id="5_goe06"]
+
+[resource]
+streams_count = 5
+stream_0/stream = ExtResource("1_goqjh")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_yia5g")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_cafc0")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_vcw8r")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_goe06")
+stream_4/weight = 1.0

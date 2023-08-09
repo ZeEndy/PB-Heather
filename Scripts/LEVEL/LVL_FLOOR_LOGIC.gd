@@ -29,11 +29,11 @@ func _ready():
 	if astar != null:
 		_astar=get_node_or_null(astar)
 
-func _physics_process(_delta):
-	floor_clear=true
-	for i in get_children():
-		if i in get_tree().get_nodes_in_group("Enemy_Parent"):
-			floor_clear=false
+#func _physics_process(_delta):
+#	floor_clear=true
+#	for i in get_children():
+#		if i in get_tree().get_nodes_in_group("Enemy_Parent"):
+#			floor_clear=false
 
 func _process(delta):
 	if get_tree().get_nodes_in_group("Player").size()>0:
