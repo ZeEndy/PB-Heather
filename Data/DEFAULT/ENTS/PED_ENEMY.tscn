@@ -3996,18 +3996,6 @@ tracks/7/keys = {
 "update": 1,
 "values": [0, 0]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Melee_Area:hit_sound")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.388889),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [[null], []]
-}
 
 [sub_resource type="Animation" id="Animation_34jda"]
 resource_name = "Unarmed Execute"
@@ -5708,6 +5696,8 @@ height = 8.0
 [node name="Enemy" type="Node2D" groups=["Enemy_Parent", "PED_parent"]]
 z_index = 1
 script = ExtResource("2")
+holster = null
+execute_click = true
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["Enemy", "PED"]]
 collision_layer = 65

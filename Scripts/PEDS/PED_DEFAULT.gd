@@ -108,7 +108,6 @@ var path=[]
 		"trigger_reset":0.1,
 	}
 
-@export var holster= {}
 var delay=0
 var trigger_pressed=false
 
@@ -121,6 +120,7 @@ var closest_gun = null
 @export_category("Downed or execute state")
 @export var MAX_GET_UP_TIME=8
 @export var down_timer=8
+@export var copy_time=false
 var in_distance_to_execute=false
 var execute_target=null
 @export var execute_click=false
@@ -141,7 +141,6 @@ var change_leg_sprite_value=false
 @export var turn_left=""
 @export var turn_right=""
 
-@export var tinnitus=0
 
 
 
@@ -150,8 +149,6 @@ func _ready():
 	body_direction=global_rotation
 	global_rotation=0
 	print(global_position)
-	if get_node_or_null("TEMPSPRITE")!=null:
-		get_node("TEMPSPRITE").queue_free()
 	
 	if sprite_based_on_export==false:
 		_play_animation(gun.walk_sprite)
@@ -196,14 +193,14 @@ func _process(delta):
 		var walking = (gun.walk_sprite in sprite_index)
 		
 		if walking:
-			sprite_body_anim.speed_scale = (abs(collision_body.velocity.length()/125))
+			sprite_body.speed_scale = (abs(collision_body.velocity.length()/125))
 		else:
 			if gun.type=="melee" && ("Attack" in sprite_index):
-				sprite_body_anim.speed_scale=motion_multiplier
+				sprite_body.speed_scale=motion_multiplier
 			elif !("Attack" in sprite_index):
-				sprite_body_anim.speed_scale=motion_multiplier
+				sprite_body.speed_scale=motion_multiplier
 			else:
-				sprite_body_anim.speed_scale=1.0
+				sprite_body.speed_scale=1.0
 		
 		if sprite_legs.animation!=leg_index:
 			sprite_legs.play(leg_index)
@@ -225,7 +222,11 @@ func _process(delta):
 					_play_animation(gun.walk_sprite_empty)
 				else:
 					_play_animation(gun.walk_sprite)
-
+		
+		
+	elif state==ped_states.execute:
+		if copy_time==true:
+			execute_target.sprite_legs.seek(sprite_body.frame,true)
 
 func _physics_process(delta):
 	collision_body.global_rotation=0
@@ -284,14 +285,14 @@ func movement(new_motion=null,delta=null):
 
 func leg_sprites(delta):
 	if (abs(collision_body.velocity.length()))<30:
-			if sprite_legs_anim.speed_scale!=0:
+			if sprite_legs.speed_scale!=0:
 				sprite_legs_anim.seek(0)
-				sprite_legs_anim.speed_scale=0
+				sprite_legs.speed_scale=0
 				leg_index="WalkLegs_start"
 
 	else:
 		sprite_legs.rotation=lerp_angle(sprite_legs.rotation,atan2(collision_body.velocity.y,collision_body.velocity.x),clamp(50*delta,0,1))
-		sprite_legs_anim.speed_scale = (abs(collision_body.get_real_velocity().length()/125))
+		sprite_legs.speed_scale = (abs(collision_body.get_real_velocity().length()/125))
 
 
 #This script functions by reading through the poperty list of the gun variable and spawning
@@ -486,7 +487,7 @@ func spawn_bullet(amoumt:int):
 
 func move_to_point(delta,point,speed=0.7):
 	get_node("PED_COL/movement_check").target_position=point-collision_body.global_position
-	if get_node("PED_COL/movement_check").is_colliding()==false && Array(path)==[]:
+	if get_node("PED_COL/movement_check").is_colliding()==false:
 		#cum calculation piss =focused_player.global_position+Vector2(25,0).rotated(focused_player.global_position.direction_to(collision_body.global_position).angle())
 		axis=axis.lerp(Vector2(speed,0).rotated(collision_body.global_position.direction_to(point).angle()),clamp(50*delta,0,1))
 		body_direction=lerp_angle(body_direction,axis.angle(),0.15)
@@ -580,27 +581,27 @@ func do_execution():
 		state=ped_states.execute
 		axis=Vector2(0,0)
 		my_velocity=Vector2(0,0)
-		execute_target.get_parent().my_velocity=Vector2(0,0)
-		execute_target.get_parent().axis=Vector2(0,0)
+		execute_target.my_velocity=Vector2(0,0)
+		execute_target.axis=Vector2(0,0)
 
 #		execute_target.get_parent().sprite_legs.get_node("AnimationPlayer").playback_speed=0
-		collision_body.global_position=execute_target.global_position
-		sprite_body.global_rotation=execute_target.get_parent().sprite_legs.global_rotation-deg_to_rad(180)
+		collision_body.global_position=execute_target.collision_body.global_position
+		sprite_body.global_rotation=execute_target.sprite_legs.global_rotation-PI
 		
-		if execute_target.get_parent().sprite_legs.animation!="GetUpLean":
+		if execute_target.sprite_legs.animation!="GetUpLean":
 			if gun.execution_sprite!="":
 				sprite_body.play(gun.execution_sprite)
-				execute_target.get_parent().sprite_legs.play(gun.ground_sprite,false,0)
+				execute_target.sprite_legs.play(gun.ground_sprite,false,0)
 			else:
 				drop_weapon()
 				sprite_body.play(default_gun.id+"/"+default_gun.execution_sprite)
-				execute_target.get_parent().sprite_legs.play(default_gun.ground_sprite,false,0)
+				execute_target.sprite_legs.play(default_gun.ground_sprite,false,0)
 		else:
 				sprite_body.play("ExecuteWall")
-				execute_target.get_parent().sprite_legs.play("DieLean")
-		execute_target.get_parent().sprite_legs.speed_scale=0	
+				execute_target.sprite_legs.play("DieLean")
+		execute_target.sprite_legs.speed_scale=0	
 		sprite_legs.visible=false
-		execute_target.get_parent().can_get_up=false
+		execute_target.can_get_up=false
 
 
 
@@ -622,7 +623,7 @@ func get_downed_enemies():
 				
 				if !get_node("PED_COL/weapon_find").is_colliding():
 					in_distance_to_execute=true
-					execute_target = enemy
+					execute_target = enemy.get_parent()
 					return enemy
 	return null
 
@@ -631,7 +632,7 @@ func get_downed_enemies():
 
 func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=null,_bleed:bool=false):
 	if state==ped_states.execute:
-		var par=execute_target.get_parent()
+		print("test")
 		var damage_output
 		if damage is Array:
 			damage_output=randi_range(damage[0],damage[1])
@@ -640,18 +641,19 @@ func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=nul
 		if ammo_use>0:
 			var usable_ammo=clamp(gun["ammo"],1,ammo_use)
 			gun["ammo"]-=1
-			damage_output=clamp(par.health,1,999)/usable_ammo
-		par.health-=damage_output
-		if par.health<=0:
-			if sound!=null:
-				AudioManager.play_audio(sound)
-			par.state=ped_states.dead
+			damage_output=clamp(execute_target.health,1,999)/usable_ammo
+		execute_target.health-=damage_output
+		if execute_target.health<=0:
+			
+#			if sound!=null:
+#				AudioManager.play_audio(sound)
+			execute_target.state=ped_states.dead
 			if animation!="":
-				par.sprite_legs.play(animation,false,0)
+				execute_target.sprite_legs.play(animation,false,0)
 				if frame=="rand":
-					par.sprite_legs.seek(randf_range(0,sprite_legs.get_node("AnimationPlayer").current_animation_length))
+					execute_target.sprite_legs.seek(randf_range(0,sprite_legs.get_node("AnimationPlayer").current_animation_length))
 				else:
-					par.sprite_legs.seek(frame)
+					execute_target.sprite_legs.seek(frame)
 			state=ped_states.alive
 			sprite_legs.visible=true
 			sprite_index=gun.walk_sprite
@@ -661,15 +663,15 @@ func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=nul
 
 #go to the next enemy sprite frame
 func execute_e_next_frame(frame_rate:int = 13):
-	execute_target.get_parent().sprite_legs.next_frame(frame_rate)
+	execute_target.sprite_legs.next_frame(frame_rate)
 	return true #output if command was completed
 
-func execute_e_copy_time():
-	execute_target.get_parent().sprite_legs.seek(sprite_body.frame)
+
 
 #read the function
 func execute_do_click():
 	sprite_body.speed_scale=1
+
 
 
 func get_classd():

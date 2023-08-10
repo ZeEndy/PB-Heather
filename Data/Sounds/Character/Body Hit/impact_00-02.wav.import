@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://eyocl6rl4qaw"
+path="res://.godot/imported/impact_00-02.wav-5b1a79881e5dbaeb2b3610e726b195e7.sample"
+
+[deps]
+
+source_file="res://Data/Sounds/Character/Body Hit/impact_00-02.wav"
+dest_files=["res://.godot/imported/impact_00-02.wav-5b1a79881e5dbaeb2b3610e726b195e7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

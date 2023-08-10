@@ -13,7 +13,7 @@ enum at_types{
 @onready var ped_parent=get_node("../../../")
 
 @export var attack_type : at_types
-@export var hit_sound = []
+@export var hit_sound : NodePath
 @export var death_sprite = ""
 @export var death_lean_sprite = ""
 
@@ -36,19 +36,24 @@ func _process(_delta):
 				query.from=ped_parent.collision_body.global_position
 				query.to=i.global_position
 				query.collision_mask=16
+				var sound_node = get_node_or_null(hit_sound)
 				var result = space_state.intersect_ray(query)
 				if result.size()==0:
 					if for_ped_parent.has_method("go_down") && attack_type==at_types.downing:
 						if for_ped_parent.state==0:
 							for_ped_parent.go_down(ped_parent.collision_body.global_position.direction_to(i.global_position).angle())
+							if sound_node!=null:
+								sound_node.play()
 					if for_ped_parent.has_method("do_remove_health") && attack_type==at_types.lethal:
 						if for_ped_parent.state==0 || for_ped_parent.state==3:
 							if !("Lean" in for_ped_parent.sprite_legs.animation):
 								for_ped_parent.do_remove_health(1,death_sprite,(ped_parent.collision_body.global_position.direction_to(i.global_position).angle())-deg_to_rad(180),"rand",0.8)
-								AudioManager.play_audio([false]+hit_sound,null,true,1,0,"SFX")
+								if sound_node!=null:
+									sound_node.play()
 							else:
 								for_ped_parent.do_remove_health(1,death_lean_sprite,for_ped_parent.sprite_legs.global_rotation,"rand",0.8)
-								AudioManager.play_audio([false]+hit_sound,null,true,1,0,"SFX")
+								if sound_node!=null:
+									sound_node.play()
 						break
 					if for_ped_parent is WINDOW:
 						for_ped_parent.destroy_window()

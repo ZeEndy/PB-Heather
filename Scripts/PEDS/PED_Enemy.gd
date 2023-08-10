@@ -189,14 +189,12 @@ func _physics_process(delta):
 		body_direction=sprite_legs.global_rotation
 		if sprite_legs.speed_scale==0:
 			collision_body.set_collision_layer_value(7,false)
-			CharacterBody2D
 		else:
 			collision_body.set_collision_layer_value(7,true)
 		return
 	elif state==ped_states.execute:
 		if execute_click==true:
 			sprite_body.speed_scale=1
-			sprite_body.get_node("AnimationPlayer").playback_speed=1
 
 
 func go_down(down_dir=randi()):

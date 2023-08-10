@@ -41,11 +41,10 @@ func play(_animation:String = 'default', backwards:bool = false, speed:float = 1
 
 
 
-#func _process(delta):
-#	if get_node("AnimationPlayer").current_animation!="":
-#		frame=get_node("AnimationPlayer").current_animation_position
-#		animation=get_node("AnimationPlayer").current_animation
-#		get_node("AnimationPlayer").playback_speed=speed_scale
+func _process(delta):
+	if get_node("AnimationPlayer").current_animation!="":
+		frame=get_node("AnimationPlayer").current_animation_position
+		get_node("AnimationPlayer").speed_scale=speed_scale
 
 
 func holster(anim:String,pull_out:bool):
@@ -186,6 +185,7 @@ func next_frame(frame_rate : int = 13):
 
 func seek(seconds:float = 0.0,update:bool = true):
 	anim_player.seek(seconds,update)
+	print(seconds)
 
 #func print_debug_anim():
 #	print(get_node("anim").scale)

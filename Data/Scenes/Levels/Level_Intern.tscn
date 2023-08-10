@@ -14731,38 +14731,47 @@ next_transiton = NodePath("../../../SubViewportContainer2/Floor 2/Floor Transiti
 [node name="Enemy5" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(727, 521)
 enemy_type = 2
+holster = null
 
 [node name="Enemy6" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(772, 392)
 enemy_type = 2
+holster = null
 
 [node name="Enemy7" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(625, 290)
 enemy_type = 2
+holster = null
 
 [node name="Enemy8" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(447, 364)
 enemy_type = 2
+holster = null
 
 [node name="Enemy9" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(404, 217)
 enemy_type = 2
+holster = null
 
 [node name="Enemy10" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(848, 286)
 enemy_type = 2
+holster = null
 
 [node name="Enemy2" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(633, 405)
 enemy_type = 2
+holster = null
 
 [node name="Enemy3" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(532, 486)
 enemy_type = 2
+holster = null
 
 [node name="Enemy4" parent="SubViewportContainer/Floor 1" instance=ExtResource("27_gysur")]
 position = Vector2(635, 485)
 enemy_type = 2
+holster = null
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
 offset_right = 40.0
@@ -14882,6 +14891,7 @@ next_transiton = NodePath("../../../SubViewportContainer/Floor 1/Floor Transitio
 
 [node name="Enemy" parent="SubViewportContainer2/Floor 2" instance=ExtResource("27_gysur")]
 position = Vector2(591, 462)
+holster = null
 
 [node name="HlmWadEditor-v0185X64MM3w4hoNiU" type="Sprite2D" parent="."]
 visible = false

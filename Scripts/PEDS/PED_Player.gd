@@ -62,8 +62,8 @@ func _ready():
 func _physics_process(delta):
 	super(delta)
 	glob_phys_delta=delta
-	if Input.is_action_just_pressed("weapon_swap"):
-		holster_gun()
+#	if Input.is_action_just_pressed("weapon_swap"):
+#		holster_gun()
 	if Input.is_action_just_pressed("ui_accept"):
 		sprite_index="MaskOn"
 	get_node("PED_COL").global_rotation = 0
@@ -268,48 +268,48 @@ func Kerenzikov_effect():
 #			holster_gun()
 
 
-func holster_gun():
-	if (gun.walk_sprite in sprite_index):
-		if holster==null:
-			if gun.id!=default_gun.id:
-				print("holster_empty")
-				var holst=gun.get("holster")
-				var empty_holst=gun.get("holster_empty")
-				var cur_sprite_index=""
-				if gun.ammo>0:
-					if holst!=null:
-						cur_sprite_index=holst
-					else:
-						cur_sprite_index=empty_holst
-				else:
-					if empty_holst!=null:
-						cur_sprite_index=empty_holst
-					else:
-						cur_sprite_index=holst
-				if cur_sprite_index!="" && cur_sprite_index!=null:
-					sprite_body.play(cur_sprite_index,false)
-					sprite_index=cur_sprite_index
-					
-		if holster!=null:
-			drop_weapon()
-			print("holster_full")
-			var holst=holster.get("unholster")
-			var empty_holst=holster.get("unholster_empty")
-			var cur_sprite_index=""
-			if holster.ammo>0:
-				if holst!=null:
-					cur_sprite_index=holst
-				else:
-					cur_sprite_index=empty_holst
-			else:
-				if empty_holst!=null:
-					cur_sprite_index=empty_holst
-				else:
-					cur_sprite_index=holst
-			if cur_sprite_index!="":
-				sprite_body.play(cur_sprite_index,false)
-				sprite_index=cur_sprite_index
-				
+#func holster_gun():
+#	if (gun.walk_sprite in sprite_index):
+#		if holster==null:
+#			if gun.id!=default_gun.id:
+#				print("holster_empty")
+#				var holst=gun.get("holster")
+#				var empty_holst=gun.get("holster_empty")
+#				var cur_sprite_index=""
+#				if gun.ammo>0:
+#					if holst!=null:
+#						cur_sprite_index=holst
+#					else:
+#						cur_sprite_index=empty_holst
+#				else:
+#					if empty_holst!=null:
+#						cur_sprite_index=empty_holst
+#					else:
+#						cur_sprite_index=holst
+#				if cur_sprite_index!="" && cur_sprite_index!=null:
+#					sprite_body.play(cur_sprite_index,false)
+#					sprite_index=cur_sprite_index
+#
+#		if holster!=null:
+#			drop_weapon()
+#			print("holster_full")
+#			var holst=holster.get("unholster")
+#			var empty_holst=holster.get("unholster_empty")
+#			var cur_sprite_index=""
+#			if holster.ammo>0:
+#				if holst!=null:
+#					cur_sprite_index=holst
+#				else:
+#					cur_sprite_index=empty_holst
+#			else:
+#				if empty_holst!=null:
+#					cur_sprite_index=empty_holst
+#				else:
+#					cur_sprite_index=holst
+#			if cur_sprite_index!="":
+#				sprite_body.play(cur_sprite_index,false)
+#				sprite_index=cur_sprite_index
+#
 
 
 

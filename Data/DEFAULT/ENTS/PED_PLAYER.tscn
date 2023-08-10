@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://c0a5bkdojdeuw" path="res://Data/DEFAULT/SPRITES/Char/Execute/Char_ExecuteShotgun_strip8.png" id="50_6jgj0"]
 [ext_resource type="Texture2D" uid="uid://ciyhjbidrmwul" path="res://Data/DEFAULT/SPRITES/Char/Attack/Char_AttackM16_strip2.png" id="52_8b1hh"]
 [ext_resource type="Texture2D" uid="uid://b67gis2oa027n" path="res://Data/DEFAULT/SPRITES/Char/Execute/Char_ExecuteWall_strip10.png" id="53_ljjsl"]
+[ext_resource type="Texture2D" uid="uid://ce77do34vavcq" path="res://Data/Sprites/Characters/Heather/Body/Unarmed/Walk_strip8.png" id="55_2dtg2"]
 [ext_resource type="Texture2D" uid="uid://x7mj5mi53l68" path="res://Data/Sprites/Characters/Heather/Heads/Normal/Head_normal.png" id="56_khq8h"]
 [ext_resource type="Texture2D" uid="uid://d3aekdf3ektue" path="res://Data/DEFAULT/SPRITES/Char/Walk/Char_WalkBat_strip8.png" id="56_ohqhx"]
 [ext_resource type="Texture2D" uid="uid://bu5lvxeofn6yh" path="res://Data/DEFAULT/SPRITES/Char/Execute/bat/Char_ExecuteBat_low_strip7.png" id="60_25jo0"]
@@ -57,7 +58,6 @@
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_MELEE_AREA.gd" id="66_1vi4r"]
 [ext_resource type="Texture2D" uid="uid://bbm0voeo4cmyi" path="res://Data/DEFAULT/SPRITES/Char/Attack/Char_AttackM9_strip2.png" id="97_6foqc"]
 [ext_resource type="Texture2D" uid="uid://c3wo0vuyloj50" path="res://Data/DEFAULT/SPRITES/Char/Attack/Char_AttackUnarmed_strip7.png" id="104_10ayj"]
-[ext_resource type="Texture2D" uid="uid://b4pjr0rfmkk15" path="res://Data/DEFAULT/SPRITES/Char/Walk/Char_WalkUnarmed_strip8.png" id="107_jh74e"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 8.0
@@ -434,6 +434,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="251"]
 resource_name = "DieGround"
 length = 0.307692
+loop_mode = 1
 step = 0.0769231
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2242,7 +2243,7 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="5"]
-resource_name = "RESET5"
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -2295,7 +2296,7 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pmrx2"]
 _data = {
-"RESET5": SubResource("5")
+"RESET": SubResource("5")
 }
 
 [sub_resource type="Animation" id="Animation_m55sw"]
@@ -3521,7 +3522,7 @@ tracks/13/path = NodePath("Sound/PB/Attack/Hammer:playing")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.00145311),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -3530,6 +3531,7 @@ tracks/13/keys = {
 [sub_resource type="Animation" id="Animation_hf14k"]
 resource_name = "Maxim9 Walk"
 length = 0.615385
+loop_mode = 1
 step = 0.0769231
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -4137,7 +4139,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.111111, 0.277778),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 0)]
 }
 tracks/4/type = "value"
@@ -4193,23 +4195,23 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Melee_Area:hit_sound")
+tracks/8/path = NodePath("Sound/Unarmed/Attack:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.388889),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.00117055),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [[null], []]
+"values": [true]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Sound/Unarmed/Attack:playing")
+tracks/9/path = NodePath("Sound/Unarmed/Cloth:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0.00117055),
+"times": PackedFloat32Array(0.00156074),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -4217,19 +4219,19 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sound/Unarmed/Cloth:playing")
+tracks/10/path = NodePath("Melee_Area:hit_sound")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0.00156074),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [NodePath("../Sound/Unarmed/Hit")]
 }
 
 [sub_resource type="Animation" id="Animation_34jda"]
 resource_name = "Unarmed Execute"
-length = 0.307692
+length = 0.3077
 loop_mode = 1
 step = 0.0769231
 tracks/0/type = "value"
@@ -4277,7 +4279,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692),
 "transitions": PackedFloat32Array(1, 1, 1.03526, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(10, 1), Vector2(12, 1), Vector2(11, 1), Vector2(10, 1), Vector2(10, 1)]
 }
 tracks/4/type = "value"
@@ -4304,118 +4306,67 @@ tracks/5/keys = {
 "update": 1,
 "values": []
 }
-tracks/6/type = "method"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".")
+tracks/6/path = NodePath("anim:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.0769231),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Punch.wav"],
-"method": &"play_audio"
-}]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("anim:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.307692),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1)]
 }
-tracks/8/type = "method"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../..")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../..")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0.153846),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [[0.25, 0.3], 0.0, "DeadBash", "rand", "res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Hit.wav"],
+"args": [[25.0, 30.0], 0.0, "DeadBash", "rand", "res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Hit.wav"],
 "method": &"execute_remove_health"
 }]
 }
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../..")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.077, 0.153846, 0.230769, 0.307692),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"execute_e_copy_time"
-}, {
-"args": [],
-"method": &"execute_e_copy_time"
-}, {
-"args": [],
-"method": &"execute_e_copy_time"
-}, {
-"args": [],
-"method": &"execute_e_copy_time"
-}, {
-"args": [],
-"method": &"execute_e_copy_time"
-}]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath(".:speed_scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = false
-tracks/10/keys = {
-"times": PackedFloat32Array(0.00156074),
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".:speed_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = false
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0016),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("../..:execute_click")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.307692),
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../..:execute_click")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.0016, 0.0769231, 0.307692),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, false]
 }
-tracks/12/type = "method"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("../..")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../..:execute_click")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../..:copy_time")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6gu20"]
@@ -4655,7 +4606,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.0769231, 0.230769, 0.307692, 0.384615, 0.615385),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(0, 0), Vector2(0, 1), Vector2(0, 1), Vector2(0, 0), Vector2(0, -1), Vector2(0, -1)]
+"values": [Vector2(1, 0), Vector2(1, 1), Vector2(1, 1), Vector2(1, 0), Vector2(1, -1), Vector2(1, -1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -5014,35 +4965,35 @@ region = Rect2(384, 0, 32, 32)
 atlas = ExtResource("34_etmm2")
 region = Rect2(416, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrcfy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6it6"]
 atlas = ExtResource("47_muaki")
 region = Rect2(0, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ku6t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lrm3"]
 atlas = ExtResource("47_muaki")
 region = Rect2(50, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fur75"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wfcx"]
 atlas = ExtResource("47_muaki")
 region = Rect2(100, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_88xgf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmutt"]
 atlas = ExtResource("47_muaki")
 region = Rect2(150, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x8kyi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ftb5"]
 atlas = ExtResource("47_muaki")
 region = Rect2(200, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqqfb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7qbp"]
 atlas = ExtResource("47_muaki")
 region = Rect2(250, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0avrd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_56fm0"]
 atlas = ExtResource("47_muaki")
 region = Rect2(300, 0, 50, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7y77v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n5n7"]
 atlas = ExtResource("47_muaki")
 region = Rect2(350, 0, 50, 32)
 
@@ -5262,36 +5213,36 @@ region = Rect2(352, 0, 44, 35)
 atlas = ExtResource("53_ljjsl")
 region = Rect2(396, 0, 44, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cpwtx"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ka6g"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0oxh7"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3nlp"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_agr2c"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbr6k"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_isnwo"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tioyy"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_st4uk"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8npnc"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xehyu"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb44d"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdllu"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6xi0"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(192, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_351h2"]
-atlas = ExtResource("107_jh74e")
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdoti"]
+atlas = ExtResource("55_2dtg2")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d3l3r"]
@@ -5573,28 +5524,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lrcfy")
+"texture": SubResource("AtlasTexture_o6it6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ku6t")
+"texture": SubResource("AtlasTexture_0lrm3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fur75")
+"texture": SubResource("AtlasTexture_1wfcx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_88xgf")
+"texture": SubResource("AtlasTexture_lmutt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x8kyi")
+"texture": SubResource("AtlasTexture_5ftb5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eqqfb")
+"texture": SubResource("AtlasTexture_v7qbp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0avrd")
+"texture": SubResource("AtlasTexture_56fm0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7y77v")
+"texture": SubResource("AtlasTexture_4n5n7")
 }],
 "loop": true,
 "name": &"M9 Walk",
@@ -5804,28 +5755,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cpwtx")
+"texture": SubResource("AtlasTexture_1ka6g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0oxh7")
+"texture": SubResource("AtlasTexture_d3nlp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_agr2c")
+"texture": SubResource("AtlasTexture_wbr6k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_isnwo")
+"texture": SubResource("AtlasTexture_tioyy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_st4uk")
+"texture": SubResource("AtlasTexture_8npnc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xehyu")
+"texture": SubResource("AtlasTexture_gb44d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hdllu")
+"texture": SubResource("AtlasTexture_h6xi0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_351h2")
+"texture": SubResource("AtlasTexture_gdoti")
 }],
 "loop": true,
 "name": &"Unarmed Walk",
@@ -5908,11 +5859,11 @@ animations = [{
 radius = 4.0
 height = 8.0
 
-[node name="Richter" type="Node2D" groups=["PED_parent"]]
+[node name="Heather" type="Node2D" groups=["PED_parent"]]
 texture_filter = 1
 script = ExtResource("1_lwlbx")
 override_attack = true
-execute_click = true
+copy_time = true
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["PED", "Player"]]
 collision_layer = 4
@@ -5948,8 +5899,9 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("56")
-animation = &"Walk Legs"
-frame = 7
+animation = &"DieGround"
+frame = 3
+offset = Vector2(-4, 2)
 
 [node name="Sound" type="Node2D" parent="PED_SPRITES/Legs"]
 
@@ -6071,8 +6023,7 @@ texture_filter = 1
 use_parent_material = true
 rotation = -0.000690252
 sprite_frames = SubResource("SpriteFrames_d3l3r")
-animation = &"M9 Walk"
-offset = Vector2(12, 0)
+animation = &"Unarmed Walk"
 
 [node name="mask" type="AnimatedSprite2D" parent="PED_SPRITES/Body/anim"]
 use_parent_material = true
@@ -6086,7 +6037,7 @@ sprite_frames = SubResource("213")
 offset = Vector2(4, -1)
 
 [node name="Bullet_Spawn" type="Marker2D" parent="PED_SPRITES/Body/anim"]
-position = Vector2(22, 2)
+position = Vector2(31, -0.000157181)
 
 [node name="Melee_Area" type="Area2D" parent="PED_SPRITES/Body"]
 position = Vector2(16, 0)
@@ -6094,7 +6045,7 @@ collision_layer = 65535
 collision_mask = 65535
 monitorable = false
 script = ExtResource("66_1vi4r")
-hit_sound = [null]
+hit_sound = NodePath("../Sound/Unarmed/Hit")
 death_sprite = "DeadBlunt"
 death_lean_sprite = "DeadLeanMelee"
 
