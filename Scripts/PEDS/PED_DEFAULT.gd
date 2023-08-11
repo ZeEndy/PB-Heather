@@ -43,70 +43,9 @@ var path=[]
 
 
 #WEAPON VARIABLES
-@onready var default_gun={
-		#id for hud
-		"id":"Unarmed",
-		# wad sprites
-		"walk_sprite":"Walk",
-		"attack_sprite":["Attack"],
-		"attack_index":0,
-		#random on attack
-		"random_sprite":false,
-		"attack_sound":null,
-		
-		
-		"kill_sprite":"",
-		"kill_lean_sprite":"",
-		
-		"recoil":0,
-		
-		"droppable":false,
-		#types:melee"
-		"type":"melee",
-		#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
-		"attack_type":"downing",
-		
-		
-		"execution_sprite":"Execute",
-		"ground_sprite":"DieGround",
-		"screen_shake":1,
-		
-		#trigger
-		"trigger_pressed":false,
-		"trigger_reset":0.1,
-	}
-@export var gun = {
-		#id for hud
-		"id":"Unarmed",
-		# wad sprites
-		"walk_sprite":"Walk",
-		"attack_sprite":["Attack"],
-		"attack_index":0,
-		#random on attack
-		"random_sprite":false,
-		"attack_sound":null,
-		
-		
-		"kill_sprite":"",
-		"kill_lean_sprite":"",
-		
-		"recoil":0,
-		
-		"droppable":false,
-		#types:melee"
-		"type":"melee",
-		#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
-		"attack_type":"downing",
-		
-		
-		"execution_sprite":"Execute",
-		"ground_sprite":"DieGround",
-		"screen_shake":1,
-		
-		#trigger
-		"trigger_pressed":false,
-		"trigger_reset":0.1,
-	}
+@onready var default_gun
+@export_enum("f","fuck1","fuck2") var gun_type=""
+@export_enum("f","shit","faggot") var gun = ""
 
 var delay=0
 var trigger_pressed=false
@@ -148,10 +87,12 @@ func _ready():
 #	get_node("PED_COL/NavigationAgent2D").set_navigation(get_parent().navigation)
 	body_direction=global_rotation
 	global_rotation=0
-	print(global_position)
+	default_gun=Database.get_wep("Melee","Unarmed")
+	if gun is String:
+		Database.get_wep()
 	
 	if sprite_based_on_export==false:
-		_play_animation(gun.walk_sprite)
+		_play_animation("Walk")
 	else:
 		_play_animation(sprite_index)
 	sprite_legs.play(leg_index)
@@ -190,12 +131,12 @@ func _process(delta):
 		
 		
 		leg_sprites(delta)
-		var walking = (gun.walk_sprite in sprite_index)
+		var walking = ("Walk" in sprite_index)
 		
 		if walking:
 			sprite_body.speed_scale = (abs(collision_body.velocity.length()/125))
 		else:
-			if gun.type=="melee" && ("Attack" in sprite_index):
+			if gun["Type"]=="Melee" && ("Attack" in sprite_index):
 				sprite_body.speed_scale=motion_multiplier
 			elif !("Attack" in sprite_index):
 				sprite_body.speed_scale=motion_multiplier
@@ -206,22 +147,15 @@ func _process(delta):
 			sprite_legs.play(leg_index)
 		
 		if sprite_index=="":
-			if gun.get("jammed",false)==true:
-				_play_animation("Walk_jam")
-			elif gun.type!="melee" && gun.ammo==0 && gun.has("walk_sprite_empty"):
-				_play_animation(gun.walk_sprite_empty)
+			if gun.type!="melee" && gun.ammo==0:
+				_play_animation("Walk Empty")
 			else:
-				_play_animation(gun.walk_sprite)
+				_play_animation("Walk")
 		
 		if !(sprite_index in sprite_body_anim.current_animation):
 			await RenderingServer.frame_post_draw
 			if !(sprite_index in sprite_body_anim.current_animation):
-				if gun.get("jammed",false)==true:
-					_play_animation("Walk_jam")
-				elif gun.type!="melee" && gun.ammo==0 && gun.has("walk_sprite_empty"):
-					_play_animation(gun.walk_sprite_empty)
-				else:
-					_play_animation(gun.walk_sprite)
+				_play_animation(sprite_index,0,true)
 		
 		
 	elif state==ped_states.execute:

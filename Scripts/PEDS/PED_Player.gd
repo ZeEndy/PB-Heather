@@ -325,10 +325,10 @@ func get_classd():
 
 func debug_rand_weapon():
 		if Input.is_action_just_pressed("DEBUG_SPAWN_GUN"):
-			var rand_list=["M9","Shotgun","M16"]
+			var rand_list=["PB","Shotgun","AR-15"]
 			var random_select=int(round(randf_range(0,rand_list.size()-1)))
 			drop_weapon()
-			gun=Database.get_wep(rand_list[random_select])
+			gun=Database.get_wep("Firearm",rand_list[random_select])
 			sprite_index = ""
 
 

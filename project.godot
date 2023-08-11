@@ -21,7 +21,7 @@ config/windows_native_icon="res://icon.png"
 [autoload]
 
 AudioManager="*res://Data/DEFAULT/ENTS/ENT_AUDIO_MANAGER.tscn"
-Database="*res://Scripts/GAME/GAME_WEAPONS.gd"
+Database="*res://Scripts/GAME/GAME_DATABASE.gd"
 GAME="*res://GAME.tscn"
 GUI="*res://Data/Scenes/VFX/ENT_UI.tscn"
 
@@ -34,6 +34,10 @@ window/stretch/aspect="expand"
 window/size/width=1920
 window/size/height=1080
 window/vsync/use_vsync=false
+
+[dotnet]
+
+project/assembly_name="Heather- Overdetailed"
 
 [editor]
 

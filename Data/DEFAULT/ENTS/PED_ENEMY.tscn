@@ -5696,7 +5696,6 @@ height = 8.0
 [node name="Enemy" type="Node2D" groups=["Enemy_Parent", "PED_parent"]]
 z_index = 1
 script = ExtResource("2")
-holster = null
 execute_click = true
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["Enemy", "PED"]]
