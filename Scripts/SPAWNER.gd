@@ -23,20 +23,20 @@ extends Node2D
 #	get_parent().add_child(eneny)
 #	eneny.global_position=global_position
 #	eneny.get_node('PED_SPRITES').teleport()
-#	var gun=debug_rand_weapon()
-#	eneny.gun=gun
-#	eneny.sprite_index=gun.walk_sprite
+#	var weapon=debug_rand_weapon()
+#	eneny.weapon=weapon
+#	eneny.sprite_index=weapon.walk_sprite
 #	random_timer=rand_range(10,15)
 #
 #func debug_rand_weapon():
 #			var random_weapon=int(round(rand_range(0,3)))
-#			var gun
+#			var weapon
 #			match random_weapon:
 #				0:#M16
-#					var transfer_gun={
+#					var transfer_weapon={
 #						#id for hud
 #						"id":"M9",
-#						#ammo of the gun
+#						#ammo of the weapon
 #						"ammo":12,
 #						"max_ammo":12,
 #						# wad sprites
@@ -48,21 +48,21 @@ extends Node2D
 #						"attack_sound":"res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_M9.wav",
 #
 #
-#						"kill_sprite":"DeadMachinegun",
-#						"kill_lean_sprite":"DeadLeanMachinegun",
+#						"kill_sprite":"DeadMachineweapon",
+#						"kill_lean_sprite":"DeadLeanMachineweapon",
 #
 #						"recoil":4,
 #
 #						"droppable":true,
 #						#types:melee,burst,semi,auto
 #						"type":"semi",
-#						#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
+#						#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
 #						"attack_type":"normal",
 #
 #
 #						"execution_sprite":"ExecuteM9",
 #						"ground_sprite":"DieShot",
-#						"gun_length":0,
+#						"weapon_length":0,
 #						"screen_shake":1,
 #
 #						#trigger
@@ -72,12 +72,12 @@ extends Node2D
 #						"trigger_shot":0,
 #						"shoot_bullets":1
 #					}
-#					gun=dupe_dict(transfer_gun)
+#					weapon=dupe_dict(transfer_weapon)
 #				1:#AK
-#					var transfer_gun={
+#					var transfer_weapon={
 #						#id for hud
 #						"id":"AK",
-#						#ammo of the gun
+#						#ammo of the weapon
 #						"ammo":31,
 #						"max_ammo":30,
 #						# wad sprites
@@ -89,21 +89,21 @@ extends Node2D
 #						"attack_sound":"res://Data/DEFAULT/SOUNDS/GAMEPLAY/sndAK.wav",
 #
 #
-#						"kill_sprite":"DeadMachinegun",
-#						"kill_lean_sprite":"DeadLeanMachinegun",
+#						"kill_sprite":"DeadMachineweapon",
+#						"kill_lean_sprite":"DeadLeanMachineweapon",
 #
 #						"recoil":4,
 #
 #						"droppable":true,
 #						#types:melee,burst,semi,auto
 #						"type":"auto",
-#						#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
+#						#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
 #						"attack_type":"armor",
 #
 #
 #						"execution_sprite":"",
 #						"ground_sprite":"",
-#						"gun_length":0,
+#						"weapon_length":0,
 #						"screen_shake":1,
 #
 #						#trigger
@@ -113,12 +113,12 @@ extends Node2D
 #						"trigger_shot":0,
 #						"shoot_bullets":1
 #					}
-#					gun=dupe_dict(transfer_gun)
+#					weapon=dupe_dict(transfer_weapon)
 #				2:#UZI
-#					var transfer_gun={
+#					var transfer_weapon={
 #						#id for hud
 #						"id":"M16",
-#						#ammo of the gun
+#						#ammo of the weapon
 #						"ammo":21,
 #						"max_ammo":20,
 #						# wad sprites
@@ -130,21 +130,21 @@ extends Node2D
 #						"attack_sound":"res://Data/DEFAULT/SOUNDS/GAMEPLAY/sndM16.wav",
 #
 #
-#						"kill_sprite":"DeadMachinegun",
-#						"kill_lean_sprite":"DeadLeanMachinegun",
+#						"kill_sprite":"DeadMachineweapon",
+#						"kill_lean_sprite":"DeadLeanMachineweapon",
 #
 #						"recoil":4,
 #
 #						"droppable":true,
 #						#types:melee,burst,semi,auto
 #						"type":"burst",
-#						#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
+#						#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
 #						"attack_type":"armor",
 #
 #
 #						"execution_sprite":"",
 #						"ground_sprite":"",
-#						"gun_length":0,
+#						"weapon_length":0,
 #						"screen_shake":1,
 #
 #						#trigger
@@ -154,38 +154,38 @@ extends Node2D
 #						"trigger_shot":0,
 #						"shoot_bullets":1
 #					}
-#					gun=dupe_dict(transfer_gun)
-#				3:#SHOTGUN
-#					var transfer_gun={
+#					weapon=dupe_dict(transfer_weapon)
+#				3:#SHOTweapon
+#					var transfer_weapon={
 #						#id for hud
-#						"id":"Shotgun",
-#						#ammo of the gun
+#						"id":"Shotweapon",
+#						#ammo of the weapon
 #						"ammo":7,
 #						"max_ammo":6,
 #						# wad sprites
-#						"walk_sprite":"WalkShotgun",
-#						"attack_sprite":["AttackShotgun"],
+#						"walk_sprite":"WalkShotweapon",
+#						"attack_sprite":["AttackShotweapon"],
 #						"attack_index":0,
 #						#random on attack
 #						"random_sprite":false,
-#						"attack_sound":"res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Shotgun.wav",
+#						"attack_sound":"res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Shotweapon.wav",
 #
 #
-#						"kill_sprite":"DeadShotgun",
-#						"kill_lean_sprite":"DeadLeanShotgun",
+#						"kill_sprite":"DeadShotweapon",
+#						"kill_lean_sprite":"DeadLeanShotweapon",
 #
 #						"recoil":8,
 #
 #						"droppable":true,
 #						#types:melee,burst,semi,auto
 #						"type":"semi",
-#						#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
+#						#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
 #						"attack_type":"armor",
 #
 #
-#						"execution_sprite":"ExecuteShotgun",
-#						"ground_sprite":"DieShotgun",
-#						"gun_length":0,
+#						"execution_sprite":"ExecuteShotweapon",
+#						"ground_sprite":"DieShotweapon",
+#						"weapon_length":0,
 #						"screen_shake":1,
 #
 #						#trigger
@@ -195,12 +195,12 @@ extends Node2D
 #						"trigger_shot":0,
 #						"shoot_bullets":8
 #					}
-#					gun=dupe_dict(transfer_gun)
+#					weapon=dupe_dict(transfer_weapon)
 #				4:#Knife
-#					var transfer_gun={
+#					var transfer_weapon={
 #						#id for hud
 #						"id":"Knife",
-#						#ammo of the gun
+#						#ammo of the weapon
 #						"ammo":7,
 #						"max_ammo":6,
 #						# wad sprites
@@ -220,13 +220,13 @@ extends Node2D
 #						"droppable":true,
 #						#types:melee,burst,semi,auto
 #						"type":"melee",
-#						#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
+#						#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
 #						"attack_type":"",
 #
 #
 #						"execution_sprite":"ExecuteKnife",
 #						"ground_sprite":"DieKnife",
-#						"gun_length":0,
+#						"weapon_length":0,
 #						"screen_shake":1,
 #
 #						#trigger
@@ -236,12 +236,12 @@ extends Node2D
 #						"trigger_shot":0,
 #						"shoot_bullets":0
 #					}
-#					gun=dupe_dict(transfer_gun)
+#					weapon=dupe_dict(transfer_weapon)
 #				5:#Bat
-#					var transfer_gun={
+#					var transfer_weapon={
 #						#id for hud
 #						"id":"Bat",
-#						#ammo of the gun
+#						#ammo of the weapon
 #						"ammo":7,
 #						"max_ammo":6,
 #						# wad sprites
@@ -261,13 +261,13 @@ extends Node2D
 #						"droppable":true,
 #						#types:melee,burst,semi,auto
 #						"type":"melee",
-#						#attack_type:| shotgun, normal, armor, grenade,lethal, non-lethal,downing
+#						#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
 #						"attack_type":"",
 #
 #
 #						"execution_sprite":"ExecuteBat",
 #						"ground_sprite":"DieBlunt",
-#						"gun_length":0,
+#						"weapon_length":0,
 #						"screen_shake":1,
 #
 #						#trigger
@@ -277,8 +277,8 @@ extends Node2D
 #						"trigger_shot":0,
 #						"shoot_bullets":0
 #					}
-#					gun=dupe_dict(transfer_gun)
-#			return gun
+#					weapon=dupe_dict(transfer_weapon)
+#			return weapon
 #
 #
 #func dupe_dict(fromdict):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cncuo3n2teyoi"
-path="res://.godot/imported/sprKalashnikov.png-7a46c0b3658e88c2603eaa6e2e93ac6b.ctex"
+uid="uid://qukehi8ofa80"
+path="res://.godot/imported/OU_DB.png-7af81df07c4a3185bfe23589775713f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Objects/Weapons/sprKalashnikov.png"
-dest_files=["res://.godot/imported/sprKalashnikov.png-7a46c0b3658e88c2603eaa6e2e93ac6b.ctex"]
+source_file="res://Data/Sprites/Objects/Weapons/OU_DB.png"
+dest_files=["res://.godot/imported/OU_DB.png-7af81df07c4a3185bfe23589775713f9.ctex"]
 
 [params]
 

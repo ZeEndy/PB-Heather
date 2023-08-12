@@ -133,7 +133,7 @@ func _physics_process(delta):
 					sprite_body.global_rotation=body_direction
 					if enemy_type!=Enemy_t.DODGER && enemy_type!=Enemy_t.DOG_PATROL:
 						if player_visibilty()==true:
-							if gun.type!="melee":
+							if weapon["Type"]!="Melee":
 								
 								var clamped_rotation_speed=clamp(movement_check.target_position.length()*0.02,0.15,0.25)
 								body_direction=lerp_angle(body_direction,movement_check.target_position.angle(),clamped_rotation_speed*60*delta)
@@ -147,7 +147,7 @@ func _physics_process(delta):
 								else:
 									move_to_point(delta,focused_player.global_position,1.0)
 								return
-							elif gun.type=="melee":
+							elif weapon["Type"]=="Melee":
 								if movement_check.target_position.length()<24:
 									body_direction=lerp_angle(body_direction,collision_body.global_position.direction_to(focused_player.global_position).angle(),0.25)
 									attack()

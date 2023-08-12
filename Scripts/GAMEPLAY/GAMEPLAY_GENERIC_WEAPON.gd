@@ -12,10 +12,10 @@ var wait_pickup=0.001
 @onready var sprite=get_node("SPRITE")
 @onready var col=get_node("CollisionShape2D")
 
-@export var gun={
+@export var weapon={
 	#id for hud
 	"id":"M16",
-	#ammo of the gun
+	#ammo of the weapon
 	"max_ammo":30,
 	"ammo":25,
 	# wad sprites
@@ -30,8 +30,8 @@ var wait_pickup=0.001
 	"random_attack_sounds":true,
 	"random_kill_sounds":true,
 	
-	"kill_sprite":"DeadMachinegun",
-	"kill_lean_sprite":"DeadLeanMachinegun",
+	"kill_sprite":"DeadMachineweapon",
+	"kill_lean_sprite":"DeadLeanMachineweapon",
 	
 	"execution_sprite":[],
 	
@@ -45,7 +45,7 @@ var wait_pickup=0.001
 	"type":"semi",
 	#attack_type:| normal, armor, grenade
 	"attack_type":"normal",
-	"gun_length":24,
+	"weapon_length":24,
 	#trigger
 	"trigger_pressed":false,
 	"trigger_bullets":3,
@@ -58,7 +58,7 @@ var wait_pickup=0.001
 
 func _ready():
 	sprite.global_rotation=global_rotation
-	sprite.animation=gun["id"]
+	sprite.animation=weapon["ID"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

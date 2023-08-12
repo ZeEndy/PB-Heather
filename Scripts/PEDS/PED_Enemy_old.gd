@@ -172,7 +172,7 @@ func die():
 	switch_state(-1)
 
 func weapon_type(weapon):
-	return gun.type
+	return weapon.type
 
 func switch_state(new_state):
 	if state==ped_states.alive:
@@ -294,7 +294,7 @@ func state1():
 	# TODO: add blunt (unarmed) edge case
 	var d = 12*12
 	var r = RUNSPEED
-	match gun.type:
+	match weapon.type:
 		"semi",\
 		"auto",\
 		"burst":
@@ -320,7 +320,7 @@ func state1():
 func state2():
 	if player_focused == null:
 		switch_state(0)
-	if gun.type=="semi" or gun.type=="auto" or gun.type=="burst":
+	if weapon.type=="semi" or weapon.type=="auto" or weapon.type=="burst":
 		var dist_to_focused_player = VIEW_DIST + 1; # implement later idk
 		if (dist_to_focused_player > VIEW_DIST):
 			switch_state(3)
@@ -399,7 +399,7 @@ func hm1_rotate(tur_dir, destdir, turnspeed):
 func enemy_shoot():
 	#AAAA
 	#MY NUTS
-	gun.trigger_pressed=true
+	weapon.trigger_pressed=true
 	
 	pass
 

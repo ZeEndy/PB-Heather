@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjbsvjayef35t"
-path="res://.godot/imported/sprShotgun.png-1dc323804a5fe65d97fee153f7509775.ctex"
+uid="uid://c0pe6nv8raev7"
+path="res://.godot/imported/Balistic_Knife_strip2.png-0f59d345cd8f7621423a4411ef2cb372.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Objects/Weapons/sprShotgun.png"
-dest_files=["res://.godot/imported/sprShotgun.png-1dc323804a5fe65d97fee153f7509775.ctex"]
+source_file="res://Data/Sprites/Objects/Weapons/Balistic_Knife_strip2.png"
+dest_files=["res://.godot/imported/Balistic_Knife_strip2.png-0f59d345cd8f7621423a4411ef2cb372.ctex"]
 
 [params]
 

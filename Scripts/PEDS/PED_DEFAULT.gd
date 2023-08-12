@@ -28,7 +28,7 @@ enum ped_states{
 #ALIVE STATE VARIABLES
 @export var health=100.0
 @export var armour=0
-@export var start_with_gun=false
+@export var start_with_weapon=false
 
 
 # Movement variables
@@ -43,16 +43,16 @@ var path=[]
 
 
 #WEAPON VARIABLES
-@onready var default_gun
-@export_enum("f","fuck1","fuck2") var gun_type=""
-@export_enum("f","shit","faggot") var gun = ""
+@onready var default_weapon = Database.get_wep("Melee","Unarmed")
+@export_enum("Unarmed","PB","1911","AR-15","MAC-10") var desired_weapon=""
+@onready var weapon = Database.get_wep("Melee","Unarmed")
 
 var delay=0
-var trigger_pressed=false
+var bAttack=false
 
 var given_height=0
 var added_recoil = 0.0 #multiply this shit in the attack if needed
-var closest_gun = null
+var closest_weapon = null
 
 
 #DOWNED STATE/EXECUTION STATE
@@ -74,7 +74,7 @@ var change_leg_sprite_value=false
 # Sprite variables
 @export var sprite_index = ""
 @export var sprite_based_on_export=false
-@export var leg_index = "WalkLegs"
+@export var leg_index = "Walk/Start"
 @export var body_direction = 0
 
 @export var turn_left=""
@@ -87,9 +87,10 @@ func _ready():
 #	get_node("PED_COL/NavigationAgent2D").set_navigation(get_parent().navigation)
 	body_direction=global_rotation
 	global_rotation=0
-	default_gun=Database.get_wep("Melee","Unarmed")
-	if gun is String:
-		Database.get_wep()
+	default_weapon=Database.get_wep("Melee","Unarmed")
+	weapon=default_weapon.duplicate()
+#	if weapon is String:
+#		Database.get_wep()
 	
 	if sprite_based_on_export==false:
 		_play_animation("Walk")
@@ -98,7 +99,7 @@ func _ready():
 	sprite_legs.play(leg_index)
 	
 # Finds the first visible pickupable weapon dropped within 40 units of the player that isn't behind a wall 
-func gun_finder():
+func weapon_finder():
 	var dropped_weapons = get_tree().get_nodes_in_group("Weapon")
 	var pickup_dist = 40*40
 	
@@ -110,7 +111,7 @@ func gun_finder():
 				# filter weapons behind walls
 				get_node("PED_COL/weapon_find").target_position = weapon.global_position - sprites.global_position
 				if !get_node("PED_COL/weapon_find").is_colliding():
-					closest_gun = weapon
+					closest_weapon = weapon
 					return weapon
 	return null
 
@@ -136,7 +137,7 @@ func _process(delta):
 		if walking:
 			sprite_body.speed_scale = (abs(collision_body.velocity.length()/125))
 		else:
-			if gun["Type"]=="Melee" && ("Attack" in sprite_index):
+			if weapon["Type"]=="Melee" && ("Attack" in sprite_index):
 				sprite_body.speed_scale=motion_multiplier
 			elif !("Attack" in sprite_index):
 				sprite_body.speed_scale=motion_multiplier
@@ -147,7 +148,7 @@ func _process(delta):
 			sprite_legs.play(leg_index)
 		
 		if sprite_index=="":
-			if gun.type!="melee" && gun.ammo==0:
+			if weapon["Type"]!="Melee" && weapon["Ammo"]==0:
 				_play_animation("Walk Empty")
 			else:
 				_play_animation("Walk")
@@ -163,10 +164,11 @@ func _process(delta):
 			execute_target.sprite_legs.seek(sprite_body.frame,true)
 
 func _physics_process(delta):
+	weapon_logic(delta)
 	collision_body.global_rotation=0
-	if gun is Dictionary:
-		if gun!={}:
-			if gun.trigger_pressed==true:
+	if weapon is Dictionary:
+		if weapon!={}:
+			if bAttack==true:
 				self.attack()
 	if state == ped_states.down:
 		movement(null,delta)
@@ -222,146 +224,152 @@ func leg_sprites(delta):
 			if sprite_legs.speed_scale!=0:
 				sprite_legs_anim.seek(0)
 				sprite_legs.speed_scale=0
-				leg_index="WalkLegs_start"
+				leg_index="Walk/Start"
 
 	else:
 		sprite_legs.rotation=lerp_angle(sprite_legs.rotation,atan2(collision_body.velocity.y,collision_body.velocity.x),clamp(50*delta,0,1))
 		sprite_legs.speed_scale = (abs(collision_body.get_real_velocity().length()/125))
 
 
-#This script functions by reading through the poperty list of the gun variable and spawning
+#This script functions by reading through the poperty list of the weapon variable and spawning
 #a bullet depending on what the parameters are
 #as well as doing melee initalization
 func attack(sound_pos=sprite_body.global_position):
-	var attack_sprite = "attack_sprite"
 	
-	if gun.type=="melee" && delay==0 && sprite_index==gun.id+"/"+gun.walk_sprite:
+	if weapon["Type"]=="Melee":
 		# animation decision tree
-		
-		var chosen_attack_sprite = gun[attack_sprite][gun["attack_index"]]
-		if sprite_index != attack_sprite:
-			if gun["random_sprite"] == false:
-				gun["attack_index"] = (gun["attack_index"] + 1) % gun[attack_sprite].size()
+		var chosen_attack_sprite = "Attack_"+str(weapon["attack_index"])
+		if weapon["Swing timer"]==0.0:
+			if weapon["random_sprite"] == false:
+				weapon["attack_index"] = (weapon["attack_index"] + 1) % weapon["attack_count"]
 			else:
-				gun["attack_index"]=randi_range(0,gun[attack_sprite].size()-1)
-			delay=gun["trigger_reset"]
+				weapon["attack_index"]=randi_range(0,weapon["attack_count"])
+			weapon["Swing timer"]=weapon["Swing time"]
 			_play_animation(chosen_attack_sprite)
+	elif weapon["Type"]=="Firearm":
+		pass
+#		var chosen_attack_sprite = "Attack_"+str(weapon["attack_index"])
+#		if weapon["Swing timer"]==0.0:
+#			if weapon["random_sprite"] == false:
+#				weapon["attack_index"] = (weapon["attack_index"] + 1) % weapon["attack_count"]
+#			else:
+#				weapon["attack_index"]=randi_range(0,weapon["attack_count"])
+#			_play_animation(chosen_attack_sprite)
+#		if weapon.get("jammed",false)==true:
+#			return
+#		spawn_bullet(weapon["shoot_bullets"])
+#		# animation decision tree
+#		var chosen_attack_sprite = weapon[attack_sprite][weapon["attack_index"]]
+#		if !(sprite_index in [weapon.get("turn_right"),weapon.get("turn_left")]):
+#			_play_animation(chosen_attack_sprite)
+#		else:
+#			if weapon["ammo"]!=0:
+#				sprite_body.get_node("anim/BARREL").play(weapon["id"])
+#			else:
+#				sprite_body.get_node("anim/BARREL").play(weapon["id"]+str("Empty"))
+#		if weapon["random_sprite"] == false:
+#			weapon["attack_index"] = (weapon["attack_index"] + 1) % weapon[attack_sprite].size()
+#		else:
+#			weapon["attack_index"]=randi_range(0,weapon[attack_sprite].size()-1)
+#		delay=weapon["trigger_reset"]
+#		weapon["trigger_pressed"]=false
 	
 	
-	
-	
-	elif gun["type"]=="semi" && delay==0 && gun["ammo"]>0 && !("Cock" in sprite_index || "Pump" in sprite_index):
-		if gun.get("jammed",false)==true:
-			return
-		spawn_bullet(gun["shoot_bullets"])
-		# animation decision tree
-		var chosen_attack_sprite = gun[attack_sprite][gun["attack_index"]]
-		if !(sprite_index in [gun.get("turn_right"),gun.get("turn_left")]):
-			_play_animation(chosen_attack_sprite)
-		else:
-			if gun["ammo"]!=0:
-				sprite_body.get_node("anim/BARREL").play(gun["id"])
-			else:
-				sprite_body.get_node("anim/BARREL").play(gun["id"]+str("Empty"))
-		if gun["random_sprite"] == false:
-			gun["attack_index"] = (gun["attack_index"] + 1) % gun[attack_sprite].size()
-		else:
-			gun["attack_index"]=randi_range(0,gun[attack_sprite].size()-1)
-		delay=gun["trigger_reset"]
-		gun["trigger_pressed"]=false
-	
-	
-	
-	
-	elif gun["type"]=="auto" && delay==0 && gun.ammo>0:
-		if gun.get("jammed",false)==true:
-			return
-		spawn_bullet(gun["shoot_bullets"])
-		# animation decision tree
-		var chosen_attack_sprite = gun[attack_sprite][gun["attack_index"]]
-		if !(sprite_index in [gun.get("turn_right"),gun.get("turn_left")]):
-			_play_animation(chosen_attack_sprite)
-		else:
-			if gun["ammo"]!=0:
-				sprite_body.get_node("anim/BARREL").play(gun["id"])
-			else:
-				sprite_body.get_node("anim/BARREL").play(gun["id"]+str("Empty"))
-		if gun["random_sprite"] == false:
-			gun["attack_index"] = (gun["attack_index"] + 1) % gun[attack_sprite].size()
-		else:
-			gun["attack_index"]=randi_range(0,gun[attack_sprite].size()-1)
-		delay=gun["trigger_reset"]
+#
+#
+#	elif weapon["type"]=="auto" && delay==0 && weapon.ammo>0:
+#		if weapon.get("jammed",false)==true:
+#			return
+#		spawn_bullet(weapon["shoot_bullets"])
+#		# animation decision tree
+#		var chosen_attack_sprite = weapon[attack_sprite][weapon["attack_index"]]
+#		if !(sprite_index in [weapon.get("turn_right"),weapon.get("turn_left")]):
+#			_play_animation(chosen_attack_sprite)
+#		else:
+#			if weapon["ammo"]!=0:
+#				sprite_body.get_node("anim/BARREL").play(weapon["id"])
+#			else:
+#				sprite_body.get_node("anim/BARREL").play(weapon["id"]+str("Empty"))
+#		if weapon["random_sprite"] == false:
+#			weapon["attack_index"] = (weapon["attack_index"] + 1) % weapon[attack_sprite].size()
+#		else:
+#			weapon["attack_index"]=randi_range(0,weapon[attack_sprite].size()-1)
+#		delay=weapon["trigger_reset"]
 
 	
 	
 	
 	
-	elif gun["type"]=="burst" && gun["ammo"]>0:
-		if gun.get("jammed",false)==true:
-			return
-		if gun["trigger_shot"]==0:
-			gun["trigger_shot"]=gun["trigger_bullets"]
-		for i in gun["trigger_shot"]:
-			if delay==0 && gun["ammo"]>0:
-				spawn_bullet(gun["shoot_bullets"])
-				# animation decision tree
-				var chosen_attack_sprite = gun[attack_sprite][gun["attack_index"]]
-				if !(sprite_index in [gun.get("turn_right"),gun.get("turn_left")]):
-					_play_animation(chosen_attack_sprite)
-				else:
-					if gun["ammo"]!=0:
-						sprite_body.get_node("anim/BARREL").play(gun["id"])
-					else:
-						sprite_body.get_node("anim/BARREL").play(gun["id"]+str("Empty"))
-				if gun["random_sprite"] == false:
-					gun["attack_index"] = (gun["attack_index"] + 1) % gun[attack_sprite].size()
-				else:
-					gun["attack_index"]=randi_range(0,gun[attack_sprite].size()-1)
-				gun["trigger_shot"]-=1
-				delay=gun["trigger_reset"]
-				
-				if gun["trigger_shot"]==0 || gun["trigger_pressed"]==false:
-					gun["trigger_pressed"]=false
-					delay=gun["trigger_reset"]*3.5
-					gun["trigger_shot"]=0
-	
-	
+#	elif weapon["type"]=="burst" && weapon["ammo"]>0:
+#		if weapon.get("jammed",false)==true:
+#			return
+#		if weapon["trigger_shot"]==0:
+#			weapon["trigger_shot"]=weapon["trigger_bullets"]
+#		for i in weapon["trigger_shot"]:
+#			if delay==0 && weapon["ammo"]>0:
+#				spawn_bullet(weapon["shoot_bullets"])
+#				# animation decision tree
+#				var chosen_attack_sprite = weapon[attack_sprite][weapon["attack_index"]]
+#				if !(sprite_index in [weapon.get("turn_right"),weapon.get("turn_left")]):
+#					_play_animation(chosen_attack_sprite)
+#				else:
+#					if weapon["ammo"]!=0:
+#						sprite_body.get_node("anim/BARREL").play(weapon["id"])
+#					else:
+#						sprite_body.get_node("anim/BARREL").play(weapon["id"]+str("Empty"))
+#				if weapon["random_sprite"] == false:
+#					weapon["attack_index"] = (weapon["attack_index"] + 1) % weapon[attack_sprite].size()
+#				else:
+#					weapon["attack_index"]=randi_range(0,weapon[attack_sprite].size()-1)
+#				weapon["trigger_shot"]-=1
+#				delay=weapon["trigger_reset"]
+#
+#				if weapon["trigger_shot"]==0 || weapon["trigger_pressed"]==false:
+#					weapon["trigger_pressed"]=false
+#					delay=weapon["trigger_reset"]*3.5
+#					weapon["trigger_shot"]=0
 
+
+func weapon_logic(delta):
+	if weapon["Type"]=="Melee":
+		weapon["Swing timer"] = weapon["Swing timer"]-delta if weapon["Swing timer"]>0 else 0
+	elif weapon["Type"]=="Firearm":
+		pass
 
 
 func switch_weapon():
-	if sprite_index!=gun.id+"/"+gun.attack_sprite[gun.attack_index] && delay==0:
+	if !"Attack" in sprite_index:
 		drop_weapon()
-		closest_gun = gun_finder()
-		if closest_gun != null:
+		closest_weapon = weapon_finder()
+		if closest_weapon != null:
 			var sound_pos=collision_body.global_position
 			if get_class()=="Player":
 				sound_pos=null
 			AudioManager.play_audio("res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_PickupWeapon.wav",sound_pos,true,1,0,"Master")
-			gun=dupe_dict(closest_gun.gun)
-			closest_gun.call_deferred("queue_free")
-			turn_left=gun.get("turn_left","")
-			turn_right=gun.get("turn_right","")
+			weapon=dupe_dict(closest_weapon.weapon)
+			closest_weapon.call_deferred("queue_free")
+			turn_left=weapon.get("turn_left","")
+			turn_right=weapon.get("turn_right","")
 #			play_sample("res://Assets/Sounds/Weapons/Pick up/Pick_up.wav",0)
 		sprite_index=""
 
-#gun transfer script
+#weapon transfer script
 func dupe_dict(fromdict):
 	var todict=fromdict.duplicate(true)
 	return todict
 
 
 func drop_weapon(throw_speed=1,dir=body_direction):
-	if gun.droppable==true:
+	if weapon.droppable==true:
 		var load_weapon=load("res://Data/DEFAULT/ENTS/ENT_GENERIC_WEAPON.tscn")
 		var inst_weapon=load_weapon.instantiate()
 		inst_weapon.linear_velocity=(Vector2(600,0).rotated(dir))*throw_speed
 		inst_weapon.global_position=collision_body.global_position+Vector2(15,0).rotated(dir)
-		inst_weapon.gun=dupe_dict(gun)
+		inst_weapon.weapon=dupe_dict(weapon)
 		get_parent().call_deferred("add_child",inst_weapon)
-		gun=dupe_dict(default_gun)
-		gun.execution_sprite=""
-		gun.ground_sprite=""
+		weapon=dupe_dict(default_weapon)
+		weapon.execution_sprite=""
+		weapon.ground_sprite=""
 		turn_left=""
 		turn_right=""
 #		get_node("PED_SPRITES/Body/anim/Bullet_Spawn/CPUParticles2D").emitting=false
@@ -373,35 +381,35 @@ func drop_weapon(throw_speed=1,dir=body_direction):
 
 func spawn_bullet(amoumt:int):
 	if shake_screen==true:
-		get_tree().get_nodes_in_group("Camera")[0].shake=gun.screen_shake
-	gun.ammo-=1
+		get_tree().get_nodes_in_group("Camera")[0].shake=weapon.screen_shake
+	weapon.ammo-=1
 	for i in amoumt:
-		if gun.attack_type!="grenade":
+		if weapon.attack_type!="grenade":
 			var sus_bullet=def_bullet_ent.instantiate()
 			#add da weapon spawn bullet
 			sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
 			var spawn_recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
 			#add recoil
-			if gun.has("recoil"):
-				spawn_recoil_add+=deg_to_rad(randf_range(-gun["recoil"],gun["recoil"]))
+			if weapon.has("recoil"):
+				spawn_recoil_add+=deg_to_rad(randf_range(-weapon["recoil"],weapon["recoil"]))
 			sus_bullet.global_rotation=spawn_recoil_add
 			#check if AP ammo 
-			if gun.attack_type=="normal":
+			if weapon.attack_type=="normal":
 				sus_bullet.penetrate=false
 			get_parent().add_child(sus_bullet)
 			
-			sus_bullet.damage=gun.damage
+			sus_bullet.damage=weapon.damage
 			#what type of death sprite should the recieving PED should get
-			if gun.has("kill_sprite"):
-				sus_bullet.death_sprite=gun.kill_sprite
-				sus_bullet.death_lean_sprite=gun.kill_lean_sprite
+			if weapon.has("kill_sprite"):
+				sus_bullet.death_sprite=weapon.kill_sprite
+				sus_bullet.death_lean_sprite=weapon.kill_lean_sprite
 		else:
 			var sus_bullet=def_grenade_ent.instantiate()
 			#add da weapon spawn bullet
 			sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
 			var recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
-			if gun.has("recoil"):
-				recoil_add+=deg_to_rad(randf_range(-gun["recoil"],gun["recoil"]))
+			if weapon.has("recoil"):
+				recoil_add+=deg_to_rad(randf_range(-weapon["recoil"],weapon["recoil"]))
 			sus_bullet.global_rotation=recoil_add
 			sus_bullet.height=clamp(given_height,1,1000)
 			get_parent().add_child(sus_bullet)
@@ -452,7 +460,7 @@ func _on_Legs_animation_finished():
 
 func _play_animation(animation:String,frame=0,global=false):
 #	print(animation)
-	var id=gun["id"]+"/"
+	var id=weapon["ID"]+"/"
 	if global==true:
 		id=""
 	sprite_index = id+animation
@@ -523,13 +531,13 @@ func do_execution():
 		sprite_body.global_rotation=execute_target.sprite_legs.global_rotation-PI
 		
 		if execute_target.sprite_legs.animation!="GetUpLean":
-			if gun.execution_sprite!="":
-				sprite_body.play(gun.execution_sprite)
-				execute_target.sprite_legs.play(gun.ground_sprite,false,0)
+			if weapon.execution_sprite!="":
+				sprite_body.play(weapon.execution_sprite)
+				execute_target.sprite_legs.play(weapon.ground_sprite,false,0)
 			else:
 				drop_weapon()
-				sprite_body.play(default_gun.id+"/"+default_gun.execution_sprite)
-				execute_target.sprite_legs.play(default_gun.ground_sprite,false,0)
+				sprite_body.play(default_weapon.id+"/"+default_weapon.execution_sprite)
+				execute_target.sprite_legs.play(default_weapon.ground_sprite,false,0)
 		else:
 				sprite_body.play("ExecuteWall")
 				execute_target.sprite_legs.play("DieLean")
@@ -573,8 +581,8 @@ func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=nul
 		else:
 			damage_output=damage
 		if ammo_use>0:
-			var usable_ammo=clamp(gun["ammo"],1,ammo_use)
-			gun["ammo"]-=1
+			var usable_ammo=clamp(weapon["ammo"],1,ammo_use)
+			weapon["ammo"]-=1
 			damage_output=clamp(execute_target.health,1,999)/usable_ammo
 		execute_target.health-=damage_output
 		if execute_target.health<=0:
@@ -590,7 +598,7 @@ func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=nul
 					execute_target.sprite_legs.seek(frame)
 			state=ped_states.alive
 			sprite_legs.visible=true
-			sprite_index=gun.walk_sprite
+			sprite_index=weapon.walk_sprite
 			delay=0.1
 			return true
 
@@ -612,6 +620,6 @@ func get_classd():
 	return "PED"
 
 
-#used for gun flipping 
+#used for weapon flipping 
 static func angle_difference(from, to):
 	return fposmod(to-from + PI, PI*2) - PI

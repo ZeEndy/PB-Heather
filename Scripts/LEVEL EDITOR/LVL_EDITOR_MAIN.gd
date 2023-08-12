@@ -35,7 +35,7 @@ export var weapon_ent_list=[
 		#types:melee,semi,burst
 		"type":"burst",
 		"avalible_types":["semi","burst","auto"],
-			#bullet:| shotgun, normal, armor, grenade
+			#bullet:| shotweapon, normal, armor, grenade
 		"bullet":"",
 		
 		#kill sound like hitting a ped or shooting
@@ -44,7 +44,7 @@ export var weapon_ent_list=[
 		"swing_sound":[""],
 		
 		
-		#ammo of the gun
+		#ammo of the weapon
 		"ammo":25,
 		#max ammo for hud and reload
 		"clip_ammo":25,

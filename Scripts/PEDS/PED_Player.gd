@@ -63,7 +63,7 @@ func _physics_process(delta):
 	super(delta)
 	glob_phys_delta=delta
 #	if Input.is_action_just_pressed("weapon_swap"):
-#		holster_gun()
+#		holster_weapon()
 	if Input.is_action_just_pressed("ui_accept"):
 		sprite_index="MaskOn"
 	get_node("PED_COL").global_rotation = 0
@@ -72,7 +72,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("interact"):
 				switch_weapon()
 			if Input.is_action_just_pressed("Inject"):
-				_play_animation("Inject"+sprite_index.replace(gun["id"]+"/Walk",""))
+				_play_animation("Inject"+sprite_index.replace(weapon["id"]+"/Walk",""))
 		if in_combat==true && Input.is_action_just_pressed("execute"):
 			do_execution()
 		
@@ -96,36 +96,29 @@ func _physics_process(delta):
 			movement(null,delta)
 
 
-#		if Input.is_action_just_pressed("switch_mode") && gun.trigger_pressed==false:
-#			if gun.type=="semi":
-#				gun.type="burst"
+#		if Input.is_action_just_pressed("switch_mode") && weapon.trigger_pressed==false:
+#			if weapon.type=="semi":
+#				weapon.type="burst"
 #			else:
-#				gun.type="semi"
+#				weapon.type="semi"
 		
 		
 		
 		if override_attack==false && in_combat==true:
-			if gun!={}:
-				if Input.is_action_just_pressed("attack"):
-					gun.trigger_pressed=true
-				if Input.is_action_just_released("attack") && gun.type=="semi":
-					gun.trigger_pressed=false
-				if Input.is_action_just_released("attack") && gun.type=="auto":
-					gun.trigger_pressed=false
-				if Input.is_action_just_released("attack") && gun.type=="melee":
-					gun.trigger_pressed=false
-				if  gun.type=="burst" && gun.trigger_shot==0 && delay==0:
-					if !(Input.is_action_pressed("attack")):
-						gun.trigger_pressed=false
+			if weapon!={}:
+				if Input.is_action_pressed("attack"):
+					bAttack=true
+				else:
+					bAttack=false
 
 
 func _process(delta):
 	glob_delta=delta
 	super(delta)
-	if gun.has("reserve"):
-		GUI.ammo=gun.ammo
-		GUI.max_ammo=gun.max_ammo
-		get_node("PED_COL/Label").text=str(gun.ammo)+"/"+str(gun.max_ammo)
+	if weapon.has("reserve"):
+		GUI.ammo=weapon.ammo
+		GUI.max_ammo=weapon.max_ammo
+		get_node("PED_COL/Label").text=str(weapon.ammo)+"/"+str(weapon.max_ammo)
 	debug_rand_weapon()
 	
 	if active_injector!="":
@@ -164,20 +157,13 @@ func _process(delta):
 
 func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
 	get_tree().get_nodes_in_group("Glob_Camera_pos")[0].add_shake(damage/10,true)
-	if armour>0:
-		AudioManager.play_audio([false,
-		"res://Data/Sounds/Generic/Armour Hit/impact_helmet_1p_1.wav",
-		"res://Data/Sounds/Generic/Armour Hit/impact_helmet_1p_2.wav",
-		"res://Data/Sounds/Generic/Armour Hit/impact_helmet_1p_3.wav",
-		"res://Data/Sounds/Generic/Armour Hit/impact_helmet_1p_4.wav"],
-		null,true,1.0,0.0,"SFX")
 	body_direction+=randf_range(deg_to_rad(10),deg_to_rad(20))* ([-1,1][randi_range(0,1)])
 	rotation_multip=0.2
 	super(damage,killsprite,rot,frame,body_speed,_bleed)
 
 #func double_tap():
 #	await get_tree().create_timer(0.2).timeout
-#	if (gun["reserve"] is Array && gun.has("reserve")==true && gun["reserve"].size()>0) or (gun["reserve"]>0): 
+#	if (weapon["reserve"] is Array && weapon.has("reserve")==true && weapon["reserve"].size()>0) or (weapon["reserve"]>0): 
 #		print(tap_count)
 #		if tap_count<2:
 #			reload_anim(false)
@@ -198,7 +184,7 @@ func ability_activate():
 #			sprites.get_node("Body").visible=false
 #			state=ped_states.abilty
 #			ability_active="Rolldodge"
-#		if "Reload_custom" in ability && sprite_index==gun.walk_sprite && sprites.get_node("Body").has_animation("spr"+whoami.replace(".","Reload")) && Input.is_action_just_pressed("reload"):
+#		if "Reload_custom" in ability && sprite_index==weapon.walk_sprite && sprites.get_node("Body").has_animation("spr"+whoami.replace(".","Reload")) && Input.is_action_just_pressed("reload"):
 #			pass
 
 
@@ -265,18 +251,18 @@ func Kerenzikov_effect():
 #func _unhandled_input(event):
 #	if state==ped_states.alive:
 #		if event.is_action_pressed("scroll_up") or event.is_action_pressed("scroll_down"):
-#			holster_gun()
+#			holster_weapon()
 
 
-#func holster_gun():
-#	if (gun.walk_sprite in sprite_index):
+#func holster_weapon():
+#	if (weapon.walk_sprite in sprite_index):
 #		if holster==null:
-#			if gun.id!=default_gun.id:
+#			if weapon.id!=default_weapon.id:
 #				print("holster_empty")
-#				var holst=gun.get("holster")
-#				var empty_holst=gun.get("holster_empty")
+#				var holst=weapon.get("holster")
+#				var empty_holst=weapon.get("holster_empty")
 #				var cur_sprite_index=""
-#				if gun.ammo>0:
+#				if weapon.ammo>0:
 #					if holst!=null:
 #						cur_sprite_index=holst
 #					else:
@@ -325,10 +311,10 @@ func get_classd():
 
 func debug_rand_weapon():
 		if Input.is_action_just_pressed("DEBUG_SPAWN_GUN"):
-			var rand_list=["PB","Shotgun","AR-15"]
+			var rand_list=["PB","AR-15"]
 			var random_select=int(round(randf_range(0,rand_list.size()-1)))
 			drop_weapon()
-			gun=Database.get_wep("Firearm",rand_list[random_select])
+			weapon=Database.get_wep("Firearm",rand_list[random_select])
 			sprite_index = ""
 
 

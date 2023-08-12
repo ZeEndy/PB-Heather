@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu4yr5rlnahto"
-path="res://.godot/imported/sprM16.png-05adb318baa0aa45704af870e3c368cc.ctex"
+uid="uid://drgrq760cjm7r"
+path="res://.godot/imported/Pipe.png-dad7dd07a93ee6dab78f110ff511f99c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Objects/Weapons/sprM16.png"
-dest_files=["res://.godot/imported/sprM16.png-05adb318baa0aa45704af870e3c368cc.ctex"]
+source_file="res://Data/Sprites/Objects/Weapons/Pipe.png"
+dest_files=["res://.godot/imported/Pipe.png-dad7dd07a93ee6dab78f110ff511f99c.ctex"]
 
 [params]
 

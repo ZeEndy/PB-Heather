@@ -58,7 +58,7 @@ func save_level():
 						"sprite_index":i.sprite_index,
 						"leg_index":i.leg_index,
 						"body_direction":i.body_direction,
-						"gun":i.gun.duplicate(true),
+						"weapon":i.weapon.duplicate(true),
 						"health":i.health,
 						"global_position":i.collision_body.global_position,
 						"delay":i.delay,
@@ -82,7 +82,7 @@ func save_level():
 						"parent_id":i.get_parent(),
 						"global_position":i.global_position,
 						"rotation":i.rotation,
-						"gun":i.gun
+						"weapon":i.weapon
 					})
 				if i is goresurf:
 					save_array.append({
@@ -121,7 +121,7 @@ func load_level(array):
 				i["parent_id"].add_child(wep)
 				wep.global_position=i["global_position"]
 				wep.global_rotation=i["rotation"]
-				wep.gun=i["gun"]
+				wep.weapon=i["weapon"]
 		else:
 			if id is PED:
 				id._ready()

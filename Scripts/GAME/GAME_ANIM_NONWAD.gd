@@ -49,30 +49,30 @@ func _process(delta):
 
 func holster(anim:String,pull_out:bool):
 	if pull_out==false:
-		ped_parent.holster=ped_parent.gun.duplicate(true)
-		ped_parent.gun=ped_parent.default_gun.duplicate(true)
+		ped_parent.holster=ped_parent.weapon.duplicate(true)
+		ped_parent.weapon=ped_parent.default_weapon.duplicate(true)
 		play(anim)
 		ped_parent.sprite_index=anim
 		print("holster_full")
 	else:
 		ped_parent.sprite_index=anim
-		ped_parent.gun=ped_parent.holster.duplicate(true)
+		ped_parent.weapon=ped_parent.holster.duplicate(true)
 		ped_parent.holster=null
 		play(anim)
 		print("holster_empty")
 
 func add_ammo(ammount=1):
-	if ped_parent.gun.ammo+ammount<=ped_parent.gun.max_ammo:
-		ped_parent.gun.ammo+=ammount
+	if ped_parent.weapon.ammo+ammount<=ped_parent.weapon.max_ammo:
+		ped_parent.weapon.ammo+=ammount
 	else:
-		ped_parent.gun.ammo=ped_parent.gun.max_ammo+1
+		ped_parent.weapon.ammo=ped_parent.weapon.max_ammo+1
 
 func shake_screen(shake_in:float=0.11,adative:bool=true):
 	if ped_parent is Player:
 		get_tree().get_nodes_in_group("Glob_Camera_pos")[0].add_shake(shake_in,adative)
 
 func change_anim_on_full(anim):
-	if ped_parent.gun.ammo >= ped_parent.gun.max_ammo || ped_parent.gun["reserve"]==0:
+	if ped_parent.weapon.ammo >= ped_parent.weapon.max_ammo || ped_parent.weapon["reserve"]==0:
 		ped_parent._play_animation(anim)
 #		print("cock")
 	else:
@@ -85,21 +85,21 @@ func set_body_dir(dir):
 
 
 func change_anim_on_full_single(anim):
-	if ped_parent.gun.ammo >= ped_parent.gun.max_ammo || ped_parent.gun["reserve"]==0:
+	if ped_parent.weapon.ammo >= ped_parent.weapon.max_ammo || ped_parent.weapon["reserve"]==0:
 		ped_parent._play_animation(anim)
 		print("BRO THIS SHOULD ALREADY CHANGEEAAAAAA")
 	else:
 		anim_player.seek(0.0)
 
 func full_or_almost_full(anim,anim_alt,ammo_from_max=0):
-	if ped_parent.gun.ammo+ammo_from_max >= ped_parent.gun.max_ammo:
+	if ped_parent.weapon.ammo+ammo_from_max >= ped_parent.weapon.max_ammo:
 		ped_parent._play_animation(anim_alt)
 	else:
 		ped_parent._play_animation(anim)
 	pass
 
 func change_anim_on_almost_full(anim):
-	if ped_parent.gun.ammo == ped_parent.gun.max_ammo-1 || ped_parent.gun["reserve"]-1==0:
+	if ped_parent.weapon.ammo == ped_parent.weapon.max_ammo-1 || ped_parent.weapon["reserve"]-1==0:
 		ped_parent._play_animation(anim)
 	else:
 		anim_player.seek(0)
@@ -107,22 +107,22 @@ func change_anim_on_almost_full(anim):
 
 func change_anim_on_bolt(anim):
 	#this function is only for reload animations
-	if !(ped_parent.gun.ammo >= ped_parent.gun.max_ammo):
+	if !(ped_parent.weapon.ammo >= ped_parent.weapon.max_ammo):
 		ped_parent._play_animation(anim)
 		ped_parent.override_attack=false
 
 func change_anim_on_full_tube(anim,offset=0):
-	if (ped_parent.gun.ammo+offset >= ped_parent.gun.max_ammo || ped_parent.gun.reserve==0):
+	if (ped_parent.weapon.ammo+offset >= ped_parent.weapon.max_ammo || ped_parent.weapon.reserve==0):
 		ped_parent._play_animation(anim)
 
-#used for shotguns
+#used for shotweapons
 func pump(next_anim):
-	if ped_parent.gun.ammo>0:
+	if ped_parent.weapon.ammo>0:
 		ped_parent._play_animation(next_anim)
 
 
 func clear_jam():
-	ped_parent.gun["jammed"]=false
+	ped_parent.weapon["jammed"]=false
 
 func flip_sprite_switch(next_anim):
 	#used for attacks
@@ -133,9 +133,9 @@ func flip_sprite():
 	#used for attacks
 	sprite.scale.y=-sprite.scale.y
 
-#sets time based on gun.ammo
+#sets time based on weapon.ammo
 func set_frame_ammo(frame_rate:int,frame:int,repeat=0.0):
-#	if ped_parent.gun.ammo>0:
+#	if ped_parent.weapon.ammo>0:
 	if ped_parent.execute_remove_health(0,repeat)!=true:
 		set_frame(frame_rate,frame)
 

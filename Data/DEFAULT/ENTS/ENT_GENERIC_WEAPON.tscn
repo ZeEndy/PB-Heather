@@ -1,71 +1,169 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqs0llt1sluta"]
+[gd_scene load_steps=26 format=3 uid="uid://dqs0llt1sluta"]
 
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_GENERIC_WEAPON.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cncuo3n2teyoi" path="res://Data/Sprites/Objects/Weapons/sprKalashnikov.png" id="2_ysmul"]
-[ext_resource type="Texture2D" uid="uid://bkjwo7sf4tuky" path="res://Data/Sprites/Objects/Weapons/sprBat.png" id="3_ndbbr"]
-[ext_resource type="Texture2D" uid="uid://c0k47emksvxu6" path="res://Data/Sprites/Objects/Weapons/sprKnife.png" id="4_nn4xw"]
-[ext_resource type="Texture2D" uid="uid://cu4yr5rlnahto" path="res://Data/Sprites/Objects/Weapons/sprM16.png" id="5_53lcp"]
-[ext_resource type="Texture2D" uid="uid://bus75n81dccxs" path="res://Data/Sprites/Objects/Weapons/sprM9.png" id="6_d50qo"]
-[ext_resource type="Texture2D" uid="uid://bjbsvjayef35t" path="res://Data/Sprites/Objects/Weapons/sprShotgun.png" id="7_6sp8p"]
+[ext_resource type="Texture2D" uid="uid://dkkpmh7omxmee" path="res://Data/Sprites/Objects/Weapons/1911_strip2.png" id="2_b3dq0"]
+[ext_resource type="Texture2D" uid="uid://qm7y20c0btq3" path="res://Data/Sprites/Objects/Weapons/AK_74u.png" id="3_cb0jg"]
+[ext_resource type="Texture2D" uid="uid://d07mxny5c2igd" path="res://Data/Sprites/Objects/Weapons/AR_15_strip2.png" id="4_06kh8"]
+[ext_resource type="Texture2D" uid="uid://c0pe6nv8raev7" path="res://Data/Sprites/Objects/Weapons/Balistic_Knife_strip2.png" id="5_b6730"]
+[ext_resource type="Texture2D" uid="uid://bne4mwb0fkks0" path="res://Data/Sprites/Objects/Weapons/KS_23.png" id="6_53jth"]
+[ext_resource type="Texture2D" uid="uid://m7cuxr3673jb" path="res://Data/Sprites/Objects/Weapons/Knife.png" id="7_cwal7"]
+[ext_resource type="Texture2D" uid="uid://ca7caxn47nfpt" path="res://Data/Sprites/Objects/Weapons/MAC_10_strip2.png" id="8_iogu2"]
+[ext_resource type="Texture2D" uid="uid://qukehi8ofa80" path="res://Data/Sprites/Objects/Weapons/OU_DB.png" id="9_usp7c"]
+[ext_resource type="Texture2D" uid="uid://cgqycsyb7fv2d" path="res://Data/Sprites/Objects/Weapons/PB_strip2.png" id="10_jofw1"]
+[ext_resource type="Texture2D" uid="uid://drgrq760cjm7r" path="res://Data/Sprites/Objects/Weapons/Pipe.png" id="11_gh248"]
 
 [sub_resource type="PhysicsMaterial" id="1"]
 rough = true
 bounce = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbyu1"]
+atlas = ExtResource("2_b3dq0")
+region = Rect2(0, 0, 13, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e2vl"]
+atlas = ExtResource("2_b3dq0")
+region = Rect2(13, 0, 13, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k7bg"]
+atlas = ExtResource("3_cb0jg")
+region = Rect2(0, 0, 29, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymgsx"]
+atlas = ExtResource("4_06kh8")
+region = Rect2(0, 0, 30, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0pmg"]
+atlas = ExtResource("4_06kh8")
+region = Rect2(30, 0, 30, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyyrx"]
+atlas = ExtResource("5_b6730")
+region = Rect2(0, 0, 15, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq8ii"]
+atlas = ExtResource("5_b6730")
+region = Rect2(15, 0, 15, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7w4u"]
+atlas = ExtResource("8_iogu2")
+region = Rect2(0, 0, 30, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fmh2"]
+atlas = ExtResource("8_iogu2")
+region = Rect2(30, 0, 30, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v266t"]
+atlas = ExtResource("10_jofw1")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14syi"]
+atlas = ExtResource("10_jofw1")
+region = Rect2(16, 0, 16, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_43tlf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ysmul")
+"texture": SubResource("AtlasTexture_dbyu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e2vl")
 }],
 "loop": true,
-"name": &"AK",
-"speed": 5.0
+"name": &"1911",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ndbbr")
+"texture": SubResource("AtlasTexture_4k7bg")
+}],
+"loop": true,
+"name": &"AK-74u",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymgsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0pmg")
+}],
+"loop": true,
+"name": &"AR-15",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyyrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq8ii")
+}],
+"loop": true,
+"name": &"Balistic Knife",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b6730")
 }],
 "loop": true,
 "name": &"Bat",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_nn4xw")
+"texture": ExtResource("6_53jth")
+}],
+"loop": true,
+"name": &"KS-23",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_cwal7")
 }],
 "loop": true,
 "name": &"Knife",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_53lcp")
+"texture": SubResource("AtlasTexture_v7w4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fmh2")
 }],
 "loop": true,
-"name": &"M16",
-"speed": 5.0
+"name": &"MAC-10",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_d50qo")
+"texture": ExtResource("9_usp7c")
 }],
 "loop": true,
-"name": &"M9",
-"speed": 5.0
+"name": &"OU-DB",
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_6sp8p")
+"texture": SubResource("AtlasTexture_v266t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14syi")
 }],
 "loop": true,
-"name": &"Shotgun",
-"speed": 5.0
+"name": &"PB",
+"speed": 0.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_gh248")
+}],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"Pipe",
+"speed": 0.0
 }]
 
 [sub_resource type="CircleShape2D" id="2"]
@@ -82,7 +180,7 @@ script = ExtResource("1")
 
 [node name="SPRITE" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_43tlf")
-animation = &"Bat"
+animation = &"OU-DB"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("2")

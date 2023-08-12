@@ -1,4 +1,4 @@
-[gd_scene load_steps=411 format=3 uid="uid://dvj8wuvgn4i2c"]
+[gd_scene load_steps=414 format=3 uid="uid://dvj8wuvgn4i2c"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Player.gd" id="1_lwlbx"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_6rt3n"]
@@ -62,253 +62,27 @@
 [sub_resource type="CircleShape2D" id="1"]
 radius = 8.0
 
-[sub_resource type="Animation" id="318"]
-resource_name = "KnockedOut"
-length = 0.153846
-step = 0.0769231
+[sub_resource type="Animation" id="Animation_pocb4"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DeadBash", "DeadBash"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-7, 0), Vector2(-7, 0)]
-}
-
-[sub_resource type="Animation" id="288"]
-resource_name = "DeadBlunt"
-length = 0.923077
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
+tracks/0/path = NodePath("../..:leg_index")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.923077),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DeadBlunt", "DeadBlunt"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.923077),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(-1, 1), Vector2(-1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": ["Walk/Loop"]
 }
 
-[sub_resource type="Animation" id="8"]
-resource_name = "DeadLeanMachinegun"
-length = 0.153846
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DeadLeanShotgun", "DeadLeanShotgun"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(4, 0), Vector2(4, 0)]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpl6j"]
+_data = {
+"RESET": SubResource("Animation_pocb4")
 }
 
-[sub_resource type="Animation" id="9"]
-resource_name = "DeadLeanMelee"
-length = 0.307692
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0, 1, 2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.307692),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DeadLeanMelee", "DeadLeanMelee"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.307692),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(4, 0), Vector2(4, 0)]
-}
-
-[sub_resource type="Animation" id="10"]
-resource_name = "DeadLeanShotgun"
-length = 0.153846
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DeadLeanShotgun", "DeadLeanShotgun"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.153846),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(4, 0), Vector2(4, 0)]
-}
-
-[sub_resource type="Animation" id="11"]
-resource_name = "DeadMachinegun"
-length = 0.692308
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.692308),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DeadMachinegun", "DeadMachinegun"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.692308),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-7, -1), Vector2(-7, -1)]
-}
-
-[sub_resource type="Animation" id="7"]
+[sub_resource type="Animation" id="Animation_krhcu"]
 resource_name = "DeadBash"
 length = 0.153846
 step = 0.0769231
@@ -349,7 +123,212 @@ tracks/2/keys = {
 "values": [Vector2(-1, 1), Vector2(-1, 1)]
 }
 
-[sub_resource type="Animation" id="352"]
+[sub_resource type="Animation" id="Animation_5ryoh"]
+resource_name = "DeadBlunt"
+length = 0.923077
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.923077),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["DeadBlunt", "DeadBlunt"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.923077),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-1, 1), Vector2(-1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r3lf1"]
+resource_name = "DeadLeanMelee"
+length = 0.307692
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.307692),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["DeadLeanMelee", "DeadLeanMelee"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.307692),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 0), Vector2(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kje5s"]
+resource_name = "DeadMachinegun"
+length = 0.692308
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.692308),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["DeadMachinegun", "DeadMachinegun"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.692308),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, -1), Vector2(-7, -1)]
+}
+
+[sub_resource type="Animation" id="Animation_cs5yv"]
+resource_name = "DeadLeanMachinegun"
+length = 0.153846
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769231),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.153846),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["DeadLeanShotgun", "DeadLeanShotgun"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.153846),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 0), Vector2(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pkdef"]
+resource_name = "DeadLeanShotgun"
+length = 0.153846
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769231),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.153846),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["DeadLeanShotgun", "DeadLeanShotgun"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.153846),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(4, 0), Vector2(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6opry"]
 resource_name = "DeadSlash"
 length = 0.230769
 step = 0.0769231
@@ -390,8 +369,19 @@ tracks/2/keys = {
 "values": [Vector2(-1, 1), Vector2(-1, 1)]
 }
 
-[sub_resource type="Animation" id="237"]
-resource_name = "DieBlunt"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8penk"]
+_data = {
+"Bash": SubResource("Animation_krhcu"),
+"Blunt": SubResource("Animation_5ryoh"),
+"Blunt Lean": SubResource("Animation_r3lf1"),
+"Machinegun": SubResource("Animation_kje5s"),
+"Machinegun Lean": SubResource("Animation_cs5yv"),
+"Shotgun Lean": SubResource("Animation_pkdef"),
+"Slash": SubResource("Animation_6opry")
+}
+
+[sub_resource type="Animation" id="Animation_y4bpy"]
+resource_name = "Blunt"
 length = 0.923077
 step = 0.0769231
 tracks/0/type = "value"
@@ -431,8 +421,49 @@ tracks/2/keys = {
 "values": [Vector2(-7, 0), Vector2(-7, 0)]
 }
 
-[sub_resource type="Animation" id="251"]
-resource_name = "DieGround"
+[sub_resource type="Animation" id="Animation_h8ys8"]
+resource_name = "DieShot"
+length = 1.61539
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154, 0.923077, 1, 1.07692, 1.15385, 1.23077, 1.30769, 1.38462, 1.46154, 1.53846),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.61538),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["DieShot", "DieShot"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.61538),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, 0), Vector2(-7, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b3nig"]
+resource_name = "Ground"
 length = 0.307692
 loop_mode = 1
 step = 0.0769231
@@ -485,8 +516,8 @@ tracks/3/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="3"]
-resource_name = "DieKnife"
+[sub_resource type="Animation" id="Animation_tllf5"]
+resource_name = "Knife"
 length = 0.615385
 step = 0.0769231
 tracks/0/type = "value"
@@ -526,8 +557,8 @@ tracks/2/keys = {
 "values": [Vector2(-7, -1), Vector2(-7, -1)]
 }
 
-[sub_resource type="Animation" id="256"]
-resource_name = "DieLean"
+[sub_resource type="Animation" id="Animation_wcur1"]
+resource_name = "Lean"
 length = 0.769231
 step = 0.0769231
 tracks/0/type = "value"
@@ -567,49 +598,8 @@ tracks/2/keys = {
 "values": [Vector2(4, 0), Vector2(4, 0)]
 }
 
-[sub_resource type="Animation" id="250"]
-resource_name = "DieShot"
-length = 1.61539
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154, 0.923077, 1, 1.07692, 1.15385, 1.23077, 1.30769, 1.38462, 1.46154, 1.53846),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.61538),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["DieShot", "DieShot"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.61538),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-7, 0), Vector2(-7, 0)]
-}
-
-[sub_resource type="Animation" id="2"]
-resource_name = "DieShotgun"
+[sub_resource type="Animation" id="Animation_gnshy"]
+resource_name = "Shotgun"
 length = 0.538462
 step = 0.0769231
 tracks/0/type = "value"
@@ -649,7 +639,17 @@ tracks/2/keys = {
 "values": [Vector2(-7, 0), Vector2(-7, 0)]
 }
 
-[sub_resource type="Animation" id="220"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3xnd"]
+_data = {
+"Blunt": SubResource("Animation_y4bpy"),
+"DieShot": SubResource("Animation_h8ys8"),
+"Ground": SubResource("Animation_b3nig"),
+"Knife": SubResource("Animation_tllf5"),
+"Lean": SubResource("Animation_wcur1"),
+"Shotgun": SubResource("Animation_gnshy")
+}
+
+[sub_resource type="Animation" id="Animation_kuux5"]
 resource_name = "GetUp"
 length = 0.642857
 step = 0.0714286
@@ -732,7 +732,7 @@ tracks/5/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="236"]
+[sub_resource type="Animation" id="Animation_oi8j4"]
 resource_name = "GetUpLean"
 length = 0.428572
 step = 0.0714286
@@ -815,59 +815,13 @@ tracks/5/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="351"]
-length = 0.615385
-step = 0.0769231
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.615385),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["KockedOut", "KockedOut"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("anim:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.615385),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-7, 0), Vector2(-7, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:speed_scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.615385),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 1]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fj3ux"]
+_data = {
+"Floor": SubResource("Animation_kuux5"),
+"Lean": SubResource("Animation_oi8j4")
 }
 
-[sub_resource type="Animation" id="58"]
+[sub_resource type="Animation" id="Animation_pfujp"]
 resource_name = "WalkLegs"
 length = 0.666673
 loop_mode = 1
@@ -974,7 +928,7 @@ tracks/7/keys = {
 "values": [true, true]
 }
 
-[sub_resource type="Animation" id="Animation_cpolo"]
+[sub_resource type="Animation" id="Animation_qkn3y"]
 resource_name = "WalkLegs_start"
 length = 0.466674
 step = 0.0666667
@@ -1036,7 +990,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.466667),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["WalkLegs"]
+"values": ["Walk/Loop"]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -1092,27 +1046,10 @@ tracks/8/keys = {
 "values": [true, true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jf5q0"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwvto"]
 _data = {
-"DeadBash": SubResource("318"),
-"DeadBlunt": SubResource("288"),
-"DeadLeanMachinegun": SubResource("8"),
-"DeadLeanMelee": SubResource("9"),
-"DeadLeanShotgun": SubResource("10"),
-"DeadMachinegun": SubResource("11"),
-"DeadShotgun": SubResource("7"),
-"DeadSlash": SubResource("352"),
-"DieBlunt": SubResource("237"),
-"DieGround": SubResource("251"),
-"DieKnife": SubResource("3"),
-"DieLean": SubResource("256"),
-"DieShot": SubResource("250"),
-"DieShotgun": SubResource("2"),
-"GetUp": SubResource("220"),
-"GetUpLean": SubResource("236"),
-"KnockedOut": SubResource("351"),
-"WalkLegs": SubResource("58"),
-"WalkLegs_start": SubResource("Animation_cpolo")
+"Loop": SubResource("Animation_pfujp"),
+"Start": SubResource("Animation_qkn3y")
 }
 
 [sub_resource type="AtlasTexture" id="316"]
@@ -2300,7 +2237,7 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_vs0sr"]
-resource_name = "MK47 Attack"
+resource_name = "Attack_0"
 length = 0.033335
 step = 0.0166667
 tracks/0/type = "value"
@@ -2531,12 +2468,12 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ij728"]
 _data = {
-"Attack": SubResource("Animation_vs0sr"),
+"Attack_0": SubResource("Animation_vs0sr"),
 "Walk": SubResource("Animation_n3fnv")
 }
 
 [sub_resource type="Animation" id="Animation_m55sw"]
-resource_name = "Bat Attack"
+resource_name = "Attack_0"
 length = 0.388889
 step = 0.0555556
 tracks/0/type = "value"
@@ -2934,13 +2871,13 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_34qmu"]
 _data = {
-"Attack": SubResource("Animation_m55sw"),
+"Attack_0": SubResource("Animation_m55sw"),
 "Execute": SubResource("Animation_h6yox"),
 "Walk": SubResource("Animation_f03ns")
 }
 
 [sub_resource type="Animation" id="Animation_pi83i"]
-resource_name = "Knife Attack"
+resource_name = "Attack_0"
 length = 0.25
 step = 0.0277778
 tracks/0/type = "value"
@@ -3346,13 +3283,13 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uitxk"]
 _data = {
-"Attack": SubResource("Animation_pi83i"),
+"Attack_0": SubResource("Animation_pi83i"),
 "Execute": SubResource("Animation_whobf"),
 "Walk": SubResource("Animation_qwbwy")
 }
 
 [sub_resource type="Animation" id="Animation_1oco0"]
-resource_name = "MK47 Attack"
+resource_name = "Attack_0"
 length = 0.0666667
 step = 0.0333333
 tracks/0/type = "value"
@@ -3608,12 +3545,12 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nc6w3"]
 _data = {
-"Attack": SubResource("Animation_1oco0"),
+"Attack_0": SubResource("Animation_1oco0"),
 "Walk": SubResource("Animation_hf14k")
 }
 
 [sub_resource type="Animation" id="Animation_2j0j0"]
-resource_name = "Shotgun Attack"
+resource_name = "Attack_0"
 length = 0.461539
 step = 0.0769231
 tracks/0/type = "value"
@@ -4084,14 +4021,14 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tpimf"]
 _data = {
-"Attack": SubResource("Animation_2j0j0"),
+"Attack_0": SubResource("Animation_2j0j0"),
 "Execute": SubResource("Animation_j8fym"),
 "Pump": SubResource("Animation_5c4pd"),
 "Walk": SubResource("Animation_18ehd")
 }
 
 [sub_resource type="Animation" id="Animation_13l8t"]
-resource_name = "Attack"
+resource_name = "Attack_0"
 length = 0.44445
 step = 0.0555556
 tracks/0/type = "value"
@@ -4659,7 +4596,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e6sge"]
 _data = {
-"Attack": SubResource("Animation_13l8t"),
+"Attack_0": SubResource("Animation_13l8t"),
 "Execute": SubResource("Animation_34jda"),
 "Execute Wall": SubResource("Animation_6gu20"),
 "Walk": SubResource("Animation_kmlj4")
@@ -5864,6 +5801,7 @@ texture_filter = 1
 script = ExtResource("1_lwlbx")
 override_attack = true
 copy_time = true
+leg_index = "Walk/Loop"
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["PED", "Player"]]
 collision_layer = 4
@@ -5893,15 +5831,18 @@ script = ExtResource("3_ksk7x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PED_SPRITES/Legs"]
 libraries = {
-"": SubResource("AnimationLibrary_jf5q0")
+"": SubResource("AnimationLibrary_xpl6j"),
+"Dead": SubResource("AnimationLibrary_8penk"),
+"Executing": SubResource("AnimationLibrary_b3xnd"),
+"Get Up": SubResource("AnimationLibrary_fj3ux"),
+"Walk": SubResource("AnimationLibrary_jwvto")
 }
 
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("56")
-animation = &"DieGround"
-frame = 3
-offset = Vector2(-4, 2)
+animation = &"Walk Legs Start"
+offset = Vector2(-0.5, 0)
 
 [node name="Sound" type="Node2D" parent="PED_SPRITES/Legs"]
 

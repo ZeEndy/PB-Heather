@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bus75n81dccxs"
-path="res://.godot/imported/sprM9.png-6b29810ba723ab7c03e50c77b8757a58.ctex"
+uid="uid://ca7caxn47nfpt"
+path="res://.godot/imported/MAC_10_strip2.png-24379193c26569157fd9c411f22bbbeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Objects/Weapons/sprM9.png"
-dest_files=["res://.godot/imported/sprM9.png-6b29810ba723ab7c03e50c77b8757a58.ctex"]
+source_file="res://Data/Sprites/Objects/Weapons/MAC_10_strip2.png"
+dest_files=["res://.godot/imported/MAC_10_strip2.png-24379193c26569157fd9c411f22bbbeb.ctex"]
 
 [params]
 
