@@ -78,7 +78,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4k7bg")
 }],
 "loop": true,
-"name": &"AK-74u",
+"name": &"AK-74U",
 "speed": 0.0
 }, {
 "frames": [{
@@ -180,7 +180,7 @@ script = ExtResource("1")
 
 [node name="SPRITE" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_43tlf")
-animation = &"OU-DB"
+animation = &"AK-74U"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("2")

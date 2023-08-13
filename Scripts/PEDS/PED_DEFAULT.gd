@@ -238,16 +238,37 @@ func attack(sound_pos=sprite_body.global_position):
 	
 	if weapon["Type"]=="Melee":
 		# animation decision tree
-		var chosen_attack_sprite = "Attack_"+str(weapon["attack_index"])
+		var chosen_attack_sprite = "Attack_"+str(weapon["Attack index"])
 		if weapon["Swing timer"]==0.0:
-			if weapon["random_sprite"] == false:
-				weapon["attack_index"] = (weapon["attack_index"] + 1) % weapon["attack_count"]
+			if weapon["Random sprite"] == false:
+				weapon["Attack index"] = (weapon["Attack index"] + 1) % weapon["Attack ammount"]
 			else:
-				weapon["attack_index"]=randi_range(0,weapon["attack_count"])
+				weapon["Attack index"]=randi_range(0,weapon["Attack ammount"])
 			weapon["Swing timer"]=weapon["Swing time"]
 			_play_animation(chosen_attack_sprite)
 	elif weapon["Type"]=="Firearm":
-		pass
+		if weapon["Mode"]=="Auto" && weapon["Cycle"]==0.0:
+			if weapon["Ammo"]>0:
+				var chosen_attack_sprite = "Attack_"+str(weapon["Attack index"])
+				if weapon["Random sprite"] == false:
+					weapon["Attack index"] = (weapon["Attack index"] + 1) % weapon["Attack ammount"]
+				else:
+					weapon["Attack index"]=randi_range(0,weapon["Attack ammount"])
+				_play_animation(chosen_attack_sprite)
+				weapon["Cycle"]=weapon["Cycle rate"]
+				spawn_bullet(weapon["Splits"])
+		elif weapon["Mode"]=="Semi" && weapon["Cycle"]==0.0:
+			if weapon["Ammo"]>0 && weapon["Trigger pressed"]==false:
+				var chosen_attack_sprite = "Attack_"+str(weapon["Attack index"])
+				if weapon["Random sprite"] == false:
+					weapon["Attack index"] = (weapon["Attack index"] + 1) % weapon["Attack ammount"]
+				else:
+					weapon["Attack index"]=randi_range(0,weapon["Attack ammount"])
+				_play_animation(chosen_attack_sprite)
+				weapon["Cycle"]=weapon["Cycle rate"]
+				spawn_bullet(weapon["Splits"])
+		
+		weapon["Trigger pressed"]=true
 #		var chosen_attack_sprite = "Attack_"+str(weapon["attack_index"])
 #		if weapon["Swing timer"]==0.0:
 #			if weapon["random_sprite"] == false:
@@ -332,9 +353,12 @@ func attack(sound_pos=sprite_body.global_position):
 
 func weapon_logic(delta):
 	if weapon["Type"]=="Melee":
-		weapon["Swing timer"] = weapon["Swing timer"]-delta if weapon["Swing timer"]>0 else 0
+		weapon["Swing timer"] = (weapon["Swing timer"]-delta)*float(weapon["Swing timer"]>0)
+		print(weapon["Swing timer"])
 	elif weapon["Type"]=="Firearm":
-		pass
+		weapon["Cycle"] = (weapon["Cycle"]-delta)*float(weapon["Cycle"]>0)
+		if bAttack==false:
+			weapon["Trigger pressed"]=false
 
 
 func switch_weapon():
@@ -360,7 +384,7 @@ func dupe_dict(fromdict):
 
 
 func drop_weapon(throw_speed=1,dir=body_direction):
-	if weapon.droppable==true:
+	if weapon["droppable"]==true:
 		var load_weapon=load("res://Data/DEFAULT/ENTS/ENT_GENERIC_WEAPON.tscn")
 		var inst_weapon=load_weapon.instantiate()
 		inst_weapon.linear_velocity=(Vector2(600,0).rotated(dir))*throw_speed
@@ -368,10 +392,6 @@ func drop_weapon(throw_speed=1,dir=body_direction):
 		inst_weapon.weapon=dupe_dict(weapon)
 		get_parent().call_deferred("add_child",inst_weapon)
 		weapon=dupe_dict(default_weapon)
-		weapon.execution_sprite=""
-		weapon.ground_sprite=""
-		turn_left=""
-		turn_right=""
 #		get_node("PED_SPRITES/Body/anim/Bullet_Spawn/CPUParticles2D").emitting=false
 		var sound_pos=collision_body.global_position
 		if get_class()=="Player":
@@ -382,38 +402,19 @@ func drop_weapon(throw_speed=1,dir=body_direction):
 func spawn_bullet(amoumt:int):
 	if shake_screen==true:
 		get_tree().get_nodes_in_group("Camera")[0].shake=weapon.screen_shake
-	weapon.ammo-=1
+	weapon["Ammo"]-=1
 	for i in amoumt:
-		if weapon.attack_type!="grenade":
-			var sus_bullet=def_bullet_ent.instantiate()
-			#add da weapon spawn bullet
-			sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
-			var spawn_recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
-			#add recoil
-			if weapon.has("recoil"):
-				spawn_recoil_add+=deg_to_rad(randf_range(-weapon["recoil"],weapon["recoil"]))
-			sus_bullet.global_rotation=spawn_recoil_add
-			#check if AP ammo 
-			if weapon.attack_type=="normal":
-				sus_bullet.penetrate=false
-			get_parent().add_child(sus_bullet)
-			
-			sus_bullet.damage=weapon.damage
-			#what type of death sprite should the recieving PED should get
-			if weapon.has("kill_sprite"):
-				sus_bullet.death_sprite=weapon.kill_sprite
-				sus_bullet.death_lean_sprite=weapon.kill_lean_sprite
-		else:
-			var sus_bullet=def_grenade_ent.instantiate()
-			#add da weapon spawn bullet
-			sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
-			var recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
-			if weapon.has("recoil"):
-				recoil_add+=deg_to_rad(randf_range(-weapon["recoil"],weapon["recoil"]))
-			sus_bullet.global_rotation=recoil_add
-			sus_bullet.height=clamp(given_height,1,1000)
-			get_parent().add_child(sus_bullet)
-	pass
+		var sus_bullet=def_bullet_ent.instantiate()
+		#add da weapon spawn bullet
+		sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
+		var spawn_recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
+		#add recoil
+		if weapon.has("Recoil"):
+			spawn_recoil_add+=deg_to_rad(randf_range(-weapon["Recoil"],weapon["Recoil"]))
+		sus_bullet.global_rotation=spawn_recoil_add
+		#check if AP ammo 
+		get_parent().add_child(sus_bullet)
+		sus_bullet.damage=weapon["Damage"]
 
 
 

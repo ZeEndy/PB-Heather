@@ -14680,7 +14680,6 @@ emitting = false
 
 [node name="Player" parent="SubViewportContainer/Floor 1" instance=ExtResource("24_whf2h")]
 position = Vector2(594, 655)
-override_attack = false
 
 [node name="Pathfind" type="TileMap" parent="SubViewportContainer/Floor 1"]
 z_index = 1

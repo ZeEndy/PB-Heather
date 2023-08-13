@@ -311,7 +311,7 @@ func get_classd():
 
 func debug_rand_weapon():
 		if Input.is_action_just_pressed("DEBUG_SPAWN_GUN"):
-			var rand_list=["PB","AR-15"]
+			var rand_list=["PB","AR-15","AK-74U"]
 			var random_select=int(round(randf_range(0,rand_list.size()-1)))
 			drop_weapon()
 			weapon=Database.get_wep("Firearm",rand_list[random_select])

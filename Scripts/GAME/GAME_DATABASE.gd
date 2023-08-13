@@ -13,6 +13,16 @@ var glob_phys_delta=0
 #as well as firearms and melee behaving way differently compared to default PB
 #this version might get implemented into PB
 
+
+#FOR FIREARMS
+#if you want to recreate a weapon for example the MP9
+#and you want the gun to fire at about the same rate it would IRL
+#what you need to do is search up the gun's firerate/cycle rate
+#take 60 and devide it by that number
+#for example:
+#60.0/900 //use ctrl+shift+e to convert it
+#and in the end you will have 0.0666667
+
 const weapon_database={
 	"Melee":{
 		"Unarmed":{
@@ -21,16 +31,14 @@ const weapon_database={
 			
 			"Type":"Melee",
 			# ammount of attack sprites counting from 0
-			"attack_count":1,
+			"Attack ammount":1,
 			# which attack is used depending on the count
-			"attack_index":0,
+			"Attack index":0,
 			#random on attack
-			"random_sprite":false,
+			"Random sprite":false,
 			
 			
 			"droppable":false,
-			#types:melee"
-			"attack_type":"downing",
 			
 			"Swing time":0.3889,
 			"Swing timer":0.0
@@ -102,7 +110,6 @@ const weapon_database={
 			"trigger_pressed":false,},
 	},
 	"Firearm":{
-		
 		"1911":{
 			"ID":"1911",
 			"Type":"Firearm",
@@ -111,8 +118,6 @@ const weapon_database={
 			"Bullet":"AP",
 			#ammo of the weapon
 			"Ammo":8,
-			"Max ammo":7,
-			"Reserve":14,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -133,7 +138,7 @@ const weapon_database={
 			#trigger
 			"Trigger pressed":false,
 			"Trigger bullets":0,
-			"Firerate":0.1,
+			"Cycle Rate":0.0666667,
 			"Splits":1},
 		
 		"PB":{
@@ -145,12 +150,10 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":9,
-			"Max ammo":8,
-			"Reserve":16,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
-			"Attack ammount":1,
+			"Attack ammount":0,
 			"Random sprite":true,
 			
 			"Damage":100,
@@ -166,8 +169,8 @@ const weapon_database={
 			
 			#trigger
 			"Trigger pressed":false,
-			"Trigger bullets":0,
-			"Trigger reset":0.1,
+			"Cycle rate":0.109091,
+			"Cycle":0.0,
 			"Trigger shot":0,
 			"Splits":1},
 		
@@ -175,13 +178,11 @@ const weapon_database={
 			"ID":"MAC-10",
 			#ammo of the weapon
 			"Type":"Firearm",
-			"Mode":"Full",
+			"Mode":"Auto",
 			
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":31,
-			"Max ammo":30,
-			"Reserve":30,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -202,7 +203,8 @@ const weapon_database={
 			#trigger
 			"Trigger pressed":false,
 			"Trigger bullets":0,
-			"Trigger reset":0.1,
+			"Cycle rate":0.1,
+			"Cycle":0.0550459,
 			"Trigger shot":0,
 			"Splits":1},
 		
@@ -211,13 +213,11 @@ const weapon_database={
 			"ID":"AR-15",
 			#ammo of the weapon
 			"Type":"Firearm",
-			"Mode":"Full",
+			"Mode":"Semi",
 			
 			"Bullet":"FMJ",
 			#ammo of the weapon
-			"Ammo":31,
-			"Max ammo":30,
-			"Reserve":30,
+			"Ammo":21,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -237,9 +237,8 @@ const weapon_database={
 			
 			#trigger
 			"Trigger pressed":false,
-			"Trigger bullets":0,
-			"Trigger reset":0.1,
-			"Trigger shot":0,
+			"Cycle rate":0.0867143,
+			"Cycle":0.0,
 			"Splits":1},
 		
 		"AK-74U":{
@@ -247,13 +246,11 @@ const weapon_database={
 			"ID":"AK-74U",
 			#ammo of the weapon
 			"Type":"Firearm",
-			"Mode":"Full",
+			"Mode":"Auto",
 			
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":31,
-			"Max ammo":30,
-			"Reserve":30,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -272,19 +269,20 @@ const weapon_database={
 			
 			#trigger
 			"Trigger pressed":false,
-			"Trigger bullets":0,
-			"Trigger reset":0.1,
-			"Trigger shot":0,
+			"Cycle rate":0.0779221,
+			"Cycle":0.0,
 			#How many "Bullets" need to spawn
 			"Splits":1},
 		
-		"OverUnder":{
+		"OU-DB":{
 			#id for hud
-			"ID":"OverUnder",
+			"ID":"OU-DB",
+			#ammo of the weapon
+			"Type":"Firearm",
+			"Mode":"Semi",
 			#ammo of the weapon
 			"Ammo":2,
-			"Max_ammo":1,
-			"Reserve":4,
+			"Max_ammo":2,
 			
 			"Attack index":0,
 			"Attack count":0,
@@ -292,7 +290,7 @@ const weapon_database={
 			
 			"dry_fire":"PED_SPRITES/Body/Sound Library/AR-57/Trigger Pressed",
 			
-			"damage":100,
+			"damage":75,
 			"added_recoil":0.1,
 			"recoil":4,
 			
@@ -302,22 +300,14 @@ const weapon_database={
 			
 			
 			"droppable":true,
-			#types:melee,burst,semi,auto
-			"type":"auto",
-			#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
-			"attack_type":"armor",
 			
-			
-			"execution_sprite":"",
-			"ground_sprite":"",
 			"screen_shake":1,
 			
 			
 			#trigger
 			"trigger_pressed":false,
-			"trigger_bullets":0,
-			"Firerate":0.0705882352941176,
-			"trigger_shot":0,
+			"Cycle rate":0.01,
+			"Cycle":0.0,
 			"Splits":8},
 	}
 }
