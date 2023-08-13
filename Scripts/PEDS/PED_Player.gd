@@ -71,8 +71,6 @@ func _physics_process(delta):
 		if in_combat==true && override_pick_up==false:
 			if Input.is_action_just_pressed("interact"):
 				switch_weapon()
-			if Input.is_action_just_pressed("Inject"):
-				_play_animation("Inject"+sprite_index.replace(weapon["id"]+"/Walk",""))
 		if in_combat==true && Input.is_action_just_pressed("execute"):
 			do_execution()
 		
