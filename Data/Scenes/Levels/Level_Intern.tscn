@@ -14603,7 +14603,8 @@ script = ExtResource("3_bfxl1")
 noise = SubResource("7")
 max_x = 20
 max_y = 20
-timer = 1.0
+max_r = 5.0
+timer = 1.5
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
@@ -14764,6 +14765,7 @@ position = Vector2(635, 485)
 enemy_type = 2
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_lock_ = true
@@ -14773,7 +14775,7 @@ transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 script = ExtResource("4_kcwh6")
 floor_clear = true
 astar = NodePath("Pathfind")

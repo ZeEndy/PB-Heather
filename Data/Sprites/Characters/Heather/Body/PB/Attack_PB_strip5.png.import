@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7ee6uqv861f"
-path="res://.godot/imported/Heather_Attack_AK_74U_strip8.png-bc099b955ee3542df7353cae5f1e8e02.ctex"
+uid="uid://i1wceai8d4cy"
+path="res://.godot/imported/Attack_PB_strip5.png-01a95b2a79bfe89c8d821c8ed2250cc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Characters/Heather/Body/AK-74U/Heather_Attack_AK_74U_strip8.png"
-dest_files=["res://.godot/imported/Heather_Attack_AK_74U_strip8.png-bc099b955ee3542df7353cae5f1e8e02.ctex"]
+source_file="res://Data/Sprites/Characters/Heather/Body/PB/Attack_PB_strip5.png"
+dest_files=["res://.godot/imported/Attack_PB_strip5.png-01a95b2a79bfe89c8d821c8ed2250cc5.ctex"]
 
 [params]
 

@@ -35,9 +35,9 @@ func _process(delta):
 		floor_below.position=offset
 		floor_below.scale=zoom
 		
-	if rain!=null:
-		rain.texture_offset=rain.global_position-(((get_viewport_rect().size/rain.texture_scale)/2))
-		rain.texture_scale=zoom*10
+#	if rain!=null:
+#		rain.texture_offset=rain.global_position-(((get_viewport_rect().size/rain.texture_scale)/2))
+#		rain.texture_scale=zoom*10
 	
 	if below_target!=null:
 		below_target.get_children()[0].constantly_show=true

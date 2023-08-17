@@ -249,7 +249,10 @@ func attack(sound_pos=sprite_body.global_position):
 	elif weapon["Type"]=="Firearm":
 		if weapon["Mode"]=="Auto" && weapon["Cycle"]==0.0:
 			if weapon["Ammo"]>0:
+				if weapon["Ammo"]-1==0:
+					weapon["Attack index"]=-1
 				var chosen_attack_sprite = "Attack_"+str(weapon["Attack index"])
+				
 				if weapon["Random sprite"] == false:
 					weapon["Attack index"] = (weapon["Attack index"] + 1) % weapon["Attack ammount"]
 				else:
@@ -258,6 +261,8 @@ func attack(sound_pos=sprite_body.global_position):
 				weapon["Cycle"]=weapon["Cycle rate"]
 				spawn_bullet(weapon["Splits"])
 		elif weapon["Mode"]=="Semi" && weapon["Cycle"]==0.0:
+			if weapon["Ammo"]-1==0:
+				weapon["Attack index"]=-1
 			if weapon["Ammo"]>0 && weapon["Trigger pressed"]==false:
 				var chosen_attack_sprite = "Attack_"+str(weapon["Attack index"])
 				if weapon["Random sprite"] == false:
@@ -532,16 +537,16 @@ func do_execution():
 		sprite_body.global_rotation=execute_target.sprite_legs.global_rotation-PI
 		
 		if execute_target.sprite_legs.animation!="GetUpLean":
-			if weapon.execution_sprite!="":
-				sprite_body.play(weapon.execution_sprite)
-				execute_target.sprite_legs.play(weapon.ground_sprite,false,0)
-			else:
-				drop_weapon()
-				sprite_body.play(default_weapon.id+"/"+default_weapon.execution_sprite)
-				execute_target.sprite_legs.play(default_weapon.ground_sprite,false,0)
-		else:
-				sprite_body.play("ExecuteWall")
-				execute_target.sprite_legs.play("DieLean")
+#			if weapon.execution_sprite!="":
+				_play_animation("Execute")
+				execute_target.sprite_legs.play("Stomp",false,0)
+#			else:
+#				drop_weapon()
+#				sprite_body.play(default_weapon.id+"/"+default_weapon.execution_sprite)
+#				execute_target.sprite_legs.play(default_weapon.ground_sprite,false,0)
+#		else:
+#				sprite_body.play("ExecuteWall")
+#				execute_target.sprite_legs.play("DieLean")
 		execute_target.sprite_legs.speed_scale=0	
 		sprite_legs.visible=false
 		execute_target.can_get_up=false
@@ -599,7 +604,7 @@ func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=nul
 					execute_target.sprite_legs.seek(frame)
 			state=ped_states.alive
 			sprite_legs.visible=true
-			sprite_index=weapon.walk_sprite
+			sprite_index=""
 			delay=0.1
 			return true
 

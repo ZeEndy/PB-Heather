@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i1wceai8d4cy"
-path="res://.godot/imported/Heather_Attack_PB_strip5.png-6312c544c2f6cac106b9406927408276.ctex"
+uid="uid://bo4eptmyx13em"
+path="res://.godot/imported/Attack_PB_E_strip5.png-bdcc65128ab06248058b9064071e6f2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Characters/Heather/Body/PB/Heather_Attack_PB_strip5.png"
-dest_files=["res://.godot/imported/Heather_Attack_PB_strip5.png-6312c544c2f6cac106b9406927408276.ctex"]
+source_file="res://Data/Sprites/Characters/Heather/Body/PB/Attack_PB_E_strip5.png"
+dest_files=["res://.godot/imported/Attack_PB_E_strip5.png-bdcc65128ab06248058b9064071e6f2e.ctex"]
 
 [params]
 

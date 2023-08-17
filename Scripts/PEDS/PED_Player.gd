@@ -113,22 +113,16 @@ func _physics_process(delta):
 func _process(delta):
 	glob_delta=delta
 	super(delta)
-	if weapon.has("reserve"):
-		GUI.ammo=weapon.ammo
-		GUI.max_ammo=weapon.max_ammo
-		get_node("PED_COL/Label").text=str(weapon.ammo)+"/"+str(weapon.max_ammo)
+	if weapon.has("Ammo"):
+#		GUI.ammo=weapon.ammo
+#		GUI.max_ammo=weapon.max_ammo
+		get_node("PED_COL/Label").text=str(weapon["Ammo"])+"/"+str(weapon["Max ammo"])
 	debug_rand_weapon()
 	
-	if active_injector!="":
-		if active_inj_timer>0:
-			active_inj_timer-=delta/Engine.time_scale
-			injector_active(delta)
-		else:
-			active_injector=""
-			Engine.time_scale=1
-			health=clamp(health,0,100)
-			motion_multiplier=1
+	Engine.time_scale=1-0.85*float(Input.is_action_pressed("DEBUG_ABILTY"))
 	
+#	if weapon["Type"]=="Firearm":
+#		print(-80.0*(float(weapon["Ammo"])/float(weapon["Max ammo"])))
 	
 	
 	if state == ped_states.alive:

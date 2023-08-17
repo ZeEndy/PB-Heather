@@ -45,6 +45,7 @@ func _process(delta):
 	if get_node("AnimationPlayer").current_animation!="":
 		frame=get_node("AnimationPlayer").current_animation_position
 		get_node("AnimationPlayer").speed_scale=speed_scale
+	animation=get_node("AnimationPlayer").current_animation
 
 
 func holster(anim:String,pull_out:bool):

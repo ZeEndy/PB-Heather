@@ -30,7 +30,7 @@ var target=null
 
 
 
-@export_range(0,1) var timer = 0.0
+@export_range(0,2) var timer = 0.0
 
 func add_shake(shake_in,adative):
 	if adative==false: shake = clamp(shake_in,0,1)
@@ -46,9 +46,8 @@ func _process(delta):
 	
 	if rain!=null:
 		get_node("Rain").get_camera_3d().global_transform.origin.x=lerp(get_node("Rain").get_camera_3d().global_transform.origin.x,((global_position)*zoom*follow_speed).x,clamp(6.6666*delta,0,1))+(offset.x*0.0004*follow_speed)
-#		get_node("Rain").get_camera().global_transform.origin.z=lerp(get_node("Rain").get_camera().global_transform.origin.z,-((global_position)*zoom*follow_speed).y,6.6666*delta)+(offset.y*0.0004*follow_speed)
 		get_node("Rain").size=get_viewport().size
-	time += delta
+	time += delta*2.0
 	var shaking = pow(shake,2)
 	
 #	var noise_inst=noise.new()

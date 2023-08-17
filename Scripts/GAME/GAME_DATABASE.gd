@@ -31,7 +31,7 @@ const weapon_database={
 			
 			"Type":"Melee",
 			# ammount of attack sprites counting from 0
-			"Attack ammount":1,
+			"Attack ammount":2,
 			# which attack is used depending on the count
 			"Attack index":0,
 			#random on attack
@@ -43,71 +43,42 @@ const weapon_database={
 			"Swing time":0.3889,
 			"Swing timer":0.0
 			},
-		"Knife":{
-			#id for hud
-			"id":"Knife",
-			#ammo of the weapon
-			"max_ammo":6,
-			# wad sprites
-			"attack_count":1,
-			"attack_index":0,
-			#random on attack
-			"random_sprite":false,
-			"attack_sound":"",
-			
-			
-			"kill_sprite":"DeadSlash",
-			"kill_lean_sprite":"DeadLeanMelee",
-			
-			"recoil":8,
-			
-			"droppable":true,
-			#types:melee,burst,semi,auto
-			"type":"melee",
-			#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
-			"attack_type":"",
-			
-			
-			"execution_sprite":"Knife",
-			"ground_sprite":"DieKnife",
-			"weapon_length":0,
-			"screen_shake":1,
-			
-			#trigger
-			"trigger_reset":0.1,
-			"trigger_pressed":false,},
 		"Bat":{
 			#id for hud
-			"id":"Bat",
-			# wad sprites
-			"walk_sprite":"Walk",
-			"attack_sprite":["Attack"],
-			"attack_index":0,
+			"ID":"Bat",
+			
+			"Type":"Melee",
+			# ammount of attack sprites counting from 0
+			"Attack ammount":2,
+			# which attack is used depending on the count
+			"Attack index":0,
 			#random on attack
-			"random_sprite":false,
-			"attack_sound":"",
+			"Random sprite":false,
 			
-			
-			"kill_sprite":"DeadSlash",
-			"kill_lean_sprite":"DeadLeanMelee",
-			
-			"recoil":8,
 			
 			"droppable":true,
-			#types:melee,burst,semi,auto
-			"type":"melee",
-			#attack_type:| shotweapon, normal, armor, grenade,lethal, non-lethal,downing
-			"attack_type":"",
+			
+			"Swing time":0.3889,
+			"Swing timer":0.0
+			},
+			"Knife":{
+			#id for hud
+			"ID":"Knife",
+			
+			"Type":"Melee",
+			# ammount of attack sprites counting from 0
+			"Attack ammount":2,
+			# which attack is used depending on the count
+			"Attack index":0,
+			#random on attack
+			"Random sprite":false,
 			
 			
-			"execution_sprite":"Bat",
-			"ground_sprite":"DieBat",
-			"weapon_length":0,
-			"screen_shake":1,
+			"droppable":true,
 			
-			#trigger
-			"trigger_reset":0.1,
-			"trigger_pressed":false,},
+			"Swing time":0.3889,
+			"Swing timer":0.0
+			},
 	},
 	"Firearm":{
 		"1911":{
@@ -118,6 +89,7 @@ const weapon_database={
 			"Bullet":"AP",
 			#ammo of the weapon
 			"Ammo":8,
+			"Max ammo":8,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -150,6 +122,7 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":9,
+			"Max ammo":9,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -182,7 +155,8 @@ const weapon_database={
 			
 			"Bullet":"FMJ",
 			#ammo of the weapon
-			"Ammo":31,
+			"Ammo":30,
+			"Max ammo":30,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -218,6 +192,7 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":21,
+			"Max ammo":21,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -251,6 +226,7 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":31,
+			"Max ammo":31,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -282,7 +258,7 @@ const weapon_database={
 			"Mode":"Semi",
 			#ammo of the weapon
 			"Ammo":2,
-			"Max_ammo":2,
+			"Max ammo":2,
 			
 			"Attack index":0,
 			"Attack count":0,

@@ -5734,8 +5734,7 @@ libraries = {
 z_index = -1
 use_parent_material = true
 sprite_frames = SubResource("56")
-animation = &"DeadBash"
-offset = Vector2(-7, 0)
+animation = &"GetUp"
 
 [node name="Body" type="Node2D" parent="PED_SPRITES"]
 z_index = 1
