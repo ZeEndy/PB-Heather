@@ -14,6 +14,8 @@ func _ready():
 func _process(delta):
 	if !has_focus():
 		list.visible=false
+	if list.visible==false:
+		button_pressed=false
 
 
 

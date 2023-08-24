@@ -13,7 +13,7 @@ func _ready():
 
 
 func _process(delta):
-	if is_hovered():
+	if is_hovered() || button_pressed:
 		text=" >"+saved_text
 	else:
 		text="  "+saved_text
@@ -26,9 +26,11 @@ func button_action():
 	elif name=="CHAPTERS":
 		get_node("../../Recordings").visible=!get_node("../../Recordings").visible
 		get_node("../../Options").visible=false
+		get_node("../OPTIONS").button_pressed=false
 	elif name=="OPTIONS":
 		get_node("../../Recordings").visible=false
 		get_node("../../Options").visible=!get_node("../../Options").visible
+		get_node("../CHAPTERS").button_pressed=false
 	elif name=="EXIT":
 		get_tree().quit()
 

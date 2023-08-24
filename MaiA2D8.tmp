@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dihjjqfgo7wmt"]
+[gd_scene load_steps=34 format=3 uid="uid://dihjjqfgo7wmt"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Main_menu.gd" id="1_kjgd0"]
 [ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="2_yqsnn"]
@@ -9,10 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Drop_Down_button.gd" id="5_m5p1v"]
 [ext_resource type="AudioStream" uid="uid://bita5dlaw7hi5" path="res://Data/Sounds/UI/Menu/BG_Noise.ogg" id="7_sw72n"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qf4o7"]
-blend_mode = 1
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xfgsn"]
+blend_mode = 2
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uo2gw"]
 blend_mode = 1
@@ -106,22 +104,11 @@ VScrollBar/styles/scroll = null
 VScrollBar/styles/scroll_focus = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5ruu"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ehpya"]
-blend_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7cpx0"]
-blend_mode = 2
+bg_color = Color(0, 0, 0, 0.913725)
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+anchors_preset = 0
 script = ExtResource("1_kjgd0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -149,9 +136,11 @@ color = Color(0, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1880.0
+offset_bottom = 1040.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch = true
+metadata/_edit_lock_ = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 handle_input_locally = false
@@ -161,35 +150,19 @@ render_target_clear_mode = 1
 render_target_update_mode = 4
 script = ExtResource("3_co0yd")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
-material = SubResource("CanvasItemMaterial_qf4o7")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport"]
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
 layer = -1
 
-[node name="Clear" type="ColorRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer"]
-z_index = -1
+[node name="Clear" type="ColorRect" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer"]
 material = SubResource("CanvasItemMaterial_xfgsn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
-[node name="Aspect" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer"]
+[node name="Aspect" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer"]
 material = SubResource("CanvasItemMaterial_uo2gw")
 layout_mode = 3
 anchors_preset = 15
@@ -198,7 +171,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+[node name="Label" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1
@@ -212,23 +185,22 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 60
 text = "    Heather: Overdetailed"
 
-[node name="Main" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+[node name="Main" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.08
-anchor_top = 0.303
+anchor_top = 0.42
 anchor_right = 0.27
-anchor_bottom = 0.518
-offset_left = -0.600006
-offset_top = -0.23996
+anchor_bottom = 0.635
+offset_left = -0.599991
+offset_top = 0.399994
 offset_right = -0.400024
-offset_bottom = -0.439941
+offset_bottom = 0.200012
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="PLAY" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
-use_parent_material = true
+[node name="PLAY" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
 layout_mode = 2
 theme = SubResource("Theme_j60hv")
 toggle_mode = true
@@ -237,8 +209,7 @@ alignment = 0
 script = ExtResource("3_m6y3f")
 start_focus = true
 
-[node name="CHAPTERS" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
-use_parent_material = true
+[node name="CHAPTERS" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
 layout_mode = 2
 theme = SubResource("Theme_j60hv")
 toggle_mode = true
@@ -246,8 +217,7 @@ text = "RECORDINGS"
 alignment = 0
 script = ExtResource("3_m6y3f")
 
-[node name="OPTIONS" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
-use_parent_material = true
+[node name="OPTIONS" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
 layout_mode = 2
 theme = SubResource("Theme_j60hv")
 toggle_mode = true
@@ -255,8 +225,7 @@ text = "OPTIONS"
 alignment = 0
 script = ExtResource("3_m6y3f")
 
-[node name="EXIT" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
-use_parent_material = true
+[node name="EXIT" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Main"]
 layout_mode = 2
 theme = SubResource("Theme_j60hv")
 toggle_mode = true
@@ -264,7 +233,8 @@ text = "EXIT"
 alignment = 0
 script = ExtResource("3_m6y3f")
 
-[node name="Options" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+[node name="Options" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+visible = false
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1
@@ -277,11 +247,11 @@ offset_top = -0.360001
 offset_right = -0.0400391
 offset_bottom = -0.039978
 
-[node name="Options" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options"]
+[node name="Options" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options"]
 use_parent_material = true
 layout_mode = 2
 
-[node name="Video" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Video" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -289,12 +259,12 @@ theme_override_font_sizes/font_size = 51
 text = "------------VIDEO-------------"
 horizontal_alignment = 1
 
-[node name="Resolution" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Resolution" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Resolution"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Resolution"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -305,7 +275,7 @@ theme_override_font_sizes/font_size = 51
 text = "RESOLUTION
 "
 
-[node name="OptionButton" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Resolution"]
+[node name="OptionButton" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Resolution"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 574.0
@@ -320,19 +290,18 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxFlat_prebn")
-toggle_mode = true
-text = "1920x1080↓"
+text = "1920x1080"
 alignment = 0
 script = ExtResource("5_m5p1v")
 pt_list = NodePath("../../../../Resolutions")
 parent = NodePath("../../..")
 
-[node name="Display Mode" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Display Mode" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Display Mode"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Display Mode"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -342,7 +311,7 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "DISPLAY"
 
-[node name="OptionButton" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Display Mode"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Display Mode"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 574.0
@@ -352,22 +321,27 @@ offset_bottom = 49.0
 theme_override_constants/h_separation = 0
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxFlat_prebn")
-text = "EXCLUSIVE↓"
-alignment = 0
-script = ExtResource("5_m5p1v")
-pt_list = NodePath("../../../../Display")
-parent = NodePath("../../..")
+item_count = 4
+selected = 0
+popup/item_0/text = "EXCLUSIVE"
+popup/item_0/id = 1
+popup/item_1/text = "FULLSCREEN"
+popup/item_1/id = 1
+popup/item_2/text = "WINDOWED"
+popup/item_2/id = 2
+popup/item_3/text = "BORDERLESS"
+popup/item_3/id = 3
 
-[node name="Particles" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Particles" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Particles"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Particles"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -378,7 +352,7 @@ theme_override_font_sizes/font_size = 51
 text = "PARTICLES
 "
 
-[node name="OptionButton" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Particles"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Particles"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 574.0
@@ -388,22 +362,27 @@ offset_bottom = 49.0
 theme_override_constants/h_separation = 0
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "HIGH     ↓"
-alignment = 0
-script = ExtResource("5_m5p1v")
-pt_list = NodePath("../../../../Particles")
-parent = NodePath("../../..")
+item_count = 4
+selected = 0
+popup/item_0/text = "HIGH"
+popup/item_0/id = 1
+popup/item_1/text = "MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "LOW"
+popup/item_2/id = 2
+popup/item_3/text = "OFF"
+popup/item_3/id = 3
 
-[node name="Lighting" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Lighting" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Lighting"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Lighting"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -414,7 +393,7 @@ theme_override_font_sizes/font_size = 51
 text = "LIGHTING
 "
 
-[node name="OptionButton" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Lighting"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Lighting"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 574.0
@@ -424,17 +403,22 @@ offset_bottom = 49.0
 theme_override_constants/h_separation = 0
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "HIGH     ↓"
-alignment = 0
-script = ExtResource("5_m5p1v")
-pt_list = NodePath("../../../../Lighting")
-parent = NodePath("../../..")
+item_count = 4
+selected = 0
+popup/item_0/text = "HIGH"
+popup/item_0/id = 1
+popup/item_1/text = "MEDIUM"
+popup/item_1/id = 1
+popup/item_2/text = "LOW"
+popup/item_2/id = 2
+popup/item_3/text = "OFF"
+popup/item_3/id = 3
 
-[node name="Audio" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Audio" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -442,12 +426,12 @@ theme_override_font_sizes/font_size = 51
 text = "------------AUDIO-------------"
 horizontal_alignment = 1
 
-[node name="Master" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Master" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -457,14 +441,14 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "MASTER VOLUME"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 526.0
 offset_right = 700.0
 offset_bottom = 53.0
 
-[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master/HBoxContainer"]
+[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -475,14 +459,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " + "
 
-[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master/HBoxContainer"]
+[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "  50% "
 
-[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master/HBoxContainer"]
+[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Master/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -493,12 +477,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " - "
 
-[node name="SFX" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="SFX" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -508,14 +492,14 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "SFX VOLUME"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 526.0
 offset_right = 700.0
 offset_bottom = 53.0
 
-[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX/HBoxContainer"]
+[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -526,14 +510,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " + "
 
-[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX/HBoxContainer"]
+[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "  50% "
 
-[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX/HBoxContainer"]
+[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/SFX/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -544,12 +528,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " - "
 
-[node name="Music" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Music" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -559,14 +543,14 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "MUSIC VOLUME"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 526.0
 offset_right = 700.0
 offset_bottom = 53.0
 
-[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music/HBoxContainer"]
+[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -577,14 +561,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " + "
 
-[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music/HBoxContainer"]
+[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "  50% "
 
-[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music/HBoxContainer"]
+[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Music/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -595,7 +579,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " - "
 
-[node name="Controls" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Controls" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -603,12 +587,12 @@ theme_override_font_sizes/font_size = 51
 text = "-----------CONTROLS-----------"
 horizontal_alignment = 1
 
-[node name="Window Based" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Window Based" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Window Based"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Window Based"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -618,7 +602,7 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "MOUSE MODE"
 
-[node name="OptionButton" type="OptionButton" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Window Based"]
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Window Based"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 574.0
@@ -639,12 +623,12 @@ popup/item_0/id = 1
 popup/item_1/text = "CONFINED"
 popup/item_1/id = 1
 
-[node name="Sensitivity" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
+[node name="Sensitivity" type="Control" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options"]
 use_parent_material = true
 custom_minimum_size = Vector2(0, 54.465)
 layout_mode = 2
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 4.0
@@ -654,14 +638,14 @@ theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "SENSITIVITY"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity"]
 use_parent_material = true
 layout_mode = 0
 offset_left = 526.0
 offset_right = 700.0
 offset_bottom = 53.0
 
-[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity/HBoxContainer"]
+[node name="Add" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -672,14 +656,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " + "
 
-[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity/HBoxContainer"]
+[node name="Percent" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
 theme_override_font_sizes/font_size = 51
 text = "  1.0  "
 
-[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity/HBoxContainer"]
+[node name="Remove" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Options/Options/Sensitivity/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_yqsnn")
@@ -690,23 +674,18 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3k282")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " - "
 
-[node name="Recordings" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+[node name="Recordings" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
 visible = false
 use_parent_material = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 0.192
-anchor_right = 0.366
-anchor_bottom = 0.192
-offset_left = -81.72
-offset_top = 236.64
-offset_right = 1128.28
-offset_bottom = 544.64
+layout_mode = 0
+offset_left = 592.0
+offset_top = 495.0
+offset_right = 1802.0
+offset_bottom = 803.0
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Intern" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings"]
+[node name="Intern" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings"]
 use_parent_material = true
 custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
@@ -714,7 +693,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4oogt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uoe2p")
 theme_override_styles/focus = SubResource("StyleBoxFlat_u6l8u")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
 modulate = Color(1, 1, 1, 0.482353)
 layout_mode = 0
 offset_top = 49.0
@@ -722,7 +701,7 @@ offset_right = 370.0
 offset_bottom = 259.0
 texture = ExtResource("5_ihvbn")
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
 use_parent_material = true
 layout_mode = 0
 offset_right = 370.0
@@ -732,7 +711,7 @@ theme_override_font_sizes/font_size = 41
 text = "INTERN"
 horizontal_alignment = 1
 
-[node name="Length" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
+[node name="Length" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 260.0
@@ -743,7 +722,7 @@ theme_override_font_sizes/font_size = 41
 text = "0--+--+--1"
 horizontal_alignment = 1
 
-[node name="Panic room" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings"]
+[node name="Panic room" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings"]
 use_parent_material = true
 custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
@@ -751,7 +730,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4oogt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uoe2p")
 theme_override_styles/focus = SubResource("StyleBoxFlat_u6l8u")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
 modulate = Color(1, 1, 1, 0.482353)
 layout_mode = 0
 offset_top = 49.0
@@ -759,7 +738,7 @@ offset_right = 370.0
 offset_bottom = 259.0
 texture = ExtResource("5_ihvbn")
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
 use_parent_material = true
 layout_mode = 0
 offset_right = 370.0
@@ -769,7 +748,7 @@ theme_override_font_sizes/font_size = 41
 text = "PANIC ROOM"
 horizontal_alignment = 1
 
-[node name="Length" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
+[node name="Length" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 260.0
@@ -780,7 +759,7 @@ theme_override_font_sizes/font_size = 41
 text = "0--+--+--1"
 horizontal_alignment = 1
 
-[node name="Shoreline" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings"]
+[node name="Shoreline" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings"]
 use_parent_material = true
 custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
@@ -788,7 +767,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4oogt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uoe2p")
 theme_override_styles/focus = SubResource("StyleBoxFlat_u6l8u")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
 modulate = Color(1, 1, 1, 0.482353)
 layout_mode = 0
 offset_top = 49.0
@@ -796,7 +775,7 @@ offset_right = 370.0
 offset_bottom = 259.0
 texture = ExtResource("5_ihvbn")
 
-[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
+[node name="Name" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
 use_parent_material = true
 layout_mode = 0
 offset_right = 370.0
@@ -806,7 +785,7 @@ theme_override_font_sizes/font_size = 41
 text = "SHORELINE"
 horizontal_alignment = 1
 
-[node name="Length" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
+[node name="Length" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
 use_parent_material = true
 layout_mode = 0
 offset_top = 260.0
@@ -817,27 +796,27 @@ theme_override_font_sizes/font_size = 41
 text = "0--+--+--1"
 horizontal_alignment = 1
 
-[node name="Resolutions" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-z_index = 1
+[node name="Resolutions" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 0.192
-anchor_right = 0.366
-anchor_bottom = 0.192
-offset_left = 571.28
-offset_top = 100.64
-offset_right = 886.28
-offset_bottom = 373.64
+anchor_left = 0.665
+anchor_top = 0.285
+anchor_right = 0.83
+anchor_bottom = 0.607
+offset_left = 0.199951
+offset_top = 0.199982
+offset_right = -4.6001
+offset_bottom = 0.439941
 theme = SubResource("Theme_blx7l")
 theme_override_styles/panel = SubResource("StyleBoxFlat_e5ruu")
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions"]
-material = SubResource("CanvasItemMaterial_ehpya")
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions"]
+use_parent_material = true
 layout_mode = 2
 
-[node name="Seperate2" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="Seperate2" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -847,7 +826,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
 text = "--16:9--"
 horizontal_alignment = 1
 
-[node name="OptionButton2" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton2" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -860,7 +839,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "3840x2160"
 
-[node name="OptionButton5" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton5" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -874,7 +853,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "2560x1440
 "
 
-[node name="OptionButton3" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton3" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -887,7 +866,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1920x1080"
 
-[node name="OptionButton4" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton4" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -900,7 +879,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1280x720"
 
-[node name="OptionButton6" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton6" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -913,7 +892,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1024x576"
 
-[node name="OptionButton7" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton7" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -926,7 +905,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "960x540"
 
-[node name="OptionButton8" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton8" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -939,7 +918,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "854x480"
 
-[node name="OptionButton9" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton9" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -952,7 +931,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "640x360"
 
-[node name="Seperate" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="Seperate" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -962,7 +941,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
 text = "--4:3--"
 horizontal_alignment = 1
 
-[node name="OptionButton10" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton10" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -975,7 +954,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "2048x1536"
 
-[node name="OptionButton11" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton11" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -989,7 +968,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1940x1440
 "
 
-[node name="OptionButton12" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton12" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1002,7 +981,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1856x1392"
 
-[node name="OptionButton13" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton13" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1015,7 +994,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1600x1200"
 
-[node name="OptionButton14" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton14" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1028,7 +1007,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1440x1080"
 
-[node name="OptionButton15" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton15" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1041,7 +1020,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1400x1050"
 
-[node name="OptionButton16" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton16" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1054,7 +1033,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1280x960"
 
-[node name="OptionButton17" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton17" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1067,7 +1046,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "1024x768"
 
-[node name="OptionButton18" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton18" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1080,7 +1059,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "960x720"
 
-[node name="OptionButton19" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton19" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1093,7 +1072,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "800x600"
 
-[node name="OptionButton20" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
+[node name="OptionButton20" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Resolutions/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
 theme = SubResource("Theme_ox23y")
@@ -1106,280 +1085,27 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "640x480"
 
-[node name="Display" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 0.192
-anchor_right = 0.366
-anchor_bottom = 0.192
-offset_left = 571.28
-offset_top = 158.64
-offset_right = 885.28
-offset_bottom = 355.64
-theme = SubResource("Theme_blx7l")
-theme_override_styles/panel = SubResource("StyleBoxFlat_e5ruu")
-horizontal_scroll_mode = 0
+[node name="Exclusive" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Display"]
-use_parent_material = true
-layout_mode = 2
+[node name="Particles" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="OptionButton2" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Display/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "EXCLUSIVE"
+[node name="Lighting" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="OptionButton5" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Display/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "FULLSCREEN"
+[node name="Mouse Mode" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="OptionButton7" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Display/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "BORDERLESS"
-
-[node name="OptionButton6" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Display/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "WINDOWED"
-
-[node name="Particles" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 0.192
-anchor_right = 0.366
-anchor_bottom = 0.192
-offset_left = 573.28
-offset_top = 216.64
-offset_right = 885.28
-offset_bottom = 414.64
-theme = SubResource("Theme_blx7l")
-theme_override_styles/panel = SubResource("StyleBoxFlat_e5ruu")
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Particles"]
-use_parent_material = true
-layout_mode = 2
-alignment = 1
-
-[node name="OptionButton2" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Particles/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "HIGH
-"
-
-[node name="OptionButton5" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Particles/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "MEDIUM"
-
-[node name="OptionButton7" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Particles/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "LOW"
-
-[node name="OptionButton6" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Particles/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "OFF"
-
-[node name="Lighting" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 0.192
-anchor_right = 0.366
-anchor_bottom = 0.192
-offset_left = 573.28
-offset_top = 274.64
-offset_right = 885.28
-offset_bottom = 472.64
-theme = SubResource("Theme_blx7l")
-theme_override_styles/panel = SubResource("StyleBoxFlat_e5ruu")
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Lighting"]
-use_parent_material = true
-layout_mode = 2
-alignment = 1
-
-[node name="OptionButton2" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Lighting/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "HIGH
-"
-
-[node name="OptionButton5" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Lighting/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "MEDIUM"
-
-[node name="OptionButton7" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Lighting/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "LOW"
-
-[node name="OptionButton6" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Lighting/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "OFF"
-
-[node name="Mouse Mode" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.366
-anchor_top = 0.192
-anchor_right = 0.366
-anchor_bottom = 0.192
-offset_left = 573.28
-offset_top = 610.64
-offset_right = 885.28
-offset_bottom = 711.64
-theme = SubResource("Theme_blx7l")
-theme_override_styles/panel = SubResource("StyleBoxFlat_e5ruu")
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Mouse Mode"]
-use_parent_material = true
-layout_mode = 2
-alignment = 1
-
-[node name="OptionButton2" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Mouse Mode/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "CAPTURED
-"
-
-[node name="OptionButton5" type="Button" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Mouse Mode/VBoxContainer"]
-use_parent_material = true
-layout_mode = 2
-theme = SubResource("Theme_ox23y")
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("2_yqsnn")
-theme_override_font_sizes/font_size = 51
-theme_override_styles/normal = SubResource("StyleBoxEmpty_qissw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_okkob")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
-text = "CONFINED"
-
-[node name="Cursor" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-z_index = 2
+[node name="Cursor" type="Label" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
 use_parent_material = true
 layout_mode = 0
 offset_right = 60.0
@@ -1392,16 +1118,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_xaft8")
 
-[node name="Clear" type="ColorRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
-z_index = 1
-material = SubResource("CanvasItemMaterial_7cpx0")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/SubViewportContainer"]
 stream = ExtResource("7_sw72n")

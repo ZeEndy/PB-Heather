@@ -7,7 +7,7 @@ const float vignette_size = .2;
 const float vignette_smoothness = .6;
 const float vignette_edgeRounding = .8;
 const float grain_amount = .5;
-const float sl_size= 1.5;
+const float sl_size= 4.0;
 
 // Standard shader random function.
 
