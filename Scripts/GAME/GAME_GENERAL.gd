@@ -18,6 +18,7 @@ var time=1.0
 
 #config stuff
 
+
 var fullscreen=0
 var windowed_mouse=false
 
@@ -26,6 +27,10 @@ var particle_quality=0
 #1 minimal particles
 #3 all particles
 var light_quality=0
+
+var music_volume=0
+var sfx_volume=0
+var mas_volume=0
 
 
 var _saving=false
@@ -52,9 +57,7 @@ var fade_color = 1
 
 
 
-var music_volume=0
-var sfx_volume=0
-var mas_volume=0
+
 
 var given_track
 var target_volume=0
@@ -110,11 +113,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("Debug_exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("DEBUG_FULLSCREEN"):
-		if fullscreen==DisplayServer.WINDOW_MODE_FULLSCREEN:
+		if fullscreen==DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
 			fullscreen=DisplayServer.WINDOW_MODE_WINDOWED
 		else:
-			fullscreen=DisplayServer.WINDOW_MODE_FULLSCREEN
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			fullscreen=DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+		DisplayServer.window_set_mode(fullscreen)
 
 
 

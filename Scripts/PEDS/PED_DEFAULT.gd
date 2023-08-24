@@ -13,6 +13,7 @@ class_name PED
 @onready var sprite_legs = get_node("PED_SPRITES/Legs")
 @onready var sprite_legs_anim = get_node("PED_SPRITES/Legs/AnimationPlayer")
 @onready var collision_body = get_node("PED_COL")
+@onready var col_shape = get_node("PED_COL/CollsionCircle")
 
 
 #variables are oragnized by specification aka what state they are used the most in
@@ -85,6 +86,7 @@ var change_leg_sprite_value=false
 
 func _ready():
 #	get_node("PED_COL/NavigationAgent2D").set_navigation(get_parent().navigation)
+	col_shape.shape
 	body_direction=global_rotation
 	global_rotation=0
 	default_weapon=Database.get_wep("Melee","Unarmed")
@@ -166,6 +168,8 @@ func _process(delta):
 func _physics_process(delta):
 	weapon_logic(delta)
 	collision_body.global_rotation=0
+	col_shape.shape.radius=lerp(col_shape.shape.radius,8.0,10*delta)
+	col_shape.shape.height=lerp(col_shape.shape.height,16.0,10*delta)
 	if weapon is Dictionary:
 		if weapon!={}:
 			if bAttack==true:
@@ -192,7 +196,18 @@ func _physics_process(delta):
 	
 	
 	elif state == ped_states.dead:
-		get_node("PED_COL/CollsionCircle").disabled=true
+#		get_node("PED_COL/CollsionCircle").disabled=true
+		my_velocity=lerp(my_velocity,Vector2.ZERO,5.0*delta)
+		collision_body.velocity=my_velocity
+		col_shape.shape.radius=lerp(col_shape.shape.radius,11.0,10*delta)
+		col_shape.shape.height=lerp(col_shape.shape.height,56.0,10*delta)
+		col_shape.global_rotation=sprite_legs.global_rotation+PI*0.5
+#		56
+#		10
+
+#		8
+#		16
+		collision_body.move_and_slide()
 		if get_groups().size()>0:
 			for i in get_groups():
 				remove_from_group(i)
@@ -446,9 +461,9 @@ func move_to_point(delta,point,speed=0.7):
 		var temp_dir=Vector2(0,0)
 		if path.size()>2 && path[-1].distance_to(point)<16.0:
 			if collision_body.global_position.distance_to(path[0])<8.0:
-				print(path)
+#				print(path)
 				path.remove_at(0)
-				print(path)
+#				print(path)
 			temp_dir=collision_body.global_position.direction_to(path[0])
 		else:
 			path=get_viewport()._astar._get_path(collision_body.global_position,point)
@@ -474,7 +489,7 @@ func _play_animation(animation:String,frame=0,global=false):
 
 
 
-func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
+func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*PI,frame="rand",body_speed=2,_bleed=false):
 	var damage_output : float
 	if damage is Array:
 		damage_output=randf_range(damage[0],damage[1])
@@ -495,6 +510,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180
 			else:
 				sprite_legs.seek(frame)
 			sprite_legs.global_rotation=rot
+			my_velocity=Vector2(damage,0).rotated(sprite_legs.global_rotation-PI)
 			sprite_legs.speed_scale=0
 			sprite_body.visible=false
 			state=ped_states.dead

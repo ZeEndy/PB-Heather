@@ -1,11 +1,9 @@
 extends RigidBody2D
-
-
 class_name WEAPON
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+@onready var def_bullet_ent=preload("res://Data/DEFAULT/ENTS/ENT_BULLET.tscn")
+
 var pick_up=false
 var wait_pickup=0.001
 
@@ -13,52 +11,47 @@ var wait_pickup=0.001
 @onready var col=get_node("CollisionShape2D")
 
 @export var weapon={
-	#id for hud
-	"id":"M16",
-	#ammo of the weapon
-	"max_ammo":30,
-	"ammo":25,
-	# wad sprites
-	"attack_count":1,
-	"attack_index":0,
-	#random on attack
-	"random_sprite":false,
-	#flip on attack
-	"flip_sprite":false,
-
-	"sound_index":0,
-	"random_attack_sounds":true,
-	"random_kill_sounds":true,
-	
-	"kill_sprite":"DeadMachineweapon",
-	"kill_lean_sprite":"DeadLeanMachineweapon",
-	
-	"execution_sprite":[],
-	
-	"recoil":4,
-	
-	"pitch_change":0.1,
-	"screen_shake":35,
-	
-	"droppable":true,
-	#types:melee,burst,semi,auto
-	"type":"semi",
-	#attack_type:| normal, armor, grenade
-	"attack_type":"normal",
-	"weapon_length":24,
-	#trigger
-	"trigger_pressed":false,
-	"trigger_bullets":3,
-	"trigger_reset":0.08,
-	"trigger_shot":0,
-	"shoot_bullets":1
-}
+			"ID":"PB",
+			#ammo of the weapon
+			"Type":"Firearm",
+			"Mode":"Semi",
+			
+			"Bullet":"FMJ",
+			#ammo of the weapon
+			"Ammo":9,
+			"Max ammo":9,
+			# using the just an int because a magazine system doesn't fit this project 
+			
+			"Attack index":0,
+			"Attack ammount":0,
+			"Random sprite":true,
+			
+			"Damage":100,
+			
+			"Added recoil":0.2,
+			"Recoil":4,
+			
+			
+			"hearing_radius":220, # its a radius
+			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
+			
+			"droppable":true,
+			
+			#trigger
+			"Trigger pressed":false,
+			"Cycle rate":0.109091,
+			"Cycle":0.0,
+			"Trigger shot":0,
+			"Splits":1}
 
 
 
 func _ready():
 	sprite.global_rotation=global_rotation
 	sprite.animation=weapon["ID"]
+	if weapon["Type"]=="Firearm":
+		for bullet in weapon["Ammo"]:
+			pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -70,6 +63,7 @@ func _process(delta):
 		pick_up=true
 	if linear_velocity.length()<50:
 		col.disabled=true
+		linear_velocity=lerp(linear_velocity,Vector2.ZERO,10*delta)
 
 
 func _manual_visiblity(input1=true):

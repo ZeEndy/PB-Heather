@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=19 format=3 uid="uid://dwddauml6erf8"]
 
+[ext_resource type="Shader" path="res://Scripts/HUD/Main Menu/Main_menu.gdshader" id="2_4trc2"]
 [ext_resource type="Texture2D" uid="uid://c1w0nkt2d8cve" path="res://Data/DEFAULT/SPRITES/sprCursor_strip13.png" id="12_vs583"]
 
 [sub_resource type="GDScript" id="2"]
@@ -22,12 +23,18 @@ var window_based=false
 var cursor_anim=\"default\"
 var mouse = Vector2()
 var factor=0.8
-var p_pos=Vector2()
+@onready var p_pos=get_viewport().size*0.5
 
 var real_mouse=Vector2()
 
 var focus_input=\"mouse\"
 
+
+func grab_mouse_back():
+	if window_based==false:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -193,7 +200,11 @@ animations = [{
 "speed": 13.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sybhi"]
+shader = ExtResource("2_4trc2")
+
 [node name="UI" type="CanvasLayer"]
+layer = 2
 script = SubResource("2")
 metadata/_edit_vertical_guides_ = [-121.0]
 
@@ -203,3 +214,12 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4ya8v")
 frame = 5
 frame_progress = 0.275019
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_sybhi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

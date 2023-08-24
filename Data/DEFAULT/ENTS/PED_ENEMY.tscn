@@ -51,8 +51,10 @@
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_MELEE_AREA.gd" id="46_wxqx7"]
 [ext_resource type="Script" path="res://addons/random_audio_player/nodes/random_audio_player.gd" id="47_6bgfc"]
 
-[sub_resource type="CircleShape2D" id="1"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atrh7"]
+resource_local_to_scene = true
+radius = 11.0
+height = 56.0
 
 [sub_resource type="Animation" id="318"]
 resource_name = "KnockedOut"
@@ -5703,7 +5705,8 @@ collision_layer = 65
 collision_mask = 32
 
 [node name="CollsionCircle" type="CollisionShape2D" parent="PED_COL"]
-shape = SubResource("1")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_atrh7")
 
 [node name="weapon_find" type="RayCast2D" parent="PED_COL"]
 

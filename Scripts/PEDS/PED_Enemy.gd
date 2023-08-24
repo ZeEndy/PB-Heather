@@ -53,6 +53,7 @@ func _ready():
 #	update()
 
 func _physics_process(delta):
+	super(delta)
 	#fuck you Juan and your fucking quircky engine
 	if spawn_timer>-1: 
 		spawn_timer-=delta 
