@@ -16,6 +16,7 @@ var restart=[]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GUI.play_timer=1.0
 	if get_tree().get_nodes_in_group("EDITOR").size()==0:
 		if saved==false:
 			saved=true
@@ -74,10 +75,10 @@ func save_level():
 						"override_pick_up":i.override_pick_up,
 						"override_look":i.override_look
 						})
-#					if i is Enemy:
-#						dict["variables"].merge({
-#						"act":i.act,
-#						})
+					if i is Enemy:
+						dict["variables"].merge({
+						"enemy_state":i.enemy_state,
+						})
 					save_array.append(dict)
 				if i is WEAPON:
 					save_array.append({
@@ -114,6 +115,7 @@ func get_group(strg):
 func load_level(array):
 #	print("fuck")
 #	print(save_CUNT)
+	GUI.play_timer=3.0
 	for i in get_group("Weapon")+get_group("Particles"):
 		i.queue_free()
 	for i in array:

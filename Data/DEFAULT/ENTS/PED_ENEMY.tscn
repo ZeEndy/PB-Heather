@@ -55,8 +55,8 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atrh7"]
 resource_local_to_scene = true
-radius = 11.0
-height = 56.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_pocb4"]
 length = 0.001
@@ -923,6 +923,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Body:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_qkn3y"]
 resource_name = "WalkLegs_start"
@@ -1040,6 +1052,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Body:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jwvto"]
@@ -6061,7 +6085,6 @@ libraries = {
 use_parent_material = true
 sprite_frames = SubResource("56")
 animation = &"Walk Legs"
-frame = 6
 
 [node name="Sound" type="Node2D" parent="PED_SPRITES/Legs"]
 

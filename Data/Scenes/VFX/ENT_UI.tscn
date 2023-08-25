@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=4 format=3 uid="uid://dwddauml6erf8"]
 
 [ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="1_k7jvf"]
-[ext_resource type="Texture2D" uid="uid://c1w0nkt2d8cve" path="res://Data/DEFAULT/SPRITES/sprCursor_strip13.png" id="12_vs583"]
+[ext_resource type="Texture2D" uid="uid://44hsxv2p1hoi" path="res://Data/Sprites/Textures/UI/Cursor.png" id="2_kbojr"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends CanvasLayer
@@ -12,6 +12,7 @@ script/source = "extends CanvasLayer
 @onready var l_score=get_node(\"Aspect/Score\") as Label
 @onready var l_combo=get_node(\"Aspect/Combo\") as Label
 @onready var l_time=get_node(\"Aspect/Time\") as Label
+@onready var l_play=get_node(\"Aspect/Play\") as Label
 
 #Side UI
 var ammo=1
@@ -24,6 +25,7 @@ var combo=0
 var floor=0
 var floor_count=2
 
+var play_timer=0.0
 
 var fuck_cum_retard=false
 var in_combat=true
@@ -60,6 +62,8 @@ func _ready():
 
 
 func _process(delta):
+	play_timer=clamp(play_timer-delta,0.0,3.0)
+	l_play.visible=bool(round((sin(play_timer*PI*4+PI*1.5)+1.0)*0.5))
 	if fuck_cum_retard==true:
 		if ammo>0:
 			l_ammo.text=str(ammo)+\"/\"+str(max_ammo)
@@ -120,105 +124,6 @@ func _on_ammo_resized():
 	pass # Replace with function body.
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xuffn"]
-atlas = ExtResource("12_vs583")
-region = Rect2(0, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ubgb"]
-atlas = ExtResource("12_vs583")
-region = Rect2(13, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1y6ax"]
-atlas = ExtResource("12_vs583")
-region = Rect2(26, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="4"]
-atlas = ExtResource("12_vs583")
-region = Rect2(39, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvc0r"]
-atlas = ExtResource("12_vs583")
-region = Rect2(52, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="6"]
-atlas = ExtResource("12_vs583")
-region = Rect2(65, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_04ton"]
-atlas = ExtResource("12_vs583")
-region = Rect2(78, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3xgjw"]
-atlas = ExtResource("12_vs583")
-region = Rect2(91, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kli11"]
-atlas = ExtResource("12_vs583")
-region = Rect2(104, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nd6xk"]
-atlas = ExtResource("12_vs583")
-region = Rect2(117, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvy36"]
-atlas = ExtResource("12_vs583")
-region = Rect2(130, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="12"]
-atlas = ExtResource("12_vs583")
-region = Rect2(143, 0, 13, 13)
-
-[sub_resource type="AtlasTexture" id="13"]
-atlas = ExtResource("12_vs583")
-region = Rect2(156, 0, 13, 13)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ya8v"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xuffn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4ubgb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1y6ax")
-}, {
-"duration": 1.0,
-"texture": SubResource("4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvc0r")
-}, {
-"duration": 1.0,
-"texture": SubResource("6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_04ton")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3xgjw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kli11")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nd6xk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvy36")
-}, {
-"duration": 1.0,
-"texture": SubResource("12")
-}, {
-"duration": 1.0,
-"texture": SubResource("13")
-}],
-"loop": true,
-"name": &"default",
-"speed": 13.0
-}]
-
 [node name="UI" type="CanvasLayer"]
 layer = 2
 script = SubResource("2")
@@ -244,7 +149,7 @@ offset_right = 277.0
 offset_bottom = -130.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_k7jvf")
-theme_override_font_sizes/font_size = 51
+theme_override_font_sizes/font_size = 62
 text = "21/20"
 
 [node name="Combo" type="Label" parent="Aspect"]
@@ -258,7 +163,7 @@ offset_right = -98.0
 offset_bottom = 276.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("1_k7jvf")
-theme_override_font_sizes/font_size = 51
+theme_override_font_sizes/font_size = 62
 text = "123x"
 horizontal_alignment = 2
 
@@ -273,7 +178,7 @@ offset_right = -98.0
 offset_bottom = 179.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("1_k7jvf")
-theme_override_font_sizes/font_size = 51
+theme_override_font_sizes/font_size = 62
 text = "12345 PTS"
 horizontal_alignment = 2
 
@@ -314,9 +219,5 @@ theme_override_fonts/font = ExtResource("1_k7jvf")
 theme_override_font_sizes/font_size = 51
 text = "PLAY►"
 
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-position = Vector2(873, 690)
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_4ya8v")
-frame = 5
-frame_progress = 0.275019
+[node name="Cursor" type="Sprite2D" parent="."]
+texture = ExtResource("2_kbojr")

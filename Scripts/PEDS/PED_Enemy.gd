@@ -49,12 +49,14 @@ func _ready():
 	if alert_timer==-1:
 		alert_timer=alert_time()
 	enemy_state=-1
+	print("test")
 
 func _process(_delta):
 	super(_delta)
 
 func _physics_process(delta):
 	super(delta)
+	
 	#fuck you Juan and your fucking quircky engine
 	if spawn_timer>-1: 
 		spawn_timer-=delta 
