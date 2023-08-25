@@ -1,22 +1,32 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=18 format=3 uid="uid://dwddauml6erf8"]
 
-[ext_resource type="Shader" path="res://Scripts/HUD/Main Menu/Main_menu.gdshader" id="2_4trc2"]
+[ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="1_k7jvf"]
 [ext_resource type="Texture2D" uid="uid://c1w0nkt2d8cve" path="res://Data/DEFAULT/SPRITES/sprCursor_strip13.png" id="12_vs583"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends CanvasLayer
 
 
-
-
-
 @onready var cursor=get_node(\"Cursor\")
+@onready var l_ammo=get_node(\"Aspect/Ammo\") as Label
+@onready var l_score=get_node(\"Aspect/Score\") as Label
+@onready var l_combo=get_node(\"Aspect/Combo\") as Label
+@onready var l_time=get_node(\"Aspect/Time\") as Label
+
 #Side UI
 var ammo=1
 var max_ammo=1
+
+var level_time=0
+var points=0
+var combo=0
+
+var floor=0
+var floor_count=2
+
+
 var fuck_cum_retard=false
 var in_combat=true
-
 #Cursor
 var cursor_sens=1.0
 var window_based=false
@@ -28,6 +38,7 @@ var factor=0.8
 var real_mouse=Vector2()
 
 var focus_input=\"mouse\"
+
 
 
 func grab_mouse_back():
@@ -50,9 +61,17 @@ func _ready():
 
 func _process(delta):
 	if fuck_cum_retard==true:
-	
-	
-	
+		if ammo>0:
+			l_ammo.text=str(ammo)+\"/\"+str(max_ammo)
+		else:
+			l_ammo.text=\"EMPTY\"
+		
+		
+		var mils=fmod(level_time,1.0)*1000.0
+		var secs=fmod(level_time,60.0)
+		var mins=fmod(level_time,3600.0) / 60.0
+		
+		l_time.text= \"%02d:%02d:%03d\" % [mins,secs,mils]
 	#CURSOR
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			var width=get_viewport().get_visible_rect().size.x
@@ -200,13 +219,100 @@ animations = [{
 "speed": 13.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sybhi"]
-shader = ExtResource("2_4trc2")
-
 [node name="UI" type="CanvasLayer"]
 layer = 2
 script = SubResource("2")
 metadata/_edit_vertical_guides_ = [-121.0]
+
+[node name="Aspect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Ammo" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 127.0
+offset_top = -178.0
+offset_right = 277.0
+offset_bottom = -130.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_k7jvf")
+theme_override_font_sizes/font_size = 51
+text = "21/20"
+
+[node name="Combo" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -218.0
+offset_top = 228.0
+offset_right = -98.0
+offset_bottom = 276.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_k7jvf")
+theme_override_font_sizes/font_size = 51
+text = "123x"
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -368.0
+offset_top = 131.0
+offset_right = -98.0
+offset_bottom = 179.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_k7jvf")
+theme_override_font_sizes/font_size = 51
+text = "12345 PTS"
+horizontal_alignment = 2
+
+[node name="Time" type="Label" parent="Aspect"]
+layout_mode = 1
+offset_left = 127.0
+offset_top = 131.0
+offset_right = 367.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("1_k7jvf")
+theme_override_font_sizes/font_size = 51
+text = "00:00:00"
+
+[node name="Level Progress" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -178.0
+offset_right = 195.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_k7jvf")
+theme_override_font_sizes/font_size = 51
+text = "0---+---+---1"
+
+[node name="Play" type="Label" parent="Aspect"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 228.0
+offset_right = 280.0
+offset_bottom = 276.0
+theme_override_fonts/font = ExtResource("1_k7jvf")
+theme_override_font_sizes/font_size = 51
+text = "PLAY►"
 
 [node name="Cursor" type="AnimatedSprite2D" parent="."]
 position = Vector2(873, 690)
@@ -214,12 +320,3 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4ya8v")
 frame = 5
 frame_progress = 0.275019
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_sybhi")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2

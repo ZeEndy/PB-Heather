@@ -19,7 +19,7 @@ var wait_pickup=0.001
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":9,
-			"Max ammo":9,
+			"Max ammo":8,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,

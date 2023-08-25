@@ -139,6 +139,9 @@ func _process(delta):
 					else:
 						cam_track.position=Vector2(24,0)
 		sprites.get_node("Body").global_rotation = body_direction
+		if weapon["Type"]=="Firearm":
+			GUI.ammo=weapon["Ammo"]
+			GUI.max_ammo=weapon["Max ammo"]
 	elif state == ped_states.execute:
 		if CAMERA!=null:
 			CAMERA.global_position=sprites.global_position
@@ -306,7 +309,7 @@ func debug_rand_weapon():
 			var rand_list=["PB","AR-15","AK-74U"]
 			var random_select=int(round(randf_range(0,rand_list.size()-1)))
 			drop_weapon()
-			weapon=Database.get_wep("Firearm",rand_list[random_select])
+			weapon=Database.get_wep(rand_list[random_select])
 			sprite_index = ""
 
 

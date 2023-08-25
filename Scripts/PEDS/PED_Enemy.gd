@@ -43,14 +43,15 @@ var direction=0
 var focused_player=null
 
 func _ready():
+	super()
 #	get_node("pathline").global_position=Vector2(0,0)
 #	get_node("pathline").global_rotation=0
 	if alert_timer==-1:
 		alert_timer=alert_time()
 	enemy_state=-1
 
-#func _process(_delta):
-#	update()
+func _process(_delta):
+	super(_delta)
 
 func _physics_process(delta):
 	super(delta)

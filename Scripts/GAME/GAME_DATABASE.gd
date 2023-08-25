@@ -26,7 +26,7 @@ var glob_phys_delta=0
 const weapon_database={
 	"Melee":{
 		"Unarmed":{
-			#id for hud
+			#id for hud and anims
 			"ID":"Unarmed",
 			
 			"Type":"Melee",
@@ -89,7 +89,7 @@ const weapon_database={
 			"Bullet":"AP",
 			#ammo of the weapon
 			"Ammo":8,
-			"Max ammo":8,
+			"Max ammo":7,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -122,7 +122,7 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":9,
-			"Max ammo":9,
+			"Max ammo":8,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -192,7 +192,7 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":21,
-			"Max ammo":21,
+			"Max ammo":20,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -226,7 +226,7 @@ const weapon_database={
 			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":31,
-			"Max ammo":31,
+			"Max ammo":30,
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
@@ -305,8 +305,11 @@ var death_db={
 	}
 }
 
-func get_wep(type,input_weapon):
-	return weapon_database[type][input_weapon].duplicate(true)
+func get_wep(input_weapon):
+	for i in weapon_database:
+		if weapon_database[i].has(input_weapon):
+			print(weapon_database[i][input_weapon]["ID"])
+			return weapon_database[i][input_weapon].duplicate(true)
 
 #	The get function is used on the execution database as it has 2nd variant variable
 #which can be assigned to anything as so we call the execution db and ask for the unarmed

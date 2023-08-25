@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var weapon_preload=preload("res://Data/DEFAULT/ENTS/ENT_GENERIC_WEAPON.tscn")
 
-@export var point=0
+var point=0
+var time=0.0
 @export var point_stuff=[]
 @export var saved=false
 @export var level_complete=false
@@ -25,13 +26,15 @@ func _ready():
 		if level_complete==false && song!=null:
 			AudioManager.play_song(song)
 
-func _process(_delta):
+func _process(delta):
+	time+=delta
+	GUI.level_time=time
 	if get_tree().get_nodes_in_group("EDITOR").size()==0:
 		
 		if Input.is_action_just_pressed("DEBUG_SAVE"):
 			_save_checkpoint()
 		
-		if Input.is_action_just_pressed("reload") && get_tree().get_nodes_in_group("Player").size()==0:
+		if Input.is_action_just_pressed("reload"):
 			GAME.cursor_position=GUI.real_mouse
 			if Input.is_action_pressed("far_look"):
 				load_level(restart)

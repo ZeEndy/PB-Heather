@@ -88,7 +88,7 @@ func _init():
 #	activate_discord()
 
 func _ready():
-	get_node("CanvasLayer2/DEBUG_TEXT").visible=OS.is_debug_build()
+#	get_node("CanvasLayer2/DEBUG_TEXT").visible=OS.is_debug_build()
 	configfile = ConfigFile.new()
 	if configfile.load("res://config.cfg") == OK:
 		for cursor in configfile.get_section_keys("CURSOR"):

@@ -6030,6 +6030,7 @@ shape = SubResource("CapsuleShape2D_0v16y")
 visible = false
 
 [node name="Label" type="Label" parent="PED_COL"]
+visible = false
 offset_left = -68.0
 offset_top = 44.0
 offset_right = -28.0
@@ -6117,88 +6118,6 @@ libraries = {
 "Unarmed": SubResource("AnimationLibrary_e6sge")
 }
 
-[node name="Sound" type="Node2D" parent="PED_SPRITES/Body"]
-
-[node name="Unarmed" type="Node2D" parent="PED_SPRITES/Body/Sound"]
-
-[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("27_uvhpf")
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="Hit" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("28_m7fpa")
-bus = &"SFX"
-
-[node name="Cloth" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("29_cb6nw")
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="Execution" type="Node2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
-
-[node name="Impact" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed/Execution"]
-stream = ExtResource("15_5pbmk")
-max_polyphony = 5
-
-[node name="PB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
-
-[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB"]
-stream = ExtResource("27_mceon")
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
-stream = ExtResource("27_48f6x")
-volume_db = -20.0
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
-stream = ExtResource("29_k30rw")
-max_polyphony = 10
-bus = &"SFX"
-script = ExtResource("33_qn6oc")
-
-[node name="Hammer" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
-stream = ExtResource("30_o2wvb")
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="AR-15" type="Node2D" parent="PED_SPRITES/Body/Sound"]
-
-[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15"]
-stream = ExtResource("34_m4dgu")
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
-stream = ExtResource("35_trg4h")
-volume_db = -20.0
-max_polyphony = 10
-bus = &"SFX"
-
-[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
-stream = ExtResource("36_fihb0")
-max_polyphony = 10
-bus = &"SFX"
-script = ExtResource("33_qn6oc")
-
-[node name="AK-74U" type="Node2D" parent="PED_SPRITES/Body/Sound"]
-
-[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U"]
-stream = ExtResource("37_5xb3e")
-max_polyphony = 5
-
-[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
-stream = ExtResource("38_0c8nq")
-max_polyphony = 5
-
-[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
-stream = ExtResource("39_ihrdl")
-max_polyphony = 5
-script = ExtResource("33_qn6oc")
-
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Body"]
 texture_filter = 1
 use_parent_material = true
@@ -6238,6 +6157,88 @@ disabled = true
 [node name="CameraTrack" type="Marker2D" parent="PED_SPRITES/Body"]
 position = Vector2(-33, 28)
 gizmo_extents = 2.4
+
+[node name="Sound" type="Node2D" parent="PED_SPRITES/Body"]
+
+[node name="Unarmed" type="Node2D" parent="PED_SPRITES/Body/Sound"]
+
+[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
+stream = ExtResource("27_uvhpf")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Hit" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
+stream = ExtResource("28_m7fpa")
+bus = &"SFX"
+
+[node name="Cloth" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
+stream = ExtResource("29_cb6nw")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Execution" type="Node2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
+
+[node name="Impact" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed/Execution"]
+stream = ExtResource("15_5pbmk")
+max_polyphony = 5
+
+[node name="PB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
+
+[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB"]
+stream = ExtResource("27_mceon")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+stream = ExtResource("27_48f6x")
+volume_db = -20.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+stream = ExtResource("29_k30rw")
+max_polyphony = 10
+bus = &"SFX"
+script = ExtResource("33_qn6oc")
+
+[node name="Hammer" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+stream = ExtResource("30_o2wvb")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="AR-15" type="Node2D" parent="PED_SPRITES/Body/Sound"]
+
+[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15"]
+stream = ExtResource("34_m4dgu")
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
+stream = ExtResource("35_trg4h")
+volume_db = -20.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
+stream = ExtResource("36_fihb0")
+max_polyphony = 10
+bus = &"SFX"
+script = ExtResource("33_qn6oc")
+
+[node name="AK-74U" type="Node2D" parent="PED_SPRITES/Body/Sound"]
+
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U"]
+stream = ExtResource("37_5xb3e")
+max_polyphony = 5
+
+[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
+stream = ExtResource("38_0c8nq")
+max_polyphony = 5
+
+[node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
+stream = ExtResource("39_ihrdl")
+max_polyphony = 5
+script = ExtResource("33_qn6oc")
 
 [node name="AudioListener2d" type="AudioListener2D" parent="PED_SPRITES"]
 current = true

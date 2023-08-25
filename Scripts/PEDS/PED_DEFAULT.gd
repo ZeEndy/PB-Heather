@@ -44,9 +44,9 @@ var path=[]
 
 
 #WEAPON VARIABLES
-@onready var default_weapon = Database.get_wep("Melee","Unarmed")
-@export_enum("Unarmed","PB","1911","AR-15","MAC-10") var desired_weapon=""
-@onready var weapon = Database.get_wep("Melee","Unarmed")
+@onready var default_weapon = Database.get_wep("Unarmed")
+@export_enum("Unarmed","PB","1911","AR-15","MAC-10") var desired_weapon="Unarmed"
+@onready var weapon = Database.get_wep("Unarmed")
 
 var delay=0
 var bAttack=false
@@ -89,10 +89,10 @@ func _ready():
 	col_shape.shape
 	body_direction=global_rotation
 	global_rotation=0
-	default_weapon=Database.get_wep("Melee","Unarmed")
+	default_weapon=Database.get_wep("Unarmed")
 	weapon=default_weapon.duplicate()
-#	if weapon is String:
-#		Database.get_wep()
+	if desired_weapon!="Unarmed":
+		weapon=Database.get_wep(desired_weapon)
 	
 	if sprite_based_on_export==false:
 		_play_animation("Walk")
@@ -374,7 +374,7 @@ func attack(sound_pos=sprite_body.global_position):
 func weapon_logic(delta):
 	if weapon["Type"]=="Melee":
 		weapon["Swing timer"] = (weapon["Swing timer"]-delta)*float(weapon["Swing timer"]>0)
-		print(weapon["Swing timer"])
+#		print(weapon["Swing timer"])
 	elif weapon["Type"]=="Firearm":
 		weapon["Cycle"] = (weapon["Cycle"]-delta)*float(weapon["Cycle"]>0)
 		if bAttack==false:
