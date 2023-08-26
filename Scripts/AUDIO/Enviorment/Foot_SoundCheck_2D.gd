@@ -39,13 +39,8 @@ func check_sound():
 	var data_2 =tilemap.get_cell_tile_data(2, touch)
 	if data:
 		foot.stream=sound_list[data.get_custom_data("Sound")]
-		print(data.get_custom_data("Sound"))
-	else:
-		print("nothing")
 	if data_2:
 		foot_overlay.stream=sound_list[data_2.get_custom_data("Sound")]
-		print(data_2.get_custom_data("Sound"))
 	else:
 		foot_overlay.stream=null
-		print("nothing")
 

@@ -52,12 +52,7 @@ func print_test():
 func _ready():
 	super()
 	CAMERA.target=cam_track
-#	if typeof(cursor)!=17:
-#		var new_cursor=load("res://Data/DEFAULT/ENTS/ENT_Cursor.tscn")
-#		var inst_cursor=new_cursor.instantiate()
-#		get_parent().call_deferred("add_child",inst_cursor)
-#		cursor=inst_cursor
-	
+
 
 func _physics_process(delta):
 	super(delta)
@@ -323,7 +318,6 @@ func fuck_around_anim():
 	pass
 
 func _play_animation(animation:String,frame=0,global=false):
-	print(animation)
 	super(animation,frame,global)
 
 

@@ -66,6 +66,8 @@ func save_level():
 						"health":i.health,
 						"global_position":i.collision_body.global_position,
 						"delay":i.delay,
+						"groups":i.groups,
+						"col_groups":i.col_groups,
 						}
 					}
 					if i is Player:
@@ -138,6 +140,7 @@ func load_level(array):
 						id.set(x,i["variables"][x])
 						if x == "global_position":
 							id.collision_body.position=Vector2(0.0,0.0)
+				id.reset_groups()
 			if id is goresurf:
 				id.surface_data=i["surf_data"].duplicate(true)
 				id.avalible_sprites=i["avalible_sprites"].duplicate(true)

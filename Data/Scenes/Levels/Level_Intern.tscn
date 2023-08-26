@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=3 uid="uid://bxrxq4jcew8pp"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_uhdey"]
-[ext_resource type="AudioStream" uid="uid://cvfnbhec5l2dn" path="res://Data/Music/mu_BraveAsANoun.ogg" id="2_474d7"]
+[ext_resource type="AudioStream" uid="uid://c8me5h85yuyvg" path="res://Data/Music/mu_BlueMonday.ogg" id="2_gfyvl"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_vu4ie"]
 [ext_resource type="Script" path="res://Scripts/HUD/CAMERA_TOPLEVEL.gd" id="3_bfxl1"]
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_FLOOR_LOGIC.gd" id="4_kcwh6"]
@@ -14581,7 +14581,7 @@ sources/0 = SubResource("TileSetAtlasSource_xtvrb")
 
 [node name="Sex Level" type="Node2D" groups=["Current_room", "Level"]]
 script = ExtResource("1_uhdey")
-song = ExtResource("2_474d7")
+song = ExtResource("2_gfyvl")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -14683,6 +14683,7 @@ emitting = false
 
 [node name="Player" parent="SubViewportContainer/Floor 1" instance=ExtResource("24_whf2h")]
 position = Vector2(594, 655)
+desired_weapon = "AK-74U"
 
 [node name="Pathfind" type="TileMap" parent="SubViewportContainer/Floor 1"]
 z_index = 1

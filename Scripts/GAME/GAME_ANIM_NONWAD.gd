@@ -186,7 +186,6 @@ func next_frame(frame_rate : int = 13):
 
 func seek(seconds:float = 0.0,update:bool = true):
 	anim_player.seek(seconds,update)
-	print(seconds)
 
 #func print_debug_anim():
 #	print(get_node("anim").scale)

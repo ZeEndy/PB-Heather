@@ -17,6 +17,7 @@ script/source = "extends CanvasLayer
 #Side UI
 var ammo=1
 var max_ammo=1
+var ammo_flash=0.0
 
 var level_time=0
 var points=0
@@ -64,11 +65,19 @@ func _ready():
 func _process(delta):
 	play_timer=clamp(play_timer-delta,0.0,3.0)
 	l_play.visible=bool(round((sin(play_timer*PI*4+PI*1.5)+1.0)*0.5))
+	
+	
+	
 	if fuck_cum_retard==true:
 		if ammo>0:
 			l_ammo.text=str(ammo)+\"/\"+str(max_ammo)
+			l_ammo.visible=true
 		else:
+			if l_ammo.text!=\"EMPTY\":
+				ammo_flash=3.0
 			l_ammo.text=\"EMPTY\"
+			ammo_flash=clamp(ammo_flash-delta,0.0,3.0)
+			l_ammo.visible=bool(round((sin(ammo_flash*PI*4+PI*1.5)+1.0)*0.5))
 		
 		
 		var mils=fmod(level_time,1.0)*1000.0
@@ -76,6 +85,8 @@ func _process(delta):
 		var mins=fmod(level_time,3600.0) / 60.0
 		
 		l_time.text= \"%02d:%02d:%03d\" % [mins,secs,mils]
+		
+		l_combo.text=\"%03dx\"%[combo]
 	#CURSOR
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			var width=get_viewport().get_visible_rect().size.x
@@ -218,6 +229,14 @@ offset_bottom = 276.0
 theme_override_fonts/font = ExtResource("1_k7jvf")
 theme_override_font_sizes/font_size = 51
 text = "PLAY►"
+
+[node name="ProgressBar" type="ProgressBar" parent="Aspect"]
+layout_mode = 0
+offset_left = 1686.0
+offset_top = 288.0
+offset_right = 1690.0
+offset_bottom = 315.0
+show_percentage = false
 
 [node name="Cursor" type="Sprite2D" parent="."]
 texture = ExtResource("2_kbojr")

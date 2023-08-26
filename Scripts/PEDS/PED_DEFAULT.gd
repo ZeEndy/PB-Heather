@@ -15,6 +15,8 @@ class_name PED
 @onready var collision_body = get_node("PED_COL")
 @onready var col_shape = get_node("PED_COL/CollsionCircle")
 
+var groups
+var col_groups
 
 #variables are oragnized by specification aka what state they are used the most in
 enum ped_states{
@@ -45,7 +47,7 @@ var path=[]
 
 #WEAPON VARIABLES
 @onready var default_weapon = Database.get_wep("Unarmed")
-@export_enum("Unarmed","PB","1911","AR-15","MAC-10") var desired_weapon="Unarmed"
+@export_enum("Unarmed","PB","1911","AR-15","MAC-10","AK-74U") var desired_weapon="Unarmed"
 @onready var weapon = Database.get_wep("Unarmed")
 
 var delay=0
@@ -78,14 +80,14 @@ var change_leg_sprite_value=false
 @export var leg_index = "Walk/Start"
 @export var body_direction = 0
 
-@export var turn_left=""
-@export var turn_right=""
 
 
 
 
 func _ready():
-#	get_node("PED_COL/NavigationAgent2D").set_navigation(get_parent().navigation)
+	if groups==null:
+		groups=get_groups().duplicate(true)
+		col_groups=collision_body.get_groups().duplicate(true)
 	col_shape.shape
 	body_direction=global_rotation
 	global_rotation=0
@@ -93,13 +95,22 @@ func _ready():
 	weapon=default_weapon.duplicate()
 	if desired_weapon!="Unarmed":
 		weapon=Database.get_wep(desired_weapon)
-	
 	if sprite_based_on_export==false:
 		_play_animation("Walk")
 	else:
 		_play_animation(sprite_index)
 	sprite_legs.play(leg_index)
 	
+
+
+
+func reset_groups():
+	print(groups)
+	for i in groups:
+		add_to_group(i)
+	for i in col_groups:
+		collision_body.add_to_group(i)
+
 # Finds the first visible pickupable weapon dropped within 40 units of the player that isn't behind a wall 
 func weapon_finder():
 	var dropped_weapons = get_tree().get_nodes_in_group("Weapon")
@@ -392,8 +403,6 @@ func switch_weapon():
 			AudioManager.play_audio("res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_PickupWeapon.wav",sound_pos,true,1,0,"Master")
 			weapon=dupe_dict(closest_weapon.weapon)
 			closest_weapon.call_deferred("queue_free")
-			turn_left=weapon.get("turn_left","")
-			turn_right=weapon.get("turn_right","")
 #			play_sample("res://Assets/Sounds/Weapons/Pick up/Pick_up.wav",0)
 		sprite_index=""
 
@@ -467,7 +476,6 @@ func move_to_point(delta,point,speed=0.7):
 			temp_dir=collision_body.global_position.direction_to(path[0])
 		else:
 			path=get_viewport()._astar._get_path(collision_body.global_position,point)
-			print("I'm making a new path :)")
 		axis=temp_dir*speed
 #		get_node("Line2d").global_position=Vector2(0,0)
 #		get_node("Line2d").points=path
