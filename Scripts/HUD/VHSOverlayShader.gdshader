@@ -17,6 +17,18 @@ float GetLuminance(vec3 color){
 	return ret;
 }
 
+float BlendSoftLight(float base, float blend) 
+{
+	return (blend<0.5)?(2.0*base*blend+base*base*(1.0-2.0*blend)):(sqrt(base)*(2.0*blend-1.0)+2.0*base*(1.0-blend));
+}
+vec4 BlendSoftLight1(vec4 base, vec4 blend) 
+{
+	return vec4(BlendSoftLight(base.r,blend.r),BlendSoftLight(base.g,blend.g),BlendSoftLight(base.b,blend.b), 1.0);
+}
+vec4 BlendSoftLight2(vec4 base, vec4 blend, float opacity) 
+{
+	return (BlendSoftLight1(base, blend) * opacity + base * (1.0 - opacity));
+}
 
 vec4 Shrink(in vec2 fragCoord, const in float shrinkRatio, const in float bias, in vec2 ires, in vec2 uv)
 {
@@ -83,8 +95,34 @@ vec4 BlendLuminosity(const in vec4 base, const in vec4 blend)
     return vec4(c, blend.a);
 }
 
+float GoldNoise(const in vec2 xy, const in float seed)
+{
+    //return fract(tan(distance(xy * PHI, xy) * seed) * xy.x);
+    return fract(sin(dot(xy * seed, vec2(12.9898, 78.233))) * 43758.5453);
+}
 
+vec4 Noise(const in float grainSize, const in bool monochromatic, in vec2 fragCoord, float fps)
+{
+    float seed = fps > 0.0 ? floor(fract(TIME) * fps) / fps : TIME;
+    seed += 1.0;
+    
+    if (grainSize > 1.0)
+    {
+        fragCoord.x = floor(fragCoord.x / grainSize);
+        fragCoord.y = floor(fragCoord.y / grainSize);
+    }
 
+    fragCoord.x += 1.0;
+    
+    float r = GoldNoise(fragCoord, seed);    
+    float g = monochromatic ? r : GoldNoise(fragCoord, seed + 1.0);
+    float b = monochromatic ? r : GoldNoise(fragCoord, seed + 2.0);
+    
+    
+    return vec4(r, g, b, 1.0);
+}
+
+const float NOISE_BLEND = 0.05;
 
 
 
@@ -92,12 +130,14 @@ vec4 BlendLuminosity(const in vec4 base, const in vec4 blend)
 
 void fragment()
 {
-	vec2 flip_frag=vec2(FRAGCOORD.x,mod(-FRAGCOORD.y,1.0));
-    vec4 luma = Shrink(flip_frag, 0.5, 0.0,6.0/SCREEN_PIXEL_SIZE,SCREEN_UV); // In VHS the luma band is half of the resolution
+	float NOISE_GRAIN_SIZE = DEFINE(4.0,1.0/SCREEN_PIXEL_SIZE);
+	vec2 flip_frag=vec2(FRAGCOORD.x+20.0,mod(-FRAGCOORD.y,1.0));
+    vec4 luma = Shrink(flip_frag, 0.5, 0.0,1.0/SCREEN_PIXEL_SIZE,SCREEN_UV); // In VHS the luma band is half of the resolution
     luma = BlendLuminosity(vec4(0.5, 0.5, 0.5, 1.0), luma);
-    
-    vec4 chroma = Shrink(flip_frag,  1.0 / 32.0, 3.0,6.0/SCREEN_PIXEL_SIZE,UV); // In VHS chroma band is a much lower resolution (technically 1/16th)
+    vec2 screen_fix=vec2(SCREEN_UV.x-0.004,SCREEN_UV.y);
+    vec4 chroma = Shrink(flip_frag,  1.0 / 8.0, 3.0,1.0/SCREEN_PIXEL_SIZE,screen_fix); // In VHS chroma band is a much lower resolution (technically 1/16th)
     chroma = BlendColor(luma, chroma);
-    
+    chroma = BlendSoftLight2(chroma,Noise(NOISE_GRAIN_SIZE, true, FRAGCOORD.xy, 24.0),NOISE_BLEND);
+	
     COLOR = chroma; 
 }

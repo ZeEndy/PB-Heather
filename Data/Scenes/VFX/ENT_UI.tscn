@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=9 format=3 uid="uid://dwddauml6erf8"]
 
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="1_0r6lt"]
+[ext_resource type="Texture2D" uid="uid://cl4otlsif5eow" path="res://HotlineMiami2_7z6jnN3lbh.png" id="1_et1q3"]
 [ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="1_k7jvf"]
 [ext_resource type="Texture2D" uid="uid://44hsxv2p1hoi" path="res://Data/Sprites/Textures/UI/Cursor.png" id="2_kbojr"]
 
@@ -139,10 +140,63 @@ func _on_ammo_resized():
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34261"]
 shader = ExtResource("1_0r6lt")
 
+[sub_resource type="Shader" id="Shader_wg8j4"]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+
+void fragment()
+{
+    COLOR = texture(SCREEN_TEXTURE,SCREEN_UV,1.0); 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihqve"]
+shader = SubResource("Shader_wg8j4")
+
 [node name="UI" type="CanvasLayer"]
 layer = 2
 script = SubResource("2")
 metadata/_edit_vertical_guides_ = [-121.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_et1q3")
+expand_mode = 1
+
+[node name="Shaders" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pass1" type="CanvasLayer" parent="Shaders"]
+
+[node name="Shader" type="ColorRect" parent="Shaders/Pass1"]
+material = SubResource("ShaderMaterial_34261")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Pass4" type="CanvasLayer" parent="Shaders"]
+
+[node name="Shader" type="ColorRect" parent="Shaders/Pass4"]
+material = SubResource("ShaderMaterial_ihqve")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Aspect" type="Control" parent="."]
 layout_mode = 3
@@ -244,13 +298,3 @@ show_percentage = false
 
 [node name="Cursor" type="Sprite2D" parent="."]
 texture = ExtResource("2_kbojr")
-
-[node name="Pass1" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_34261")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
