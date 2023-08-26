@@ -177,14 +177,16 @@ func _process(delta):
 			execute_target.sprite_legs.seek(sprite_body.frame,true)
 
 func _physics_process(delta):
-	weapon_logic(delta)
+	
 	collision_body.global_rotation=0
 	col_shape.shape.radius=lerp(col_shape.shape.radius,8.0,10*delta)
 	col_shape.shape.height=lerp(col_shape.shape.height,16.0,10*delta)
-	if weapon is Dictionary:
-		if weapon!={}:
-			if bAttack==true:
-				self.attack()
+	if state == ped_states.alive:
+		weapon_logic(delta)
+		if weapon is Dictionary:
+			if weapon!={}:
+				if bAttack==true:
+					self.attack()
 	if state == ped_states.down:
 		movement(null,delta)
 #		axis=lerp(axis,Vector2.ZERO,0.1)

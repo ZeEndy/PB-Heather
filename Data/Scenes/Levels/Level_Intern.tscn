@@ -14686,6 +14686,7 @@ position = Vector2(594, 655)
 desired_weapon = "AK-74U"
 
 [node name="Pathfind" type="TileMap" parent="SubViewportContainer/Floor 1"]
+visible = false
 z_index = 1
 tile_set = SubResource("TileSet_b1hs1")
 format = 2

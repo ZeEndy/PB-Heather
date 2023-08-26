@@ -6043,8 +6043,6 @@ z_index = 1
 script = ExtResource("2")
 execute_click = true
 leg_index = "Walk/Loop"
-turn_left = null
-turn_right = null
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["Enemy", "PED"]]
 collision_layer = 65

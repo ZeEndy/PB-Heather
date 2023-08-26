@@ -6218,7 +6218,7 @@ volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
 stream = ExtResource("29_k30rw")
 max_polyphony = 10
 bus = &"SFX"
@@ -6242,7 +6242,7 @@ volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
+[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
 stream = ExtResource("36_fihb0")
 max_polyphony = 10
 bus = &"SFX"
@@ -6258,7 +6258,7 @@ max_polyphony = 5
 stream = ExtResource("38_0c8nq")
 max_polyphony = 5
 
-[node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
+[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
 stream = ExtResource("39_ihrdl")
 max_polyphony = 5
 script = ExtResource("33_qn6oc")

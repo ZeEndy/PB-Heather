@@ -64,6 +64,7 @@ func save_level():
 						"body_direction":i.body_direction,
 						"weapon":i.weapon.duplicate(true),
 						"health":i.health,
+						"bAttack":i.bAttack,
 						"global_position":i.collision_body.global_position,
 						"delay":i.delay,
 						"groups":i.groups,

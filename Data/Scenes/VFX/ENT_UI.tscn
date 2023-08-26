@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=6 format=3 uid="uid://dwddauml6erf8"]
 
+[ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="1_0r6lt"]
 [ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="1_k7jvf"]
 [ext_resource type="Texture2D" uid="uid://44hsxv2p1hoi" path="res://Data/Sprites/Textures/UI/Cursor.png" id="2_kbojr"]
 
@@ -135,6 +136,9 @@ func _on_ammo_resized():
 	pass # Replace with function body.
 "
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_34261"]
+shader = ExtResource("1_0r6lt")
+
 [node name="UI" type="CanvasLayer"]
 layer = 2
 script = SubResource("2")
@@ -240,3 +244,13 @@ show_percentage = false
 
 [node name="Cursor" type="Sprite2D" parent="."]
 texture = ExtResource("2_kbojr")
+
+[node name="Pass1" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_34261")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
