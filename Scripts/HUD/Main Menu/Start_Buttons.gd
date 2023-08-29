@@ -22,7 +22,7 @@ func button_action():
 	if name=="PLAY":
 		get_tree().change_scene_to_file("res://Data/Scenes/Levels/Level_Intern.tscn")
 		GUI.grab_mouse_back()
-		GUI.visible=true
+		GUI.aspect.visible=true
 	elif name=="CHAPTERS":
 		get_node("../../Recordings").visible=!get_node("../../Recordings").visible
 		get_node("../../Options").visible=false

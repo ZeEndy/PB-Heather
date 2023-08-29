@@ -133,6 +133,7 @@ mouse_filter = 2
 script = ExtResource("1_kjgd0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="Aspect" type="Control" parent="CanvasLayer"]
 visible = false
@@ -1414,6 +1415,7 @@ mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
 [node name="Pass1" type="ColorRect" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_umvx4")
 anchors_preset = 15
@@ -1429,6 +1431,7 @@ stream = ExtResource("7_sw72n")
 autoplay = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_67de0")
 anchors_preset = 15

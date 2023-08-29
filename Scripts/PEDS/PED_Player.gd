@@ -119,10 +119,11 @@ func _process(delta):
 #	if weapon["Type"]=="Firearm":
 #		print(-80.0*(float(weapon["Ammo"])/float(weapon["Max ammo"])))
 	
-	
+	GUI.health=health/100.0
 	if state == ped_states.alive:
 		cursor_pos=GUI.mouse
 		GUI.p_pos=sprite_body.get_screen_transform().origin
+		
 		if cursor_pos != null:
 			if override_look==false:
 				body_direction = lerp_angle(body_direction,-cursor_pos.angle_to(Vector2(1,0)),clamp(40*rotation_multip*delta,0,1))

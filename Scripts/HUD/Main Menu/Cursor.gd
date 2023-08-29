@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position=GUI.get_node("Cursor").position-size*0.5
+	position=GUI.cursor.position-size*0.5

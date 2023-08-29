@@ -7,7 +7,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 #	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 #	GUI.get_node("Cursor").visible=false
-	GUI.visible=false
+	GUI.aspect.visible=false
 	print(clamp(linear_to_db(0.0),-80,0))
 
 
