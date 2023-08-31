@@ -298,11 +298,22 @@ var execution_db={
 
 #used
 var death_db={
-	
+	"PB":{
+		"kill_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun",
+	},
 	"1911":{
-		"kill_sprite":"DeadMachineweapon",
-		"kill_lean_sprite":"DeadLeanMachineweapon",
-	}
+		"kill_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun",
+	},
+	"AK-74U":{
+		"kill_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun",
+	},
+	"AR-15":{
+		"kill_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun",
+	},
 }
 
 func get_wep(input_weapon):

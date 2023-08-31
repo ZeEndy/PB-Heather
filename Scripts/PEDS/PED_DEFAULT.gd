@@ -31,7 +31,6 @@ enum ped_states{
 #ALIVE STATE VARIABLES
 @export var health=100.0
 @export var armour=0
-@export var start_with_weapon=false
 
 
 # Movement variables
@@ -215,11 +214,7 @@ func _physics_process(delta):
 		col_shape.shape.radius=lerp(col_shape.shape.radius,11.0,10*delta)
 		col_shape.shape.height=lerp(col_shape.shape.height,56.0,10*delta)
 		col_shape.global_rotation=sprite_legs.global_rotation+PI*0.5
-#		56
-#		10
-
-#		8
-#		16
+		
 		collision_body.move_and_slide()
 		if get_groups().size()>0:
 			for i in get_groups():
@@ -435,7 +430,7 @@ func spawn_bullet(amoumt:int):
 		get_tree().get_nodes_in_group("Camera")[0].shake=weapon.screen_shake
 	weapon["Ammo"]-=1
 	for i in amoumt:
-		var sus_bullet=def_bullet_ent.instantiate()
+		var sus_bullet=def_bullet_ent.instantiate() as BULLET
 		#add da weapon spawn bullet
 		sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
 		var spawn_recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
@@ -443,6 +438,8 @@ func spawn_bullet(amoumt:int):
 		if weapon.has("Recoil"):
 			spawn_recoil_add+=deg_to_rad(randf_range(-weapon["Recoil"],weapon["Recoil"]))
 		sus_bullet.global_rotation=spawn_recoil_add
+		sus_bullet.death_sprite=Database.death_db[weapon["ID"]]["kill_sprite"]
+		sus_bullet.death_sprite=Database.death_db[weapon["ID"]]["kill_lean_sprite"]
 		#check if AP ammo 
 		get_parent().add_child(sus_bullet)
 		sus_bullet.damage=weapon["Damage"]
@@ -511,7 +508,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*PI,
 		var changed_value=damage_output-armour
 		armour=0
 		health=clamp(health-changed_value,0,300)
-	if state==ped_states.alive or (state == ped_states.down && "Lean" in sprite_legs.animation):
+	if state==ped_states.alive || (state == ped_states.down && "Lean" in sprite_legs.animation):
 		if health<=0:
 			drop_weapon()
 			sprite_legs.play(killsprite)
@@ -519,8 +516,8 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*PI,
 				sprite_legs.seek(randf_range(0,sprite_legs_anim.current_animation_length))
 			else:
 				sprite_legs.seek(frame)
-			sprite_legs.global_rotation=rot
-			my_velocity=Vector2(damage,0).rotated(sprite_legs.global_rotation-PI)
+			sprite_legs.global_rotation=rot-PI
+			my_velocity=Vector2(damage,0).rotated(sprite_legs.global_rotation)
 			sprite_legs.speed_scale=0
 			sprite_body.visible=false
 			state=ped_states.dead

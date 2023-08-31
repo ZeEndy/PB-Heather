@@ -56,7 +56,7 @@ func _process(_delta):
 
 func _physics_process(delta):
 	super(delta)
-	
+	sprite_body.global_rotation=body_direction
 	#fuck you Juan and your fucking quircky engine
 	if spawn_timer>-1: 
 		spawn_timer-=delta 
@@ -85,29 +85,27 @@ func _physics_process(delta):
 			else:
 				alert_timer=alert_time()
 			if enemy_type==Enemy_t.PATROL:
-				sprites.get_node("Body").global_rotation=body_direction
 				movement(null,delta)
-				axis=Vector2(0.20,0).rotated(deg_to_rad(direction))
+				axis=Vector2(0.35,0).rotated(direction)
 				body_direction=lerp_angle(body_direction,axis.angle(),0.15)
-				var v = Vector2(my_velocity.length()/2,0).rotated(deg_to_rad(direction))
+				var v = Vector2(my_velocity.length()/2,0).rotated(direction)
 				var shape = RectangleShape2D.new()
 				shape.extents=Vector2(v.length(),get_node("PED_COL/CollsionCircle").shape.radius)
 				var query = PhysicsShapeQueryParameters2D.new()
 				query.set_shape(shape)
-				query.collision_layer=32
+				query.collision_mask=32
 				var space = get_world_2d().direct_space_state
-				query.set_transform(Transform2D(deg_to_rad(direction),get_node("PED_COL").global_position+Vector2(shape.extents.x/2,0).rotated(deg_to_rad(direction))))
+				query.set_transform(Transform2D(direction,get_node("PED_COL").global_position+Vector2(shape.extents.x/2,0).rotated(direction)))
 				query.exclude.append(get_node("PED_COL"))
 				if space.intersect_shape(query,1).size()>0:
-					direction -= 10 * delta_time
+					direction -= 0.174533 * delta_time
 				else:
-					var dif = fmod(direction, 90)
-					if abs(dif) > 10 * delta_time:
-						direction -= 10 * delta_time
+					var dif = fmod(direction, 1.5708)
+					if abs(dif) > 0.174533 * delta_time:
+						direction -= 0.174533 * delta_time
 					else:
 						direction -= dif
 			elif enemy_type==Enemy_t.RANDOM:
-				sprites.get_node("Body").global_rotation=body_direction
 				body_direction=lerp_angle(body_direction,deg_to_rad(direction),0.15)
 				movement(null,delta)
 				random_timer -= 1 * delta_time
@@ -134,7 +132,6 @@ func _physics_process(delta):
 		else:
 			if get_tree().get_nodes_in_group("Player").size()>0:
 				if enemy_state==enemy_s.charging:
-					sprite_body.global_rotation=body_direction
 					if enemy_type!=Enemy_t.DODGER && enemy_type!=Enemy_t.DOG_PATROL:
 						if player_visibilty()==true:
 							if weapon["Type"]!="Melee":
@@ -169,7 +166,6 @@ func _physics_process(delta):
 							target_point=focused_player.global_position
 							alert_timer=alert_time()
 				elif enemy_state==enemy_s.chasing:
-					sprite_body.global_rotation=body_direction
 					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
 #					get_node("PED_COL/Label").text=String(path.size())
 					move_to_point(delta,target_point)

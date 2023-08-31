@@ -28,8 +28,6 @@ func _ready():
 			AudioManager.play_song(song)
 
 func _process(delta):
-	time+=delta
-	GUI.level_time=time
 	if get_tree().get_nodes_in_group("EDITOR").size()==0:
 		
 		if Input.is_action_just_pressed("DEBUG_SAVE"):
@@ -41,9 +39,12 @@ func _process(delta):
 				load_level(restart)
 			else:
 				load_level(checkpoint)
-		if get_tree().get_nodes_in_group("Enemy").size()==0 && get_tree().get_nodes_in_group("CUTSCENE").size()==0 && level_complete==false:
+		if get_tree().get_nodes_in_group("Enemy").size()==0 && level_complete==false:
 			level_complete=true
 			AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
+	if level_complete==false:
+		time+=delta
+	GUI.level_time=time
 func _save_checkpoint():
 #	GAME.save_node_state("checkpoint",self)
 	checkpoint=save_level()
@@ -100,7 +101,7 @@ func save_level():
 				if i is Door:
 					save_array.append({
 						"id":i,
-						"door_rot":i.door_anc.rotation,
+						"door_rot":i.door_rot,
 						"swingspeed":i.swingspeed
 					})
 	return save_array
@@ -147,6 +148,6 @@ func load_level(array):
 				id.avalible_sprites=i["avalible_sprites"].duplicate(true)
 				id._ready()
 			if id is Door:
-				id.door_anc.rotation=i["door_rot"]
+				id.door_rot=i["door_rot"]
 				id.swingspeed=i["swingspeed"]
 

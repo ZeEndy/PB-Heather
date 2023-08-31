@@ -19,6 +19,7 @@ var astar_node = null
 
 func _ready():
 	if astar_node==null && !Engine.is_editor_hint():
+		visible=false
 		astar_node=AStarGrid2D.new()
 		astar_node.diagonal_mode=AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 		astar_node.jumping_enabled=true
@@ -33,15 +34,21 @@ func _ready():
 
 func _process(delta):
 	if Engine.is_editor_hint():
-		if bake_grid==false:
-			if get_used_cells(0)!=[]:
-				clear()
-		else:
-			if get_used_cells(0)==[]:
-				_bake_grid()
+		if round(map_size*0.125)!=map_size*0.125:
+			map_size=map_size*0.125
+			map_size=ceil(map_size)
+			map_size*=8
+		if bake_grid==true:
+			button()
 	else:
 		if _loaded_grid_in_game==false:
 			_load_baked_grid()
+
+func button():
+	await RenderingServer.frame_pre_draw
+	clear()
+	_bake_grid()
+	bake_grid=false
 
 func _bake_grid():
 #	var time_start = OS.get_ticks_msec()

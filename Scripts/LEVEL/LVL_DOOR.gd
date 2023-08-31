@@ -23,6 +23,7 @@ var door_size=Vector2(0,0)
 
 var _wad=null
 
+var door_rot=0
 
 
 
@@ -32,22 +33,22 @@ func _ready():
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
-	StaticBody2D
+	
 	get_node("DOOR_ANCHER/Sprite/StaticBody2D").set_collision_layer_value(6,locked)
 	if (abs(swingspeed) > 0):
 		
-		door_anc.rotation =door_anc.rotation + (deg_to_rad(swingspeed)*delta*60)
-		if (door_anc.rotation < -2.35619):
-			door_anc.rotation = -2.35619
+		door_rot = door_rot + (deg_to_rad(swingspeed)*delta*60)
+		if (door_rot < -2.35619):
+			door_rot = -2.35619
 			swingspeed = abs(swingspeed)
-		if (door_anc.rotation > 2.35619):
-			door_anc.rotation = 2.35619
+		if (door_rot > 2.35619):
+			door_rot = 2.35619
 			swingspeed = -abs(swingspeed)
 		swingdir = sign(swingspeed)
 		if (abs(swingspeed) < 3.5):
-			if ((door_anc.rotation > -0.10472) && (door_anc.rotation < 0.10472)):
+			if ((door_rot > -0.10472) && (door_rot < 0.10472)):
 				swingspeed = 0
-				door_anc.rotation = 0
+				door_rot = 0
 		if (swingspeed > 0.25):
 			swingspeed = (swingspeed - 0.25*delta*60)
 		elif (swingspeed < -0.25):
@@ -58,9 +59,9 @@ func _physics_process(delta):
 			active=0
 	else:
 		if spring_return==true:
-			if door_anc.rotation != 0:
-				
-				door_anc.rotation=lerp_angle(door_anc.rotation,0,2*delta)
+			if door_rot != 0:
+				door_rot=lerp_angle(door_rot,0,2*delta)
+	door_anc.rotation=door_rot
 	Collision_trollface()
 
 
