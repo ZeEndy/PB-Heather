@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdr87ip812gsg"
-path="res://.godot/imported/Stomp_strip11.png-c87635db894c892c2398febf51e4b2ad.ctex"
+uid="uid://cfkpdqgtrf2jv"
+path="res://.godot/imported/Stomp_strip16.png-35b8d291ce039e19d21c65acd81ba748.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Data/Sprites/Characters/Heather/Body/Unarmed/Stomp_strip11.png"
-dest_files=["res://.godot/imported/Stomp_strip11.png-c87635db894c892c2398febf51e4b2ad.ctex"]
+source_file="res://Data/Sprites/Characters/Heather/Body/Unarmed/Stomp_strip16.png"
+dest_files=["res://.godot/imported/Stomp_strip16.png-35b8d291ce039e19d21c65acd81ba748.ctex"]
 
 [params]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=334 format=3 uid="uid://h5egxor26nl0"]
+[gd_scene load_steps=327 format=3 uid="uid://h5egxor26nl0"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Enemy.gd" id="2"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_85y2x"]
 [ext_resource type="Script" path="res://Scripts/GAME/GAME_ANIM_NONWAD.gd" id="3_jyc6g"]
 [ext_resource type="Texture2D" uid="uid://brwvg76d2tr5j" path="res://Data/Sprites/Characters/Mafia/Dead/MachineGun_strip12.png" id="4_sx230"]
 [ext_resource type="Texture2D" uid="uid://b4mohp64ahfkr" path="res://Data/Sprites/Characters/Mafia/Get Up/Get_Up_Floor_strip8.png" id="5_e4wnv"]
+[ext_resource type="Texture2D" uid="uid://tm5m2n45axgf" path="res://Data/Sprites/Characters/Mafia/Executing/Stomp_strip4.png" id="5_vaoba"]
 [ext_resource type="Texture2D" uid="uid://0u4bwstqa1uc" path="res://Data/Sprites/Characters/Mafia/Legs/legs_loop_strip10.png" id="6_xdmh1"]
 [ext_resource type="Texture2D" uid="uid://dunqn8iajlupu" path="res://Data/Sprites/Characters/Mafia/Legs/legs_start_strip7.png" id="7_i1aab"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Foot_SoundCheck_2D.gd" id="8_exnro"]
@@ -49,7 +50,6 @@
 [ext_resource type="Texture2D" uid="uid://bjh7m4x6p15wl" path="res://Data/DEFAULT/SPRITES/Char/Execute/bat/Char_ExecuteBat_high_strip7.png" id="45_kx42t"]
 [ext_resource type="Texture2D" uid="uid://pdshda6tuxk1" path="res://Data/Sprites/Characters/Heather/Body/PB/Walk_PB_E_strip8.png" id="45_vvi1b"]
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_MELEE_AREA.gd" id="46_wxqx7"]
-[ext_resource type="Texture2D" uid="uid://cdr87ip812gsg" path="res://Data/Sprites/Characters/Heather/Body/Unarmed/Stomp_strip11.png" id="47_mjymt"]
 [ext_resource type="Texture2D" uid="uid://dqy6p4vtqn2kt" path="res://Data/Sprites/Characters/Mafia/Body/Head/Head_Fire_strip2.png" id="49_cr0os"]
 [ext_resource type="Texture2D" uid="uid://ce77do34vavcq" path="res://Data/Sprites/Characters/Heather/Body/Unarmed/Walk_strip8.png" id="49_y2g1h"]
 [ext_resource type="Texture2D" uid="uid://cr13enx2smnxb" path="res://Data/Sprites/Characters/Mafia/Body/Head/Head_strip2.png" id="50_42400"]
@@ -621,7 +621,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_y4bpy"]
 resource_name = "Stomp"
-length = 0.923077
+length = 1.23078
 step = 0.0769231
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -630,10 +630,10 @@ tracks/0/path = NodePath("anim:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.538462, 0.615385, 0.692308, 0.769231),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+"values": [0, 0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -642,10 +642,10 @@ tracks/1/path = NodePath("anim:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.923077),
+"times": PackedFloat32Array(0, 1.23077),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["DieBat", "DieBat"]
+"values": [&"Executing Stomp", &"Executing Stomp"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -654,10 +654,36 @@ tracks/2/path = NodePath("anim:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.923077),
+"times": PackedFloat32Array(0, 1.23077),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-7, 0), Vector2(-7, 0)]
+"values": [Vector2(7, 0), Vector2(7, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.769231),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [100.0, "Executing/Stomp", null, 0.769, 2, false],
+"method": &"do_remove_health"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ExecPos:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b3xnd"]
@@ -672,7 +698,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_kuux5"]
 resource_name = "GetUp"
-length = 0.642857
+length = 0.571436
 step = 0.0714286
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -681,10 +707,10 @@ tracks/0/path = NodePath("anim:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0714286, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5, 0.571429),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0714286, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -693,10 +719,10 @@ tracks/1/path = NodePath("anim:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.642857),
+"times": PackedFloat32Array(0, 0.571429),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["GetUp", "GetUp"]
+"values": [&"Get Up Ground", &"Get Up Ground"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -705,10 +731,10 @@ tracks/2/path = NodePath("anim:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.642857),
+"times": PackedFloat32Array(0, 0.571429),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(0, 1), Vector2(0, 1)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -717,7 +743,7 @@ tracks/3/path = NodePath("../..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.642857),
+"times": PackedFloat32Array(0.571429),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -731,7 +757,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.642857),
+"times": PackedFloat32Array(0.571429),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["WalkLegs", 0, false, 0.0],
@@ -745,7 +771,7 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.642857),
+"times": PackedFloat32Array(0.571429),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [Vector2(11, 0)],
@@ -1145,6 +1171,22 @@ region = Rect2(640, 0, 64, 64)
 atlas = ExtResource("4_sx230")
 region = Rect2(704, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lea80"]
+atlas = ExtResource("5_vaoba")
+region = Rect2(0, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgdrq"]
+atlas = ExtResource("5_vaoba")
+region = Rect2(60, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoj3e"]
+atlas = ExtResource("5_vaoba")
+region = Rect2(120, 0, 60, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qh3c"]
+atlas = ExtResource("5_vaoba")
+region = Rect2(180, 0, 60, 40)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlgl5"]
 atlas = ExtResource("5_e4wnv")
 region = Rect2(0, 0, 60, 32)
@@ -1306,6 +1348,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dead Machine Gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lea80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgdrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoj3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qh3c")
+}],
+"loop": true,
+"name": &"Executing Stomp",
 "speed": 5.0
 }, {
 "frames": [{
@@ -4565,12 +4624,9 @@ tracks/7/path = NodePath("../..")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.846154),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [100.0, 0.0, "DeadBash", "rand", "res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Hit.wav"],
-"method": &"execute_remove_health"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -5453,50 +5509,6 @@ region = Rect2(300, 0, 60, 44)
 atlas = ExtResource("40_5elma")
 region = Rect2(360, 0, 60, 44)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbvrj"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rcx35"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ygnr"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c3xj7"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6w01d"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmruy"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d6a86"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xhtxr"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptkw2"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rcvee"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lgf8x"]
-atlas = ExtResource("47_mjymt")
-region = Rect2(320, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="538"]
 atlas = ExtResource("42_f5qg2")
 region = Rect2(0, 0, 44, 35)
@@ -6073,40 +6085,7 @@ animations = [{
 "name": &"Unarmed Attack",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbvrj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rcx35")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ygnr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c3xj7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6w01d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rmruy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d6a86")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xhtxr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptkw2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rcvee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lgf8x")
-}],
+"frames": [],
 "loop": true,
 "name": &"Unarmed Execute",
 "speed": 5.0
@@ -6281,7 +6260,7 @@ height = 8.0
 [node name="Enemy" type="Node2D" groups=["Enemy_Parent", "PED_parent"]]
 z_index = 1
 script = ExtResource("2")
-execute_click = true
+copy_time = true
 leg_index = "Walk/Loop"
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["Enemy", "PED"]]
@@ -6309,6 +6288,7 @@ target = NodePath("../PED_COL")
 flags = 51
 
 [node name="Legs" type="Node2D" parent="PED_SPRITES"]
+z_index = -1
 use_parent_material = true
 script = ExtResource("3_jyc6g")
 speed_scale = 0
@@ -6325,7 +6305,11 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"GetUp"
+animation = &"Executing Stomp"
+offset = Vector2(7, 0)
+
+[node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
+position = Vector2(10, 1)
 
 [node name="Sound" type="Node2D" parent="PED_SPRITES/Legs"]
 

@@ -96,7 +96,8 @@ func _physics_process(delta):
 				query.collision_mask=32
 				var space = get_world_2d().direct_space_state
 				query.set_transform(Transform2D(direction,get_node("PED_COL").global_position+Vector2(shape.extents.x/2,0).rotated(direction)))
-				query.exclude.append(get_node("PED_COL"))
+				query.exclude.append(get_node("PED_COL").get_rid())
+				
 				if space.intersect_shape(query,1).size()>0:
 					direction -= 0.174533 * delta_time
 				else:
