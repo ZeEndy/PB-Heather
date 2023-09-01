@@ -11,3 +11,5 @@ export_presets.cfg
 data_*/
 *.sfk
 .godot
+Data/Sprites/Level/House Call/Furniture/F_HomeOfficeTable.png.import
+*.import
