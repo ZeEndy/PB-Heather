@@ -1431,7 +1431,6 @@ stream = ExtResource("7_sw72n")
 autoplay = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_67de0")
 anchors_preset = 15

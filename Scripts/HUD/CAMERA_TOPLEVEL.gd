@@ -42,6 +42,8 @@ func _process(delta):
 			global_position=target.global_position
 		zoom=Vector2(lerp(zoom.x,3.8*added_zoom,20*delta/Engine.time_scale),lerp(zoom.y,3.8*added_zoom,20*delta/Engine.time_scale))
 	else:
+		if target!=null:
+			global_position=target.global_position
 		zoom=Vector2(6,6)
 	
 	if rain!=null:

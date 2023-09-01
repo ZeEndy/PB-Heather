@@ -105,6 +105,7 @@ func _ready():
 	else:
 		_play_animation(sprite_index)
 	sprite_legs.play(leg_index)
+	get_node("PED_COL/CollsionCircle").disabled=false
 	
 
 
@@ -214,7 +215,8 @@ func _physics_process(delta):
 	
 	
 	elif state == ped_states.dead:
-#		get_node("PED_COL/CollsionCircle").disabled=true
+		if my_velocity.length()<0.5:
+			get_node("PED_COL/CollsionCircle").disabled=true
 		my_velocity=lerp(my_velocity,Vector2.ZERO,5.0*delta)
 		collision_body.velocity=my_velocity
 		col_shape.shape.radius=lerp(col_shape.shape.radius,11.0,10*delta)
@@ -441,7 +443,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 		health=clamp(health-changed_value,0,300)
 	if state==ped_states.alive || (state == ped_states.down && "Lean" in sprite_legs.animation):
 		if health<=0:
-			drop_weapon()
+			drop_weapon(0.1,randf()*PI*2.0)
 			sprite_legs.play(killsprite)
 			if frame=="rand":
 				sprite_legs.seek(randf_range(0,sprite_legs_anim.current_animation_length))
@@ -452,16 +454,17 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 			sprite_legs.speed_scale=0
 			sprite_body.visible=false
 			state=ped_states.dead
-	if state==ped_states.down && "Get Up/" in sprite_legs.animation:
-		print("FAGDGS")
+	if state==ped_states.down && !("Get Up/" in sprite_legs.animation):
 		sprite_legs.speed_scale=0
 		sprite_body.visible=false
 		state=ped_states.dead
+#		col
+		my_velocity=Vector2(0.0,0.0)
 
 func go_down(direction=randf()*PI):
 	if state == ped_states.alive:
 		if sprite_legs.has_animation("Get Up/Floor"):
-			drop_weapon()
+			drop_weapon(0.1,randf()*PI*2.0)
 			state = ped_states.down
 			sprite_legs.play("Get Up/Floor",false,0)
 			sprite_legs.speed_scale=0

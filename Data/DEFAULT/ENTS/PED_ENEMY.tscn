@@ -266,6 +266,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [0, 0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.923077),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3, -3]
+}
 
 [sub_resource type="Animation" id="Animation_cs5yv"]
 resource_name = "DeadLeanMachinegun"
@@ -778,6 +790,18 @@ tracks/5/keys = {
 "method": &"move_rot_relative"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-2]
+}
 
 [sub_resource type="Animation" id="Animation_oi8j4"]
 resource_name = "GetUpLean"
@@ -986,6 +1010,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:z_index")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_qkn3y"]
 resource_name = "WalkLegs_start"
@@ -1115,6 +1151,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:z_index")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jwvto"]
@@ -6288,7 +6336,6 @@ target = NodePath("../PED_COL")
 flags = 51
 
 [node name="Legs" type="Node2D" parent="PED_SPRITES"]
-z_index = -1
 use_parent_material = true
 script = ExtResource("3_jyc6g")
 speed_scale = 0
@@ -6305,8 +6352,8 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Executing Stomp"
-offset = Vector2(7, 0)
+animation = &"Walk Legs"
+frame = 2
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 position = Vector2(10, 1)
@@ -6350,7 +6397,6 @@ max_polyphony = 10
 bus = &"SFX"
 
 [node name="Body" type="Node2D" parent="PED_SPRITES"]
-visible = false
 z_index = 1
 use_parent_material = true
 script = ExtResource("3_jyc6g")
@@ -6457,6 +6503,7 @@ use_parent_material = true
 rotation = -0.000690252
 sprite_frames = SubResource("SpriteFrames_kbf3m")
 animation = &"Unarmed Walk"
+frame = 2
 
 [node name="mask" type="AnimatedSprite2D" parent="PED_SPRITES/Body/anim"]
 use_parent_material = true
