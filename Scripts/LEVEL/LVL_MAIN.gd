@@ -102,7 +102,9 @@ func save_level():
 					save_array.append({
 						"id":i,
 						"door_rot":i.door_rot,
-						"active":i.active
+						"player_turn":i.player_turn,
+						"next_rot":i.next_rot,
+						"door_timer":i.door_timer
 #						"swingspeed":i.swingspeed
 					})
 	return save_array
@@ -150,6 +152,9 @@ func load_level(array):
 				id._ready()
 			if id is Door:
 				id.door_rot=i["door_rot"]
+				id.player_turn=i["player_turn"]
+				id.door_timer=i["door_timer"]
+				id.next_rot=i["next_rot"]
 				id._ready()
 #				id.swingspeed=i["swingspeed"]
 

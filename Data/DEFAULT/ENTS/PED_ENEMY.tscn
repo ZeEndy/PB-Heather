@@ -56,8 +56,8 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atrh7"]
 resource_local_to_scene = true
-radius = 11.0
-height = 56.0
+radius = 7.99999
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_pocb4"]
 length = 0.001
@@ -6322,6 +6322,7 @@ shape = SubResource("CapsuleShape2D_atrh7")
 [node name="weapon_find" type="RayCast2D" parent="PED_COL"]
 
 [node name="VisibilityNotifier2D" type="VisibleOnScreenNotifier2D" parent="PED_COL"]
+visible = false
 rect = Rect2(-32, -32, 64, 64)
 
 [node name="movement_check" type="RayCast2D" parent="PED_COL"]

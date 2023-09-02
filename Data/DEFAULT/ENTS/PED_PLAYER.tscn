@@ -30,6 +30,8 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0v16y"]
 resource_local_to_scene = true
+radius = 8.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_pocb4"]
 length = 0.001

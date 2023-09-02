@@ -14755,8 +14755,18 @@ position = Vector2(480, 448)
 
 [node name="Door10" parent="Floor 1/Viewport" instance=ExtResource("23_678wq")]
 
+[node name="Floor Transition" parent="Floor 1/Viewport" instance=ExtResource("4_u66ro")]
+position = Vector2(836, 386)
+rotation = 1.57079
+targetPath = NodePath("../../../Floor 2/Viewport")
+next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
+
+[node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_whf2h")]
+position = Vector2(592, 648)
+desired_weapon = "AK-74U"
+
 [node name="Enemy5" parent="Floor 1/Viewport" instance=ExtResource("27_gysur")]
-position = Vector2(727, 521)
+position = Vector2(592, 568)
 enemy_type = 2
 desired_weapon = "AR-15"
 
@@ -14800,25 +14810,15 @@ enemy_type = 2
 desired_weapon = "PB"
 
 [node name="Enemy3" parent="Floor 1/Viewport" instance=ExtResource("27_gysur")]
-position = Vector2(510, 483)
+position = Vector2(376, 416)
 rotation = 1.57079
 enemy_type = 2
 desired_weapon = "AR-15"
 
 [node name="Enemy4" parent="Floor 1/Viewport" instance=ExtResource("27_gysur")]
-position = Vector2(652, 484)
+position = Vector2(424, 416)
 rotation = 3.14159
 desired_weapon = "AR-15"
-
-[node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_whf2h")]
-position = Vector2(592, 648)
-desired_weapon = "AK-74U"
-
-[node name="Floor Transition" parent="Floor 1/Viewport" instance=ExtResource("4_u66ro")]
-position = Vector2(836, 386)
-rotation = 1.57079
-targetPath = NodePath("../../../Floor 2/Viewport")
-next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
 
 [node name="Floor 2" type="SubViewportContainer" parent="."]
 visible = false

@@ -194,10 +194,10 @@ func _physics_process(delta):
 				if bAttack==true:
 					self.attack()
 	if state == ped_states.down:
-		movement(null,delta)
 #		axis=lerp(axis,Vector2.ZERO,0.1)
+		my_velocity=my_velocity.lerp(Vector2.ZERO,clamp(5*delta,0,1))
 		if my_velocity.length()>0.1:
-			axis=axis.lerp(Vector2.ZERO,clamp(10*delta,0,1))
+			
 			var test_motion=collision_body.move_and_collide(Vector2(16,0).rotated(my_velocity.angle()),true)
 			if test_motion:
 				my_velocity=Vector2.ZERO
@@ -206,8 +206,9 @@ func _physics_process(delta):
 				sprite_legs.global_rotation=test_motion.get_normal().angle()
 				sprite_legs.speed_scale=0
 				collision_body.global_position=test_motion.get_position()
-#		if my_velocity.length()<5:
 		sprite_body.global_rotation=sprite_legs.global_rotation
+		collision_body.velocity=my_velocity
+		collision_body.move_and_slide()
 		if can_get_up==true:
 			down_timer-=delta
 			if down_timer<0:
