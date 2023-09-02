@@ -91,7 +91,7 @@ void fragment()
     vec4 luma = Shrink(FRAGCOORD.xy, 0.5, 0.0,1.0/SCREEN_PIXEL_SIZE.xy); // In VHS the luma band is half of the resolution
     luma = BlendLuminosity(vec4(0.5, 0.5, 0.5, 1.0), luma);
     
-    vec4 chroma = Shrink(FRAGCOORD.xy,  1.0/8.0, 2.0, 1.0/SCREEN_PIXEL_SIZE.xy); // In VHS chroma band is a much lower resolution (technically 1/16th)
+    vec4 chroma = Shrink(FRAGCOORD.xy,  1.0/16.0, 2.0, 1.0/SCREEN_PIXEL_SIZE.xy)*1.5; // In VHS chroma band is a much lower resolution (technically 1/16th)
     chroma = BlendColor(luma, chroma);
     
     COLOR = chroma; 

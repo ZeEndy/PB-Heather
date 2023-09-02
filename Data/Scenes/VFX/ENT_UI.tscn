@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=19 format=3 uid="uid://dwddauml6erf8"]
 
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="1_0r6lt"]
 [ext_resource type="Texture2D" uid="uid://cl4otlsif5eow" path="res://HotlineMiami2_7z6jnN3lbh.png" id="1_et1q3"]
@@ -387,19 +387,6 @@ shader = SubResource("Shader_ksap7")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34261"]
 shader = ExtResource("3_vxky5")
 
-[sub_resource type="Shader" id="Shader_wg8j4"]
-code = "shader_type canvas_item;
-
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
-void fragment()
-{
-    COLOR = texture(SCREEN_TEXTURE,SCREEN_UV,0.1); 
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihqve"]
-shader = SubResource("Shader_wg8j4")
-
 [sub_resource type="Shader" id="Shader_k3lvc"]
 code = "shader_type canvas_item;
 
@@ -609,19 +596,6 @@ layer = 3
 
 [node name="Shader" type="ColorRect" parent="Shaders/Pass2"]
 material = SubResource("ShaderMaterial_34261")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Pass4" type="CanvasLayer" parent="Shaders"]
-layer = 3
-
-[node name="Shader" type="ColorRect" parent="Shaders/Pass4"]
-material = SubResource("ShaderMaterial_ihqve")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

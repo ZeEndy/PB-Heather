@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dgpermbbp41e7"]
+[gd_scene load_steps=48 format=3 uid="uid://cc81oacjxvdgt"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5bv03"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_ah3jq"]
@@ -14677,7 +14677,6 @@ desired_weapon = "AK-74U"
 
 [node name="Enemy3" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(371, 393)
-scale = Vector2(1, 1)
 enemy_type = 1
 desired_weapon = "PB"
 
@@ -14734,19 +14733,19 @@ rotation = -0.523598
 desired_weapon = "AR-15"
 
 [node name="Door4" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(152, 356)
+position = Vector2(152, 360)
 rotation = 3.14159
 
 [node name="Door5" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(740, 152)
+position = Vector2(736, 152)
 rotation = -1.5708
 
 [node name="Door6" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(152, 284)
+position = Vector2(152, 288)
 rotation = 3.14159
 
 [node name="Door7" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(120, 228)
+position = Vector2(120, 224)
 
 [node name="Door13" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
 position = Vector2(288, 269)
@@ -14755,7 +14754,7 @@ position = Vector2(288, 269)
 position = Vector2(744, 228)
 
 [node name="Door9" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(516, 320)
+position = Vector2(520, 320)
 rotation = 1.5708
 
 [node name="Door10" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
@@ -14763,23 +14762,23 @@ position = Vector2(-85, 287)
 rotation = 1.5708
 
 [node name="Door11" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(644, 320)
+position = Vector2(648, 320)
 rotation = 1.5708
 
 [node name="Door12" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(188, 128)
+position = Vector2(192, 128)
 rotation = 1.5708
 
 [node name="Door3" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(260, 448)
+position = Vector2(256, 448)
 rotation = -1.5708
 
 [node name="Door2" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(752, 388)
+position = Vector2(752, 392)
 rotation = -3.14159
 
 [node name="Door" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
-position = Vector2(688, 388)
+position = Vector2(688, 384)
 
 [node name="HlmWadEditor-v0185X64MM3w4hoNiU" type="Sprite2D" parent="."]
 visible = false

@@ -1,15 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqyo8eokcablc"]
+[gd_scene load_steps=7 format=3 uid="uid://bqyo8eokcablc"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_DOOR.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bpnywv0nciep6" path="res://Data/DEFAULT/SPRITES/WORLD/WALLS/sprDoor.png" id="2"]
 
+[sub_resource type="Curve" id="Curve_nty6p"]
+_data = [Vector2(0, 0), 0.0, 4.46025, 0, 0, Vector2(0.40625, 1), 1.46986, 1.46986, 0, 0, Vector2(1, 1), 0.790847, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="OccluderPolygon2D" id="4"]
 polygon = PackedVector2Array(0, 0, 32, 0, 32, 0, 0, 0)
 
+[sub_resource type="Gradient" id="Gradient_lxcr2"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3b1lf"]
+gradient = SubResource("Gradient_lxcr2")
+width = 1
+
 [node name="Door" type="Node2D"]
 script = ExtResource("1")
+easing = SubResource("Curve_nty6p")
+left = 135.0
+right = 135.0
 
 [node name="DOOR_ANCHER" type="Node2D" parent="."]
+position = Vector2(0, 4)
 
 [node name="Sprite" type="Sprite2D" parent="DOOR_ANCHER"]
 z_index = 1
@@ -22,8 +36,13 @@ occluder = SubResource("4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="DOOR_ANCHER/Sprite"]
 position = Vector2(-16, 0)
-collision_layer = 80
+collision_layer = 112
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DOOR_ANCHER/Sprite/StaticBody2D"]
-polygon = PackedVector2Array(0, 2, 0, -2, 32, -2, 32, 2)
+position = Vector2(0, 0.5)
+polygon = PackedVector2Array(0, 0, 0, -1, 32, -1, 32, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="DOOR_ANCHER"]
+top_level = true
+texture = SubResource("GradientTexture1D_3b1lf")

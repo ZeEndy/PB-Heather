@@ -102,7 +102,8 @@ func save_level():
 					save_array.append({
 						"id":i,
 						"door_rot":i.door_rot,
-						"swingspeed":i.swingspeed
+						"active":i.active
+#						"swingspeed":i.swingspeed
 					})
 	return save_array
 
@@ -149,5 +150,6 @@ func load_level(array):
 				id._ready()
 			if id is Door:
 				id.door_rot=i["door_rot"]
-				id.swingspeed=i["swingspeed"]
+				id._ready()
+#				id.swingspeed=i["swingspeed"]
 

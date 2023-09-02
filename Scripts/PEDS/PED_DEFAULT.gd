@@ -206,12 +206,12 @@ func _physics_process(delta):
 				sprite_legs.global_rotation=test_motion.get_normal().angle()
 				sprite_legs.speed_scale=0
 				collision_body.global_position=test_motion.get_position()
-		if my_velocity.length()<5:
-			sprite_body.global_rotation=sprite_legs.global_rotation
-			if can_get_up==true:
-				down_timer-=delta
-				if down_timer<0:
-					sprite_legs.speed_scale=1
+#		if my_velocity.length()<5:
+		sprite_body.global_rotation=sprite_legs.global_rotation
+		if can_get_up==true:
+			down_timer-=delta
+			if down_timer<0:
+				sprite_legs.speed_scale=1
 	
 	
 	elif state == ped_states.dead:
@@ -470,7 +470,7 @@ func go_down(direction=randf()*PI):
 			sprite_legs.speed_scale=0
 			sprite_legs.global_rotation=direction
 			sprite_body.visible=false
-			down_timer=8
+			down_timer=3
 #			collision_body.set_collision_layer_bit(6,false)
 			axis=Vector2(0.8,0).rotated(direction)
 #		collision_body.linear_damp=6

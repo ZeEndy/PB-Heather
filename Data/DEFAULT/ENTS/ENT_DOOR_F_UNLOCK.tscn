@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://chddckbhxbwe7"]
+
+[ext_resource type="Script" path="res://Scripts/LEVEL/LVL_DOOR.gd" id="1_4nhtt"]
+[ext_resource type="Texture2D" uid="uid://bpnywv0nciep6" path="res://Data/DEFAULT/SPRITES/WORLD/WALLS/sprDoor.png" id="2_r6cjw"]
+
+[sub_resource type="OccluderPolygon2D" id="4"]
+polygon = PackedVector2Array(0, 0, 32, 0, 32, 0, 0, 0)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_4nhtt")
+
+[node name="DOOR_ANCHER" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="DOOR_ANCHER"]
+z_index = 1
+position = Vector2(16, 0)
+texture = ExtResource("2_r6cjw")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="DOOR_ANCHER/Sprite"]
+position = Vector2(-16, 0)
+occluder = SubResource("4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DOOR_ANCHER/Sprite"]
+position = Vector2(-16, 0)
+collision_layer = 80
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DOOR_ANCHER/Sprite/StaticBody2D"]
+polygon = PackedVector2Array(0, 2, 0, -2, 32, -2, 32, 2)

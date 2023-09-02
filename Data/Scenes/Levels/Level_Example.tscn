@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://c0g778dscf5ii"]
+[gd_scene load_steps=49 format=3 uid="uid://c0g778dscf5ii"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_u6yrt"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_emq34"]
@@ -36,9 +36,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0.443834, 0.167631, 0.577387, 1)
 [sub_resource type="GradientTexture1D" id="3"]
 gradient = SubResource("2")
 width = 400
-
-[sub_resource type="ViewportTexture" id="6"]
-viewport_path = NodePath("Floor 1")
 
 [sub_resource type="FastNoiseLite" id="7"]
 
@@ -14582,9 +14579,6 @@ texture_region_size = Vector2i(1, 1)
 tile_size = Vector2i(4, 4)
 sources/0 = SubResource("TileSetAtlasSource_xtvrb")
 
-[sub_resource type="ViewportTexture" id="5"]
-viewport_path = NodePath("Floor 1/Viewport")
-
 [node name="Sex Level" type="Node2D" groups=["Current_room", "Level"]]
 script = ExtResource("1_u6yrt")
 
@@ -14598,9 +14592,6 @@ scale = Vector2(2458, 3248)
 mesh = SubResource("1")
 texture = SubResource("3")
 script = ExtResource("2_emq34")
-
-[node name="VIEW" type="TextureRect" parent="."]
-texture = SubResource("6")
 
 [node name="CAM_TOP" type="Node2D" parent="." groups=["Glob_Camera_pos"]]
 script = ExtResource("3_knibw")
@@ -14662,13 +14653,6 @@ format = 2
 script = ExtResource("20_f3xju")
 map_size = Vector2(552, 424)
 collision_layer = 32
-
-[node name="TEST" type="Sprite2D" parent="Floor 1/Viewport"]
-z_index = -3
-scale = Vector2(0.25, 0.25)
-texture = SubResource("5")
-centered = false
-flip_v = true
 
 [node name="Camera" type="Camera2D" parent="Floor 1/Viewport"]
 limit_left = -248
