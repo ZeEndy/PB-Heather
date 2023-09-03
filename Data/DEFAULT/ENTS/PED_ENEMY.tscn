@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tm5m2n45axgf" path="res://Data/Sprites/Characters/Mafia/Executing/Stomp_strip4.png" id="5_vaoba"]
 [ext_resource type="Texture2D" uid="uid://0u4bwstqa1uc" path="res://Data/Sprites/Characters/Mafia/Legs/legs_loop_strip10.png" id="6_xdmh1"]
 [ext_resource type="Texture2D" uid="uid://dunqn8iajlupu" path="res://Data/Sprites/Characters/Mafia/Legs/legs_start_strip7.png" id="7_i1aab"]
+[ext_resource type="Texture2D" uid="uid://c3rli1cc8ilw8" path="res://Data/Sprites/Characters/Mafia/Get Up/Get_Up_Lean_strip5.png" id="7_ww0kg"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Foot_SoundCheck_2D.gd" id="8_exnro"]
 [ext_resource type="AudioStream" uid="uid://dcad5uuossf4o" path="res://Data/Sounds/Character/Movement/Foot/Step Wood.tres" id="9_gqv66"]
 [ext_resource type="AudioStream" uid="uid://b0rw48svxkh3r" path="res://Data/Sounds/Character/Movement/Cloth Knee.tres" id="10_ervbh"]
@@ -20,7 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Character/PB/Bass.wav" id="17_qmjmg"]
 [ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Character/PB/Mech.tres" id="18_72tqt"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech_2D.gd" id="19_25un3"]
-[ext_resource type="Texture2D" uid="uid://dejce22ai4xx7" path="res://Data/DEFAULT/SPRITES/Char/Get up/Char_GetUpLean_strip5.png" id="19_oubq6"]
 [ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Character/PB/Hammer.tres" id="20_tmt4k"]
 [ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Character/M4/Fire.tres" id="21_wfl3j"]
 [ext_resource type="AudioStream" uid="uid://b3mkekai76u16" path="res://Data/Sounds/Character/M4/Bass.wav" id="22_0q73j"]
@@ -743,10 +743,10 @@ tracks/2/path = NodePath("anim:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.571429),
+"times": PackedFloat32Array(0, 0.5712),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 1), Vector2(0, 1)]
+"values": [Vector2(0, 0), Vector2(0, 0)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -772,40 +772,38 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.571429),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["WalkLegs", 0, false, 0.0],
-"method": &"play"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.571429),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [Vector2(11, 0)],
+"args": [Vector2(-19, 0)],
 "method": &"move_rot_relative"
 }]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:z_index")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [-2]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../..:leg_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5712),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Walk/Start"]
+}
 
 [sub_resource type="Animation" id="Animation_oi8j4"]
 resource_name = "GetUpLean"
-length = 0.428572
+length = 0.35715
 step = 0.0714286
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -826,10 +824,10 @@ tracks/1/path = NodePath("anim:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.428571),
+"times": PackedFloat32Array(0, 0.357143),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["GetUpLean", "GetUpLean"]
+"values": [&"Get Up Lean", &"Get Up Lean"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -838,10 +836,10 @@ tracks/2/path = NodePath("anim:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.428571),
+"times": PackedFloat32Array(0, 0.357143),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(3, 0), Vector2(3, 0)]
+"values": [Vector2(-2, 0), Vector2(-2, 0)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -850,7 +848,7 @@ tracks/3/path = NodePath("../..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.428571),
+"times": PackedFloat32Array(0.357143),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -864,10 +862,10 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.428571),
+"times": PackedFloat32Array(0.357143),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["WalkLegs", 0, false, 0.0],
+"args": ["Walk/Start", 0, false, 0.0],
 "method": &"play"
 }]
 }
@@ -878,7 +876,7 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.428571),
+"times": PackedFloat32Array(0.357143),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [Vector2(15, 0)],
@@ -1267,24 +1265,24 @@ region = Rect2(360, 0, 60, 32)
 atlas = ExtResource("5_e4wnv")
 region = Rect2(420, 0, 60, 32)
 
-[sub_resource type="AtlasTexture" id="231"]
-atlas = ExtResource("19_oubq6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ku6ma"]
+atlas = ExtResource("7_ww0kg")
 region = Rect2(0, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="232"]
-atlas = ExtResource("19_oubq6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3edvp"]
+atlas = ExtResource("7_ww0kg")
 region = Rect2(48, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="233"]
-atlas = ExtResource("19_oubq6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_luopf"]
+atlas = ExtResource("7_ww0kg")
 region = Rect2(96, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="234"]
-atlas = ExtResource("19_oubq6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd061"]
+atlas = ExtResource("7_ww0kg")
 region = Rect2(144, 0, 48, 32)
 
-[sub_resource type="AtlasTexture" id="235"]
-atlas = ExtResource("19_oubq6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_etoou"]
+atlas = ExtResource("7_ww0kg")
 region = Rect2(192, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvpc5"]
@@ -1446,19 +1444,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("231")
+"texture": SubResource("AtlasTexture_ku6ma")
 }, {
 "duration": 1.0,
-"texture": SubResource("232")
+"texture": SubResource("AtlasTexture_3edvp")
 }, {
 "duration": 1.0,
-"texture": SubResource("233")
+"texture": SubResource("AtlasTexture_luopf")
 }, {
 "duration": 1.0,
-"texture": SubResource("234")
+"texture": SubResource("AtlasTexture_fd061")
 }, {
 "duration": 1.0,
-"texture": SubResource("235")
+"texture": SubResource("AtlasTexture_etoou")
 }],
 "loop": true,
 "name": &"Get Up Lean",
@@ -6337,6 +6335,7 @@ target = NodePath("../PED_COL")
 flags = 51
 
 [node name="Legs" type="Node2D" parent="PED_SPRITES"]
+z_index = -2
 use_parent_material = true
 script = ExtResource("3_jyc6g")
 speed_scale = 0
@@ -6353,8 +6352,8 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Walk Legs"
-frame = 2
+animation = &"Get Up Lean"
+offset = Vector2(-2, 0)
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 position = Vector2(10, 1)
@@ -6543,6 +6542,11 @@ gizmo_extents = 2.4
 
 [node name="AudioListener2d" type="AudioListener2D" parent="PED_SPRITES"]
 current = true
+
+[node name="Label" type="Label" parent="PED_SPRITES"]
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 32.0
 
 [connection signal="animation_started" from="PED_SPRITES/Legs/AnimationPlayer" to="PED_SPRITES/Legs" method="_on_AnimationPlayer_animation_started" flags=18]
 [connection signal="animation_started" from="PED_SPRITES/Body/AnimationPlayer" to="PED_SPRITES/Body" method="_on_AnimationPlayer_animation_started" flags=18]

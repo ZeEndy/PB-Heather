@@ -82,9 +82,9 @@ func _physics_process(delta):
 			for i in e_knocker.get_overlapping_bodies():
 				var par=i.get_parent()
 				if par is Enemy && par.state==0:
-					var door_org=door_anc.global_position+Vector2(door_size.x,0).rotated(door_anc.global_rotation)
+					var door_org=door_anc.global_position+Vector2(door_size.x*0.5,0).rotated(door_anc.global_rotation)
 					par.go_down(door_org.direction_to(i.global_position).angle())
-					par.my_velocity=door_org.direction_to(i.global_position)*500.0
+					par.my_velocity=door_org.direction_to(i.global_position)*300.0
 					
 		
 		door_timer=clamp(door_timer+delta,0,1.0)

@@ -87,8 +87,10 @@ func _physics_process(delta):
 			if enemy_type==Enemy_t.PATROL:
 				movement(null,delta)
 				axis=Vector2(0.35,0).rotated(direction)
+				get_node("PED_SPRITES/Label").text=str(rad_to_deg(direction))
+				direction=fmod(direction,PI*2.0)
 				body_direction=lerp_angle(body_direction,axis.angle(),0.15)
-				var v = Vector2(my_velocity.length()/2,0).rotated(direction)
+				var v = Vector2(my_velocity.length()*0.35,0).rotated(direction)
 				var shape = RectangleShape2D.new()
 				shape.extents=Vector2(v.length(),get_node("PED_COL/CollsionCircle").shape.radius)
 				var query = PhysicsShapeQueryParameters2D.new()
@@ -99,11 +101,11 @@ func _physics_process(delta):
 				query.exclude.append(get_node("PED_COL").get_rid())
 				
 				if space.intersect_shape(query,1).size()>0:
-					direction -= 0.174533 * delta_time
+					direction -= deg_to_rad(10.0) * delta_time
 				else:
-					var dif = fmod(direction, 1.5708)
-					if abs(dif) > 0.174533 * delta_time:
-						direction -= 0.174533 * delta_time
+					var dif = fmod(direction, deg_to_rad(90.0))
+					if abs(dif) > deg_to_rad(10.0) * delta_time:
+						direction -= deg_to_rad(10.0) * delta_time
 					else:
 						direction -= dif
 			elif enemy_type==Enemy_t.RANDOM:

@@ -82,6 +82,8 @@ func save_level():
 					if i is Enemy:
 						dict["variables"].merge({
 						"enemy_state":i.enemy_state,
+						"direction":i.direction,
+						"target_point":i.target_point
 						})
 					save_array.append(dict)
 				if i is WEAPON:

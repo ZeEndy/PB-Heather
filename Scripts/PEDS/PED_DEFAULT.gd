@@ -202,8 +202,8 @@ func _physics_process(delta):
 			if test_motion:
 				my_velocity=Vector2.ZERO
 				axis=Vector2.ZERO
-				sprite_legs.play("GetUpLean")
-				sprite_legs.global_rotation=test_motion.get_normal().angle()
+				sprite_legs.play("Get Up/Lean")
+				sprite_legs.global_rotation=test_motion.get_normal().angle()-PI
 				sprite_legs.speed_scale=0
 				collision_body.global_position=test_motion.get_position()
 		sprite_body.global_rotation=sprite_legs.global_rotation
@@ -473,7 +473,7 @@ func go_down(direction=randf()*PI):
 			sprite_body.visible=false
 			down_timer=3
 #			collision_body.set_collision_layer_bit(6,false)
-			axis=Vector2(0.8,0).rotated(direction)
+#			axis=Vector2(0.8,0).rotated(direction)
 #		collision_body.linear_damp=6
 
 
