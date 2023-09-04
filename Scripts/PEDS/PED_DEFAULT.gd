@@ -180,8 +180,10 @@ func _process(delta):
 		
 	elif state==ped_states.execute:
 		if copy_time==true:
-			execute_target.sprite_legs.seek(sprite_body.frame,true)
-
+			execute_target.sprite_legs.speed_scale=sprite_body.speed_scale
+			if execute_target.sprite_legs_anim.current_animation_position<sprite_body.frame:
+				execute_target.sprite_legs_anim.advance(sprite_body.frame-execute_target.sprite_legs_anim.current_animation_position)
+				
 func _physics_process(delta):
 	
 	collision_body.global_rotation=0
@@ -489,20 +491,14 @@ func get_up():
 
 func do_execution():
 	if get_downed_enemies() != null:
-		state=ped_states.execute
-		axis=Vector2(0,0)
-		my_velocity=Vector2(0,0)
-		execute_target.my_velocity=Vector2(0,0)
-		execute_target.axis=Vector2(0,0)
-
-#		execute_target.get_parent().sprite_legs.get_node("AnimationPlayer").playback_speed=0
-		
-		if execute_target.sprite_legs.animation!="GetUpLean":
-#			if weapon.execution_sprite!="":
-				_play_animation("Execute")
+		if execute_target.sprite_legs.animation!="Get Up/Lean":
+			var execution=Database.get_exec(weapon["ID"])
+			if execution["ID"]=="Unarmed":
+				_play_animation("Unarmed/Execute",0,true)
 				execute_target.sprite_legs.play("Executing/Stomp",false,0)
-				
-#			else:
+				drop_weapon()
+		else:
+			return
 #				drop_weapon()
 #				sprite_body.play(default_weapon.id+"/"+default_weapon.execution_sprite)
 #				execute_target.sprite_legs.play(default_weapon.ground_sprite,false,0)
@@ -514,7 +510,11 @@ func do_execution():
 		execute_target.sprite_legs.speed_scale=0
 		sprite_legs.visible=false
 		execute_target.can_get_up=false
-
+		state=ped_states.execute
+		axis=Vector2(0,0)
+		my_velocity=Vector2(0,0)
+		execute_target.my_velocity=Vector2(0,0)
+		execute_target.axis=Vector2(0,0)
 
 
 

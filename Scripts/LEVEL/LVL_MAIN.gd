@@ -28,23 +28,23 @@ func _ready():
 			AudioManager.play_song(song)
 
 func _process(delta):
-	if get_tree().get_nodes_in_group("EDITOR").size()==0:
-		
-		if Input.is_action_just_pressed("DEBUG_SAVE"):
-			_save_checkpoint()
-		
-		if Input.is_action_just_pressed("reload"):
-			GAME.cursor_position=GUI.real_mouse
-			if Input.is_action_pressed("far_look"):
-				load_level(restart)
-			else:
-				load_level(checkpoint)
-		if get_tree().get_nodes_in_group("Enemy").size()==0 && level_complete==false:
-			level_complete=true
-			AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
+	if Input.is_action_just_pressed("DEBUG_SAVE"):
+		_save_checkpoint()
+	
+	if Input.is_action_just_pressed("reload") && GUI.health_iterp>0.9:
+		GAME.cursor_position=GUI.real_mouse
+		if Input.is_action_pressed("far_look"):
+			load_level(restart)
+		else:
+			load_level(checkpoint)
+	if get_tree().get_nodes_in_group("Enemy").size()==0 && level_complete==false:
+		level_complete=true
+		AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
 	if level_complete==false:
 		time+=delta
 	GUI.level_time=time
+
+
 func _save_checkpoint():
 #	GAME.save_node_state("checkpoint",self)
 	checkpoint=save_level()

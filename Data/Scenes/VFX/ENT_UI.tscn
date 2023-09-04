@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=22 format=3 uid="uid://dwddauml6erf8"]
 
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="1_0r6lt"]
 [ext_resource type="Texture2D" uid="uid://cl4otlsif5eow" path="res://HotlineMiami2_7z6jnN3lbh.png" id="1_et1q3"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://44hsxv2p1hoi" path="res://Data/Sprites/Textures/UI/Cursor.png" id="2_kbojr"]
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader_Pass2.gdshader" id="3_vxky5"]
 [ext_resource type="Texture2D" uid="uid://byoevh5wffwes" path="res://Data/Sprites/Textures/UI/corruption_strip31.png" id="4_puxal"]
+[ext_resource type="AudioStream" uid="uid://c6oyliy47jvng" path="res://Data/Sounds/UI/Death/vhs_start.wav" id="7_v7nwv"]
+[ext_resource type="AudioStream" uid="uid://demptb5mern5j" path="res://Data/Sounds/UI/Death/vhs_loop.wav" id="8_ft1l7"]
+[ext_resource type="AudioStream" uid="uid://dr2yfxrsbaaqb" path="res://Data/Sounds/UI/Death/vhs_end.wav" id="9_wd46h"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends CanvasLayer
@@ -26,7 +29,7 @@ script/source = "extends CanvasLayer
 
 
 
-#Side UI
+#Game UI
 var ammo=1
 var max_ammo=1
 var ammo_flash=0.0
@@ -42,6 +45,8 @@ var play_timer=0.0
 
 var health=1.0
 var health_iterp=0.0
+
+var restart_flash=0.0
 
 var fuck_cum_retard=false
 var in_combat=true
@@ -102,8 +107,18 @@ func _process(delta):
 		
 		l_combo.text=\"%03dx\"%[combo]
 		
+		if health_iterp>0.1 && 1.0-health==1.0:
+			if restart_flash<1.0:
+				restart_flash=1.0
+			restart_flash+=delta
+			l_restart.text=\"PRESS R TO RECALIBRATE\"
+		else:
+			restart_flash=clamp(restart_flash-delta,0.0,3.0)
+			l_restart.text=\"VIDEO CALIBRATION\"
+		l_restart.visible=bool(round((sin(restart_flash*PI*4+PI*1.5)+1.0)*0.5))
 		health_iterp=lerp(health_iterp,(1.0-health)*1.2,5.0*delta)
 		death_shader.set_shader_parameter(\"glitch\",health_iterp)
+		
 		
 		
 	#CURSOR
@@ -162,7 +177,7 @@ code = "shader_type canvas_item;
 //custom shader by zeendy for R to restart
 //part of the VHS shaders
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap, repeat_enable;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D glitch_texture: repeat_enable,filter_nearest_mipmap;
 uniform float frame_count : hint_range(0.0, 60.0, 1.0);
 uniform float frame_rate : hint_range(0.0, 60.0, 1.0);
@@ -214,22 +229,21 @@ void fragment(){
 	//uv.x=mod(uv.x-g_capped*0.5,1.0);
 	float y_off=g_capped-(sin(TIME*60.0)*0.01)*g_capped;
 	uv.y=uv.y-y_off;
+	vec2 uv2=SCREEN_UV+vec2(0.0,y_off);
+	vec2 uv3=SCREEN_UV+vec2(0.0,y_off);
 	if (glitch>0.2){
-		uv.x+=clamp(round(rand(vec2(TIME,UV.y))*((glitch-0.2))*100.0)*0.01,-0.6,0.6);
+		uv.x+=clamp(round(rand(vec2(TIME,UV.y))*((glitch-0.2)*0.5)*100.0)*0.01,-0.6,0.6);
 	}
 	vec2 scale=(uv-vec2(0.5))*((1.0-(clamp(glitch,0.0,0.2)*0.5)))+vec2(0.5);
-	vec3 col = texture(SCREEN_TEXTURE, scale,glitch*0.5).rgb;
+	vec3 col = texture(SCREEN_TEXTURE, scale,glitch*0.5).ggg;
+	uv2.x+=(tan(-uv2.y+TIME*2.12353426)*0.1)*glitch+clamp(round(rand(vec2(TIME,UV.y))*((glitch)*0.5)*100.0)*0.01,-0.1,0.1);
+	scale=(uv2-vec2(0.5))*((1.0-(clamp(glitch,0.0,1.0)*0.5)))+vec2(0.5);
+	col.r=texture(SCREEN_TEXTURE, scale,glitch*0.5).r;
+	uv3.x-=(tan(uv3.y+TIME*2.4627354)*0.1)*glitch+clamp(round(rand(vec2(TIME,UV.y*0.23465425))*((glitch)*0.5)*100.0)*0.01,-0.1,0.1);
+	scale=(uv3-vec2(0.5))*((1.0-(clamp(glitch,0.0,1.0)*0.5)))+vec2(0.5);
+	col.b=texture(SCREEN_TEXTURE, scale-vec2(0.1)*glitch,glitch*0.5).b;
 	
 	
-	ivec2 glitch_size=textureSize(glitch_texture,0);
-	vec2 glitch_frames=UV/(vec2(frame_count,1.0));
-	//float glitch_pos=floor(fract(TIME*0.1) * 24.0) / 24.0;
-	float glitch_pos=(floor(fract(TIME) * frame_count) / frame_count);
-	glitch_frames+=vec2(mod(glitch_pos,frame_count),y_off);
-	
-	vec3 c_glitch=texture(glitch_texture,vec2(glitch_frames.x,SCREEN_UV.y*glitch*0.5)).rgb;
-	
-	col=mix(col,c_glitch,glitch*0.7);
 	
 //	float y_check=Noise(DEFINE(3.0,1.0/SCREEN_PIXEL_SIZE),true,vec2(0,FRAGCOORD.y),24.0).r;
 //	float x_check=Noise(DEFINE(3.0,1.0/SCREEN_PIXEL_SIZE),true,vec2(FRAGCOORD.x,FRAGCOORD.y),24.0).r;
@@ -247,7 +261,7 @@ void fragment(){
 shader = SubResource("Shader_c1w0r")
 shader_parameter/frame_count = 31.0
 shader_parameter/frame_rate = 31.0
-shader_parameter/glitch = 0.0
+shader_parameter/glitch = 0.69
 shader_parameter/glitch_texture = ExtResource("4_puxal")
 
 [sub_resource type="Shader" id="Shader_c68wt"]
@@ -410,6 +424,7 @@ script = SubResource("2")
 metadata/_edit_vertical_guides_ = [-121.0]
 
 [node name="Aspect" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -581,6 +596,15 @@ vertical_alignment = 1
 
 [node name="Node2D" type="Node2D" parent="Shaders/DeathPass"]
 material = SubResource("ShaderMaterial_fmdjo")
+
+[node name="Start" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
+stream = ExtResource("7_v7nwv")
+
+[node name="Loop" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
+stream = ExtResource("8_ft1l7")
+
+[node name="End" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
+stream = ExtResource("9_wd46h")
 
 [node name="Pass3" type="CanvasLayer" parent="Shaders"]
 layer = 3

@@ -14,11 +14,14 @@ func _ready():
 
 func _process(delta):
 	if is_hovered() || button_pressed:
+		if text!=" >"+saved_text:
+			owner.hover.play()
 		text=" >"+saved_text
 	else:
 		text="  "+saved_text
 
 func button_action():
+	owner.click.play()
 	if name=="PLAY":
 		get_tree().change_scene_to_file("res://Data/Scenes/Levels/Level_Intern.tscn")
 		GUI.grab_mouse_back()

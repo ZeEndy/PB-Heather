@@ -290,6 +290,7 @@ const weapon_database={
 
 var execution_db={
 	"Unarmed":{
+		"ID":"Unarmed",
 		"Executioner":"Execute", # determine the player's animation
 		"Victim":"Stomp", # determine the enemy's animation
 		"lock_rotation":true # determine w
@@ -321,6 +322,12 @@ func get_wep(input_weapon):
 		if weapon_database[i].has(input_weapon):
 			print(weapon_database[i][input_weapon]["ID"])
 			return weapon_database[i][input_weapon].duplicate(true)
+
+func get_exec(exec) -> Dictionary:
+	var ret=execution_db["Unarmed"]
+	if execution_db.has(exec):
+		return execution_db[exec].duplicate(true)
+	return ret
 
 #	The get function is used on the execution database as it has 2nd variant variable
 #which can be assigned to anything as so we call the execution db and ask for the unarmed

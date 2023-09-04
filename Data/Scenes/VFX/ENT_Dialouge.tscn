@@ -28,6 +28,7 @@ offset_bottom = 118.0
 texture = ExtResource("1_ndw0j")
 
 [node name="Text" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

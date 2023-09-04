@@ -1,4 +1,4 @@
-[gd_scene load_steps=327 format=3 uid="uid://h5egxor26nl0"]
+[gd_scene load_steps=331 format=3 uid="uid://h5egxor26nl0"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Enemy.gd" id="2"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_85y2x"]
@@ -15,9 +15,12 @@
 [ext_resource type="AudioStream" uid="uid://bh68dwnei86hy" path="res://Data/Sounds/Character/Movement/Cloth Thighs.tres" id="11_quhfv"]
 [ext_resource type="AudioStream" uid="uid://m2j5y2n0lexf" path="res://Data/Sounds/Character/Unarmed/Hand Swing.tres" id="12_07hxe"]
 [ext_resource type="AudioStream" uid="uid://3w2umaldmxrb" path="res://Data/Sounds/Character/Unarmed/Hand Hit.tres" id="13_6u5wy"]
+[ext_resource type="AudioStream" uid="uid://b72r5s6sroja" path="res://Data/Sounds/Gore/Head Crusher/Crush_1.wav" id="14_lyy7f"]
 [ext_resource type="AudioStream" uid="uid://btboum63yvwf5" path="res://Data/Sounds/Character/Unarmed/Arm Cloth.tres" id="14_wba4e"]
+[ext_resource type="AudioStream" uid="uid://b5qhujaaog28b" path="res://Data/Sounds/Gore/Head Crusher/Crush_2.wav" id="15_khgw4"]
 [ext_resource type="AudioStream" uid="uid://csnifdot34pnj" path="res://Data/Sounds/Character/Body Hit.tres" id="15_vlokg"]
 [ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Character/PB/Bang.tres" id="16_7wt3n"]
+[ext_resource type="AudioStream" uid="uid://xy12rdnhrcmn" path="res://Data/Sounds/Gore/Head Crusher/Crush_3.wav" id="16_ts86d"]
 [ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Character/PB/Bass.wav" id="17_qmjmg"]
 [ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Character/PB/Mech.tres" id="18_72tqt"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech_2D.gd" id="19_25un3"]
@@ -697,6 +700,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(10, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sound/Head Crush:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.615385),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b3xnd"]
 _data = {
@@ -799,6 +814,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Walk/Start"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../..:sprite_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.571429),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
 }
 
 [sub_resource type="Animation" id="Animation_oi8j4"]
@@ -1523,6 +1550,15 @@ animations = [{
 "name": &"Walk Legs Start",
 "speed": 5.0
 }]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_giy8w"]
+streams_count = 3
+stream_0/stream = ExtResource("14_lyy7f")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("15_khgw4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("16_ts86d")
+stream_2/weight = 1.0
 
 [sub_resource type="Animation" id="5"]
 resource_name = "RESET"
@@ -6352,8 +6388,7 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Get Up Lean"
-offset = Vector2(-2, 0)
+animation = &"Get Up Ground"
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 position = Vector2(10, 1)
@@ -6395,6 +6430,9 @@ stream = ExtResource("11_quhfv")
 volume_db = -15.0
 max_polyphony = 10
 bus = &"SFX"
+
+[node name="Head Crush" type="AudioStreamPlayer2D" parent="PED_SPRITES/Legs/Sound"]
+stream = SubResource("AudioStreamRandomizer_giy8w")
 
 [node name="Body" type="Node2D" parent="PED_SPRITES"]
 z_index = 1
