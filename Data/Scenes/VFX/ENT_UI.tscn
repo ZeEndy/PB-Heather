@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://44hsxv2p1hoi" path="res://Data/Sprites/Textures/UI/Cursor.png" id="2_kbojr"]
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader_Pass2.gdshader" id="3_vxky5"]
 [ext_resource type="Texture2D" uid="uid://byoevh5wffwes" path="res://Data/Sprites/Textures/UI/corruption_strip31.png" id="4_puxal"]
-[ext_resource type="AudioStream" uid="uid://c6oyliy47jvng" path="res://Data/Sounds/UI/Death/vhs_start.wav" id="7_v7nwv"]
-[ext_resource type="AudioStream" uid="uid://demptb5mern5j" path="res://Data/Sounds/UI/Death/vhs_loop.wav" id="8_ft1l7"]
-[ext_resource type="AudioStream" uid="uid://dr2yfxrsbaaqb" path="res://Data/Sounds/UI/Death/vhs_end.wav" id="9_wd46h"]
+[ext_resource type="AudioStream" uid="uid://17lcg6v2rc2" path="res://Data/Sounds/UI/Death/vhs_start.wav" id="7_v7nwv"]
+[ext_resource type="AudioStream" uid="uid://dg1bbd0g7sh23" path="res://Data/Sounds/UI/Death/vhs_loop.wav" id="8_ft1l7"]
+[ext_resource type="AudioStream" uid="uid://s6f53t0phuae" path="res://Data/Sounds/UI/Death/vhs_end.wav" id="9_wd46h"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends CanvasLayer
@@ -424,7 +424,6 @@ script = SubResource("2")
 metadata/_edit_vertical_guides_ = [-121.0]
 
 [node name="Aspect" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

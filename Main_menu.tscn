@@ -10,9 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://bita5dlaw7hi5" path="res://Data/Sounds/UI/Menu/BG_Noise.ogg" id="7_sw72n"]
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="8_i2c4h"]
 [ext_resource type="Shader" path="res://Scripts/HUD/Main Menu/Main_menu.gdshader" id="9_rf31d"]
-[ext_resource type="AudioStream" uid="uid://ba25jpmbhrs1m" path="res://Data/Sounds/UI/Menu/click.wav" id="11_p500m"]
-[ext_resource type="AudioStream" uid="uid://cfmq88v84k48v" path="res://Data/Sounds/UI/Menu/hover.wav" id="12_vu1o0"]
-[ext_resource type="AudioStream" uid="uid://b6h6bdg6l74t7" path="res://Data/Sounds/UI/Menu/slider.wav" id="13_ou0v3"]
+[ext_resource type="AudioStream" uid="uid://bqlqh3pv1uvja" path="res://Data/Sounds/UI/Menu/click.wav" id="11_p500m"]
+[ext_resource type="AudioStream" uid="uid://3u3hbdyvfo61" path="res://Data/Sounds/UI/Menu/hover.wav" id="12_vu1o0"]
+[ext_resource type="AudioStream" uid="uid://yl6ev6pw67ye" path="res://Data/Sounds/UI/Menu/slider.wav" id="13_ou0v3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qf4o7"]
 blend_mode = 1
