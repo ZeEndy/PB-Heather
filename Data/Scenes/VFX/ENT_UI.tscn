@@ -162,9 +162,10 @@ code = "shader_type canvas_item;
 //custom shader by zeendy for R to restart
 //part of the VHS shaders
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-uniform sampler2D glitch_texture: repeat_enable;
-uniform int frame_count;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap, repeat_enable;
+uniform sampler2D glitch_texture: repeat_enable,filter_nearest_mipmap;
+uniform float frame_count : hint_range(0.0, 60.0, 1.0);
+uniform float frame_rate : hint_range(0.0, 60.0, 1.0);
 uniform float glitch;
 
 #define DEFINE(a,iResolution) (iResolution.y / 450.0) * a
@@ -210,39 +211,42 @@ void fragment(){
 	
 	
 	float g_capped=clamp(glitch-0.2,0.0,1.0);
-	uv.x=mod(uv.x-g_capped*0.5,1.0);
-	float y_off=g_capped-(sin(frame*60.0)*0.01)*g_capped;
+	//uv.x=mod(uv.x-g_capped*0.5,1.0);
+	float y_off=g_capped-(sin(TIME*60.0)*0.01)*g_capped;
 	uv.y=uv.y-y_off;
+	if (glitch>0.2){
+		uv.x+=clamp(round(rand(vec2(TIME,UV.y))*((glitch-0.2))*100.0)*0.01,-0.6,0.6);
+	}
 	vec2 scale=(uv-vec2(0.5))*((1.0-(clamp(glitch,0.0,0.2)*0.5)))+vec2(0.5);
-	vec3 col = texture(SCREEN_TEXTURE, scale,glitch).rgb;
+	vec3 col = texture(SCREEN_TEXTURE, scale,glitch*0.5).rgb;
 	
 	
-	if (uv.y+y_off*0.3>0.1*glitch && uv.y+y_off*0.2<0.2*glitch){
-		col=col+vec3(Noise(2,true,FRAGCOORD.xy,24.0).r*1.0);
-	}
-	if (uv.y<-0.1*glitch){
-		col=big_noise();
-		ivec2 glitch_size=textureSize(glitch_texture,0);
-		vec2 glitch_frames=UV/(1.0/SCREEN_PIXEL_SIZE/vec2(float(glitch_size.x)/float(frame_count),1.0)) /vec2(float(frame_count),1.0);
-		float glitch_pos=floor(fract(TIME) * 24.0) / 24.0;
-		glitch_frames+=vec2(mod(glitch_pos,float(frame_count)),-y_off);
-		col=texture(glitch_texture,vec2(glitch_frames.x,SCREEN_UV.y)).rgb;
-		float y_check=Noise(DEFINE(3.0,1.0/SCREEN_PIXEL_SIZE),true,vec2(0,FRAGCOORD.y),24.0).r;
-		float x_check=Noise(DEFINE(1.0,1.0/SCREEN_PIXEL_SIZE),true,vec2(FRAGCOORD.x,FRAGCOORD.y),24.0).r;
-		if (y_check>0.1 && y_check<0.2 && x_check>0.9 && x_check<0.95){
-			col=vec3(y_check*5.0);
-		}
-		
-		
-		//col.b=Noise(DEFINE(50.0,1.0/SCREEN_PIXEL_SIZE),false,FRAGCOORD.xy,24.0).r;
-	}
+	ivec2 glitch_size=textureSize(glitch_texture,0);
+	vec2 glitch_frames=UV/(vec2(frame_count,1.0));
+	//float glitch_pos=floor(fract(TIME*0.1) * 24.0) / 24.0;
+	float glitch_pos=(floor(fract(TIME) * frame_count) / frame_count);
+	glitch_frames+=vec2(mod(glitch_pos,frame_count),y_off);
+	
+	vec3 c_glitch=texture(glitch_texture,vec2(glitch_frames.x,SCREEN_UV.y*glitch*0.5)).rgb;
+	
+	col=mix(col,c_glitch,glitch*0.7);
+	
+//	float y_check=Noise(DEFINE(3.0,1.0/SCREEN_PIXEL_SIZE),true,vec2(0,FRAGCOORD.y),24.0).r;
+//	float x_check=Noise(DEFINE(3.0,1.0/SCREEN_PIXEL_SIZE),true,vec2(FRAGCOORD.x,FRAGCOORD.y),24.0).r;
+//	if (sin(y_check+rand(vec2(TIME)))>0.05 && sin(y_check+TIME)<0.6 && sin(x_check+rand(vec2(TIME)))>0.94 && sin(x_check+TIME)<0.95){
+//		col+=vec3(y_check*0.5)*glitch;
+//
+//
+//		//col.b=Noise(DEFINE(50.0,1.0/SCREEN_PIXEL_SIZE),false,FRAGCOORD.xy,24.0).r;
+//	}
 
 	COLOR.rgb = col.rgb;
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vkn6m"]
 shader = SubResource("Shader_c1w0r")
-shader_parameter/frame_count = 31
+shader_parameter/frame_count = 31.0
+shader_parameter/frame_rate = 31.0
 shader_parameter/glitch = 0.0
 shader_parameter/glitch_texture = ExtResource("4_puxal")
 

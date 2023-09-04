@@ -199,7 +199,7 @@ func _physics_process(delta):
 		if my_velocity.length()>0.1:
 			
 			var test_motion=collision_body.move_and_collide(Vector2(16,0).rotated(my_velocity.angle()),true)
-			if test_motion:
+			if test_motion && !(test_motion.get_collider().get_parent().get_parent() is Door):
 				my_velocity=Vector2.ZERO
 				axis=Vector2.ZERO
 				sprite_legs.play("Get Up/Lean")

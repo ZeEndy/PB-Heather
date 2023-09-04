@@ -6503,7 +6503,6 @@ use_parent_material = true
 rotation = -0.000690252
 sprite_frames = SubResource("SpriteFrames_kbf3m")
 animation = &"Unarmed Walk"
-frame = 2
 
 [node name="mask" type="AnimatedSprite2D" parent="PED_SPRITES/Body/anim"]
 use_parent_material = true
