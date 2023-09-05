@@ -135,7 +135,7 @@ const weapon_database={
 			"Recoil":4,
 			
 			
-			"hearing_radius":220, # its a radius
+			"HR":220, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,
@@ -169,7 +169,7 @@ const weapon_database={
 			"Recoil":4,
 			
 			
-			"hearing_radius":220, # its a radius
+			"HR":220, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,
@@ -205,7 +205,7 @@ const weapon_database={
 			"Recoil":4,
 			
 			
-			"hearing_radius":220, # its a radius
+			"HR":220, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,
@@ -238,7 +238,7 @@ const weapon_database={
 			"Added recoil":0.2,
 			"Recoil":4,
 			
-			"hearing_radius":220, # its a radius
+			"HR":220, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,
@@ -272,7 +272,7 @@ const weapon_database={
 			
 			
 			"ring_ammount":0.2,
-			"hearing_radius":160,
+			"HR":160,
 			
 			
 			"droppable":true,

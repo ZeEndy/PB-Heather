@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://44hsxv2p1hoi" path="res://Data/Sprites/Textures/UI/Cursor.png" id="2_kbojr"]
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader_Pass2.gdshader" id="3_vxky5"]
 [ext_resource type="Texture2D" uid="uid://byoevh5wffwes" path="res://Data/Sprites/Textures/UI/corruption_strip31.png" id="4_puxal"]
-[ext_resource type="AudioStream" uid="uid://17lcg6v2rc2" path="res://Data/Sounds/UI/Death/vhs_start.wav" id="7_v7nwv"]
-[ext_resource type="AudioStream" uid="uid://dg1bbd0g7sh23" path="res://Data/Sounds/UI/Death/vhs_loop.wav" id="8_ft1l7"]
-[ext_resource type="AudioStream" uid="uid://s6f53t0phuae" path="res://Data/Sounds/UI/Death/vhs_end.wav" id="9_wd46h"]
+[ext_resource type="AudioStream" uid="uid://c6oyliy47jvng" path="res://Data/Sounds/UI/Death/vhs_start.wav" id="7_v7nwv"]
+[ext_resource type="AudioStream" uid="uid://demptb5mern5j" path="res://Data/Sounds/UI/Death/vhs_loop.wav" id="8_ft1l7"]
+[ext_resource type="AudioStream" uid="uid://dr2yfxrsbaaqb" path="res://Data/Sounds/UI/Death/vhs_end.wav" id="9_wd46h"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends CanvasLayer
@@ -25,6 +25,9 @@ script/source = "extends CanvasLayer
 @onready var l_restart=get_node(\"Shaders/DeathPass/Restart\") as Label
 @onready var death_shader=get_node(\"Shaders/DeathPass/Shader\").material as ShaderMaterial
 
+@onready var d_start=get_node(\"Shaders/DeathPass/Start\")
+@onready var d_loop=get_node(\"Shaders/DeathPass/Loop\")
+@onready var d_end=get_node(\"Shaders/DeathPass/End\")
 
 
 
@@ -111,16 +114,19 @@ func _process(delta):
 			if restart_flash<1.0:
 				restart_flash=1.0
 			restart_flash+=delta
+			if l_restart.text!=\"PRESS R TO RECALIBRATE\":
+				d_start.play()
 			l_restart.text=\"PRESS R TO RECALIBRATE\"
 		else:
 			restart_flash=clamp(restart_flash-delta,0.0,3.0)
+			if l_restart.text==\"PRESS R TO RECALIBRATE\":
+				d_end.play()
 			l_restart.text=\"VIDEO CALIBRATION\"
 		l_restart.visible=bool(round((sin(restart_flash*PI*4+PI*1.5)+1.0)*0.5))
 		health_iterp=lerp(health_iterp,(1.0-health)*1.2,5.0*delta)
 		death_shader.set_shader_parameter(\"glitch\",health_iterp)
 		
-		
-		
+		d_loop.volume_db=lerp(d_loop.volume_db,-((health)*80.0),10*delta)
 	#CURSOR
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			var width=get_viewport().get_visible_rect().size.x
@@ -589,7 +595,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_k7jvf")
 theme_override_font_sizes/font_size = 62
-text = "PRESS R TO RECALIBRATE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -601,6 +606,7 @@ stream = ExtResource("7_v7nwv")
 
 [node name="Loop" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
 stream = ExtResource("8_ft1l7")
+autoplay = true
 
 [node name="End" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
 stream = ExtResource("9_wd46h")

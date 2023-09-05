@@ -43,8 +43,7 @@ project/assembly_name="Heather- Overdetailed"
 [editor]
 
 movie_writer/mjpeg_quality=1.0
-movie_writer/movie_file="A:/GD/GAMES/HOTLINE CLONE/HotlineSwagger/OUTPUT/FUCKCUNT.avi"
-movie_writer/fps=120
+movie_writer/movie_file="E:/GAMES/FUCKCUNT.avi"
 
 [editor_plugins]
 

@@ -32,7 +32,7 @@ var wait_pickup=0.001
 			"Recoil":4,
 			
 			
-			"hearing_radius":220, # its a radius
+			"HR":220, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,

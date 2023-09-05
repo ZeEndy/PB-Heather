@@ -170,7 +170,6 @@ func _physics_process(delta):
 							alert_timer=alert_time()
 				elif enemy_state==enemy_s.chasing:
 					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
-#					get_node("PED_COL/Label").text=String(path.size())
 					move_to_point(delta,target_point)
 					if player_visibilty()==true:
 						if alert_timer<0:
@@ -240,9 +239,15 @@ func alert_time():
 			return 5
 
 
+func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
+	owner.add_kill()
+	super(damage,killsprite,rot,frame,body_speed,_bleed)
 
-
-
+func investigate_gunshot(distance):
+	if collision_body.global_position.distance_to(focused_player.global_position)<distance && focused_player.get_viewport() == get_viewport():
+		print(collision_body.global_position.distance_to(focused_player.global_position))
+		enemy_state=enemy_s.chasing
+		target_point=focused_player.global_position
 
 
 func _on_VisibilityNotifier2D_viewport_entered(_viewport):

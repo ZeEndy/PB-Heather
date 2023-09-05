@@ -268,8 +268,7 @@ func leg_sprites(delta):
 #This script functions by reading through the poperty list of the weapon variable and spawning
 #a bullet depending on what the parameters are
 #as well as doing melee initalization
-func attack(sound_pos=sprite_body.global_position):
-	
+func attack():
 	if weapon["Type"]=="Melee":
 		# animation decision tree
 		var chosen_attack_sprite = "Attack_"+str(weapon["Attack index"])

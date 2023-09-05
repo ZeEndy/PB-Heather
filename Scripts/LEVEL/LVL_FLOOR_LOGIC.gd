@@ -39,8 +39,10 @@ func _process(delta):
 	if get_tree().get_nodes_in_group("Player").size()>0:
 		if get_tree().get_nodes_in_group("Player")[0].get_parent() in get_children():
 			get_parent().visible=true
+			audio_listener_enable_2d=true
 			get_parent().modulate=Color(1,1,1)
 		else:
+			audio_listener_enable_2d=false
 			if constantly_show==true:
 				get_parent().visible=true
 				get_parent().modulate=Color(0.5,0.5,0.5)

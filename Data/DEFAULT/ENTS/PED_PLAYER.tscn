@@ -4694,7 +4694,7 @@ leg_index = "Walk/Loop"
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["PED", "Player"]]
 collision_layer = 4
-collision_mask = 544
+collision_mask = 608
 wall_min_slide_angle = 0.436332
 
 [node name="CollsionCircle" type="CollisionShape2D" parent="PED_COL"]

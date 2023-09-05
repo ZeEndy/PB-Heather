@@ -263,10 +263,6 @@ rotation = 1.57079
 targetPath = NodePath("../../../Floor 2/Viewport")
 next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
 
-[node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_whf2h")]
-position = Vector2(592, 648)
-desired_weapon = "AK-74U"
-
 [node name="Enemy5" parent="Floor 1/Viewport" instance=ExtResource("27_gysur")]
 position = Vector2(592, 568)
 enemy_type = 2
@@ -322,6 +318,10 @@ position = Vector2(424, 416)
 rotation = 3.14159
 desired_weapon = "AR-15"
 
+[node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_whf2h")]
+position = Vector2(896, 568)
+desired_weapon = "AK-74U"
+
 [node name="Floor 2" type="SubViewportContainer" parent="."]
 visible = false
 offset_right = 40.0
@@ -332,6 +332,7 @@ metadata/_edit_lock_ = true
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 0
 script = ExtResource("4_kcwh6")

@@ -6346,8 +6346,7 @@ copy_time = true
 leg_index = "Walk/Loop"
 
 [node name="PED_COL" type="CharacterBody2D" parent="." groups=["Enemy", "PED"]]
-collision_layer = 65
-collision_mask = 32
+collision_mask = 96
 
 [node name="CollsionCircle" type="CollisionShape2D" parent="PED_COL"]
 rotation = 1.5708

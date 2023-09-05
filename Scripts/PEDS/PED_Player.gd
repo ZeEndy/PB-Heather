@@ -105,6 +105,11 @@ func _physics_process(delta):
 					bAttack=false
 
 
+func attack():
+	if weapon["Type"]=="Firearm":
+		get_tree().call_group("Enemy_Parent","investigate_gunshot",weapon["HR"])
+	super()
+
 func _process(delta):
 	glob_delta=delta
 	super(delta)
@@ -308,9 +313,6 @@ func debug_rand_weapon():
 			weapon=Database.get_wep(rand_list[random_select])
 			sprite_index = ""
 
-
-func attack(sound_pos=null):
-	super(sound_pos)
 
 
 

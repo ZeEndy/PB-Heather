@@ -34,6 +34,7 @@ func _physics_process(_delta):
 						var fart=b.get_parent()
 						get_parent().remove_child(fart)
 						get_node(targetPath).add_child(fart)
+
 						get_parent().current=false
 						get_node(targetPath).current=true
 #						get_node(targetPath).switch_viewports()

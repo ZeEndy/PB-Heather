@@ -3,6 +3,9 @@ extends Node2D
 @onready var weapon_preload=preload("res://Data/DEFAULT/ENTS/ENT_GENERIC_WEAPON.tscn")
 
 var point=0
+var held_score=0
+var combo=0
+var combo_timer=0.0
 var time=0.0
 @export var point_stuff=[]
 @export var saved=false
@@ -160,3 +163,5 @@ func load_level(array):
 				id._ready()
 #				id.swingspeed=i["swingspeed"]
 
+func add_kill():
+	pass
