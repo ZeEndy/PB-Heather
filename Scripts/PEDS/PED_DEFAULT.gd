@@ -124,7 +124,7 @@ func weapon_finder():
 	
 	for weapon in dropped_weapons:
 		# filter weapons that cannot be picked up
-		if weapon.pick_up == true && weapon.visible == true:
+		if weapon.pick_up == true && weapon.get_viewport()==get_viewport():
 			# filter weapons within certain distance
 			if weapon.global_position.distance_squared_to(sprites.global_position) < pickup_dist:
 				# filter weapons behind walls

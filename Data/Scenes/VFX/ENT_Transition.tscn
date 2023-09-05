@@ -131,9 +131,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_q50j3")
 
 [node name="ColorRect" type="ColorRect" parent="Aspect/Tracking/Label"]
 layout_mode = 0
-offset_left = 3.22759
+offset_left = 170.503
 offset_top = 3.0
-offset_right = 17.2276
+offset_right = 184.504
 offset_bottom = 55.0
 
 [node name="anim" type="AnimationPlayer" parent="Aspect/Tracking/Label"]
@@ -142,3 +142,10 @@ reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_que5s")
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

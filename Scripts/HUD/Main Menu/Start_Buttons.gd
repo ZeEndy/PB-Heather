@@ -15,15 +15,15 @@ func _ready():
 func _process(delta):
 	if is_hovered() || button_pressed:
 		if text!=" >"+saved_text:
-			owner.hover.play()
+			GUI.s_hover.play()
 		text=" >"+saved_text
 	else:
 		text="  "+saved_text
 
 func button_action():
-	owner.click.play()
+	GUI.s_click.play()
 	if name=="PLAY":
-		get_tree().change_scene_to_file("res://Data/Scenes/Levels/Level_Intern.tscn")
+		get_tree().change_scene_to_file("res://Data/Scenes/VFX/ENT_Transition.tscn")
 		GUI.grab_mouse_back()
 		GUI.aspect.visible=true
 	elif name=="CHAPTERS":

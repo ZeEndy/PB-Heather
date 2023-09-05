@@ -319,7 +319,7 @@ rotation = 3.14159
 desired_weapon = "AR-15"
 
 [node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_whf2h")]
-position = Vector2(896, 568)
+position = Vector2(592, 608)
 desired_weapon = "AK-74U"
 
 [node name="Floor 2" type="SubViewportContainer" parent="."]

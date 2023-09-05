@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dwddauml6erf8"]
+[gd_scene load_steps=25 format=3 uid="uid://dwddauml6erf8"]
 
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="1_0r6lt"]
 [ext_resource type="Texture2D" uid="uid://cl4otlsif5eow" path="res://HotlineMiami2_7z6jnN3lbh.png" id="1_et1q3"]
@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://c6oyliy47jvng" path="res://Data/Sounds/UI/Death/vhs_start.wav" id="7_v7nwv"]
 [ext_resource type="AudioStream" uid="uid://demptb5mern5j" path="res://Data/Sounds/UI/Death/vhs_loop.wav" id="8_ft1l7"]
 [ext_resource type="AudioStream" uid="uid://dr2yfxrsbaaqb" path="res://Data/Sounds/UI/Death/vhs_end.wav" id="9_wd46h"]
+[ext_resource type="AudioStream" uid="uid://ba25jpmbhrs1m" path="res://Data/Sounds/UI/Menu/click.wav" id="11_jki72"]
+[ext_resource type="AudioStream" uid="uid://cfmq88v84k48v" path="res://Data/Sounds/UI/Menu/hover.wav" id="12_irpgo"]
+[ext_resource type="AudioStream" uid="uid://b6h6bdg6l74t7" path="res://Data/Sounds/UI/Menu/slider.wav" id="13_doitk"]
 
 [sub_resource type="GDScript" id="2"]
 script/source = "extends CanvasLayer
@@ -30,7 +33,9 @@ script/source = "extends CanvasLayer
 @onready var d_end=get_node(\"Shaders/DeathPass/End\")
 
 
-
+@onready var s_click=get_node(\"Click\")
+@onready var s_hover=get_node(\"Hover\")
+@onready var s_slider=get_node(\"Slider\")
 
 #Game UI
 var ammo=1
@@ -646,3 +651,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_jki72")
+max_polyphony = 10
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_irpgo")
+max_polyphony = 10
+
+[node name="Slider" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_doitk")
+max_polyphony = 10

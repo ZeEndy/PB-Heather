@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dihjjqfgo7wmt"]
+[gd_scene load_steps=42 format=3 uid="uid://dihjjqfgo7wmt"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Main_menu.gd" id="1_kjgd0"]
 [ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="2_yqsnn"]
@@ -11,9 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://bita5dlaw7hi5" path="res://Data/Sounds/UI/Menu/BG_Noise.ogg" id="7_sw72n"]
 [ext_resource type="Shader" path="res://Scripts/HUD/VHSOverlayShader.gdshader" id="8_i2c4h"]
 [ext_resource type="Shader" path="res://Scripts/HUD/Main Menu/Main_menu.gdshader" id="9_rf31d"]
-[ext_resource type="AudioStream" uid="uid://ba25jpmbhrs1m" path="res://Data/Sounds/UI/Menu/click.wav" id="11_p500m"]
-[ext_resource type="AudioStream" uid="uid://cfmq88v84k48v" path="res://Data/Sounds/UI/Menu/hover.wav" id="12_vu1o0"]
-[ext_resource type="AudioStream" uid="uid://b6h6bdg6l74t7" path="res://Data/Sounds/UI/Menu/slider.wav" id="13_ou0v3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qf4o7"]
 blend_mode = 1
@@ -1454,15 +1451,3 @@ offset_bottom = 40.0
 [node name="BG" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_sw72n")
 autoplay = true
-
-[node name="Click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_p500m")
-max_polyphony = 10
-
-[node name="Hover" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_vu1o0")
-max_polyphony = 10
-
-[node name="Slider" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_ou0v3")
-max_polyphony = 10

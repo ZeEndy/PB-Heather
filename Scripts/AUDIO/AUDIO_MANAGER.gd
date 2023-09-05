@@ -84,6 +84,8 @@ func play_amb(given_sample,effect=""):
 	audio_player.play()
 	
 
+
+
 #this function is depricated
 func play_audio(given_sample,pos_in_2d=null ,affected_time=true,true_pitch=1,random_pitch=0,bus="Master"):
 	pass
