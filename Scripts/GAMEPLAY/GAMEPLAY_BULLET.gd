@@ -2,7 +2,7 @@ extends Sprite2D
 
 class_name BULLET
 
-@onready var armour_impact=preload("res://Data/Scenes/VFX/Armour/Armour_Impact.tscn")
+@onready var ray_check=get_node("RayCast2D") as RayCast2D
 
 var bullet
 var paused=false
@@ -36,7 +36,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	var collision = check_collision()
+	var last_pos=global_position
+	global_position+=(velocity*delta)
+	var collision = check_collision(delta)
 	if collision.size()>0:
 		if collision[0].collider.get_parent().has_method("do_remove_health"):
 #			spawn_smoke(collision.normal.angle(),collision.position,Color.red,0)
@@ -45,28 +47,36 @@ func _physics_process(delta):
 #				spawn_smoke(-collision.normal.angle(),exit_wound_pos,Color.red,0)
 				get_destroyed=false
 			else:
-				if collision[0].collider.get_parent().health>0:
-					get_destroyed=false
-					queue_free()
+				get_destroyed=false
+				queue_free()
 			if !(collision[0].collider in exclusion):
 				if "Lean" in collision[0].collider.get_parent().sprites.get_node("Legs").animation:
 					if signal_!="":
 						emit_signal("bullet_signal")
-					collision[0].collider.get_parent().do_remove_health(damage,death_lean_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation,"rand",-0.1)
+					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation)
 					exclusion.append(collision[0].collider)
 				else:
 					if signal_!="":
 						emit_signal("bullet_signal")
-					if collision[0].collider.get_parent().armour>0:
-						
-						if GAME.particle_quality>=3:
-							for i in randi_range(2,4):
-								spawn_armour_imp(collision[1].normal.angle(),collision[1].point)
-						destroy()
-					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,global_rotation-PI)
+#					if collision[0].collider.get_parent().armour>0:
+#						if GAME.particle_quality<2:
+#							for i in randi_range(4,8):
+#								spawn_armour_imp(collision[1].normal.angle(),collision[1].point)
+#						destroy()
+					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,global_rotation-PI,"rand")
 					exclusion.append(collision[0].collider)
-		elif collision[0].collider.get_parent().has_method("destroy_window"):
-			collision[0].collider.get_parent().destroy_window()
+		elif collision[0].collider is TileMap:
+			var store_pos=collision[0].collider.local_to_map(collision[1].point+Vector2(0.1,0.0).rotated(rotation))
+			var data : TileData = collision[0].collider.get_cell_tile_data(1,store_pos)
+			if data!=null && data.get_custom_data_by_layer_id(1)==true:
+				if data.get_custom_data_by_layer_id(2)==false:
+					var original_pos=collision[0].collider.get_cell_atlas_coords(1,store_pos)
+					collision[0].collider.set_cell(1,store_pos,2,original_pos+Vector2i(3,0))
+				get_destroyed=false
+			else:
+				if data!=null:
+					print(data)
+				destroy()
 			
 		else:
 			destroy()
@@ -79,11 +89,8 @@ func _physics_process(delta):
 			frames.add_frame("default",load(ground_hole))
 			sprite.frames=frames
 			add_child(sprite)
-			if GAME.particle_quality>=3:
+			if GAME.particle_quality<2:
 				get_parent().get_node_or_null(get_parent().my_surface).add_to_surface(sprite,global_position,deg_to_rad(randf_range(-180,180)))
-#		spawn_smoke(global_rotation-PI,global_position,Color.whitesmoke,1)
-#		for i in 7+rand_range(0,12):
-#			spawn_spark(rad2deg(rand_range(0,PI*2)),global_position)
 		queue_free()
 		return
 	bullet_height-=delta
@@ -101,52 +108,34 @@ func destroy():
 
 
 
-#func spawn_smoke(given_dir=global_rotation,given_pos=global_position,given_color=Color.whitesmoke,random=1):
-#	var sprite = WadSprite.new()
-#	sprite.frames=_wad.meta_sprite("Atlases/Sprites/Effects/Smoke/sprSmokeHit.meta")
-#	sprite.animation="sprSmokeHit"
-#	sprite.playing=true
-#	sprite.set_script(load("res://Scripts/VFX/Bullet impact/VFX_Smoke_hit.gd"))
-##	var my_mat3erial = CanvasItemMaterial.new()
-##	my_material.set("blend_mode",BLEND_MODE_ADD)
-#	sprite.modulate=given_color
-##	sprite.material=my_material
-#	sprite.direction=given_dir+deg_to_rad(rand_range(-65,65)*random)
-#	sprite.global_position=given_pos
-#	sprite.speed=1+rand_range(0,0.5)*randf()
-#	get_parent().add_child(sprite)
-	pass
-
-
-
-func check_collision():
+func check_collision(delta):
 	var collision_objects=[]
-	
 	var shape = RectangleShape2D.new()
-	shape.extents=size
+	shape.extents=Vector2(7.5,1)
 	
 	var query = PhysicsShapeQueryParameters2D.new()
 	query.set_shape(shape)
-	query.collision_mask=0b11111111111111111111
+	query.collision_mask=get_node("RayCast2D").collision_mask
+	
 	var space = get_world_2d().direct_space_state
-	query.set_transform(Transform2D(global_rotation, global_position+shape.extents.rotated(global_rotation)))
-	var piss=space.intersect_shape(query,1)
-	if piss.size()>0:
-		collision_objects=[piss[0],space.get_rest_info(query)]
+	query.set_transform(Transform2D(global_rotation,global_position+Vector2(shape.extents.x*2,0).rotated(global_rotation)))
+	ray_check.target_position=Vector2(speed*delta,0.0)
+	if ray_check.is_colliding()==true:
+		collision_objects.append({
+		"collider": ray_check.get_collider()
+		})
+		collision_objects.append({
+		"normal":ray_check.get_collision_normal(),
+		"point":ray_check.get_collision_point()
+		})
+	else:
+		var piss=space.intersect_shape(query,5)
+		if piss.size()>0:
+			collision_objects=[piss[0],space.get_rest_info(query)]
 	return collision_objects
 
 
-func spawn_armour_imp(given_dir=global_rotation,given_pos=global_position):
-	var sprite = armour_impact.instantiate()
-	sprite.play()
-	var dir=0
-	dir=given_dir+deg_to_rad(randf_range(-65,65))
-#	dir=given_dir
-	sprite.global_rotation=dir
-	sprite.direction=dir
-	sprite.global_position=given_pos
-	sprite.speed=2+randf_range(0,5)*randf()
-	get_parent().add_child(sprite)
+
 
 
 func play_sample(given_sample,affected_time=true,true_pitch=1,random_pitch=0,bus="Master"):

@@ -25,7 +25,6 @@ func button_action():
 	if name=="PLAY":
 		get_tree().change_scene_to_file("res://Data/Scenes/VFX/ENT_Transition.tscn")
 		GUI.grab_mouse_back()
-		GUI.aspect.visible=true
 	elif name=="CHAPTERS":
 		get_node("../../Recordings").visible=!get_node("../../Recordings").visible
 		get_node("../../Options").visible=false

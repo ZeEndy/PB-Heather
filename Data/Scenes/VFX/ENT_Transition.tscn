@@ -33,7 +33,7 @@ _data = {
 "Loading": SubResource("Animation_vrwnn")
 }
 
-[node name="Transition" type="CanvasLayer"]
+[node name="Main" type="CanvasLayer"]
 script = ExtResource("1_hxg4u")
 
 [node name="Aspect" type="Control" parent="."]

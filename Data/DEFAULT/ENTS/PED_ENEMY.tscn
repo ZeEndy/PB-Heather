@@ -681,11 +681,11 @@ tracks/3/path = NodePath("../..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.8459),
+"times": PackedFloat32Array(0.769),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [100.0, "Executing/Stomp", null, 0.769, 2, false],
-"method": &"do_remove_health"
+"args": [100.0, "Executing/Stomp"],
+"method": &"kys"
 }]
 }
 tracks/4/type = "value"

@@ -205,7 +205,9 @@ func go_down(down_dir=randi()):
 			collision_body.set_collision_layer_bit(0,false)
 	super(down_dir)
 
-
+func kys(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
+	print("WHYY")
+	do_remove_health(damage,killsprite,rot,frame,body_speed,_bleed)
 
 
 func player_visibilty(mode=0):
@@ -242,6 +244,7 @@ func alert_time():
 func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
 	owner.add_kill()
 	super(damage,killsprite,rot,frame,body_speed,_bleed)
+
 
 func investigate_gunshot(distance):
 	if collision_body.global_position.distance_to(focused_player.global_position)<distance && focused_player.get_viewport() == get_viewport():

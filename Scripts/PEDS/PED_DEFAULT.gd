@@ -181,7 +181,7 @@ func _process(delta):
 	elif state==ped_states.execute:
 		if copy_time==true:
 			execute_target.sprite_legs.speed_scale=sprite_body.speed_scale
-			if execute_target.sprite_legs_anim.current_animation_position<sprite_body.frame:
+			if execute_target.sprite_legs_anim.current_animation_position-sprite_body.frame>0.01:
 				execute_target.sprite_legs_anim.advance(sprite_body.frame-execute_target.sprite_legs_anim.current_animation_position)
 				
 func _physics_process(delta):
@@ -458,10 +458,14 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 			state=ped_states.dead
 	if state==ped_states.down && !("Get Up/" in sprite_legs.animation):
 		sprite_legs.speed_scale=0
+		health=0
 		sprite_body.visible=false
 		state=ped_states.dead
-#		col
+		get_node("PED_COL/CollsionCircle").disabled=true
+		print("cunt")
 		my_velocity=Vector2(0.0,0.0)
+	print("cunt")
+
 
 func go_down(direction=randf()*PI):
 	if state == ped_states.alive:

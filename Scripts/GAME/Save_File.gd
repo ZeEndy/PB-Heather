@@ -9,7 +9,7 @@ extends Resource
 		"time":0
 	},
 	"Panic Room":{
-		"path":"res://Data/Scenes/Levels/Level_Intern.tscn",
+		"path":"res://Data/Scenes/Levels/PanicRoom.tscn",
 		"unlocked":false,
 		"points":0,
 		"max combo":0,

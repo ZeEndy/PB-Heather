@@ -123,7 +123,7 @@ shader = ExtResource("8_i2c4h")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67de0"]
 shader = ExtResource("9_rf31d")
 
-[node name="Main Menu" type="Control"]
+[node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -726,6 +726,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4oogt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uoe2p")
 theme_override_styles/focus = SubResource("StyleBoxFlat_u6l8u")
 script = ExtResource("6_huwnp")
+next_level = "res://Data/Scenes/Levels/Level_Intern.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Intern"]
 modulate = Color(0.298039, 0.298039, 0.298039, 0.623529)
@@ -764,6 +765,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4oogt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uoe2p")
 theme_override_styles/focus = SubResource("StyleBoxFlat_u6l8u")
 script = ExtResource("6_huwnp")
+next_level = "res://Data/Scenes/Levels/PanicRoom.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Panic room"]
 modulate = Color(0.298039, 0.298039, 0.298039, 0.623529)
@@ -802,6 +804,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4oogt")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uoe2p")
 theme_override_styles/focus = SubResource("StyleBoxFlat_u6l8u")
 script = ExtResource("6_huwnp")
+next_level = "res://Data/Scenes/Levels/PanicRoom.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect/Recordings/Shoreline"]
 modulate = Color(0.298039, 0.298039, 0.298039, 0.623529)

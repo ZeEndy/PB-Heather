@@ -124,7 +124,7 @@ sources/0 = SubResource("TileSetAtlasSource_xtvrb")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2ar4q"]
 polygon = PackedVector2Array(0, 0, 584, 0, 584, 424, 0, 424)
 
-[node name="Level" type="Node2D" groups=["Current_room", "Level"]]
+[node name="Main" type="Node2D" groups=["Current_room", "Level"]]
 script = ExtResource("1_uhdey")
 song = ExtResource("2_gfyvl")
 metadata/_edit_horizontal_guides_ = []

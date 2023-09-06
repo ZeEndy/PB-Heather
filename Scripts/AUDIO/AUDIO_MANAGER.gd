@@ -81,6 +81,7 @@ func play_amb(given_sample,effect=""):
 	add_child(audio_player)
 	audio_player.stream=get_audio_stream(given_sample)
 	audio_player.efx=effect
+	audio_player.bus="SFX"
 	audio_player.play()
 	
 
