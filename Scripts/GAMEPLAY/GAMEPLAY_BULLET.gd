@@ -66,6 +66,7 @@ func _physics_process(delta):
 					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,global_rotation-PI,"rand")
 					exclusion.append(collision[0].collider)
 		elif collision[0].collider is TileMap:
+			collision[0].collider as TileMap
 			var store_pos=collision[0].collider.local_to_map(collision[1].point+Vector2(0.1,0.0).rotated(rotation))
 			var data : TileData = collision[0].collider.get_cell_tile_data(1,store_pos)
 			if data!=null && data.get_custom_data_by_layer_id(1)==true:
@@ -74,6 +75,7 @@ func _physics_process(delta):
 					collision[0].collider.set_cell(1,store_pos,2,original_pos+Vector2i(3,0))
 				get_destroyed=false
 			else:
+#				collision[0].collider.get_cell_source_id()
 				if data!=null:
 					print(data)
 				destroy()

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1moxrkp6h8oo"]
+
+[ext_resource type="Texture2D" uid="uid://42o5h8n4lhjj" path="res://Data/Sprites/Objects/Intern/Larger_Plant_strip2.png" id="1_gma7p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg6it"]
+radius = 15.0
+
+[node name="Larger Plant" type="Sprite2D"]
+texture = ExtResource("1_gma7p")
+centered = false
+hframes = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(30, 32)
+shape = SubResource("CircleShape2D_gg6it")

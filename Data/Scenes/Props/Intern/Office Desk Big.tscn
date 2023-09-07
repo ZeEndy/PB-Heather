@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdvi4hrfdckpw"]
+
+[ext_resource type="Texture2D" uid="uid://cnnf2w6jxh3hq" path="res://Data/Sprites/Objects/Intern/OfficeDeskBig_strip8.png" id="1_104t5"]
+[ext_resource type="PackedScene" uid="uid://bb1hu6uogqvwq" path="res://Data/Scenes/Props/Intern/Office Chair.tscn" id="2_l1h8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mewf"]
+size = Vector2(55, 25)
+
+[node name="Office Desk Big" type="Sprite2D"]
+texture = ExtResource("1_104t5")
+centered = false
+hframes = 8
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(27.5, 12.5)
+shape = SubResource("RectangleShape2D_1mewf")
+
+[node name="Office Chair" parent="." instance=ExtResource("2_l1h8p")]
+z_index = -1
+position = Vector2(28, 24)
+rotation = -1.57079

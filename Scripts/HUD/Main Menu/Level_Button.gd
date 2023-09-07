@@ -22,8 +22,9 @@ func _process(delta):
 		hover=false
 
 func switch_level():
+	GUI.s_click.play()
 	var scene=ResourceLoader.load_threaded_get("res://Data/Scenes/VFX/ENT_Transition.tscn").instantiate()
 	scene.next_level=next_level
 	get_tree().root.add_child(scene)
-	get_tree().root.remove_child(owner)
+	owner.queue_free()
 	GUI.grab_mouse_back()

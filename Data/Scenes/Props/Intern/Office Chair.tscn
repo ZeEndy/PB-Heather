@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb1hu6uogqvwq"]
+
+[ext_resource type="Texture2D" uid="uid://pbpcjvvtecmp" path="res://Data/Sprites/Objects/Intern/Office Chair/Body.png" id="1_qeo17"]
+[ext_resource type="Script" path="res://Scripts/LEVEL/Props/OfficeChair.gd" id="2_xy0ug"]
+[ext_resource type="Texture2D" uid="uid://2ctifa7bv54" path="res://Data/Sprites/Objects/Intern/Office Chair/Legs.png" id="3_dbssb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngjke"]
+radius = 13.0384
+
+[node name="Office Chair" type="Sprite2D"]
+texture = ExtResource("1_qeo17")
+script = ExtResource("2_xy0ug")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_ngjke")
+
+[node name="Legs" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("3_dbssb")

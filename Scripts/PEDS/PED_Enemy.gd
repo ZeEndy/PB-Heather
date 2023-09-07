@@ -170,7 +170,7 @@ func _physics_process(delta):
 							alert_timer=alert_time()
 				elif enemy_state==enemy_s.chasing:
 					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
-					move_to_point(delta,target_point)
+					move_to_point(delta,target_point,0.95)
 					if player_visibilty()==true:
 						if alert_timer<0:
 							enemy_state=enemy_s.charging

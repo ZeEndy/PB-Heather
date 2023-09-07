@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjif2s61rhqxm"]
+
+[ext_resource type="Texture2D" uid="uid://dhha52wngrt57" path="res://Data/Sprites/Objects/Intern/Meeting_Table_strip4.png" id="1_8y00g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28848"]
+size = Vector2(66, 39)
+
+[node name="Meeting Table" type="Sprite2D"]
+texture = ExtResource("1_8y00g")
+centered = false
+hframes = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(40, 27.5)
+shape = SubResource("RectangleShape2D_28848")

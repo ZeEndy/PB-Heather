@@ -122,6 +122,7 @@ sources/0 = SubResource("TileSetAtlasSource_xtvrb")
 [node name="Sex Level" type="Node2D" groups=["Current_room", "Level"]]
 script = ExtResource("1_5bv03")
 n_level = "Panic Room"
+n_song = "none"
 
 [node name="Editing" type="Node" parent="."]
 

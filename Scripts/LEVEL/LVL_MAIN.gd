@@ -13,7 +13,7 @@ var time=0.0
 @export var combat_level=true
 @export var n_level="Intern"
 @export var n_song="Health - Blue Monday"
-
+@export var n_tape=""
 var checkpoint=[]
 var restart=[]
 

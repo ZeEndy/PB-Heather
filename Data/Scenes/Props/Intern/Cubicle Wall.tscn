@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds74s56d3s3hp"]
+
+[ext_resource type="Texture2D" uid="uid://bfjmxo5vll4g7" path="res://Data/Sprites/Objects/Intern/Cubicle_Wall.png" id="1_3ipao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjted"]
+size = Vector2(32, 4)
+
+[node name="CubicleWall" type="Sprite2D"]
+texture = ExtResource("1_3ipao")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 48
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(16, 2)
+shape = SubResource("RectangleShape2D_yjted")

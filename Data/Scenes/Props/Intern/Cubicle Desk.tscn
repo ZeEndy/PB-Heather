@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt0qpodnurrnk"]
+
+[ext_resource type="Texture2D" uid="uid://det31qgpgxrve" path="res://Data/Sprites/Objects/Intern/Cubicle_Desk_strip4.png" id="1_20b8a"]
+[ext_resource type="PackedScene" uid="uid://bb1hu6uogqvwq" path="res://Data/Scenes/Props/Intern/Office Chair.tscn" id="2_ipreu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_glo4o"]
+radius = 9.0
+height = 46.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf7cp"]
+size = Vector2(18, 18)
+
+[node name="Cubicle Desk" type="Sprite2D"]
+texture = ExtResource("1_20b8a")
+centered = false
+hframes = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(32, 32)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(20, -3)
+shape = SubResource("CapsuleShape2D_glo4o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, -20)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_glo4o")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(20, -20)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_yf7cp")
+
+[node name="Office Chair" parent="." instance=ExtResource("2_ipreu")]
+z_index = -1
+position = Vector2(36, 25)
+rotation = -0.785397

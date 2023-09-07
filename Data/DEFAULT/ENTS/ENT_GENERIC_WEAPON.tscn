@@ -171,7 +171,7 @@ animations = [{
 [node name="ENT_GENERIC_WEAPON" type="RigidBody2D" groups=["Weapon"]]
 z_index = -2
 collision_layer = 258
-collision_mask = 97
+collision_mask = 77
 mass = 0.00204082
 physics_material_override = SubResource("1")
 continuous_cd = 1
