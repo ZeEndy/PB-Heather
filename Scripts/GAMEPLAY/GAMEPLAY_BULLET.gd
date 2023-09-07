@@ -72,7 +72,10 @@ func _physics_process(delta):
 			if data!=null && data.get_custom_data_by_layer_id(1)==true:
 				if data.get_custom_data_by_layer_id(2)==false:
 					var original_pos=collision[0].collider.get_cell_atlas_coords(1,store_pos)
-					collision[0].collider.set_cell(1,store_pos,2,original_pos+Vector2i(3,0))
+					collision[0].collider.set_cell(1,
+						store_pos,
+						collision[0].collider.get_cell_source_id(1,store_pos),
+						original_pos+Vector2i(3,0))
 				get_destroyed=false
 			else:
 #				collision[0].collider.get_cell_source_id()

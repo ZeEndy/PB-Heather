@@ -256,34 +256,32 @@ const weapon_database={
 			#ammo of the weapon
 			"Type":"Firearm",
 			"Mode":"Semi",
+			
+			"Bullet":"FMJ",
 			#ammo of the weapon
 			"Ammo":2,
 			"Max ammo":2,
+			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
-			"Attack count":0,
-			"Random index":false,
+			"Attack ammount":0,
+			"Random sprite":true,
 			
-			"dry_fire":"PED_SPRITES/Body/Sound Library/AR-57/Trigger Pressed",
+			"Damage":100,
 			
-			"damage":75,
-			"added_recoil":0.1,
-			"recoil":4,
+			"Added recoil":0.2,
+			"Recoil":4,
 			
-			
-			"ring_ammount":0.2,
-			"HR":160,
-			
+			"HR":220, # its a radius
+			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,
 			
-			"screen_shake":1,
-			
-			
 			#trigger
-			"trigger_pressed":false,
-			"Cycle rate":0.01,
+			"Trigger pressed":false,
+			"Cycle rate":0.0779221,
 			"Cycle":0.0,
+			#How many "Bullets" need to spawn
 			"Splits":8},
 	}
 }
@@ -312,6 +310,10 @@ var death_db={
 		"kill_lean_sprite":"Dead/Machinegun",
 	},
 	"AR-15":{
+		"kill_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun",
+	},
+	"OU-DB":{
 		"kill_sprite":"Dead/Machinegun",
 		"kill_lean_sprite":"Dead/Machinegun",
 	},

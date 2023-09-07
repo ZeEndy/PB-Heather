@@ -114,6 +114,13 @@ func save_level():
 						"door_timer":i.door_timer
 #						"swingspeed":i.swingspeed
 					})
+				if i.name=="Tiles":
+					i as TileMap
+					var used_cells=i.get_used_cells(1)
+					var atlas_pos=[]
+					for t in used_cells.size()-1:
+						atlas_pos.append(i.get_cell_atlas_coords(1,used_cells[t]))
+					save_array.append({"id":i,"positions":used_cells,"atlas_pos":atlas_pos})
 	return save_array
 
 
@@ -163,7 +170,11 @@ func load_level(array):
 				id.door_timer=i["door_timer"]
 				id.next_rot=i["next_rot"]
 				id._ready()
-#				id.swingspeed=i["swingspeed"]
+			if id is TileMap:
+				for x in i["positions"].size()-1:
+					id.set_cell(1,i["positions"][x],
+					id.get_cell_source_id(1,i["positions"][x]),
+					i["atlas_pos"][x])
 
 func add_kill():
 	pass

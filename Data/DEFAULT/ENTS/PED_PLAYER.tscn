@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://dvj8wuvgn4i2c"]
+[gd_scene load_steps=107 format=3 uid="uid://dvj8wuvgn4i2c"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Player.gd" id="1_lwlbx"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_6rt3n"]
@@ -13,9 +13,12 @@
 [ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Character/PB/Bass.wav" id="27_48f6x"]
 [ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Character/PB/Bang.tres" id="27_mceon"]
 [ext_resource type="AudioStream" uid="uid://m2j5y2n0lexf" path="res://Data/Sounds/Character/Unarmed/Hand Swing.tres" id="27_uvhpf"]
+[ext_resource type="AudioStream" uid="uid://c70lmxv8st1y3" path="res://Data/Sounds/Character/OU-DB/Fire.tres" id="28_km6xx"]
 [ext_resource type="AudioStream" uid="uid://3w2umaldmxrb" path="res://Data/Sounds/Character/Unarmed/Hand Hit.tres" id="28_m7fpa"]
 [ext_resource type="AudioStream" uid="uid://btboum63yvwf5" path="res://Data/Sounds/Character/Unarmed/Arm Cloth.tres" id="29_cb6nw"]
+[ext_resource type="AudioStream" uid="uid://bc6siynbqyblx" path="res://Data/Sounds/Character/OU-DB/Sub.tres" id="29_f7bgt"]
 [ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Character/PB/Mech.tres" id="29_k30rw"]
+[ext_resource type="AudioStream" uid="uid://dl81ojjbv8384" path="res://Data/Sounds/Character/OU-DB/First Hammer.tres" id="30_7f57o"]
 [ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Character/PB/Hammer.tres" id="30_o2wvb"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech.gd" id="33_qn6oc"]
 [ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Character/M4/Fire.tres" id="34_m4dgu"]
@@ -1727,7 +1730,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sound/AR-15/Attack:playing")
+tracks/10/path = NodePath("Sound/AR-15/Fire:playing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1739,7 +1742,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sound/AR-15/Attack/Bass:playing")
+tracks/11/path = NodePath("Sound/AR-15/Fire/Bass:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1751,7 +1754,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sound/AR-15/Attack/Mech:playing")
+tracks/12/path = NodePath("Sound/AR-15/Fire/Mech:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1892,7 +1895,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sound/AR-15/Attack:playing")
+tracks/10/path = NodePath("Sound/AR-15/Fire:playing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1904,7 +1907,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sound/AR-15/Attack/Bass:playing")
+tracks/11/path = NodePath("Sound/AR-15/Fire/Bass:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1916,7 +1919,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sound/AR-15/Attack/Mech:playing")
+tracks/12/path = NodePath("Sound/AR-15/Fire/Mech:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -2880,6 +2883,434 @@ _data = {
 "Walk": SubResource("Animation_qwbwy")
 }
 
+[sub_resource type="Animation" id="Animation_xldaw"]
+resource_name = "Attack_-1"
+length = 0.1
+step = 0.0176
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0787746),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 0), Vector2(11, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0787746),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"OU-DB Attack", &"OU-DB Attack"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim/execution_arms:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anim/Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0176),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 0), Vector2(1, -1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("anim:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0176, 0.0352, 0.0528, 0.0704),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../..:sprite_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0704),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Melee_Area/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("anim/Bullet_Spawn:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = false
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.0176, 0.0352, 0.0528, 0.0704),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(27.9979, 3.01933), Vector2(26.9993, 1.01864), Vector2(27.9986, 2.01933), Vector2(28.9986, 2.02002), Vector2(28.9986, 2.02002)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1.0, false],
+"method": &"shake_screen"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sound/OU-DB/Fire:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.000415335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sound/OU-DB/Fire/Bass:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.000415335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ixoap"]
+resource_name = "Attack_0"
+length = 0.1
+step = 0.0176
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0787746),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 0), Vector2(11, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0787746),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"OU-DB Attack", &"OU-DB Attack"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim/execution_arms:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anim/Head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0176),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 0), Vector2(1, -1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("anim:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0176, 0.0352, 0.0528, 0.0704),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../..:sprite_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0704),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Melee_Area/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("anim/Bullet_Spawn:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = false
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.0176, 0.0352, 0.0528, 0.0704),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(29.9986, 2.02071), Vector2(29, 0.0200174), Vector2(29.9993, 1.02071), Vector2(30.9993, 1.0214), Vector2(30.9993, 1.0214)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1.0, false],
+"method": &"shake_screen"
+}]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sound/OU-DB/Fire:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.000996805),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sound/OU-DB/Fire/Bass:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sound/OU-DB/Fire/Mech:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_no3t3"]
+resource_name = "Walk"
+length = 0.615385
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.615385),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 0), Vector2(11, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.307692, 0.384615),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.615385),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"OU-DB Walk", &"OU-DB Walk"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anim:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("anim/Bullet_Spawn:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384616, 0.461539, 0.538462),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(24.9986, 2.01726), Vector2(25.9986, 2.01795), Vector2(26.9986, 2.01864), Vector2(25.9986, 2.01795), Vector2(24.9986, 2.01726), Vector2(23.9986, 2.01657), Vector2(22.9986, 2.01588), Vector2(23.9986, 2.01657)]
+}
+
+[sub_resource type="Animation" id="Animation_a3bjp"]
+resource_name = "Walk Empty"
+length = 0.615385
+step = 0.0769231
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anim:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.615385),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(11, 0), Vector2(11, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.307692, 0.384615),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 0), Vector2(1, 1), Vector2(1, 0), Vector2(1, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anim:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.615385),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [&"OU-DB Walk", &"OU-DB Walk"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("anim:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384615, 0.461538, 0.538462, 0.615385),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("anim/Bullet_Spawn:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384616, 0.461539, 0.538462),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(24.9986, 2.01726), Vector2(25.9986, 2.01795), Vector2(26.9986, 2.01864), Vector2(25.9986, 2.01795), Vector2(24.9986, 2.01726), Vector2(23.9986, 2.01657), Vector2(22.9986, 2.01588), Vector2(23.9986, 2.01657)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gil16"]
+_data = {
+"Attack_-1": SubResource("Animation_xldaw"),
+"Attack_0": SubResource("Animation_ixoap"),
+"Walk": SubResource("Animation_no3t3"),
+"Walk Empty": SubResource("Animation_a3bjp")
+}
+
 [sub_resource type="Animation" id="Animation_ouipw"]
 resource_name = "Attack_-1"
 length = 0.11
@@ -3011,7 +3442,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sound/PB/Attack:playing")
+tracks/10/path = NodePath("Sound/PB/Fire:playing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -3023,7 +3454,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sound/PB/Attack/Bass:playing")
+tracks/11/path = NodePath("Sound/PB/Fire/Bass:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -3035,7 +3466,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sound/PB/Attack/Mech:playing")
+tracks/12/path = NodePath("Sound/PB/Fire/Mech:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -3047,7 +3478,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Sound/PB/Attack/Hammer:playing")
+tracks/13/path = NodePath("Sound/PB/Fire/Hammer:playing")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -3188,7 +3619,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Sound/PB/Attack:playing")
+tracks/10/path = NodePath("Sound/PB/Fire:playing")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -3200,7 +3631,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sound/PB/Attack/Bass:playing")
+tracks/11/path = NodePath("Sound/PB/Fire/Bass:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -3212,7 +3643,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sound/PB/Attack/Mech:playing")
+tracks/12/path = NodePath("Sound/PB/Fire/Mech:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -3224,7 +3655,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Sound/PB/Attack/Hammer:playing")
+tracks/13/path = NodePath("Sound/PB/Fire/Hammer:playing")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -4789,6 +5220,7 @@ libraries = {
 "AR-15": SubResource("AnimationLibrary_vxpc7"),
 "Bat": SubResource("AnimationLibrary_34qmu"),
 "Knife": SubResource("AnimationLibrary_uitxk"),
+"OU-DB": SubResource("AnimationLibrary_gil16"),
 "PB": SubResource("AnimationLibrary_nc6w3"),
 "Shotgun": SubResource("AnimationLibrary_tpimf"),
 "Unarmed": SubResource("AnimationLibrary_e6sge")
@@ -4857,45 +5289,46 @@ bus = &"SFX"
 [node name="Impact" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed/Execution"]
 stream = ExtResource("15_5pbmk")
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="PB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
-[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB"]
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB"]
 stream = ExtResource("27_mceon")
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Fire"]
 stream = ExtResource("27_48f6x")
 volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Fire"]
 stream = ExtResource("29_k30rw")
 max_polyphony = 10
 bus = &"SFX"
 script = ExtResource("33_qn6oc")
 
-[node name="Hammer" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Attack"]
+[node name="Hammer" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Fire"]
 stream = ExtResource("30_o2wvb")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="AR-15" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
-[node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15"]
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15"]
 stream = ExtResource("34_m4dgu")
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
+[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Fire"]
 stream = ExtResource("35_trg4h")
 volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
+[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Fire"]
 stream = ExtResource("36_fihb0")
 max_polyphony = 10
 bus = &"SFX"
@@ -4906,14 +5339,35 @@ script = ExtResource("33_qn6oc")
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U"]
 stream = ExtResource("37_5xb3e")
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
 stream = ExtResource("38_0c8nq")
 max_polyphony = 5
+bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
 stream = ExtResource("39_ihrdl")
 max_polyphony = 5
+bus = &"SFX"
+script = ExtResource("33_qn6oc")
+
+[node name="OU-DB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
+
+[node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/OU-DB"]
+stream = ExtResource("28_km6xx")
+max_polyphony = 5
+bus = &"SFX"
+
+[node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/OU-DB/Fire"]
+stream = ExtResource("29_f7bgt")
+max_polyphony = 5
+bus = &"SFX"
+
+[node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/OU-DB/Fire"]
+stream = ExtResource("30_7f57o")
+max_polyphony = 5
+bus = &"SFX"
 script = ExtResource("33_qn6oc")
 
 [node name="AudioListener2d" type="AudioListener2D" parent="PED_SPRITES"]
