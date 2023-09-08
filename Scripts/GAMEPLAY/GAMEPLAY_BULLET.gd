@@ -67,7 +67,7 @@ func _physics_process(delta):
 					exclusion.append(collision[0].collider)
 		elif collision[0].collider is TileMap:
 			collision[0].collider as TileMap
-			var store_pos=collision[0].collider.local_to_map(collision[1].point+Vector2(0.1,0.0).rotated(rotation))
+			var store_pos=collision[0].collider.local_to_map(collision[1].point-collision[1].normal)
 			var data : TileData = collision[0].collider.get_cell_tile_data(1,store_pos)
 			if data!=null && data.get_custom_data_by_layer_id(1)==true:
 				if data.get_custom_data_by_layer_id(2)==false:

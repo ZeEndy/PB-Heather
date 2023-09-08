@@ -56,5 +56,6 @@ func _on_NextFloor_body_exited(b):
 		GAME.fade=false
 		b.get_parent().override_movement=false
 		if pull_out==true:
-			get_tree().get_nodes_in_group("Level")[0]._save_checkpoint()
 			pull_out=false
+			await get_tree().create_timer(0.5).timeout
+			get_tree().get_nodes_in_group("Level")[0]._save_checkpoint()

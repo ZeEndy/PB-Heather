@@ -268,7 +268,7 @@ next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
 [node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_k8i62")]
 position = Vector2(632, 504)
 rotation = -1.5708
-desired_weapon = "PB"
+desired_weapon = "MAC-10"
 
 [node name="Enemy" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(96, 205)

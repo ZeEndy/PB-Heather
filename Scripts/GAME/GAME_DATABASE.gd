@@ -177,8 +177,8 @@ const weapon_database={
 			#trigger
 			"Trigger pressed":false,
 			"Trigger bullets":0,
-			"Cycle rate":0.1,
-			"Cycle":0.0550459,
+			"Cycle rate":0.0550459,
+			"Cycle":0,
 			"Trigger shot":0,
 			"Splits":1},
 		
@@ -314,6 +314,10 @@ var death_db={
 		"kill_lean_sprite":"Dead/Machinegun",
 	},
 	"OU-DB":{
+		"kill_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun",
+	},
+	"MAC-10":{
 		"kill_sprite":"Dead/Machinegun",
 		"kill_lean_sprite":"Dead/Machinegun",
 	},

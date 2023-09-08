@@ -21,13 +21,8 @@ signal interact_pos_reached()
 var cursor_pos = Vector2(0,0)
 @export var camera_obj=0
 @export var axis_multiplier=1.0
-var tap_countdown=0.0
 var rotation_multip=1.0
-var retard_reset=false
 
-var injector_inv=[["Kerenzikov",5]]
-var active_injector=""
-var active_inj_timer=0.0
 
 @export var in_combat=true
 
@@ -157,93 +152,13 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180
 	rotation_multip=0.2
 	super(damage,killsprite,rot,frame,body_speed,_bleed)
 
-#func double_tap():
-#	await get_tree().create_timer(0.2).timeout
-#	if (weapon["reserve"] is Array && weapon.has("reserve")==true && weapon["reserve"].size()>0) or (weapon["reserve"]>0): 
-#		print(tap_count)
-#		if tap_count<2:
-#			reload_anim(false)
-#			tap_count=0
-#			return
-#		else:
-#			reload_anim(true)
-#			tap_count=0
-#			return
-
-func ability_activate():
-	pass
-#	if ability_active=="":
-#		if "Rolldodge" in ability && axis.length()!=0 && Input.is_action_just_pressed("execute") && in_distance_to_execute==false:
-#			sprites.get_node("Legs").animation="Roll"
-#			sprites.get_node("Legs").frame=0
-#			sprites.get_node("Legs").global_rotation=sprites.get_node("Body").global_rotation
-#			sprites.get_node("Body").visible=false
-#			state=ped_states.abilty
-#			ability_active="Rolldodge"
-#		if "Reload_custom" in ability && sprite_index==weapon.walk_sprite && sprites.get_node("Body").has_animation("spr"+whoami.replace(".","Reload")) && Input.is_action_just_pressed("reload"):
-#			pass
 
 
 
-func injector_active(delta):
-	for i in Database.injector_database[active_injector]["variables"].keys():
-		match i:
-			"injector_timer":
-				pass
-#			print(i+" set to: "+str(Database.injector_database[active_injector][i]))
-			"time_scale":
-				Engine.set_deferred(i,Database.injector_database[active_injector]["variables"][i])
-			_:
-				set_deferred(i,Database.injector_database[active_injector]["variables"][i])
-	for i in Database.injector_database[active_injector]["methods"]:
-		callv(i[0],i[1])
-		
-
-func injector_use():
-	if injector_inv.size()>0:
-		active_injector=injector_inv[0][0]
-		active_inj_timer=Database.injector_database[active_injector]["variables"]["injector_timer"]
-		GUI.chromatic=0.1
-#		callv()
-#		print(active_inj_timer)
-		
 
 
 
-func Kerenzikov_effect():
-	if active_inj_timer>=Database.injector_database[active_injector]["variables"]["injector_timer"]-glob_delta:
-		AudioManager.play_audio("res://Data/Sounds/UI/Notif_time_slowdown.wav",null,false,1,0,"SFX")
-		AudioManager.play_amb("res://Data/Sounds/UI/Amb_slowmotion.wav","slowmo")
-		CAMERA.added_zoom=1.15
-		
-	if active_inj_timer<0.55 && active_inj_timer+glob_delta/Engine.time_scale>=0.55:
-		AudioManager.play_audio("res://Data/Sounds/UI/Notif_time_speedup.wav")
-	if active_inj_timer<2.0:
-		GUI.pulse_speed=lerp(GUI.pulse_speed,1.0,clamp(glob_delta/Engine.time_scale,0,1))
-		if active_inj_timer<0.01:
-			GUI.pulse_speed=1.0
-	else:
-		GUI.pulse_speed=lerp(GUI.pulse_speed,15.0,clamp(35*glob_delta/Engine.time_scale,0,1))
-	if active_inj_timer<0.01:
-		CAMERA.added_zoom=1
-	
-	if after_image_reset==0:
-		var mirrage=AnimatedSprite2D.new()
-		var body_anim=sprite_body.get_node("anim")
-		mirrage.set_script(load("res://Scripts/VFX/VFX_Kereznikov.gd"))
-		add_child(mirrage)
-		mirrage.frames=body_anim.frames
-		mirrage.animation=body_anim.animation
-		mirrage.offset=body_anim.offset
-		mirrage.frame=body_anim.frame
-		mirrage.global_position=body_anim.global_position
-		mirrage.global_rotation=body_anim.global_rotation
-		mirrage.modulate=Color.from_hsv(fmod(active_inj_timer*0.5,1.0),0.3,1.0,1.0)
-		mirrage.z_index-=1
-		after_image_reset=0.1
-	else:
-		after_image_reset=clamp(after_image_reset-(glob_delta/Engine.time_scale),0,1)
-		
+
 #func _unhandled_input(event):
 #	if state==ped_states.alive:
 #		if event.is_action_pressed("scroll_up") or event.is_action_pressed("scroll_down"):
