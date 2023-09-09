@@ -393,6 +393,7 @@ next_transiton = NodePath("../../../Floor 1/Viewport/Floor Transition")
 [node name="Enemy" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
 position = Vector2(591, 462)
 desired_weapon = "PB"
+leg_index = "Walk/Start"
 
 [node name="HlmWadEditor-v0185X64Ff843HeS5b" type="Sprite2D" parent="."]
 visible = false

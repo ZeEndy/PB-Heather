@@ -14600,6 +14600,8 @@ max_x = 20
 max_y = 20
 timer = 1.0
 
+[node name="EDITING" type="Node" parent="."]
+
 [node name="Floor 1" type="SubViewportContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0

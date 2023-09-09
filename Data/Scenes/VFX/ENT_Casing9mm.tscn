@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://72iaip7suai8"]
 
 [ext_resource type="Texture2D" uid="uid://djk02aqnc4382" path="res://Data/Sprites/Objects/Weapons/sprCasing556.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/VFX/VFX_Casing.gd" id="2"]
@@ -51,3 +51,5 @@ lifetime = 0.5
 texture = ExtResource("3")
 gravity = Vector2(0, 0)
 color_ramp = SubResource("4")
+anim_speed_min = 0.2
+anim_speed_max = 1.0

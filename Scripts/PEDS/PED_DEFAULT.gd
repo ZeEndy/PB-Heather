@@ -90,6 +90,8 @@ var change_leg_sprite_value=false
 
 
 func _ready():
+#	sprite_legs_anim.play("RESET")
+#	sprite_body_anim.play("RESET")
 	if groups==null:
 		groups=get_groups().duplicate(true)
 		col_groups=collision_body.get_groups().duplicate(true)
@@ -118,9 +120,8 @@ func reset_groups():
 		collision_body.add_to_group(i)
 
 # Finds the first visible pickupable weapon dropped within 40 units of the player that isn't behind a wall 
-func weapon_finder():
+func weapon_finder(pickup_dist=40*40):
 	var dropped_weapons = get_tree().get_nodes_in_group("Weapon")
-	var pickup_dist = 40*40
 	
 	for weapon in dropped_weapons:
 		# filter weapons that cannot be picked up

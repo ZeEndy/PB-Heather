@@ -12,7 +12,7 @@ var heat=1
 
 func _ready():
 	if get_node_or_null("CPUParticles2D")!=null:
-		if round(randf_range(0,3))==2 && GAME.particle_quality>=3:
+		if round(randf_range(0,3))==2 && GAME.particle_quality<=1:
 			get_node("CPUParticles2D").emitting=true
 #		ready=true
 #		z_index=-2

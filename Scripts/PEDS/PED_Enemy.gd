@@ -19,8 +19,8 @@ enum Enemy_t {
 enum enemy_s {
 	neutral,
 	charging,
-	aiming,
-	chasing}
+	chasing,
+	scared}
 
 @export var enemy_type:Enemy_t
 @export var enemy_state = enemy_s.neutral
@@ -63,9 +63,9 @@ func _physics_process(delta):
 		if spawn_timer<0:
 			enemy_state=enemy_s.neutral
 			spawn_timer=-1
-
+	var player_exists=get_tree().get_nodes_in_group("Player").size()>0
 	var delta_time=delta*60
-	if get_tree().get_nodes_in_group("Player").size()>0:
+	if player_exists:
 		if focused_player==null:
 			focused_player=get_tree().get_nodes_in_group("Player")[0]
 		else:
@@ -74,6 +74,8 @@ func _physics_process(delta):
 			movement_check.target_position=focused_player.global_position-collision_body.global_position
 
 	if state==ped_states.alive:
+		if weapon["ID"]=="Unarmed":
+			enemy_state=enemy_s.scared
 		if enemy_state==enemy_s.neutral:
 			if player_visibilty()==true:
 				if alert_timer<0:
@@ -132,37 +134,44 @@ func _physics_process(delta):
 			elif enemy_type==Enemy_t.STATIONARY:
 				movement(Vector2(0,0),delta)
 				return
+		elif enemy_state==enemy_s.scared:
+			var found=weapon_finder(100*100)
+			if found!=null:
+				move_to_point(delta,found.global_position,1.0)
+				if collision_body.global_position.distance_to(found.global_position)<5:
+					switch_weapon()
+					enemy_state=enemy_s.neutral
+			else:
+				axis=Vector2.ZERO
+				movement(null,delta)
+#add logic for backing away
 		else:
-			if get_tree().get_nodes_in_group("Player").size()>0:
+			if player_exists:
 				if enemy_state==enemy_s.charging:
-					if enemy_type!=Enemy_t.DODGER && enemy_type!=Enemy_t.DOG_PATROL:
-						if player_visibilty()==true:
-							if weapon["Type"]!="Melee":
-								
-								var clamped_rotation_speed=clamp(movement_check.target_position.length()*0.02,0.15,0.25)
-								body_direction=lerp_angle(body_direction,movement_check.target_position.angle(),clamped_rotation_speed*60*delta)
-								if alert_timer>0:
-									alert_timer-=1*delta_time
-								if movement_check.target_position.length()<280:
-									if alert_timer<=0:
-										attack()
-									axis=Vector2(0,0)
-									movement(null,delta)
-								else:
-									move_to_point(delta,focused_player.global_position,1.0)
-								return
-							elif weapon["Type"]=="Melee":
-								if movement_check.target_position.length()<24:
-									body_direction=lerp_angle(body_direction,collision_body.global_position.direction_to(focused_player.global_position).angle(),0.25)
+					if player_visibilty()==true:
+						if weapon["Type"]!="Melee":
+							var clamped_rotation_speed=clamp(movement_check.target_position.length()*0.02,0.15,0.25)
+							body_direction=lerp_angle(body_direction,movement_check.target_position.angle(),clamped_rotation_speed*60*delta)
+							if alert_timer>0:
+								alert_timer-=1*delta_time
+							if movement_check.target_position.length()<280:
+								if alert_timer<=0:
 									attack()
-									if focused_player.get_parent().state==ped_states.down:
-										do_execution()
-								if movement_check.target_position.length()>10:
-									move_to_point(delta,focused_player.global_position,1.0)
-								else:
-									axis=lerp(axis,Vector2.ZERO,1.0)
-									movement(null,delta)
-								return
+								axis=Vector2(0,0)
+								movement(null,delta)
+							else:
+								move_to_point(delta,focused_player.global_position,1.0)
+						elif weapon["Type"]=="Melee":
+							if movement_check.target_position.length()<24:
+								body_direction=lerp_angle(body_direction,collision_body.global_position.direction_to(focused_player.global_position).angle(),0.25)
+								attack()
+								if focused_player.get_parent().state==ped_states.down:
+									do_execution()
+							if movement_check.target_position.length()>10:
+								move_to_point(delta,focused_player.global_position,1.0)
+							else:
+								axis=lerp(axis,Vector2.ZERO,1.0)
+								movement(null,delta)
 						else:
 							enemy_state=enemy_s.chasing
 							alert_state=alert_s.ready
@@ -179,7 +188,7 @@ func _physics_process(delta):
 							return
 						else:
 							alert_timer-=1*delta_time
-					if path.size()==1:
+					if path.size()<=1 && collision_body.global_position.distance_to(target_point)<10:
 						axis=Vector2()
 						enemy_state=enemy_s.neutral
 						alert_state=alert_s.alert
@@ -187,6 +196,7 @@ func _physics_process(delta):
 						path=[]
 			else:
 				enemy_state=enemy_s.neutral
+		
 	elif state==ped_states.down:
 		body_direction=sprite_legs.global_rotation
 		if sprite_legs.speed_scale==0:
@@ -247,8 +257,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180
 
 
 func investigate_gunshot(distance):
-	if collision_body.global_position.distance_to(focused_player.global_position)<distance && focused_player.get_viewport() == get_viewport():
-		print(collision_body.global_position.distance_to(focused_player.global_position))
+	if collision_body.global_position.distance_to(focused_player.global_position)<distance && focused_player.get_viewport() == get_viewport() && enemy_state!=enemy_s.charging:
 		enemy_state=enemy_s.chasing
 		target_point=focused_player.global_position
 

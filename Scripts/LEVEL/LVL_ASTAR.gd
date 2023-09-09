@@ -64,7 +64,6 @@ func _bake_grid():
 			query.transform=Transform2D(0, map_to_local(Vector2(point_x,point_y)) )
 			if space.intersect_shape(query,1)!=[]:
 				set_cell(0,Vector2i(point_x,point_y),0,Vector2i(0,0),0)
-#	print("calculation time: "+str(OS.get_ticks_msec()-time_start)+"ms")
 
 
 func _load_baked_grid():
