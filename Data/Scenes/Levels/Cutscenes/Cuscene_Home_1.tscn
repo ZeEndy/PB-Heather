@@ -235,7 +235,6 @@ position = Vector2(368, 88)
 desired_weapon = "1911"
 
 [node name="HotlineMiami2CmfCgMLwcf" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(257, 321)
 texture = ExtResource("12_orakd")
 offset = Vector2(0.5, 0.5)

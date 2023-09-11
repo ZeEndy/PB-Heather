@@ -608,13 +608,16 @@ material = SubResource("ShaderMaterial_fmdjo")
 
 [node name="Start" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
 stream = ExtResource("7_v7nwv")
+bus = &"SFX"
 
 [node name="Loop" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
 stream = ExtResource("8_ft1l7")
 autoplay = true
+bus = &"SFX"
 
 [node name="End" type="AudioStreamPlayer" parent="Shaders/DeathPass"]
 stream = ExtResource("9_wd46h")
+bus = &"SFX"
 
 [node name="Pass3" type="CanvasLayer" parent="Shaders"]
 layer = 3
@@ -655,11 +658,14 @@ mouse_filter = 2
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_jki72")
 max_polyphony = 10
+bus = &"SFX"
 
 [node name="Hover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_irpgo")
 max_polyphony = 10
+bus = &"SFX"
 
 [node name="Slider" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_doitk")
 max_polyphony = 10
+bus = &"SFX"

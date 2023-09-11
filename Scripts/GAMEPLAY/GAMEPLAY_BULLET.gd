@@ -17,7 +17,6 @@ var hit_point=Vector2()
 var hit_rotation =0 
 var _wad=null
 var damage=1
-var signal_=""
 signal bullet_signal
 var ground_hole=""
 var exclusion=[]
@@ -49,15 +48,11 @@ func _physics_process(delta):
 			else:
 				get_destroyed=false
 				queue_free()
-			if !(collision[0].collider in exclusion):
+			if !(collision[0].collider in exclusion) && collision[0].collider.get_parent().health>0:
 				if "Lean" in collision[0].collider.get_parent().sprites.get_node("Legs").animation:
-					if signal_!="":
-						emit_signal("bullet_signal")
 					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation)
 					exclusion.append(collision[0].collider)
 				else:
-					if signal_!="":
-						emit_signal("bullet_signal")
 #					if collision[0].collider.get_parent().armour>0:
 #						if GAME.particle_quality<2:
 #							for i in randi_range(4,8):

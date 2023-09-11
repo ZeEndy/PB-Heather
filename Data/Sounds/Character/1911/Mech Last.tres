@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://baq1vejt57np2"]
+
+[ext_resource type="AudioStream" uid="uid://5un8ksnw5o7l" path="res://Data/Sounds/Character/1911/Mech Last/Mech_last_1.wav" id="1_1gu5c"]
+[ext_resource type="AudioStream" uid="uid://ciljbd70k8wvb" path="res://Data/Sounds/Character/1911/Mech Last/Mech_last_2.wav" id="2_jxa1m"]
+[ext_resource type="AudioStream" uid="uid://ef473nkx0mf7" path="res://Data/Sounds/Character/1911/Mech Last/Mech_last_3.wav" id="3_2cabh"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_1gu5c")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_jxa1m")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_2cabh")
+stream_2/weight = 1.0
