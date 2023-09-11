@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://b76c35gwhpuit"]
+
+[ext_resource type="AudioStream" uid="uid://bmd4ev4q13xmp" path="res://Data/Sounds/Gore/Bullet Entry/Entry_1.wav" id="1_haum2"]
+[ext_resource type="AudioStream" uid="uid://nc7gu7crwe7w" path="res://Data/Sounds/Gore/Bullet Entry/Entry_2.wav" id="2_s087u"]
+[ext_resource type="AudioStream" uid="uid://dn5xd0gn227j5" path="res://Data/Sounds/Gore/Bullet Entry/Entry_3.wav" id="3_aopqj"]
+[ext_resource type="AudioStream" uid="uid://d3as1ms634ns2" path="res://Data/Sounds/Gore/Bullet Entry/Entry_4.wav" id="4_fpk3l"]
+[ext_resource type="AudioStream" uid="uid://3hgbq6i3im1e" path="res://Data/Sounds/Gore/Bullet Entry/Entry_5.wav" id="5_nb3ns"]
+[ext_resource type="AudioStream" uid="uid://8mubcqw6rty1" path="res://Data/Sounds/Gore/Bullet Entry/Entry_6.wav" id="6_05ul0"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_haum2")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_s087u")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_aopqj")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_fpk3l")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_nb3ns")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_05ul0")
+stream_5/weight = 1.0

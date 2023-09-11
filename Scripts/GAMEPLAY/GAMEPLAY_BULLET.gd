@@ -11,7 +11,7 @@ var speed = 3750
 @export var size = Vector2(8,1)
 @export var force=0
 var get_destroyed=true
-var penetrate=true
+var penetrate=false
 var last_position=Vector2()
 var hit_point=Vector2()
 var hit_rotation =0 
@@ -42,7 +42,7 @@ func _physics_process(delta):
 	if collision.size()>0:
 		if collision[0].collider.get_parent().has_method("do_remove_health"):
 #			spawn_smoke(collision.normal.angle(),collision.position,Color.red,0)
-			if penetrate==true:
+			if penetrate==true || collision[0].collider.get_parent().health==0:
 #				var exit_wound_pos = collision[0].collider.global_position+(Vector2(collision.collider.global_position.distance_to(collision[0].position),0).rotated((collision.collider.global_position-collision.position).angle()))
 #				spawn_smoke(-collision.normal.angle(),exit_wound_pos,Color.red,0)
 				get_destroyed=false
@@ -88,14 +88,6 @@ func _physics_process(delta):
 	else:
 		get_destroyed=true
 	if (bullet_height<0):
-		if ground_hole!="":
-			var frames=SpriteFrames.new()
-			var sprite=AnimatedSprite2D.new()
-			frames.add_frame("default",load(ground_hole))
-			sprite.frames=frames
-			add_child(sprite)
-			if GAME.particle_quality<2:
-				get_parent().get_node_or_null(get_parent().my_surface).add_to_surface(sprite,global_position,deg_to_rad(randf_range(-180,180)))
 		queue_free()
 		return
 	bullet_height-=delta

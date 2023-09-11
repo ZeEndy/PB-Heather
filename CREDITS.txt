@@ -3,10 +3,10 @@ ZeEndy - Animations, Programming
 Dappy - Sprites, Level Design, Boss design
 Plank - Level Design
 Besauce - Stomp Animation
-Asire - Visual guidance, Sound design
+Asire - Visual guidance,UI Sound design
 
 
-
-COPYRIGHTED SOUNDS
+SOUNDS USED
 Infinty Ward
 DICE
+Magmacow

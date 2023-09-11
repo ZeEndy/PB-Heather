@@ -38,9 +38,9 @@ enum ped_states{
 
 
 # Movement variables
-const MAX_SPEED = 125
-const ACCELERATION = 6.0
-const DECEL_MULTIP = 9.0
+const MAX_SPEED = 155
+const ACCELERATION = 12.0
+const DECEL_MULTIP = 15.0
 @export var my_velocity=Vector2()
 var friction_multip = 1
 var axis = Vector2()
@@ -155,7 +155,7 @@ func _process(delta):
 		var walking = ("Walk" in sprite_index)
 		
 		if walking:
-			sprite_body.speed_scale = (abs(collision_body.velocity.length()/125))
+			sprite_body.speed_scale = (abs(collision_body.velocity.length()/145))
 		else:
 			if weapon["Type"]=="Melee" && ("Attack" in sprite_index):
 				sprite_body.speed_scale=motion_multiplier
@@ -263,7 +263,7 @@ func leg_sprites(delta):
 
 	else:
 		sprite_legs.rotation=lerp_angle(sprite_legs.rotation,atan2(collision_body.velocity.y,collision_body.velocity.x),clamp(50*delta,0,1))
-		sprite_legs.speed_scale = (abs(collision_body.get_real_velocity().length()/125))
+		sprite_legs.speed_scale = (abs(collision_body.get_real_velocity().length()/145))
 
 
 #This script functions by reading through the poperty list of the weapon variable and spawning

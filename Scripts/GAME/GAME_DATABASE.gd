@@ -93,7 +93,7 @@ const weapon_database={
 			# using the just an int because a magazine system doesn't fit this project 
 			
 			"Attack index":0,
-			"Attack ammount":1,
+			"Attack ammount":0,
 			"Random sprite":true,
 			
 			"Damage":100,
@@ -102,15 +102,16 @@ const weapon_database={
 			"Recoil":4,
 			
 			
-			"Hearing radius":220, # its a radius
+			"HR":220, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
-			"Droppable":true,
+			"droppable":true,
 			
 			#trigger
 			"Trigger pressed":false,
-			"Trigger bullets":0,
-			"Cycle Rate":0.0666667,
+			"Cycle rate":0.109091,
+			"Cycle":0.0,
+			"Trigger shot":0,
 			"Splits":1},
 		
 		"PB":{
@@ -135,7 +136,7 @@ const weapon_database={
 			"Recoil":4,
 			
 			
-			"HR":220, # its a radius
+			"HR":120, # its a radius
 			#so that means if an enemy is in a 220 range between the player he will hear the weaponshot
 			
 			"droppable":true,

@@ -5,6 +5,8 @@ class_name Enemy
 #reference variables
 @onready var visibilty_check=get_node("PED_COL/visibilty_check")
 @onready var movement_check=get_node("PED_COL/movement_check")
+@onready var s_entry=get_node("PED_SPRITES/Legs/Sound/Blood Impact/Bullet Enter")
+@onready var s_exit=get_node("PED_SPRITES/Legs/Sound/Blood Impact/Bullet Exit")
 
 
 #states
@@ -172,11 +174,11 @@ func _physics_process(delta):
 							else:
 								axis=lerp(axis,Vector2.ZERO,1.0)
 								movement(null,delta)
-						else:
-							enemy_state=enemy_s.chasing
-							alert_state=alert_s.ready
-							target_point=focused_player.global_position
-							alert_timer=alert_time()
+					else:
+						enemy_state=enemy_s.chasing
+						alert_state=alert_s.ready
+						target_point=focused_player.global_position
+						alert_timer=alert_time()
 				elif enemy_state==enemy_s.chasing:
 					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
 					move_to_point(delta,target_point,0.95)
@@ -216,9 +218,15 @@ func go_down(down_dir=randi()):
 	super(down_dir)
 
 func kys(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
-	print("WHYY")
 	do_remove_health(damage,killsprite,rot,frame,body_speed,_bleed)
 
+func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
+	owner.add_kill()
+	if "gun" in killsprite:
+		s_entry.play()
+		if randi()%6>4:
+			s_exit.play()
+	super(damage,killsprite,rot,frame,body_speed,_bleed)
 
 func player_visibilty(mode=0):
 	var seen=true
@@ -251,9 +259,7 @@ func alert_time():
 			return 5
 
 
-func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
-	owner.add_kill()
-	super(damage,killsprite,rot,frame,body_speed,_bleed)
+
 
 
 func investigate_gunshot(distance):
