@@ -10,6 +10,5 @@ export_presets.cfg
 .mono/
 data_*/
 *.sfk
-.godot
-Data/Sprites/Level/House Call/Furniture/F_HomeOfficeTable.png.import
+.godo
 *.import
