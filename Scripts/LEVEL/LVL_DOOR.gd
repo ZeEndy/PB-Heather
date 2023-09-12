@@ -41,7 +41,7 @@ func _ready():
 	count_down=0.05
 
 func _physics_process(delta):
-	if process==true:
+	if process==true && locked==false:
 		var p_col_check=player_collision_checker()
 		var e_col_check=enemy_collision_checker()
 		var dir=0

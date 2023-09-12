@@ -14,10 +14,7 @@ signal interact_pos_reached()
 @export var ability = ""
 @export var saved_ability_variable=[]
 @export var ability_active=""
-@export var override_movement=false
-@export var override_look=false
-@export var override_pick_up=false
-@export var override_attack=false
+@export var override_input=false
 var cursor_pos = Vector2(0,0)
 @export var camera_obj=0
 @export var axis_multiplier=1.0
@@ -58,7 +55,7 @@ func _physics_process(delta):
 		sprite_index="MaskOn"
 	get_node("PED_COL").global_rotation = 0
 	if state == ped_states.alive:
-		if in_combat==true && override_pick_up==false:
+		if in_combat==true && override_input==false:
 			if Input.is_action_just_pressed("interact"):
 				switch_weapon()
 		if in_combat==true && Input.is_action_just_pressed("execute"):
@@ -70,17 +67,10 @@ func _physics_process(delta):
 			print(rad_to_deg(interact_target.pos.angle_to_point(collision_body.global_position)))
 			axis = Vector2(1,0).rotated(collision_body.global_position.angle_to_point(interact_target.pos))
 			print(collision_body.global_position.distance_to(interact_target.pos))
-			override_look=true
+			override_input=true
 			body_direction=lerp_angle(body_direction,interact_target.rot,clamp(15*delta,0,1))
-			if collision_body.global_position.distance_to(interact_target.pos)<2.0:
-				collision_body.global_position=interact_target.pos
-				body_direction=lerp(body_direction,interact_target.rot,1.0)
-				axis = Vector2(0,0)
-				my_velocity=Vector2(0,0)
-				interact_target={}
-				interact_pos_reached.emit()
 				
-		if override_movement==false:
+		if override_input==false:
 			movement(null,delta)
 
 
@@ -92,7 +82,7 @@ func _physics_process(delta):
 		
 		
 		
-		if override_attack==false && in_combat==true:
+		if override_input==false && in_combat==true:
 			if weapon!={}:
 				if Input.is_action_pressed("attack"):
 					bAttack=true
@@ -125,7 +115,7 @@ func _process(delta):
 		GUI.p_pos=sprite_body.get_screen_transform().origin
 		
 		if cursor_pos != null:
-			if override_look==false:
+			if override_input==false:
 				body_direction = lerp_angle(body_direction,-cursor_pos.angle_to(Vector2(1,0)),clamp(40*rotation_multip*delta,0,1))
 				rotation_multip=lerp(rotation_multip,1.0,clamp(25*delta,0,1))
 				given_height = cursor_pos.length()*0.0018
@@ -134,6 +124,7 @@ func _process(delta):
 						cam_track.position=Vector2(32+given_height*70,0)
 					else:
 						cam_track.position=Vector2(24,0)
+		
 		sprites.get_node("Body").global_rotation = body_direction
 		if weapon["Type"]=="Firearm":
 			GUI.ammo=weapon["Ammo"]

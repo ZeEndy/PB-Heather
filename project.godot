@@ -24,6 +24,7 @@ AudioManager="*res://Data/DEFAULT/ENTS/ENT_AUDIO_MANAGER.tscn"
 Database="*res://Scripts/GAME/GAME_DATABASE.gd"
 GAME="*res://GAME.tscn"
 GUI="*res://Data/Scenes/VFX/ENT_UI.tscn"
+Dialouge="*res://Data/Scenes/VFX/ENT_Dialouge.tscn"
 
 [display]
 

@@ -58,7 +58,6 @@ func _process(_delta):
 
 func _physics_process(delta):
 	super(delta)
-	sprite_body.global_rotation=body_direction
 	#fuck you Juan and your fucking quircky engine
 	if spawn_timer>-1: 
 		spawn_timer-=delta 
@@ -139,7 +138,7 @@ func _physics_process(delta):
 		elif enemy_state==enemy_s.scared:
 			var found=weapon_finder(100*100)
 			if found!=null:
-				move_to_point(delta,found.global_position,1.0)
+				move_to_point(found.global_position,1.0)
 				if collision_body.global_position.distance_to(found.global_position)<5:
 					switch_weapon()
 					enemy_state=enemy_s.neutral
@@ -162,7 +161,7 @@ func _physics_process(delta):
 								axis=Vector2(0,0)
 								movement(null,delta)
 							else:
-								move_to_point(delta,focused_player.global_position,1.0)
+								move_to_point(focused_player.global_position,1.0)
 						elif weapon["Type"]=="Melee":
 							if movement_check.target_position.length()<24:
 								body_direction=lerp_angle(body_direction,collision_body.global_position.direction_to(focused_player.global_position).angle(),0.25)
@@ -170,7 +169,7 @@ func _physics_process(delta):
 								if focused_player.get_parent().state==ped_states.down:
 									do_execution()
 							if movement_check.target_position.length()>10:
-								move_to_point(delta,focused_player.global_position,1.0)
+								move_to_point(focused_player.global_position,1.0)
 							else:
 								axis=lerp(axis,Vector2.ZERO,1.0)
 								movement(null,delta)
@@ -181,7 +180,7 @@ func _physics_process(delta):
 						alert_timer=alert_time()
 				elif enemy_state==enemy_s.chasing:
 					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
-					move_to_point(delta,target_point,0.95)
+					move_to_point(target_point,0.95)
 					if player_visibilty()==true:
 						if alert_timer<0:
 							enemy_state=enemy_s.charging
@@ -200,7 +199,6 @@ func _physics_process(delta):
 				enemy_state=enemy_s.neutral
 		
 	elif state==ped_states.down:
-		body_direction=sprite_legs.global_rotation
 		if sprite_legs.speed_scale==0:
 			collision_body.set_collision_layer_value(7,false)
 		else:

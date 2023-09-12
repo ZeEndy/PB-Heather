@@ -5642,10 +5642,10 @@ tracks/3/path = NodePath("anim/Head:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384616, 0.461539, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154, 0.923077, 1, 1.07692),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0769231, 0.153846, 0.230769, 0.307692, 0.384616, 0.461539, 0.538462, 0.615385, 0.692308, 0.769231, 0.846154, 0.923077, 1, 1.07692, 1.1535),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(1, 1), Vector2(1.99931, 1.00138), Vector2(3.99931, 1.00276), Vector2(2.99931, 1.00207), Vector2(-0.000690222, 1), Vector2(-0.000690222, 1), Vector2(0.999309, 1.00069), Vector2(1.99931, 1.00138), Vector2(7.99931, 1.00552), Vector2(6.99931, 1.00483), Vector2(5.99931, 1.00414), Vector2(3.99931, 1.00276), Vector2(3.99931, 1.00276), Vector2(4.99931, 1.00345), Vector2(5.99931, 1.00414)]
+"values": [Vector2(1, 1), Vector2(1.99931, 1.00138), Vector2(3.99931, 1.00276), Vector2(2.99931, 1.00207), Vector2(-0.000690222, 1), Vector2(-0.000690222, 1), Vector2(0.999309, 1.00069), Vector2(1.99931, 1.00138), Vector2(7.99931, 1.00552), Vector2(6.99931, 1.00483), Vector2(5.99931, 1.00414), Vector2(3.99931, 1.00276), Vector2(3.99931, 1.00276), Vector2(4.99931, 1.00345), Vector2(6, 1), Vector2(5, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -5752,9 +5752,12 @@ tracks/12/path = NodePath(".")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(1.23077),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6921, 1.23077),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [2.0, false],
+"method": &"shake_screen"
+}, {
 "args": [Vector2(5, 0)],
 "method": &"move_rot_relative"
 }]
@@ -6153,6 +6156,9 @@ wall_min_slide_angle = 0.436332
 
 [node name="CollsionCircle" type="CollisionShape2D" parent="PED_COL"]
 shape = SubResource("CapsuleShape2D_0v16y")
+
+[node name="movement_check" type="RayCast2D" parent="PED_COL"]
+collision_mask = 32
 
 [node name="weapon_find" type="RayCast2D" parent="PED_COL"]
 visible = false

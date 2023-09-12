@@ -68,6 +68,7 @@ func save_level():
 						"sprite_index":i.sprite_index,
 						"leg_index":i.leg_index,
 						"body_direction":i.body_direction,
+						"add_to_surface":i.add_to_surface,
 						"weapon":i.weapon.duplicate(true),
 						"health":i.health,
 						"bAttack":i.bAttack,
@@ -79,10 +80,7 @@ func save_level():
 					}
 					if i is Player:
 						dict["variables"].merge({
-						"override_movement":i.override_movement,
-						"override_attack":i.override_attack,
-						"override_pick_up":i.override_pick_up,
-						"override_look":i.override_look
+						"override_input":i.override_input,
 						})
 					if i is Enemy:
 						dict["variables"].merge({

@@ -15,8 +15,11 @@ class_name PED
 @onready var collision_body = get_node("PED_COL")
 @onready var col_shape = get_node("PED_COL/CollsionCircle")
 @onready var exec_pos = get_node("PED_SPRITES/Legs/ExecPos")
+@onready var mov_check=get_node("PED_COL/movement_check")
 
+signal reached_point()
 
+var g_pdelta=0.0
 
 var groups
 var col_groups
@@ -34,6 +37,8 @@ enum ped_states{
 #ALIVE STATE VARIABLES
 @export var health=100.0
 @export var armour=0
+
+
 
 
 
@@ -84,7 +89,7 @@ var change_leg_sprite_value=false
 @export var sprite_based_on_export=false
 @export var leg_index = "Walk/Start"
 @export var body_direction = 0
-
+var add_to_surface=true
 
 
 
@@ -100,13 +105,14 @@ func _ready():
 	global_rotation=0
 	default_weapon=Database.get_wep("Unarmed")
 	weapon=default_weapon.duplicate()
-	if desired_weapon!="Unarmed":
-		weapon=Database.get_wep(desired_weapon)
-	if sprite_based_on_export==false:
-		_play_animation("Walk")
-	else:
-		_play_animation(sprite_index)
-	sprite_legs.play(leg_index)
+	if state==ped_states.alive:
+		if desired_weapon!="Unarmed":
+			weapon=Database.get_wep(desired_weapon)
+		if sprite_based_on_export==false:
+			_play_animation("Walk")
+		else:
+			_play_animation(sprite_index)
+		sprite_legs.play(leg_index)
 	get_node("PED_COL/CollsionCircle").disabled=false
 	
 
@@ -137,6 +143,7 @@ func weapon_finder(pickup_dist=40*40):
 
 
 func _process(delta):
+	sprite_body.global_rotation=body_direction
 	if state==ped_states.alive:
 		#pisss
 		if delay>0:
@@ -149,7 +156,6 @@ func _process(delta):
 			added_recoil-=delta
 		else:
 			added_recoil=0
-		
 		
 		leg_sprites(delta)
 		var walking = ("Walk" in sprite_index)
@@ -186,7 +192,7 @@ func _process(delta):
 				execute_target.sprite_legs_anim.advance(sprite_body.frame-execute_target.sprite_legs_anim.current_animation_position)
 				
 func _physics_process(delta):
-	
+	g_pdelta=delta
 	collision_body.global_rotation=0
 	col_shape.shape.radius=lerp(col_shape.shape.radius,8.0,10*delta)
 	col_shape.shape.height=lerp(col_shape.shape.height,16.0,10*delta)
@@ -209,16 +215,19 @@ func _physics_process(delta):
 				sprite_legs.global_rotation=test_motion.get_normal().angle()-PI
 				sprite_legs.speed_scale=0
 				collision_body.global_position=test_motion.get_position()
-		sprite_body.global_rotation=sprite_legs.global_rotation
 		collision_body.velocity=my_velocity
 		collision_body.move_and_slide()
 		if can_get_up==true:
 			down_timer-=delta
 			if down_timer<0:
 				sprite_legs.speed_scale=1
+				sprite_index=""
+				body_direction=sprite_legs.rotation-PI
 	
 	
 	elif state == ped_states.dead:
+		if add_to_surface==true:
+			visible=false
 		if my_velocity.length()<0.5:
 			get_node("PED_COL/CollsionCircle").disabled=true
 		my_velocity=lerp(my_velocity,Vector2.ZERO,5.0*delta)
@@ -226,7 +235,8 @@ func _physics_process(delta):
 		col_shape.shape.radius=lerp(col_shape.shape.radius,11.0,10*delta)
 		col_shape.shape.height=lerp(col_shape.shape.height,56.0,10*delta)
 		col_shape.global_rotation=sprite_legs.global_rotation+PI*0.5
-		
+		sprite_body.speed_scale=0.0
+		sprite_legs.speed_scale=0.0
 		collision_body.move_and_slide()
 		if get_groups().size()>0:
 			for i in get_groups():
@@ -234,7 +244,8 @@ func _physics_process(delta):
 		if collision_body.get_groups().size()>0:
 			for i in collision_body.get_groups():
 				collision_body.remove_from_group(i)
-		
+
+
 
 func movement(new_motion=null,delta=null):
 	if new_motion==null:
@@ -388,28 +399,26 @@ func spawn_bullet(amoumt:int):
 
 
 
-func move_to_point(delta,point,speed=0.7):
-	get_node("PED_COL/movement_check").target_position=point-collision_body.global_position
-	if get_node("PED_COL/movement_check").is_colliding()==false:
+func move_to_point(point,speed=0.7):
+	mov_check.target_position=point-collision_body.global_position
+	if mov_check.is_colliding()==false:
 		#cum calculation piss =focused_player.global_position+Vector2(25,0).rotated(focused_player.global_position.direction_to(collision_body.global_position).angle())
-		axis=axis.lerp(Vector2(speed,0).rotated(collision_body.global_position.direction_to(point).angle()),clamp(50*delta,0,1))
+		axis=axis.lerp(Vector2(speed,0).rotated(collision_body.global_position.direction_to(point).angle()),clamp(50*g_pdelta,0,1))
 		body_direction=lerp_angle(body_direction,axis.angle(),0.15)
 		path=[]
-		movement(null,delta)
+		movement(null,g_pdelta)
 	else:
-		movement(null,delta)
+		movement(null,g_pdelta)
 		var temp_dir=Vector2(0,0)
 		if path.size()>2 && path[-1].distance_to(point)<16.0:
 			if collision_body.global_position.distance_to(path[0])<8.0:
-#				print(path)
 				path.remove_at(0)
-#				print(path)
 			temp_dir=collision_body.global_position.direction_to(path[0])
 		else:
 			path=get_viewport()._astar._get_path(collision_body.global_position,point)
 		axis=temp_dir*speed
-#		get_node("Line2d").global_position=Vector2(0,0)
-#		get_node("Line2d").points=path
+	if collision_body.global_position.distance_to(point)<1 && mov_check.is_colliding()==false:
+		reached_point.emit()
 	
 
 
@@ -570,6 +579,7 @@ func execute_remove_health(damage,ammo_use=0,animation="",frame="rand",sound=nul
 					execute_target.sprite_legs.seek(randf_range(0,sprite_legs.get_node("AnimationPlayer").current_animation_length))
 				else:
 					execute_target.sprite_legs.seek(frame)
+			
 			state=ped_states.alive
 			sprite_legs.visible=true
 			sprite_index=""
@@ -598,7 +608,6 @@ func execute_do_click():
 func get_classd():
 	return "PED"
 
-
-#used for weapon flipping 
+ 
 static func angle_difference(from, to):
 	return fposmod(to-from + PI, PI*2) - PI

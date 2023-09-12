@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwoixqxxmhmd"]
+[gd_scene load_steps=4 format=3 uid="uid://bwoixqxxmhmd"]
 
+[ext_resource type="Script" path="res://Scripts/HUD/HUD_Dialouge.gd" id="1_47s1p"]
 [ext_resource type="Texture2D" uid="uid://1502x677igyh" path="res://Data/Sprites/Characters/Heather/Dialouge/test.png" id="1_ndw0j"]
 [ext_resource type="FontFile" uid="uid://bcht4xuage5hy" path="res://Data/Font/Arial_Bold.ttf" id="2_hckjf"]
 
 [node name="Dialouge" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_47s1p")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -28,7 +31,6 @@ offset_bottom = 118.0
 texture = ExtResource("1_ndw0j")
 
 [node name="Text" type="Label" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -45,3 +47,4 @@ theme_override_font_sizes/font_size = 32
 text = "literally 1984"
 horizontal_alignment = 1
 vertical_alignment = 1
+visible_characters_behavior = 1
