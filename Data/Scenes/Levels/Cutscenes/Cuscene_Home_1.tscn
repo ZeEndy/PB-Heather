@@ -294,19 +294,6 @@ timer = 1.0
 
 [node name="EDITING" type="Node" parent="."]
 
-[node name="Elevator" parent="EDITING" instance=ExtResource("4_r2ule")]
-position = Vector2(716, 404)
-rotation = 1.57079
-targets = [[NodePath("../../Floor 1/Viewport"), NodePath("")], [NodePath("../../Floor 2/Viewport"), NodePath("")]]
-
-[node name="Sounds" parent="EDITING/Elevator/DoorBottomAnim" index="0"]
-position = Vector2(750, 404)
-rotation = 1.57079
-
-[node name="Sounds" parent="EDITING/Elevator/DoorUpAnim" index="0"]
-position = Vector2(716, 404)
-rotation = 1.57079
-
 [node name="Floor 1" type="SubViewportContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -322,7 +309,6 @@ script = ExtResource("4_1rkw4")
 astar = NodePath("Pathfind")
 
 [node name="Tiles" type="TileMap" parent="Floor 1/Viewport"]
-z_index = 1
 tile_set = ExtResource("5_0bmvq")
 format = 2
 layer_0/name = "Walls"
@@ -420,6 +406,12 @@ rotation = -1.57079
 position = Vector2(320, 96)
 rotation = -1.57079
 
+[node name="Elevator" parent="Floor 1/Viewport" instance=ExtResource("4_r2ule")]
+position = Vector2(716, 404)
+rotation = 1.57079
+targets = [[NodePath(".."), NodePath("BottomAnim")], [NodePath("../../../Floor 2/Viewport"), NodePath("BottomAnim")]]
+elevator_time = 10.0
+
 [node name="Floor 2" type="SubViewportContainer" parent="."]
 visible = false
 offset_right = 40.0
@@ -436,7 +428,6 @@ script = ExtResource("4_1rkw4")
 astar = NodePath("Pathfind")
 
 [node name="Tiles" type="TileMap" parent="Floor 2/Viewport"]
-z_index = 1
 tile_set = ExtResource("5_0bmvq")
 format = 2
 layer_0/name = "Walls"
@@ -527,4 +518,4 @@ texture = ExtResource("13_jr24w")
 offset = Vector2(0.5, 0.5)
 metadata/_edit_lock_ = true
 
-[editable path="EDITING/Elevator"]
+[editable path="Floor 1/Viewport/Elevator"]

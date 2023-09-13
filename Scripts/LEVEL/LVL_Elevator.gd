@@ -3,7 +3,8 @@ extends Sprite2D
 
 @onready var cunt=get_node("Button/CanvasLayer/Container/Control/ColorRect/GridContainer")
 @onready var node2d=get_node("Node2d")
-@onready var area_check=get_node("Area2d")
+@onready var black_out=get_node("Node2d/ColorRect")
+@onready var area_check=get_node("Area2d") as Area2D
 
 @export var targets=[]
 var selected_floor=-1
@@ -11,6 +12,10 @@ var selected_floor=-1
 @export var elevator_time=0.0
 var timer=0.0
 var player_in_elevator=false
+var wait_for_player_to_leave=false
+
+var camera_shaking=false
+var elevator_shake=0.2
 
 func _ready():
 	
@@ -20,7 +25,7 @@ func _ready():
 		targets[i][1]=get_node(id[1])
 		if get_viewport()==id[0]:
 			selected_floor=i
-			id[1].play("Open")
+			door_animation(id[1],"Open")
 		
 #	get_node("Button/CanvasLayer/Container/Control/ColorRect").size.y=100.0*(ceil(float(cunt_count)*0.5))
 
@@ -28,21 +33,24 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	node2d.global_position=-get_viewport_transform().origin/get_viewport_transform().get_scale()
-	get_node("Node2d/ColorRect").size=get_viewport_rect().size
-	node2d.z_index=z_index-6
+	black_out.size=get_viewport_rect().size
+	node2d.z_index=z_index-7
 	if timer>0:
 		timer-=delta
-		if z_index!=8:
+		if z_index!=9:
 			for i in area_check.get_overlapping_bodies():
 				var parent_obj=i.get_parent()
 				if parent_obj is PED:
 					player_in_elevator=true
-					parent_obj.z_index+=6
+					wait_for_player_to_leave=true
+					parent_obj.z_index+=7
 				else:
-					z_index+=6
-			z_index=8
+					z_index+=7
+			
+			z_index=9
 		
-		
+		if timer<elevator_time*0.10+delta && get_parent() != targets[selected_floor][0]:
+			stoping_sound()
 		
 		if timer<elevator_time*0.10:
 			if get_parent() != targets[selected_floor][0]:
@@ -66,7 +74,8 @@ func _process(delta):
 				node2d.modulate.a=lerp(node2d.modulate.a,1.0,5*delta)
 			
 		if timer<=0:
-			get_node(targets[selected_floor][1]).emit_my_signal()
+			arrive()
+#			get_node(targets[selected_floor][1]).emit_my_signal()
 			if z_index!=2:
 				for i in area_check.get_overlapping_bodies():
 					if i.get_parent() is PED:
@@ -80,18 +89,24 @@ func _process(delta):
 			node2d.modulate.a=lerp(node2d.modulate.a,0.0,5*delta)
 			if node2d.modulate.a==0.0:
 				player_in_elevator=false
+		var ar_check=area_check.get_overlapping_bodies()
+		for i in area_check.get_overlapping_bodies():
+			if i.get_parent() is Player:
+				if wait_for_player_to_leave==false:
+					next_floor()
+		if ar_check.size()==0:
+			wait_for_player_to_leave=false
 
 
 
 func door_animation(obj,requested:String):
-	var obj_anim_player=obj.get_node("Animation")
-	if obj_anim_player.assigned_animation!=requested:
-		if obj_anim_player.current_animation=="":
-			obj_anim_player.play(requested)
+	if obj.assigned_animation!=requested:
+		if obj.current_animation=="":
+			obj.play(requested)
 		else:
-			var saved_time=obj_anim_player.current_animation_length-obj_anim_player.current_animation_position
-			obj_anim_player.play(requested)
-			obj_anim_player.seek(saved_time,true)
+			var saved_time=obj.current_animation_length-obj.current_animation_position
+			obj.play(requested)
+			obj.seek(saved_time,true)
 	
 
 
@@ -101,13 +116,38 @@ func _on_button_interacted(obj):
 
 
 
-func select_floor(floor):
-	if selected_floor!=floor:
-		selected_floor=floor
-		for i in get_children():
-			if "Door" in i.name:
-				if i.get_node("Animation").assigned_animation=="Open":
-					door_animation(i,"Close")
-		timer=elevator_time
+func next_floor():
+	selected_floor+=1
+	if selected_floor>targets.size()-1:
+		selected_floor=0
+	for i in get_children():
+		if "Anim" in i.name:
+			if i.assigned_animation=="Open":
+				door_animation(i,"Close")
+	timer=elevator_time
 
+func arrive():
+	get_node("Ding").play()
+	await get_tree().create_timer(0.69).timeout
+	door_animation(targets[selected_floor][1],"Open")
+
+
+func stoping_sound():
+	get_node("Arrive").play()
+	await get_tree().create_timer(0.775).timeout
+	camera_shaking=false
+	await get_tree().create_timer(0.775).timeout
+	get_node("Moving").stop()
+	
+
+
+
+func moving_sound():
+	if timer>0:
+		get_node("Departure").play()
+		await get_tree().create_timer(0.71).timeout
+		camera_shaking=true
+		elevator_shake=0.6
+		await get_tree().create_timer(0.71).timeout
+		get_node("Moving").play()
 
