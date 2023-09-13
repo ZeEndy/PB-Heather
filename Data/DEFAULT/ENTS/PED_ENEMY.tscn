@@ -6480,7 +6480,6 @@ target = NodePath("../PED_COL")
 flags = 51
 
 [node name="Legs" type="Node2D" parent="PED_SPRITES"]
-z_index = -4
 use_parent_material = true
 script = ExtResource("3_jyc6g")
 speed_scale = 0
@@ -6497,8 +6496,9 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Get Up Lean"
-offset = Vector2(-2, 0)
+animation = &"Walk Legs Start"
+frame = 6
+offset = Vector2(-0.5, 0)
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 position = Vector2(10, 1)
@@ -6577,7 +6577,6 @@ input = "Pool"
 pool_size = 46
 
 [node name="Body" type="Node2D" parent="PED_SPRITES"]
-visible = false
 z_index = 1
 use_parent_material = true
 script = ExtResource("3_jyc6g")

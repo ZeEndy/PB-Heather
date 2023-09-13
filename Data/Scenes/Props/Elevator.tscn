@@ -1,0 +1,520 @@
+[gd_scene load_steps=23 format=3 uid="uid://bkmoclccdk3ip"]
+
+[ext_resource type="Texture2D" uid="uid://b32xo2axfseu1" path="res://Data/Sprites/Objects/Elevator/Body.png" id="1_x7m4m"]
+[ext_resource type="Script" path="res://Scripts/LEVEL/LVL_Elevator.gd" id="2_bwpj3"]
+[ext_resource type="Script" path="res://Scripts/REMOTE_PARENT.gd" id="3_meeol"]
+[ext_resource type="Texture2D" uid="uid://bsiiw7lbwdt6u" path="res://Data/Sprites/Objects/Elevator/Doors.png" id="5_gf4uw"]
+[ext_resource type="Script" path="res://Scripts/VFX/VFX_SURFACE.gd" id="6_3f1fm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_364i4"]
+
+[sub_resource type="Animation" id="Animation_xml2j"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorBottom:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-28, -32), Vector2(-11, -32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorBottom2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(20, -32), Vector2(3, -32)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"moving_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wx83c"]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorBottom:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, -33.9999), Vector2(-24, -33.9997)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorBottom2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7.0001, -34), Vector2(24.0001, -34)]
+}
+
+[sub_resource type="Animation" id="Animation_w3blp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DoorBottom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-40, -8), Vector2(-7, -33.9999)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DoorBottom2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-25.9999, -8.00012), Vector2(7.0001, -34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorBottom:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DoorBottom2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxl0t"]
+_data = {
+"Close": SubResource("Animation_xml2j"),
+"Open": SubResource("Animation_wx83c"),
+"RESET": SubResource("Animation_w3blp")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nylv5"]
+polygon = PackedVector2Array(8.5, 0, 7.5, 0, 7.5, 2, -8.5, 2, -8.5, -2, 8.5, -2)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w8yyu"]
+polygon = PackedVector2Array(8.5, 0, 7.5, 0, 7.5, 2, -8.5, 2, -8.5, -2, 8.5, -2)
+
+[sub_resource type="Animation" id="Animation_0ibuw"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorUp:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(20, 32), Vector2(3, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorUp2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-28, 32), Vector2(-11, 32)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"moving_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g7uaw"]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorUp:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7, 34), Vector2(24.0001, 34)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorUp2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7, 34), Vector2(-24, 34.0002)]
+}
+
+[sub_resource type="Animation" id="Animation_gge3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorUp:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorUp2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DoorUp:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24.0001, 34)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DoorUp2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-24, 34.0002)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qisci"]
+_data = {
+"Close": SubResource("Animation_0ibuw"),
+"Open": SubResource("Animation_g7uaw"),
+"RESET": SubResource("Animation_gge3l")
+}
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_d8q8k"]
+polygon = PackedVector2Array(8.5, 0, 7.5, 0, 7.5, 2, -8.5, 2, -8.5, -2, 8.5, -2)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2tx1k"]
+polygon = PackedVector2Array(8.5, 0, 7.5, 0, 7.5, 2, -8.5, 2, -8.5, -2, 8.5, -2)
+
+[sub_resource type="Gradient" id="Gradient_85f7j"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wtexu"]
+gradient = SubResource("Gradient_85f7j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ora16"]
+polygon = PackedVector2Array(-20, -28, -28, -28, -28, -30, -36, -30, -36, -28, -38, -28, -38, 28, -36, 28, -36, 30, -28, 30, -28, 28, -20, 28, -20, 36, -44, 36, -44, 28, -43, 28, -43, -28, -44, -28, -44, -36, -36, -36, -36, -35, -28, -35, -28, -36, -20, -36)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_840ox"]
+polygon = PackedVector2Array(44, 36, 36, 36, 36, 35, 20, 35, 20.0478, 36, 12, 36, 12, 28, 20, 28, 20, 30, 36, 30, 36, 28, 38, 28, 38, -28, 36, -28, 36, -30, 20, -30, 20.0478, -28, 12, -28, 12, -36, 44, -36, 44, -28, 43, -28, 43, 28, 44, 28.094)
+
+[node name="Elevator" type="Sprite2D"]
+z_index = 2
+position = Vector2(44, 36)
+texture = ExtResource("1_x7m4m")
+script = ExtResource("2_bwpj3")
+targets = [[NodePath(""), NodePath("")], [NodePath(""), NodePath("")]]
+elevator_time = 5.0
+
+[node name="AreaSurf" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("3_meeol")
+Target = NodePath("Viewp")
+
+[node name="SprElevatorFloor" type="AnimatedSprite2D" parent="AreaSurf"]
+z_index = -5
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_364i4")
+offset = Vector2(-1, 0)
+
+[node name="Viewp" type="Node2D" parent="AreaSurf"]
+z_index = -2
+position = Vector2(-38, -30)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("6_3f1fm")
+
+[node name="View" type="SubViewportContainer" parent="AreaSurf/Viewp"]
+offset_right = 304.0
+offset_bottom = 304.0
+
+[node name="Surface" type="SubViewport" parent="AreaSurf/Viewp/View"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(304, 240)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="CollisionPolygon2d2" type="CollisionPolygon2D" parent="AreaSurf"]
+polygon = PackedVector2Array(-37.9999, 28.0001, -35.9999, 28.0001, -35.9999, 30.0001, -27.9999, 30.0001, -27.9999, 28.0001, -19.9999, 28.0001, -19.9999, 30.0001, 12.0001, 29.9999, 12.0001, 27.9999, 20.0001, 27.9999, 20.0001, 29.9999, 36.0001, 29.9999, 36.0001, 27.9999, 38.0001, 27.9999, 37.9999, -28.0001, 35.9999, -28.0001, 35.9999, -30.0001, 19.9999, -30.0001, 19.9999, -28.0001, 11.9999, -28.0001, 11.9999, -30.0001, -20.0001, -29.9999, -20.0001, -27.9999, -28.0001, -27.9999, -28.0001, -29.9999, -36.0001, -29.9999, -36.0001, -27.9999, -38.0001, -27.9999)
+
+[node name="RemoteSoundBottom" type="RemoteTransform2D" parent="."]
+position = Vector2(0, -34)
+remote_path = NodePath("../DoorBottomAnim/Sounds")
+
+[node name="DoorBottomAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wxl0t")
+}
+
+[node name="Sounds" type="Node2D" parent="DoorBottomAnim"]
+position = Vector2(44, 2)
+
+[node name="Open" type="AudioStreamPlayer2D" parent="DoorBottomAnim/Sounds"]
+bus = &"SFX"
+
+[node name="Close" type="AudioStreamPlayer2D" parent="DoorBottomAnim/Sounds"]
+bus = &"SFX"
+
+[node name="DoorBottom" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(-11, -32)
+rotation = 1.5708
+collision_layer = 48
+collision_mask = 15
+
+[node name="SprElevatorDoor" type="Sprite2D" parent="DoorBottom"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+texture = ExtResource("5_gf4uw")
+hframes = 2
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="DoorBottom"]
+visible = false
+polygon = PackedVector2Array(2.00006, 9, -1.99994, 9, -2, -8, 0, -8, 0, -7, 2, -7)
+
+[node name="LightOccluder2d" type="LightOccluder2D" parent="DoorBottom"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_nylv5")
+
+[node name="DoorBottom2" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(3, -32)
+rotation = -1.5708
+collision_layer = 48
+collision_mask = 15
+
+[node name="SprElevatorDoor" type="Sprite2D" parent="DoorBottom2"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+texture = ExtResource("5_gf4uw")
+flip_h = true
+flip_v = true
+hframes = 2
+frame = 1
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="DoorBottom2"]
+visible = false
+polygon = PackedVector2Array(2.00006, 9, -1.99994, 9, -2, -8, 0, -8, 0, -7, 2, -7)
+
+[node name="LightOccluder2d" type="LightOccluder2D" parent="DoorBottom2"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_w8yyu")
+
+[node name="RemoteSoundUp" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../DoorUpAnim/Sounds")
+
+[node name="DoorUpAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qisci")
+}
+
+[node name="Sounds" type="Node2D" parent="DoorUpAnim"]
+position = Vector2(44, 36)
+
+[node name="Open" type="AudioStreamPlayer2D" parent="DoorUpAnim/Sounds"]
+bus = &"SFX"
+
+[node name="Close" type="AudioStreamPlayer2D" parent="DoorUpAnim/Sounds"]
+bus = &"SFX"
+
+[node name="DoorUp" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(3, 32)
+rotation = -1.5708
+collision_layer = 48
+collision_mask = 15
+
+[node name="SprElevatorDoor" type="Sprite2D" parent="DoorUp"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+texture = ExtResource("5_gf4uw")
+flip_h = true
+hframes = 2
+frame = 1
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="DoorUp"]
+polygon = PackedVector2Array(2.00006, 9, -1.99994, 9, -2, -8, 0, -8, 0, -7, 2, -7)
+
+[node name="LightOccluder2d" type="LightOccluder2D" parent="DoorUp"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_d8q8k")
+
+[node name="DoorUp2" type="CharacterBody2D" parent="."]
+z_index = -5
+position = Vector2(-11, 32)
+rotation = 1.5708
+collision_layer = 48
+collision_mask = 15
+
+[node name="SprElevatorDoor" type="Sprite2D" parent="DoorUp2"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+texture = ExtResource("5_gf4uw")
+flip_v = true
+hframes = 2
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="DoorUp2"]
+polygon = PackedVector2Array(2.00006, 9, -1.99994, 9, -2, -8, 0, -8, 0, -7, 2, -7)
+
+[node name="LightOccluder2d" type="LightOccluder2D" parent="DoorUp2"]
+position = Vector2(0, 0.5)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_2tx1k")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 48
+collision_mask = 15
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="Collision"]
+polygon = PackedVector2Array(-20, -28, -36, -28, -36, 28, -20, 28, -20, 36, -44, 36, -44, -36, -20, -36)
+
+[node name="CollisionPolygon2d2" type="CollisionPolygon2D" parent="Collision"]
+polygon = PackedVector2Array(44, 36, 12, 36, 12, 28, 36, 28, 36, -28, 12, -28, 12, -36, 44, -36)
+
+[node name="Area2d" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="Area2d"]
+visible = false
+polygon = PackedVector2Array(-37.9999, 28.0001, -35.9999, 28.0001, -35.9999, 30.0001, -27.9999, 30.0001, -27.9999, 28.0001, -19.9999, 28.0001, -19.9999, 30.0001, 12.0001, 29.9999, 12.0001, 27.9999, 20.0001, 27.9999, 20.0001, 29.9999, 36.0001, 29.9999, 36.0001, 27.9999, 38.0001, 27.9999, 37.9999, -28.0001, 35.9999, -28.0001, 35.9999, -30.0001, 19.9999, -30.0001, 19.9999, -28.0001, 11.9999, -28.0001, 11.9999, -30.0001, -20.0001, -29.9999, -20.0001, -27.9999, -28.0001, -27.9999, -28.0001, -29.9999, -36.0001, -29.9999, -36.0001, -27.9999, -38.0001, -27.9999)
+
+[node name="Node2d" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+z_index = -3
+z_as_relative = false
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Node2d"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 368.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="PointLight2d" type="PointLight2D" parent="."]
+position = Vector2(-1.90735e-06, -7.62939e-06)
+scale = Vector2(1.95312, 1.95312)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_wtexu")
+metadata/_edit_lock_ = true
+
+[node name="LightOccluder2d" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ora16")
+
+[node name="LightOccluder2d2" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_840ox")
+
+[node name="Moving" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Ding" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Departure" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="Arrive" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

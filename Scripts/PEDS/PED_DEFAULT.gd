@@ -226,8 +226,8 @@ func _physics_process(delta):
 	
 	
 	elif state == ped_states.dead:
-		if add_to_surface==true:
-			visible=false
+#		if add_to_surface==true:
+#			visible=false
 		if my_velocity.length()<0.5:
 			get_node("PED_COL/CollsionCircle").disabled=true
 		my_velocity=lerp(my_velocity,Vector2.ZERO,5.0*delta)
