@@ -188,9 +188,11 @@ func _process(delta):
 	elif state==ped_states.execute:
 		if copy_time==true:
 			execute_target.sprite_legs.speed_scale=sprite_body.speed_scale
-			if execute_target.sprite_legs_anim.current_animation_position-sprite_body.frame>0.01:
-				execute_target.sprite_legs_anim.advance(sprite_body.frame-execute_target.sprite_legs_anim.current_animation_position)
-				
+			if execute_target.sprite_legs_anim.current_animation_position-sprite_body_anim.current_animation_position>0.01:
+				execute_target.sprite_legs_anim.advance(sprite_body_anim.current_animation_position-execute_target.sprite_legs_anim.current_animation_position)
+
+
+#print("wtfff "+str(execute_target.sprite_legs_anim.current_animation_position))
 func _physics_process(delta):
 	g_pdelta=delta
 	collision_body.global_rotation=0
@@ -508,7 +510,7 @@ func do_execution():
 			var execution=Database.get_exec(weapon["ID"])
 			if execution["ID"]=="Unarmed":
 				_play_animation("Unarmed/Execute",0,true)
-				execute_target.sprite_legs.play("Executing/Stomp",false,0)
+				execute_target.sprite_legs.play("Executing/Stomp",false,1.0)
 				drop_weapon()
 		else:
 			return
@@ -520,7 +522,7 @@ func do_execution():
 #				execute_target.sprite_legs.play("DieLean")
 		collision_body.global_position=execute_target.exec_pos.global_position
 		sprite_body.global_rotation=execute_target.sprite_legs.global_rotation
-		execute_target.sprite_legs.speed_scale=0
+#		execute_target.sprite_legs.speed_scale=0
 		sprite_legs.visible=false
 		execute_target.can_get_up=false
 		state=ped_states.execute
