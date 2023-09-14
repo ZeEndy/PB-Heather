@@ -22,15 +22,14 @@ var restart=[]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GUI.play_timer=1.0
-	if get_tree().get_nodes_in_group("EDITOR").size()==0:
-		if saved==false:
-			saved=true
-			await RenderingServer.frame_post_draw
-			await RenderingServer.frame_post_draw
-			checkpoint=save_level()
-			restart=save_level()
-		if level_complete==false && song!=null:
-			AudioManager.play_song(song)
+	if saved==false:
+		saved=true
+		await RenderingServer.frame_post_draw
+		await RenderingServer.frame_post_draw
+		checkpoint=save_level()
+		restart=save_level()
+	if level_complete==false && song!=null:
+		AudioManager.play_song(song)
 
 func _process(delta):
 	if Input.is_action_just_pressed("DEBUG_SAVE"):

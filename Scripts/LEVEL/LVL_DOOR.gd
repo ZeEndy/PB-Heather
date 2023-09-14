@@ -42,21 +42,14 @@ func _ready():
 
 func _physics_process(delta):
 	if process==true && locked==false:
-		var p_col_check=player_collision_checker()
-		var e_col_check=enemy_collision_checker()
+		var col_check=player_collision_checker()
 		var dir=0
-		if p_col_check[0]!=0:
-			dir=p_col_check[0]
-		else:
-			dir=e_col_check[0]
-		
-		p_col_check.remove_at(0)
-		e_col_check.remove_at(0)
 		
 #		if active == false:
 		if door_timer>0.4 || player_turn==false:
-			for i in p_col_check:
+			for i in col_check:
 				if i[0] is Player:
+					dir=i[2]
 					if dir!=0: # i cba to do full error prevention
 						player_turn=true
 						prev_rot=door_anc.rotation
@@ -67,9 +60,10 @@ func _physics_process(delta):
 						
 						door_rot=clamp(door_rot,deg_to_rad(-right),deg_to_rad(left))
 						door_timer=0.0
-			if player_turn==false:
-				for i in e_col_check:
+				if player_turn==false:
 					if i[0] is Enemy && (i[0].state==0 || ((i[0].state == 4 || i[0].state == 3) && i[0].my_velocity.length()>50.0)):
+						dir=i[2]
+						print(dir)
 						if dir!=0: # i cba to do full error prevention
 							prev_rot=door_anc.rotation
 							
@@ -78,6 +72,7 @@ func _physics_process(delta):
 							
 							door_rot=clamp(door_rot,deg_to_rad(-right),deg_to_rad(left))
 							door_timer=0.0
+		
 		elif door_timer<0.6 && player_turn==true:
 			for i in e_knocker.get_overlapping_bodies():
 				var par=i.get_parent()
@@ -106,7 +101,7 @@ func _process(delta):
 
 
 func player_collision_checker():
-	var mask=0b0000000000000000100
+	var mask=0b0000000000000000101
 	var collision_objects=[]
 	var shape = RectangleShape2D.new()
 	shape.extents=door_size
@@ -121,7 +116,6 @@ func player_collision_checker():
 #	if collision_objects.size()>0:
 #		print(collision_objects)
 	var return_array=[]
-	var test=0
 	var raycast=PhysicsRayQueryParameters2D.new()
 	raycast.from=door_anc.global_position
 	raycast.collision_mask=mask
@@ -130,53 +124,53 @@ func player_collision_checker():
 	for i in collision_objects:
 		if (i.collider.get_parent() is PED && (i.collider.get_parent().my_velocity.length()>10) ):
 			var rots=[30,25,20,15,10,5,-5,-10,-15,-20,-25,-30]
+			var test=0
 			for rot in rots:
 				for y in int(door_size.y*0.5):
 					raycast.to=door_anc.global_position+Vector2(door_size.x,y*2-(door_size.y*0.5)).rotated(door_anc.global_rotation+deg_to_rad(rot))
 					if space.intersect_ray(raycast)!={}:
 						test-=rot
-			return_array.append([i.collider.get_parent(),i.collider.global_position])
-	if test!=0:
-		test/=abs(test)
-	return_array.push_front(test)
+			if test!=0:
+				test/=abs(test)
+			return_array.append([i.collider.get_parent(),i.collider.global_position,test])
 	return return_array
 
 
-func enemy_collision_checker():
-	var mask=0b0000000000000000001
-	var collision_objects=[]
-	var shape = RectangleShape2D.new()
-	shape.extents=door_size
-	var query = PhysicsShapeQueryParameters2D.new()
-	query.set_shape(shape)
-	get_node("DOOR_ANCHER/Sprite2D").set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
-	get_node("DOOR_ANCHER/Sprite2D").scale=door_size
-	query.collision_mask=mask
-	var space = get_world_2d().direct_space_state
-	query.set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
-	collision_objects+=space.intersect_shape(query,5)
-#	if collision_objects.size()>0:
-#		print(collision_objects)
-	var return_array=[]
-	var test=0
-	var raycast=PhysicsRayQueryParameters2D.new()
-	raycast.from=door_anc.global_position
-	raycast.collision_mask=mask
-	raycast.hit_from_inside=true
-	
-	for i in collision_objects:
-		if (i.collider.get_parent() is PED && (i.collider.get_parent().my_velocity.length()>10) ):
-			var rots=[30,25,20,15,10,5,-5,-10,-15,-20,-25,-30]
-			for rot in rots:
-				for y in int(door_size.y*0.5):
-					raycast.to=door_anc.global_position+Vector2(door_size.x,y*2-(door_size.y*0.5)).rotated(door_anc.global_rotation+deg_to_rad(rot))
-					if space.intersect_ray(raycast)!={}:
-						test-=rot
-			return_array.append([i.collider.get_parent(),i.collider.global_position])
-	if test!=0:
-		test/=abs(test)
-	return_array.push_front(test)
-	return return_array
+#func enemy_collision_checker():
+#	var mask=0b0000000000000000001
+#	var collision_objects=[]
+#	var shape = RectangleShape2D.new()
+#	shape.extents=door_size
+#	var query = PhysicsShapeQueryParameters2D.new()
+#	query.set_shape(shape)
+#	get_node("DOOR_ANCHER/Sprite2D").set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
+#	get_node("DOOR_ANCHER/Sprite2D").scale=door_size
+#	query.collision_mask=mask
+#	var space = get_world_2d().direct_space_state
+#	query.set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
+#	collision_objects+=space.intersect_shape(query,5)
+##	if collision_objects.size()>0:
+##		print(collision_objects)
+#	var return_array=[]
+#	var test=0
+#	var raycast=PhysicsRayQueryParameters2D.new()
+#	raycast.from=door_anc.global_position
+#	raycast.collision_mask=mask
+#	raycast.hit_from_inside=true
+#
+#	for i in collision_objects:
+#		if (i.collider.get_parent() is PED && (i.collider.get_parent().my_velocity.length()>10) ):
+#			var rots=[30,25,20,15,10,5,-5,-10,-15,-20,-25,-30]
+#			for rot in rots:
+#				for y in int(door_size.y*0.5):
+#					raycast.to=door_anc.global_position+Vector2(door_size.x,y*2-(door_size.y*0.5)).rotated(door_anc.global_rotation+deg_to_rad(rot))
+#					if space.intersect_ray(raycast)!={}:
+#						test-=rot
+#			return_array.append([i.collider.get_parent(),i.collider.global_position])
+#	if test!=0:
+#		test/=abs(test)
+#	return_array.push_front(test)
+#	return return_array
 
 static func angle_difference(from, to):
 	return fposmod(to-from + PI, PI*2) - PI
