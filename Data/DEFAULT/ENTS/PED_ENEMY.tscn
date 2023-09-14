@@ -761,7 +761,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, 1)]
+"values": [Vector2(23, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -6496,12 +6496,11 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Walk Legs Start"
-frame = 6
-offset = Vector2(-0.5, 0)
+animation = &"Executing Stomp"
+offset = Vector2(7, 0)
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
-position = Vector2(10, 1)
+position = Vector2(23, 1)
 
 [node name="Sound" type="Node2D" parent="PED_SPRITES/Legs"]
 

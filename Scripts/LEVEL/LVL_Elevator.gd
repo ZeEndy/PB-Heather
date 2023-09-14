@@ -34,20 +34,21 @@ func _ready():
 func _process(delta):
 	node2d.global_position=-get_viewport_transform().origin/get_viewport_transform().get_scale()
 	black_out.size=get_viewport_rect().size
-	node2d.z_index=z_index-7
+	node2d.z_index=z_index-6
 	if timer>0:
 		timer-=delta
-		if z_index!=9:
+		if z_index!=8:
 			for i in area_check.get_overlapping_bodies():
 				var parent_obj=i.get_parent()
 				if parent_obj is PED:
 					player_in_elevator=true
 					wait_for_player_to_leave=true
-					parent_obj.z_index+=7
+					parent_obj.z_index+=6
+					
 				else:
-					z_index+=7
+					z_index+=6
 			
-			z_index=9
+			z_index=8
 		
 		if timer<elevator_time*0.10+delta && get_parent() != targets[selected_floor][0]:
 			stoping_sound()

@@ -54,7 +54,7 @@ func _physics_process(_delta):
 func _on_NextFloor_body_exited(b):
 	if b in GAME.player_group:
 		GAME.fade=false
-		b.get_parent().override_movement=false
+		b.get_parent().override_input=false
 		if pull_out==true:
 			pull_out=false
 			await get_tree().create_timer(0.5).timeout

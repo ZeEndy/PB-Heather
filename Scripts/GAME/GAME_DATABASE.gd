@@ -292,7 +292,7 @@ var execution_db={
 		"ID":"Unarmed",
 		"Executioner":"Execute", # determine the player's animation
 		"Victim":"Stomp", # determine the enemy's animation
-		"lock_rotation":true # determine w
+		"lock_rotation":false # determine rotation
 	}
 }
 

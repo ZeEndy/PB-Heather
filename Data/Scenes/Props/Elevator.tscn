@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bvvngj5rh82ta" path="res://Data/Sounds/Objects/Elevator/Open.wav" id="5_qpv7g"]
 [ext_resource type="Script" path="res://Scripts/VFX/VFX_SURFACE.gd" id="6_3f1fm"]
 [ext_resource type="AudioStream" uid="uid://cx0dvdsyp6wgd" path="res://Data/Sounds/Objects/Elevator/Close.wav" id="6_dbvrt"]
+[ext_resource type="Texture2D" uid="uid://c454h506haig5" path="res://Data/Sprites/Objects/Elevator/Floors.png" id="7_uhu6f"]
 [ext_resource type="AudioStream" uid="uid://8slxk1p6a18k" path="res://Data/Sounds/Objects/Elevator/Moving.wav" id="8_3p34t"]
 [ext_resource type="AudioStream" uid="uid://b7hujaxc5aytn" path="res://Data/Sounds/Objects/Elevator/Arive_jingle.wav" id="9_kgke6"]
 [ext_resource type="AudioStream" uid="uid://ceioiijah4v2v" path="res://Data/Sounds/Objects/Elevator/Departure.wav" id="10_greec"]
@@ -387,8 +388,6 @@ polygon = PackedVector2Array(-20, -28, -28, -28, -28, -30, -36, -30, -36, -28, -
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_840ox"]
 polygon = PackedVector2Array(44, 36, 36, 36, 36, 35, 20, 35, 20.0478, 36, 12, 36, 12, 28, 20, 28, 20, 30, 36, 30, 36, 28, 38, 28, 38, -28, 36, -28, 36, -30, 20, -30, 20.0478, -28, 12, -28, 12, -36, 44, -36, 44, -28, 43, -28, 43, 28, 44, 28.094)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_364i4"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0cl"]
 size = Vector2(32, 20)
 
@@ -417,7 +416,7 @@ stream = ExtResource("6_dbvrt")
 bus = &"SFX"
 
 [node name="DoorTopRight" type="CharacterBody2D" parent="."]
-z_index = -5
+z_index = -4
 position = Vector2(-11, -32)
 rotation = 1.5708
 collision_layer = 48
@@ -439,7 +438,7 @@ rotation = -1.5708
 occluder = SubResource("OccluderPolygon2D_nylv5")
 
 [node name="DoorTopLeft" type="CharacterBody2D" parent="."]
-z_index = -5
+z_index = -4
 position = Vector2(3, -32)
 rotation = -1.5708
 collision_layer = 48
@@ -480,7 +479,7 @@ stream = ExtResource("6_dbvrt")
 bus = &"SFX"
 
 [node name="DoorBottomLeft" type="CharacterBody2D" parent="."]
-z_index = -5
+z_index = -4
 position = Vector2(3, 32)
 rotation = -1.5708
 collision_layer = 48
@@ -503,7 +502,7 @@ rotation = -1.5708
 occluder = SubResource("OccluderPolygon2D_d8q8k")
 
 [node name="DoorBottomRight" type="CharacterBody2D" parent="."]
-z_index = -5
+z_index = -4
 position = Vector2(-11, 32)
 rotation = 1.5708
 collision_layer = 48
@@ -545,7 +544,7 @@ polygon = PackedVector2Array(-37.9999, 28.0001, -35.9999, 28.0001, -35.9999, 30.
 [node name="Node2d" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 top_level = true
-z_index = -3
+z_index = -4
 z_as_relative = false
 metadata/_edit_lock_ = true
 
@@ -577,16 +576,19 @@ occluder = SubResource("OccluderPolygon2D_ora16")
 occluder = SubResource("OccluderPolygon2D_840ox")
 
 [node name="AreaSurf" type="Area2D" parent="."]
+z_index = -1
 collision_layer = 128
 collision_mask = 0
 script = ExtResource("3_meeol")
 Target = NodePath("Viewp")
 
-[node name="SprElevatorFloor" type="AnimatedSprite2D" parent="AreaSurf"]
-z_index = -5
+[node name="SprElevatorFloor" type="Sprite2D" parent="AreaSurf"]
+z_index = -4
 position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_364i4")
+texture = ExtResource("7_uhu6f")
 offset = Vector2(-1, 0)
+hframes = 7
+frame = 1
 
 [node name="Viewp" type="Node2D" parent="AreaSurf"]
 z_index = -2

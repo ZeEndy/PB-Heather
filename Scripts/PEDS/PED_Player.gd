@@ -131,11 +131,11 @@ func _process(delta):
 			GUI.max_ammo=weapon["Max ammo"]
 	elif state == ped_states.execute:
 		if CAMERA!=null:
-			CAMERA.global_position=sprites.global_position
+			cam_track.position=Vector2(0,0)
 		if execute_click==true:
 			if Input.is_action_just_pressed("attack"):
 				execute_do_click()
-				print("fuck")
+			
 
 func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
 	get_tree().get_nodes_in_group("Glob_Camera_pos")[0].add_shake(damage/10,true)
@@ -143,12 +143,14 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180
 	rotation_multip=0.2
 	super(damage,killsprite,rot,frame,body_speed,_bleed)
 
+func leave_execution():
+	super()
 
 
 
 
-
-
+func do_execution():
+	super()
 
 #func _unhandled_input(event):
 #	if state==ped_states.alive:
