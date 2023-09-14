@@ -26,7 +26,7 @@ func _physics_process(_delta):
 		if b.get_parent() is Player:
 			if $StaticBody2D/CollisionShape2D.disabled==true:
 				if b in GAME.player_group && pull_out==false:
-					b.get_parent().override_movement=true
+					b.get_parent().override_input=true
 					b.get_parent().movement((Vector2(160,0)).rotated(global_rotation),_delta)
 #					b.linear_velocity=(Vector2(0.5,0)).rotated(global_rotation)
 					GAME.fade=true

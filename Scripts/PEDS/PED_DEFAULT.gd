@@ -361,18 +361,14 @@ func drop_weapon(throw_speed=1,dir=body_direction):
 		inst_weapon.linear_velocity=(Vector2(600,0).rotated(dir))*throw_speed
 		inst_weapon.global_position=collision_body.global_position+Vector2(15,0).rotated(dir)
 		inst_weapon.weapon=dupe_dict(weapon)
-		get_parent().call_deferred("add_child",inst_weapon)
+		viewp.call_deferred("add_child",inst_weapon)
 		weapon=dupe_dict(default_weapon)
 #		get_node("PED_SPRITES/Body/anim/Bullet_Spawn/CPUParticles2D").emitting=false
 		var sound_pos=collision_body.global_position
-		if get_class()=="Player":
-			sound_pos=null
 #		AudioManager.play_audio("res://Data/DEFAULT/SOUNDS/GAMEPLAY/snd_Throw.wav",sound_pos,true,1,0,"SFX")
 
 
 func spawn_bullet(amoumt:int):
-	if shake_screen==true:
-		get_tree().get_nodes_in_group("Camera")[0].shake=weapon.screen_shake
 	weapon["Ammo"]-=1
 	for i in amoumt:
 		var sus_bullet=def_bullet_ent.instantiate() as BULLET
@@ -386,7 +382,7 @@ func spawn_bullet(amoumt:int):
 		sus_bullet.death_sprite=Database.death_db[weapon["ID"]]["kill_sprite"]
 		sus_bullet.death_sprite=Database.death_db[weapon["ID"]]["kill_lean_sprite"]
 		#check if AP ammo 
-		get_parent().add_child(sus_bullet)
+		viewp.call_deferred("add_child",sus_bullet)
 		sus_bullet.damage=weapon["Damage"]
 
 
