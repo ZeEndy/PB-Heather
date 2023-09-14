@@ -16,6 +16,8 @@ class_name PED
 @onready var col_shape = get_node("PED_COL/CollsionCircle")
 @onready var exec_pos = get_node("PED_SPRITES/Legs/ExecPos")
 @onready var mov_check=get_node("PED_COL/movement_check")
+@onready var wep_check=get_node("PED_COL/weapon_find")
+@onready var bullet_spawn = get_node("PED_SPRITES/Body/anim/Bullet_Spawn")
 
 signal reached_point()
 
@@ -113,7 +115,7 @@ func _ready():
 		else:
 			_play_animation(sprite_index)
 		sprite_legs.play(leg_index)
-	get_node("PED_COL/CollsionCircle").disabled=false
+	col_shape.disabled=false
 	
 
 
@@ -135,8 +137,8 @@ func weapon_finder(pickup_dist=40*40):
 			# filter weapons within certain distance
 			if weapon.global_position.distance_squared_to(sprites.global_position) < pickup_dist:
 				# filter weapons behind walls
-				get_node("PED_COL/weapon_find").target_position = weapon.global_position - sprites.global_position
-				if !get_node("PED_COL/weapon_find").is_colliding():
+				wep_check.target_position = weapon.global_position - sprites.global_position
+				if !wep_check.is_colliding():
 					closest_weapon = weapon
 					return weapon
 	return null
@@ -200,10 +202,8 @@ func _physics_process(delta):
 	col_shape.shape.height=lerp(col_shape.shape.height,16.0,10*delta)
 	if state == ped_states.alive:
 		weapon_logic(delta)
-		if weapon is Dictionary:
-			if weapon!={}:
-				if bAttack==true:
-					self.attack()
+		if bAttack==true:
+			self.attack()
 	if state == ped_states.down:
 #		axis=lerp(axis,Vector2.ZERO,0.1)
 		my_velocity=my_velocity.lerp(Vector2.ZERO,clamp(5*delta,0,1))
@@ -225,13 +225,11 @@ func _physics_process(delta):
 				sprite_legs.speed_scale=1
 				sprite_index=""
 				body_direction=sprite_legs.rotation-PI
-	
-	
 	elif state == ped_states.dead:
 #		if add_to_surface==true:
 #			visible=false
 		if my_velocity.length()<0.5:
-			get_node("PED_COL/CollsionCircle").disabled=true
+			col_shape.disabled=true
 		my_velocity=lerp(my_velocity,Vector2.ZERO,5.0*delta)
 		collision_body.velocity=my_velocity
 		col_shape.shape.radius=lerp(col_shape.shape.radius,11.0,10*delta)
@@ -377,8 +375,8 @@ func spawn_bullet(amoumt:int):
 	for i in amoumt:
 		var sus_bullet=def_bullet_ent.instantiate() as BULLET
 		#add da weapon spawn bullet
-		sus_bullet.global_position=sprite_body.get_node("anim/Bullet_Spawn").global_position
-		var spawn_recoil_add=sprite_body.get_node("anim/Bullet_Spawn").global_rotation
+		sus_bullet.global_position=bullet_spawn.global_position
+		var spawn_recoil_add=bullet_spawn.global_rotation
 		#add recoil
 		if weapon.has("Recoil"):
 			spawn_recoil_add+=deg_to_rad(randf_range(-weapon["Recoil"],weapon["Recoil"]))
@@ -473,7 +471,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 		health=0
 		sprite_body.visible=false
 		state=ped_states.dead
-		get_node("PED_COL/CollsionCircle").disabled=true
+		col_shape.disabled=true
 		print("cunt")
 		my_velocity=Vector2(0.0,0.0)
 	print("cunt")
@@ -546,9 +544,9 @@ func get_downed_enemies():
 			if enemy.global_position.distance_squared_to(sprites.global_position) < pickup_dist:
 				# filter weapons behind walls
 				
-				get_node("PED_COL/weapon_find").target_position = enemy.global_position - sprites.global_position
+				wep_check.target_position = enemy.global_position - sprites.global_position
 				
-				if !get_node("PED_COL/weapon_find").is_colliding():
+				if !wep_check.is_colliding():
 					in_distance_to_execute=true
 					execute_target = enemy.get_parent()
 					return enemy

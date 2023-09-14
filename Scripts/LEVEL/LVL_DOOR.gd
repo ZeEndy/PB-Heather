@@ -7,6 +7,11 @@ class_name Door
 @onready var sprite=get_node("Sprite") as Sprite2D
 @onready var e_knocker=get_node("DOOR_ANCHER/Enemy Knocker") as Area2D
 
+@onready var shape = RectangleShape2D.new()
+@onready var query = PhysicsShapeQueryParameters2D.new()
+@onready var raycast=PhysicsRayQueryParameters2D.new()
+@onready var space = get_world_2d().direct_space_state
+
 var player_turn=false
 var desired_rot=0
 var process=false
@@ -63,7 +68,6 @@ func _physics_process(delta):
 				if player_turn==false:
 					if i[0] is Enemy && (i[0].state==0 || ((i[0].state == 4 || i[0].state == 3) && i[0].my_velocity.length()>50.0)):
 						dir=i[2]
-						print(dir)
 						if dir!=0: # i cba to do full error prevention
 							prev_rot=door_anc.rotation
 							
@@ -103,20 +107,17 @@ func _process(delta):
 func player_collision_checker():
 	var mask=0b0000000000000000101
 	var collision_objects=[]
-	var shape = RectangleShape2D.new()
 	shape.extents=door_size
-	var query = PhysicsShapeQueryParameters2D.new()
 	query.set_shape(shape)
 	get_node("DOOR_ANCHER/Sprite2D").set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
 	get_node("DOOR_ANCHER/Sprite2D").scale=door_size
 	query.collision_mask=mask
-	var space = get_world_2d().direct_space_state
 	query.set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
 	collision_objects+=space.intersect_shape(query,5)
 #	if collision_objects.size()>0:
 #		print(collision_objects)
 	var return_array=[]
-	var raycast=PhysicsRayQueryParameters2D.new()
+	
 	raycast.from=door_anc.global_position
 	raycast.collision_mask=mask
 	raycast.hit_from_inside=true

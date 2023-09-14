@@ -7,16 +7,17 @@ class_name Enemy
 @onready var movement_check=get_node("PED_COL/movement_check")
 @onready var s_entry=get_node("PED_SPRITES/Legs/Sound/Blood Impact/Bullet Enter")
 @onready var s_exit=get_node("PED_SPRITES/Legs/Sound/Blood Impact/Bullet Exit")
-
-
+@onready var vis_query = PhysicsShapeQueryParameters2D.new()
+@onready var vis_shape = RectangleShape2D.new()
+@onready var pat_query = PhysicsShapeQueryParameters2D.new()
+@onready var pat_shape = RectangleShape2D.new()
+@onready var space = get_world_2d().direct_space_state
 #states
 enum Enemy_t {
 	RANDOM,
 	PATROL,
 	STATIONARY,
-	DODGER,
-	DOG_PATROL,
-	FAT}
+}
 
 enum enemy_s {
 	neutral,
@@ -37,7 +38,7 @@ enum alert_s{
 @export var alert_state=alert_s.normal
 @export var alert_timer=-1
 var random_timer = 0
-
+var player_vis=false
 #misc
 var spawn_timer=0.1
 var target_point=Vector2.ZERO
@@ -51,7 +52,6 @@ func _ready():
 	if alert_timer==-1:
 		alert_timer=alert_time()
 	enemy_state=-1
-	print("test")
 
 func _process(_delta):
 	super(_delta)
@@ -75,10 +75,12 @@ func _physics_process(delta):
 			movement_check.target_position=focused_player.global_position-collision_body.global_position
 
 	if state==ped_states.alive:
+		if player_exists:
+			player_vis=player_visibilty()
 		if weapon["ID"]=="Unarmed":
 			enemy_state=enemy_s.scared
 		if enemy_state==enemy_s.neutral:
-			if player_visibilty()==true:
+			if player_vis:
 				if alert_timer<0:
 					enemy_state=enemy_s.charging
 					alert_timer=alert_time()
@@ -90,25 +92,21 @@ func _physics_process(delta):
 			if enemy_type==Enemy_t.PATROL:
 				movement(null,delta)
 				axis=Vector2(0.35,0).rotated(direction)
-				get_node("PED_SPRITES/Label").text=str(rad_to_deg(direction))
+				#get_node("PED_SPRITES/Label").text=str(rad_to_deg(direction))
 				direction=fmod(direction,PI*2.0)
 				body_direction=lerp_angle(body_direction,axis.angle(),0.15)
 				var v = Vector2(my_velocity.length()*0.35,0).rotated(direction)
-				var shape = RectangleShape2D.new()
-				shape.extents=Vector2(v.length(),get_node("PED_COL/CollsionCircle").shape.radius)
-				var query = PhysicsShapeQueryParameters2D.new()
-				query.set_shape(shape)
-				query.collision_mask=32
-				var space = get_world_2d().direct_space_state
-				query.set_transform(Transform2D(direction,get_node("PED_COL").global_position+Vector2(shape.extents.x/2,0).rotated(direction)))
-				query.exclude.append(get_node("PED_COL").get_rid())
-				
-				if space.intersect_shape(query,1).size()>0:
-					direction -= deg_to_rad(10.0) * delta_time
+				pat_shape.extents=Vector2(v.length(),col_shape.shape.radius)
+				pat_query.set_shape(pat_shape)
+				pat_query.collision_mask=32
+				pat_query.set_transform(Transform2D(direction,collision_body.global_position+Vector2(pat_shape.extents.x/2,0).rotated(direction)))
+				pat_query.exclude.append(collision_body.get_rid())
+				if space.intersect_shape(pat_query,1).size()>0:
+					direction -= deg_to_rad(10.0) * delta_time - delta
 				else:
 					var dif = fmod(direction, deg_to_rad(90.0))
-					if abs(dif) > deg_to_rad(10.0) * delta_time:
-						direction -= deg_to_rad(10.0) * delta_time
+					if abs(dif) > deg_to_rad(10.0):
+						direction -= deg_to_rad(10.0) * delta_time - delta
 					else:
 						direction -= dif
 			elif enemy_type==Enemy_t.RANDOM:
@@ -121,12 +119,7 @@ func _physics_process(delta):
 					#print(axis)
 					random_timer = 60 + (randi() % 61)
 				var v = Vector2(12,0).rotated(deg_to_rad(direction))
-				#this causes a masive memory leak. too bad
-				#TODO: find a better way to bounce
-				
-				#EDIT: I doubt this causes a memory leak I think I might have been stupid
-				#lol
-				var c = get_node("PED_COL").move_and_collide(v, true, true, true)
+				var c = collision_body.move_and_collide(v, true, true, true)
 				if c:
 					v = v.bounce(c.get_normal())
 					direction = rad_to_deg(v.angle())
@@ -145,11 +138,10 @@ func _physics_process(delta):
 			else:
 				axis=Vector2.ZERO
 				movement(null,delta)
-#add logic for backing away
 		else:
 			if player_exists:
 				if enemy_state==enemy_s.charging:
-					if player_visibilty()==true:
+					if player_vis:
 						if weapon["Type"]!="Melee":
 							var clamped_rotation_speed=clamp(movement_check.target_position.length()*0.02,0.15,0.25)
 							body_direction=lerp_angle(body_direction,movement_check.target_position.angle(),clamped_rotation_speed*60*delta)
@@ -181,7 +173,7 @@ func _physics_process(delta):
 				elif enemy_state==enemy_s.chasing:
 					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
 					move_to_point(target_point,0.95)
-					if player_visibilty()==true:
+					if player_vis:
 						if alert_timer<0:
 							enemy_state=enemy_s.charging
 							alert_state=alert_s.ready
@@ -228,22 +220,21 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180
 
 func player_visibilty(mode=0):
 	var seen=true
-	if focused_player!=null:
+	if focused_player!=null && focused_player.get_viewport()==get_viewport():
 		if mode==0:
-			var shape = RectangleShape2D.new()
-			shape.extents=Vector2(collision_body.global_position.distance_to(focused_player.global_position)/2,4)
-			var query = PhysicsShapeQueryParameters2D.new()
-			query.set_shape(shape)
-			query.collision_mask=16
-			var space = get_world_2d().direct_space_state
+			vis_shape.extents=Vector2(collision_body.global_position.distance_to(focused_player.global_position)/2,4)
+			vis_query.set_shape(vis_shape)
+			vis_query.collision_mask=16
+			
 			var angle=collision_body.global_position.direction_to(focused_player.global_position).angle()
-			query.set_transform(Transform2D(angle,collision_body.global_position+Vector2(shape.extents.x,0).rotated(angle)))
-			if space.intersect_shape(query,1).size()>0 || focused_player.get_parent().get_parent()!=get_parent():
+			vis_query.set_transform(Transform2D(angle,collision_body.global_position+Vector2(vis_shape.extents.x,0).rotated(angle)))
+			if space.intersect_shape(vis_query,1).size()>0:
 				seen=false
 		#add other modes like cone and shit here
 	else:
 		seen=false
 	return seen
+
 
 
 
@@ -267,14 +258,14 @@ func investigate_gunshot(distance):
 
 
 func _on_VisibilityNotifier2D_viewport_entered(_viewport):
-	get_node("PED_SPRITES").visible=true
-	get_node("PED_SPRITES").set_enabled(true)
-	get_node("PED_SPRITES").teleport()
+	sprites.visible=true
+	sprites.set_enabled(true)
+	sprites.teleport()
 
 
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):
-	get_node("PED_SPRITES").visible=false
-	get_node("PED_SPRITES").set_enabled(false)
+	sprites.visible=false
+	sprites.set_enabled(false)
 
 func get_classd():
 	return "Enemy"

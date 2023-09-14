@@ -3,6 +3,9 @@ extends Sprite2D
 class_name BULLET
 
 @onready var ray_check=get_node("RayCast2D") as RayCast2D
+@onready var shape = RectangleShape2D.new()
+@onready var query = PhysicsShapeQueryParameters2D.new()
+@onready var space = get_world_2d().direct_space_state
 
 var bullet
 var paused=false
@@ -102,14 +105,9 @@ func destroy():
 
 func check_collision(delta):
 	var collision_objects=[]
-	var shape = RectangleShape2D.new()
 	shape.extents=Vector2(7.5,1)
-	
-	var query = PhysicsShapeQueryParameters2D.new()
 	query.set_shape(shape)
-	query.collision_mask=get_node("RayCast2D").collision_mask
-	
-	var space = get_world_2d().direct_space_state
+	query.collision_mask=ray_check.collision_mask
 	query.set_transform(Transform2D(global_rotation,global_position+Vector2(shape.extents.x*2,0).rotated(global_rotation)))
 	ray_check.target_position=Vector2(speed*delta,0.0)
 	if ray_check.is_colliding()==true:
