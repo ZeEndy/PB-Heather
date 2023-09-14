@@ -53,7 +53,7 @@ func _physics_process(delta):
 #		holster_weapon()
 	if Input.is_action_just_pressed("ui_accept"):
 		sprite_index="MaskOn"
-	get_node("PED_COL").global_rotation = 0
+	collision_body.global_rotation = 0
 	if state == ped_states.alive:
 		if in_combat==true && override_input==false:
 			if Input.is_action_just_pressed("interact"):
@@ -98,10 +98,10 @@ func attack():
 func _process(delta):
 	glob_delta=delta
 	super(delta)
-	if weapon.has("Ammo"):
+#	if weapon.has("Ammo"):
 #		GUI.ammo=weapon.ammo
 #		GUI.max_ammo=weapon.max_ammo
-		get_node("PED_COL/Label").text=str(weapon["Ammo"])+"/"+str(weapon["Max ammo"])
+#		get_node("PED_COL/Label").text=str(weapon["Ammo"])+"/"+str(weapon["Max ammo"])
 	debug_rand_weapon()
 	
 	Engine.time_scale=1-0.85*float(Input.is_action_pressed("DEBUG_ABILTY"))
@@ -125,7 +125,7 @@ func _process(delta):
 					else:
 						cam_track.position=Vector2(24,0)
 		
-		sprites.get_node("Body").global_rotation = body_direction
+		sprite_body.global_rotation = body_direction
 		if weapon["Type"]=="Firearm":
 			GUI.ammo=weapon["Ammo"]
 			GUI.max_ammo=weapon["Max ammo"]

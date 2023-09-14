@@ -18,7 +18,7 @@ class_name PED
 @onready var mov_check=get_node("PED_COL/movement_check")
 @onready var wep_check=get_node("PED_COL/weapon_find")
 @onready var bullet_spawn = get_node("PED_SPRITES/Body/anim/Bullet_Spawn")
-
+var viewp
 signal reached_point()
 
 var g_pdelta=0.0
@@ -54,6 +54,7 @@ var axis = Vector2()
 var motion_multiplier=1
 
 var path=[]
+var path_index=0
 var to_point=Vector2(0,0)
 var b_move_to=false
 
@@ -118,7 +119,8 @@ func _ready():
 	col_shape.disabled=false
 	
 
-
+func _enter_tree():
+	viewp=get_viewport()
 
 func reset_groups():
 	print(groups)
@@ -133,7 +135,7 @@ func weapon_finder(pickup_dist=40*40):
 	
 	for weapon in dropped_weapons:
 		# filter weapons that cannot be picked up
-		if weapon.pick_up == true && weapon.get_viewport()==get_viewport():
+		if weapon.pick_up == true && weapon.viewp==viewp:
 			# filter weapons within certain distance
 			if weapon.global_position.distance_squared_to(sprites.global_position) < pickup_dist:
 				# filter weapons behind walls
@@ -410,12 +412,13 @@ func move_to_point(point,speed=0.7):
 	else:
 		movement(null,g_pdelta)
 		var temp_dir=Vector2(0,0)
-		if path.size()>2 && path[-1].distance_to(point)<16.0:
-			if collision_body.global_position.distance_to(path[0])<8.0:
-				path.remove_at(0)
-			temp_dir=collision_body.global_position.direction_to(path[0])
+		if path_index<path.size()-1:
+			if collision_body.global_position.distance_to(path[path_index])<8.0:
+				path_index+=1
+			temp_dir=collision_body.global_position.direction_to(path[path_index])
 		else:
-			path=get_viewport()._astar._get_path(collision_body.global_position,point)
+			path_index=0
+			path=viewp._astar._get_path(collision_body.global_position,point)
 		axis=temp_dir*speed
 	if collision_body.global_position.distance_to(point)<1 && mov_check.is_colliding()==false:
 		reached_point.emit()
@@ -472,9 +475,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 		sprite_body.visible=false
 		state=ped_states.dead
 		col_shape.disabled=true
-		print("cunt")
 		my_velocity=Vector2(0.0,0.0)
-	print("cunt")
 
 
 func go_down(direction=randf()*PI):

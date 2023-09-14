@@ -46,9 +46,6 @@ func _process(delta):
 			global_position=target.global_position
 		zoom=Vector2(6,6)
 	
-	if rain!=null:
-		get_node("Rain").get_camera_3d().global_transform.origin.x=lerp(get_node("Rain").get_camera_3d().global_transform.origin.x,((global_position)*zoom*follow_speed).x,clamp(6.6666*delta,0,1))+(offset.x*0.0004*follow_speed)
-		get_node("Rain").size=get_viewport().size
 	time += delta*2.0
 	var shaking = pow(shake,2)
 	

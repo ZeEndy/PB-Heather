@@ -3,12 +3,17 @@ class_name WEAPON
 
 
 @onready var def_bullet_ent=preload("res://Data/DEFAULT/ENTS/ENT_BULLET.tscn")
+var viewp
+
 
 var pick_up=false
 var wait_pickup=0.001
 
 @onready var sprite=get_node("SPRITE")
 @onready var col=get_node("CollisionShape2D")
+
+func _enter_tree():
+	viewp=get_viewport()
 
 @export var weapon={
 			"ID":"PB",

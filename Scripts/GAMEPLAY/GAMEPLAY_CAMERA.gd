@@ -10,7 +10,7 @@ class_name game_camera
 
 @onready var floor_below=get_node_or_null("Floor_Below")
 @onready var rain=get_node_or_null("../Rain")
-
+var glob_camera
 @export_node_path("SubViewportContainer") var show_below_target
 
 var below_target=null
@@ -22,15 +22,16 @@ func _ready():
 		below_target=get_node_or_null(show_below_target)
 	pass # Replace with function body.
 
-
+func _enter_tree():
+	glob_camera=get_tree().get_nodes_in_group("Glob_Camera_pos")[0]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	zoom=get_tree().get_nodes_in_group("Glob_Camera_pos")[0].zoom
-	rotation=deg_to_rad(get_tree().get_nodes_in_group("Glob_Camera_pos")[0].rot)
+	zoom=glob_camera.zoom
+	rotation=deg_to_rad(glob_camera.rot)
 	position_smoothing_enabled=false
 	position_smoothing_speed=0
-	global_position=global_position.lerp(get_tree().get_nodes_in_group("Glob_Camera_pos")[0].global_position,5*delta/Engine.time_scale)
-	offset=get_tree().get_nodes_in_group("Glob_Camera_pos")[0].offset
+	global_position=global_position.lerp(glob_camera.global_position,5*delta/Engine.time_scale)
+	offset=glob_camera.offset
 	if floor_below!=null:
 		floor_below.position=offset
 		floor_below.scale=zoom

@@ -56,7 +56,7 @@ var fade=false
 var fade_color = 1
 
 
-
+@onready var viewp=get_viewport()
 
 
 var given_track
@@ -73,6 +73,9 @@ var player_group=[]
 var player_count=0
 var enemy_group=[]
 var enemy_count=0
+
+func _enter_tree():
+	discord_rich==true
 
 func _init():
 	configfile = ConfigFile.new()
@@ -134,7 +137,7 @@ func _process(delta):
 
 #	get_node("CanvasLayer/Noise").material.set_shader_param("giv_time",delta*randf_range(0.767845,1.697665))
 	#fade
-	glob_fade.scale=Vector2(get_viewport().size.y*2,get_viewport().size.x*2)
+	glob_fade.scale=Vector2(viewp.size.y*2,viewp.size.x*2)
 
 	if fade==false: 
 		if fade_color>0:
@@ -210,8 +213,7 @@ func switch_scene(file):
 
 
 
-func _enter_tree():
-	discord_rich==true
+
 
 func _on_GAME_fade_in():
 	return true

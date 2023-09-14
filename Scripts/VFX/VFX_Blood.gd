@@ -44,8 +44,9 @@ func add_to_surf():
 	c.collision_mask=128
 	c.collide_with_bodies=false
 	c.collide_with_areas=true
+	var viewp=get_viewport()
 	var cunt=get_world_2d().direct_space_state.intersect_point(c,1)
 	if cunt!=[]:
 		cunt[0].collider.target.call_deferred("add_to_surface",new_sprite,global_position,global_rotation)
-	elif get_viewport().my_surface!=null:
-		get_viewport().my_surface.call_deferred("add_to_surface",new_sprite,global_position,global_rotation)
+	elif viewp.my_surface!=null:
+		viewp.my_surface.call_deferred("add_to_surface",new_sprite,global_position,global_rotation)

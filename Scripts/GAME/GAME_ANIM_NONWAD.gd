@@ -4,10 +4,11 @@ extends Node2D
 #work around lol
 var frames = self
 
-
+@onready var viewp=get_viewport()
 @onready var ped_parent=get_node("../../")
 @onready var anim_player=get_node("AnimationPlayer")
 @onready var sprite=get_node("anim")
+var glob_camera
 
 @export var speed_scale=1
 @export var frame=0
@@ -17,7 +18,9 @@ var frames = self
 @export_node_path var spawn_pos_on_tree
 var wait_to_flip=false
 
-
+func _enter_tree():
+	viewp=get_viewport()
+	glob_camera=get_tree().get_nodes_in_group("Glob_Camera_pos")[0]
 # Called when the node enters the scene tree for the first time.
 
 func get_animation_list():
@@ -42,10 +45,10 @@ func play(_animation:String = 'default', backwards:bool = false, speed:float = 1
 
 
 func _process(delta):
-	if get_node("AnimationPlayer").current_animation!="":
-		frame=get_node("AnimationPlayer").current_animation_position
-		get_node("AnimationPlayer").speed_scale=speed_scale
-	animation=get_node("AnimationPlayer").current_animation
+	if anim_player.current_animation!="":
+		frame=anim_player.current_animation_position
+		anim_player.speed_scale=speed_scale
+	animation=anim_player.current_animation
 
 
 func holster(anim:String,pull_out:bool):
@@ -70,7 +73,7 @@ func add_ammo(ammount=1):
 
 func shake_screen(shake_in:float=0.11,adative:bool=true):
 	if ped_parent is Player:
-		get_tree().get_nodes_in_group("Glob_Camera_pos")[0].add_shake(shake_in,adative)
+		glob_camera.add_shake(shake_in,adative)
 
 func change_anim_on_full(anim):
 	if ped_parent.weapon.ammo >= ped_parent.weapon.max_ammo || ped_parent.weapon["reserve"]==0:
@@ -143,8 +146,7 @@ func set_frame_ammo(frame_rate:int,frame:int,repeat=0.0):
 func move_rot_relative(added_pos:Vector2=Vector2(0,0)):
 	#moves an object relative to the animation objects rotation
 	ped_parent.collision_body.global_position+=added_pos.rotated(global_rotation)
-	print(get_parent().name)
-	get_parent().call_deferred("s_teleport")
+	ped_parent.call_deferred("s_teleport")
 
 func has_animation(input_anim):
 	if input_anim in anim_player.get_animation_list():
@@ -166,15 +168,15 @@ func spawn_object(path_to_object:String,pos:Vector2,rot:float,set_stuff:Array=[]
 				var add_on_speed=Vector2.ZERO
 				var casing_angle=i[1].angle()
 				var casing_speed=Vector2(randf_range(i[1].length()*0.4,i[1].length()),0).rotated(casing_angle)
-				if get_parent().get_parent() is PED:
-					add_on_speed=get_parent().get_parent().my_velocity
+				if ped_parent is PED:
+					add_on_speed=ped_parent.my_velocity
 				object.set("linear_velocity",casing_speed.rotated(global_rotation+randf_range(deg_to_rad(-20),deg_to_rad(20)))+add_on_speed)
 			else:
 				object.set(i[0],i[1])
 			if i[0]=="z_index":
 #				print(get_parent().get_parent().z_index)
-				object.set("z_index",get_parent().get_parent().z_index+i[1])
-		get_viewport().call_deferred("add_child",object)
+				object.set("z_index",ped_parent.z_index+i[1])
+		viewp.call_deferred("add_child",object)
 
 #need to calculate acording to the frame rate
 func set_frame(frame_rate : int = 13,fframe : int = 0):

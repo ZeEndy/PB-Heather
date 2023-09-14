@@ -109,8 +109,8 @@ func player_collision_checker():
 	var collision_objects=[]
 	shape.extents=door_size
 	query.set_shape(shape)
-	get_node("DOOR_ANCHER/Sprite2D").set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
-	get_node("DOOR_ANCHER/Sprite2D").scale=door_size
+#	get_node("DOOR_ANCHER/Sprite2D").set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
+#	get_node("DOOR_ANCHER/Sprite2D").scale=door_size
 	query.collision_mask=mask
 	query.set_transform(Transform2D(door_anc.global_rotation, door_anc.global_position+Vector2(door_size.x*0.5-1,0).rotated(door_anc.global_rotation)))
 	collision_objects+=space.intersect_shape(query,5)

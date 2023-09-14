@@ -203,8 +203,8 @@ func _physics_process(delta):
 
 func go_down(down_dir=randi()):
 	if state == ped_states.alive:
-		if sprite_body.frames.has_animation("GetUp"):
-			collision_body.set_collision_layer_bit(0,false)
+		CollisionObject2D
+		collision_body.set_collision_layer_value(0,false)
 	super(down_dir)
 
 func kys(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):

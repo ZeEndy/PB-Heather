@@ -7,6 +7,8 @@ extends SubViewport
 @export_node_path("TileMap") var astar
 var _astar=null
 var my_surface=null
+var viewp
+@onready var parent=get_parent()
 #@onready var navigation=get_node(navigation_path)
 
 
@@ -23,7 +25,7 @@ var constantly_show=false
 
 #
 func _ready():
-	
+	viewp=get
 	if path_to_surf!=null:
 		my_surface=get_node_or_null(path_to_surf)
 	if astar != null:
@@ -38,18 +40,18 @@ func _ready():
 func _process(delta):
 	if GAME.player_count>0:
 		if GAME.player_group[0].get_parent() in get_children():
-			get_parent().visible=true
+			parent.visible=true
 			audio_listener_enable_2d=true
-			get_parent().modulate=Color(1,1,1)
+			parent.modulate=Color(1,1,1)
 		else:
 			audio_listener_enable_2d=false
 			if constantly_show==true:
-				get_parent().visible=true
-				get_parent().modulate=Color(0.5,0.5,0.5)
+				parent.visible=true
+				parent.modulate=Color(0.5,0.5,0.5)
 				constantly_show=false
 			else:
-				get_parent().visible=false
-	size=get_parent().get_viewport_rect().size
+				parent.visible=false
+	size=parent.get_viewport_rect().size
 	if current==true && OS.get_name()!="HTML5":
 		intensity=clamp(intensity+(float(Input.is_action_just_pressed("ui_up"))-float(Input.is_action_just_pressed("ui_down")))*0.1,0,0.545)
 	
