@@ -18,7 +18,7 @@ func _physics_process(delta):
 	if active==true:
 		if get_children().size()==0:
 			speed_scale=1.0
-			print(current_animation_position)
+#			print(current_animation_position)
 		else:
 			speed_scale=0.0
 
@@ -46,11 +46,9 @@ func end_cutscene():
 	active=false
 func await_input():
 	var action=action_input.new()
-	print("spawned await")
 	add_child(action)
 
 func show_dialouge(initial_text : String =""):
-	print("firing function")
 	Dialouge.show_dialouge()
 	Dialouge.change_text(initial_text)
 

@@ -64,11 +64,11 @@ func _physics_process(delta):
 		if spawn_timer<0:
 			enemy_state=enemy_s.neutral
 			spawn_timer=-1
-	var player_exists=get_tree().get_nodes_in_group("Player").size()>0
 	var delta_time=delta*60
+	var player_exists=GAME.player_count>0
 	if player_exists:
 		if focused_player==null:
-			focused_player=get_tree().get_nodes_in_group("Player")[0]
+			focused_player=GAME.player_group[0]
 		else:
 			
 			visibilty_check.target_position=focused_player.global_position-collision_body.global_position

@@ -42,7 +42,7 @@ func _process(delta):
 			load_level(restart)
 		else:
 			load_level(checkpoint)
-	if get_tree().get_nodes_in_group("Enemy").size()==0 && level_complete==false:
+	if GAME.enemy_count==0 && level_complete==false:
 		level_complete=true
 		AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
 	if level_complete==false:

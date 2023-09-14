@@ -69,6 +69,10 @@ var fade_in_emitted=false
 
 #@onready var music=get_node("Music") 
 @onready var glob_fade=get_node("CanvasLayer/Fade")
+var player_group=[]
+var player_count=0
+var enemy_group=[]
+var enemy_count=0
 
 func _init():
 	configfile = ConfigFile.new()
@@ -107,9 +111,12 @@ func _process(delta):
 		Engine.time_scale=lerp(Engine.time_scale,0.00005,10*t_delta)
 	else:
 		Engine.time_scale=lerp(float(time),1.0,10*t_delta)
-#	OS.set_window_title("PhoneBook " + " | fps: " + str(Engine.get_frames_per_second()))
-#	if Input.is_action_just_pressed("ui_end"):
-#		change_presence_image()
+	
+	player_group=get_tree().get_nodes_in_group("Player")
+	player_count=player_group.size()
+	enemy_group=get_tree().get_nodes_in_group("Enemy")
+	enemy_count=enemy_group.size()
+	
 	if Input.is_action_just_pressed("Debug_exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("DEBUG_FULLSCREEN"):

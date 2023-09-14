@@ -327,7 +327,7 @@ var death_db={
 func get_wep(input_weapon):
 	for i in weapon_database:
 		if weapon_database[i].has(input_weapon):
-			print(weapon_database[i][input_weapon]["ID"])
+#			print(weapon_database[i][input_weapon]["ID"])
 			return weapon_database[i][input_weapon].duplicate(true)
 
 func get_exec(exec) -> Dictionary:

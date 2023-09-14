@@ -276,6 +276,7 @@ alignment = 0
 script = ExtResource("3_m6y3f")
 
 [node name="Options" type="ScrollContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
+visible = false
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1
@@ -702,7 +703,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_nl7s6")
 text = " - "
 
 [node name="Recordings" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/SubViewportContainer/SubViewport/CanvasLayer/Aspect"]
-visible = false
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1

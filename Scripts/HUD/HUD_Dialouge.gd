@@ -23,6 +23,7 @@ func _process(delta):
 
 func change_text(new_text:String):
 	change_delay=0.1
+	text.visible=false
 	text.text=new_text
 
 func show_dialouge():

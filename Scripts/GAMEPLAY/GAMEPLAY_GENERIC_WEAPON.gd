@@ -71,7 +71,7 @@ func _manual_visiblity(input1=true):
 
 
 func _on_ENT_GENERIC_WEAPON_body_entered(body):
-	if body in get_tree().get_nodes_in_group("Enemy") && col.disabled==false:
+	if body in GAME.enemy_group && col.disabled==false:
 		body.get_parent().go_down(global_position.direction_to(body.global_position).angle())
 		linear_velocity*=0.1
 		pass

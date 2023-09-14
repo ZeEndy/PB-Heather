@@ -25,7 +25,7 @@ func _physics_process(_delta):
 	for b in bodies:
 		if b.get_parent() is Player:
 			if $StaticBody2D/CollisionShape2D.disabled==true:
-				if b in get_tree().get_nodes_in_group("Player") && pull_out==false:
+				if b in GAME.player_group && pull_out==false:
 					b.get_parent().override_movement=true
 					b.get_parent().movement((Vector2(160,0)).rotated(global_rotation),_delta)
 #					b.linear_velocity=(Vector2(0.5,0)).rotated(global_rotation)
@@ -52,10 +52,10 @@ func _physics_process(_delta):
 
 
 func _on_NextFloor_body_exited(b):
-	if b in get_tree().get_nodes_in_group("Player"):
+	if b in GAME.player_group:
 		GAME.fade=false
 		b.get_parent().override_movement=false
 		if pull_out==true:
 			pull_out=false
 			await get_tree().create_timer(0.5).timeout
-			get_tree().get_nodes_in_group("Level")[0]._save_checkpoint()
+			owner._save_checkpoint()

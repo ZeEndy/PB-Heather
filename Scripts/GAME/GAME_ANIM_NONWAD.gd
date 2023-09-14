@@ -88,7 +88,7 @@ func set_body_dir(dir):
 func change_anim_on_full_single(anim):
 	if ped_parent.weapon.ammo >= ped_parent.weapon.max_ammo || ped_parent.weapon["reserve"]==0:
 		ped_parent._play_animation(anim)
-		print("BRO THIS SHOULD ALREADY CHANGEEAAAAAA")
+#		print("BRO THIS SHOULD ALREADY CHANGEEAAAAAA")
 	else:
 		anim_player.seek(0.0)
 

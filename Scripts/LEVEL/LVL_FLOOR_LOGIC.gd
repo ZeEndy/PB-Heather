@@ -36,8 +36,8 @@ func _ready():
 #			floor_clear=false
 
 func _process(delta):
-	if get_tree().get_nodes_in_group("Player").size()>0:
-		if get_tree().get_nodes_in_group("Player")[0].get_parent() in get_children():
+	if GAME.player_count>0:
+		if GAME.player_group[0].get_parent() in get_children():
 			get_parent().visible=true
 			audio_listener_enable_2d=true
 			get_parent().modulate=Color(1,1,1)

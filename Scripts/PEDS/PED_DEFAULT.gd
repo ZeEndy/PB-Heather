@@ -188,11 +188,11 @@ func _process(delta):
 	elif state==ped_states.execute:
 		if copy_time==true:
 			execute_target.sprite_legs.speed_scale=sprite_body.speed_scale
-			if execute_target.sprite_legs_anim.current_animation_position-sprite_body_anim.current_animation_position>0.01:
-				execute_target.sprite_legs_anim.advance(sprite_body_anim.current_animation_position-execute_target.sprite_legs_anim.current_animation_position)
+			var difference=execute_target.sprite_legs_anim.current_animation_position-sprite_body_anim.current_animation_position
+			if difference>0.01:
+				execute_target.sprite_legs_anim.advance(difference)
 
 
-#print("wtfff "+str(execute_target.sprite_legs_anim.current_animation_position))
 func _physics_process(delta):
 	g_pdelta=delta
 	collision_body.global_rotation=0
@@ -535,7 +535,7 @@ func do_execution():
 
 
 func get_downed_enemies():
-	var ground_enemies = get_tree().get_nodes_in_group("PED")
+	var ground_enemies = GAME.enemy_group
 	in_distance_to_execute = false
 	var pickup_dist = 40*40
 	
