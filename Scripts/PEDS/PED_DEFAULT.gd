@@ -60,7 +60,7 @@ var b_move_to=false
 
 #WEAPON VARIABLES
 @onready var default_weapon = Database.get_wep("Unarmed")
-@export_enum("Unarmed","PB","1911","OU-DB","AR-15","MAC-10","AK-74U") var desired_weapon="Unarmed"
+@export_enum("Unarmed","Knife","PB","1911","OU-DB","AR-15","MAC-10","AK-74U") var desired_weapon="Unarmed"
 @onready var weapon = Database.get_wep("Unarmed")
 
 var delay=0

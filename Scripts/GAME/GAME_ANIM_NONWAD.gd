@@ -157,6 +157,9 @@ func play_audio(given_sample,pos_2d=null ,affected_time:bool=true,true_pitch:flo
 	AudioManager.play_audio(given_sample,pos_2d,affected_time,true_pitch,random_pitch,bus)
 
 
+func set_attack_index(index:int):
+	ped_parent.weapon["Attack index"]=index
+
 func spawn_object(path_to_object:String,pos:Vector2,rot:float,set_stuff:Array=[]):
 	#set stuff just do [[get variable,the value to set it as],[get 2nd variable,the value to set it as]]
 	if path_to_object!="":

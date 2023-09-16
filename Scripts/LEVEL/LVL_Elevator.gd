@@ -1,7 +1,7 @@
 extends Sprite2D
 
 
-@onready var cunt=get_node("Button/CanvasLayer/Container/Control/ColorRect/GridContainer")
+
 @onready var node2d=get_node("Node2d")
 @onready var black_out=get_node("Node2d/ColorRect")
 @onready var area_check=get_node("Area2d") as Area2D

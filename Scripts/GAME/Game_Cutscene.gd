@@ -30,6 +30,13 @@ func actor_move_to_point(actor:NodePath,spd:float,position:Vector2):
 	action.speed=spd
 	add_child(action)
 
+func actor_play_anim(actor:NodePath,desired_anim:String,next_anim:String):
+	var action=action_ped_anim.new()
+	var n_actor=get_node(actor)
+	action.actor=n_actor
+	action.desired_anim=desired_anim
+	action.next_anim=next_anim
+	add_child(action)
 
 func actor_rotate_body(actor:NodePath,rotation:float,spd:float):
 	var action=action_rotate_body.new()

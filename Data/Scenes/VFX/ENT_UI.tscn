@@ -557,7 +557,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="DeathPass" type="CanvasLayer" parent="Shaders"]
-layer = 3
+layer = 4
 
 [node name="Shader" type="ColorRect" parent="Shaders/DeathPass"]
 material = SubResource("ShaderMaterial_vkn6m")

@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwoixqxxmhmd"]
 
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_Dialouge.gd" id="1_47s1p"]
-[ext_resource type="Texture2D" uid="uid://1502x677igyh" path="res://Data/Sprites/Characters/Heather/Dialouge/test.png" id="1_ndw0j"]
+[ext_resource type="Texture2D" uid="uid://cn7g74a20pbun" path="res://Data/Sprites/Characters/Heather/Dialouge/Phone.png" id="2_b1syq"]
 [ext_resource type="FontFile" uid="uid://bcht4xuage5hy" path="res://Data/Font/Arial_Bold.ttf" id="2_hckjf"]
 
 [node name="Dialouge" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_47s1p")
 
 [node name="Control" type="Control" parent="."]
@@ -17,18 +16,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-visible = false
+[node name="Spritepoint" type="Control" parent="Control"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.485
-anchor_right = 0.968
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -0.200012
-offset_top = -100.0
-offset_right = 60.4399
-offset_bottom = 118.0
-texture = ExtResource("1_ndw0j")
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Texture" type="Sprite2D" parent="Control/Spritepoint"]
+position = Vector2(320, -394)
+scale = Vector2(2, 2)
+texture = ExtResource("2_b1syq")
 
 [node name="Text" type="Label" parent="Control"]
 layout_mode = 1

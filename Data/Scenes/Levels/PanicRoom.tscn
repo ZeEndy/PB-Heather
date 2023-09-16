@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cc81oacjxvdgt"]
+[gd_scene load_steps=22 format=3 uid="uid://cc81oacjxvdgt"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5bv03"]
+[ext_resource type="AudioStream" uid="uid://dgus68edgqu5q" path="res://Data/Music/mu_Matryoshka.ogg" id="2_6jl6m"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_ah3jq"]
 [ext_resource type="Script" path="res://Scripts/HUD/CAMERA_TOPLEVEL.gd" id="3_7kbga"]
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_FLOOR_LOGIC.gd" id="4_51suu"]
@@ -122,7 +123,8 @@ sources/0 = SubResource("TileSetAtlasSource_xtvrb")
 [node name="Sex Level" type="Node2D" groups=["Current_room", "Level"]]
 script = ExtResource("1_5bv03")
 n_level = "Panic Room"
-n_song = "none"
+n_song = "Hachi - Matryoshka"
+song = ExtResource("2_6jl6m")
 
 [node name="Editing" type="Node" parent="."]
 
@@ -269,7 +271,7 @@ next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
 [node name="Player" parent="Floor 1/Viewport" instance=ExtResource("24_k8i62")]
 position = Vector2(632, 504)
 rotation = -1.5708
-desired_weapon = "MAC-10"
+desired_weapon = "PB"
 
 [node name="Enemy" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(96, 205)
