@@ -130,36 +130,6 @@ metadata/_edit_horizontal_guides_ = []
 
 [node name="EDITING" type="Node" parent="."]
 
-[node name="Enemy" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(971, 149)
-rotation = -3.14159
-
-[node name="Enemy2" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(791, 211)
-
-[node name="Enemy3" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(123, 273)
-
-[node name="Enemy4" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(306, 517)
-rotation = -1.57079
-
-[node name="Enemy5" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(274, 705)
-rotation = -1.57079
-
-[node name="Enemy6" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(882, 377)
-rotation = -1.57079
-
-[node name="Enemy7" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(579, 306)
-rotation = -1.57079
-
-[node name="Enemy8" parent="EDITING" instance=ExtResource("27_gysur")]
-position = Vector2(357, 157)
-rotation = -1.57079
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 visible = false

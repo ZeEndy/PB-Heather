@@ -41,6 +41,7 @@ var max_ammo=1
 var ammo_flash=0.0
 
 var level_time=0
+var desired_points=0
 var points=0
 var combo=0
 
@@ -91,7 +92,8 @@ func _ready():
 func _process(delta):
 	play_timer=clamp(play_timer-delta,0.0,3.0)
 	l_play.visible=bool(round((sin(play_timer*PI*4+PI*1.5)+1.0)*0.5))
-	
+	points=move_toward(points,desired_points,500*delta)
+	l_score.text=\"%05dpts\"%[points]
 	
 	if fuck_cum_retard==true:
 		if ammo>0:
@@ -113,7 +115,7 @@ func _process(delta):
 		
 		l_combo.text=\"%03dx\"%[combo]
 		
-		if health_iterp>0.1 && 1.0-health==1.0:
+		if health_iterp>0.1 && 1.0-ceil(health)==1.0:
 			if restart_flash<1.0:
 				restart_flash=1.0
 			restart_flash+=delta

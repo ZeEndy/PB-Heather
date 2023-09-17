@@ -508,23 +508,22 @@ func do_execution():
 				execute_target.sprite_legs.play("Executing/Stomp",false,1.0)
 				drop_weapon()
 		else:
-			return
-#				drop_weapon()
-#				sprite_body.play(default_weapon.id+"/"+default_weapon.execution_sprite)
-#				execute_target.sprite_legs.play(default_weapon.ground_sprite,false,0)
-#		else:
-#				sprite_body.play("ExecuteWall")
-#				execute_target.sprite_legs.play("DieLean")
+			_play_animation("Unarmed/Execute Wall",0,true)
+			execute_target.sprite_legs.play("Executing/Lean",false,1.0)
+			drop_weapon()
+		await RenderingServer.frame_pre_draw
+		
 		collision_body.global_position=execute_target.exec_pos.global_position
 		sprite_body.global_rotation=execute_target.sprite_legs.global_rotation
-#		execute_target.sprite_legs.speed_scale=0
 		sprite_legs.visible=false
 		execute_target.can_get_up=false
 		state=ped_states.execute
+		
 		axis=Vector2(0,0)
 		my_velocity=Vector2(0,0)
 		execute_target.my_velocity=Vector2(0,0)
 		execute_target.axis=Vector2(0,0)
+		
 
 
 

@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var weapon_preload=preload("res://Data/DEFAULT/ENTS/ENT_GENERIC_WEAPON.tscn")
 
-var point=0
-var held_score=0
+var points=0
+var held_points=0
 var combo=0
 var combo_timer=0.0
 var time=0.0
@@ -46,6 +46,13 @@ func _process(delta):
 		AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
 	if level_complete==false:
 		time+=delta
+	combo_timer=clamp(combo_timer-delta,0,6)
+	if combo_timer==0 && held_points!=0:
+		points+=held_points*combo
+		combo=0
+		held_points=0
+	GUI.combo=combo
+	GUI.desired_points=points
 	GUI.level_time=time
 
 
@@ -119,6 +126,13 @@ func save_level():
 					for t in used_cells.size()-1:
 						atlas_pos.append(i.get_cell_atlas_coords(1,used_cells[t]))
 					save_array.append({"id":i,"positions":used_cells,"atlas_pos":atlas_pos})
+	save_array.append({
+		"id":self,
+		"combo_timer":combo_timer,
+		"combo":combo,
+		"held_points":held_points,
+		"points":points
+	})
 	return save_array
 
 
@@ -173,6 +187,13 @@ func load_level(array):
 					id.set_cell(1,i["positions"][x],
 					id.get_cell_source_id(1,i["positions"][x]),
 					i["atlas_pos"][x])
+		if id==self:
+			combo_timer=i["combo_timer"]
+			held_points=i["held_points"]
+			points=i["points"]
+			combo=i["combo"]
 
 func add_kill():
-	pass
+	combo+=1
+	combo_timer=5.0
+	held_points+=100
