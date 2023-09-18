@@ -232,6 +232,7 @@ func _physics_process(delta):
 #			visible=false
 		if my_velocity.length()<0.5:
 			col_shape.disabled=true
+		
 		my_velocity=lerp(my_velocity,Vector2.ZERO,5.0*delta)
 		collision_body.velocity=my_velocity
 		col_shape.shape.radius=lerp(col_shape.shape.radius,11.0,10*delta)
@@ -474,7 +475,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 		my_velocity=Vector2(0.0,0.0)
 
 
-func go_down(direction=randf()*PI):
+func go_down(direction=randf()*PI,spd=MAX_SPEED):
 	if state == ped_states.alive:
 		if sprite_legs.has_animation("Get Up/Floor"):
 			drop_weapon(0.1,randf()*PI*2.0)
@@ -484,6 +485,7 @@ func go_down(direction=randf()*PI):
 			sprite_legs.global_rotation=direction
 			sprite_body.visible=false
 			down_timer=3
+			my_velocity=Vector2(spd,0).rotated(direction)
 #			collision_body.set_collision_layer_bit(6,false)
 #			axis=Vector2(0.8,0).rotated(direction)
 #		collision_body.linear_damp=6

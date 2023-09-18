@@ -190,22 +190,18 @@ func _physics_process(delta):
 			else:
 				enemy_state=enemy_s.neutral
 		
-	elif state==ped_states.down:
-		if sprite_legs.speed_scale==0:
-			collision_body.set_collision_layer_value(7,false)
-		else:
-			collision_body.set_collision_layer_value(7,true)
-		return
 	elif state==ped_states.execute:
 		if execute_click==true:
 			sprite_body.speed_scale=1
 
+func get_up():
+	collision_body.set_collision_layer_value(1,true)
+	super()
 
-func go_down(down_dir=randi()):
+func go_down(down_dir=randi(),spd=MAX_SPEED):
 	if state == ped_states.alive:
-		CollisionObject2D
-		collision_body.set_collision_layer_value(0,false)
-	super(down_dir)
+		collision_body.set_collision_layer_value(1,false)
+	super(down_dir,spd)
 
 func kys(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
 	do_remove_health(damage,killsprite,rot,frame,body_speed,_bleed)

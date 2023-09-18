@@ -6838,8 +6838,7 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Executing Stomp"
-offset = Vector2(7, 0)
+animation = &"Get Up Ground"
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 

@@ -51,33 +51,33 @@ func _physics_process(delta):
 		var dir=0
 		
 #		if active == false:
-		if door_timer>0.4 || player_turn==false:
-			for i in col_check:
-				if i[0] is Player:
+		for i in col_check:
+			if i[0] is Player:
+				dir=i[2]
+				if dir!=0: # i cba to do full error prevention
+					prev_rot=door_anc.rotation
+					if next_rot!=clamp(next_rot+dir,0,2):
+						player_turn=true
+					next_rot=clamp(next_rot+dir,0,2)
+					
+					
+					door_rot=deg_to_rad(door_rots[next_rot])
+					
+					door_rot=clamp(door_rot,deg_to_rad(-right),deg_to_rad(left))
+					door_timer=0.0
+			if player_turn==false && door_timer>0.4:
+				if i[0] is Enemy && (i[0].state==0 || ((i[0].state == 4 || i[0].state == 3) && i[0].my_velocity.length()>50.0)):
 					dir=i[2]
 					if dir!=0: # i cba to do full error prevention
-						player_turn=true
 						prev_rot=door_anc.rotation
 						
 						next_rot=clamp(next_rot+dir,0,2)
-						
 						door_rot=deg_to_rad(door_rots[next_rot])
 						
 						door_rot=clamp(door_rot,deg_to_rad(-right),deg_to_rad(left))
 						door_timer=0.0
-				if player_turn==false:
-					if i[0] is Enemy && (i[0].state==0 || ((i[0].state == 4 || i[0].state == 3) && i[0].my_velocity.length()>50.0)):
-						dir=i[2]
-						if dir!=0: # i cba to do full error prevention
-							prev_rot=door_anc.rotation
-							
-							next_rot=clamp(next_rot+dir,0,2)
-							door_rot=deg_to_rad(door_rots[next_rot])
-							
-							door_rot=clamp(door_rot,deg_to_rad(-right),deg_to_rad(left))
-							door_timer=0.0
 		
-		elif door_timer<0.6 && player_turn==true:
+		if door_timer<0.6 && player_turn==true:
 			for i in e_knocker.get_overlapping_bodies():
 				var par=i.get_parent()
 				if par is Enemy && par.state==0:
