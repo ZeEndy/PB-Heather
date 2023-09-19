@@ -51,6 +51,7 @@ func _ready():
 #	get_node("pathline").global_rotation=0
 	if alert_timer==-1:
 		alert_timer=alert_time()
+	collision_body.set_collision_layer_value(1,true)
 	enemy_state=-1
 
 func _process(_delta):

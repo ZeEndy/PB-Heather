@@ -30,6 +30,17 @@ func actor_move_to_point(actor:NodePath,spd:float,position:Vector2):
 	action.speed=spd
 	add_child(action)
 
+func obj_change_frame_on_ped_anim_end(actor:NodePath,obj:NodePath,new_frame:int):
+	var action=action_change_frame_on_end.new()
+	var n_actor=get_node(actor)
+	var n_obj=get_node(obj)
+	action.actor=n_actor
+	action.obj=n_obj
+	action.frame=new_frame
+	add_child(action)
+
+
+
 func actor_play_anim(actor:NodePath,desired_anim:String,next_anim:String):
 	var action=action_ped_anim.new()
 	var n_actor=get_node(actor)

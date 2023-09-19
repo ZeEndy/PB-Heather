@@ -270,8 +270,8 @@ tracks/1/path = NodePath("AnimationPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.4, 0.6, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.3, 0.4, 0.6, 0.7, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"await_input"
@@ -285,6 +285,9 @@ tracks/1/keys = {
 "args": [],
 "method": &"await_input"
 }, {
+"args": [NodePath("../../Player"), NodePath(".."), 0],
+"method": &"obj_change_frame_on_ped_anim_end"
+}, {
 "args": [NodePath("../../Player")],
 "method": &"free_player"
 }]
@@ -296,10 +299,10 @@ tracks/2/path = NodePath(".:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.852532),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 0]
+"values": [0, 1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false

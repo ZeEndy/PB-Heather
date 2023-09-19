@@ -280,6 +280,9 @@ locked = true
 position = Vector2(640, 928)
 desired_weapon = "AK-74U"
 
+[node name="Enemy" parent="Floor 1/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(700, 928)
+
 [node name="Floor 2" type="SubViewportContainer" parent="."]
 visible = false
 offset_right = 40.0
