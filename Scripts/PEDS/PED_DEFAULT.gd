@@ -506,8 +506,8 @@ func get_up():
 
 func do_execution():
 	if get_downed_enemies() != null:
+		var execution=Database.get_exec(weapon["ID"])
 		if execute_target.sprite_legs.animation!="Get Up/Lean":
-			var execution=Database.get_exec(weapon["ID"])
 			if execution["ID"]=="Unarmed":
 				_play_animation("Unarmed/Execute",0,true)
 				execute_target.sprite_legs.play("Executing/Stomp",false,1.0)
@@ -517,13 +517,17 @@ func do_execution():
 			execute_target.sprite_legs.play("Executing/Lean",false,1.0)
 			drop_weapon()
 		await RenderingServer.frame_pre_draw
-		
+		if execution["lock_rotation"]==true:
+			sprite_body.global_rotation=execute_target.sprite_legs.global_rotation
+			body_direction=execute_target.sprite_legs.global_rotation
+		else:
+			body_direction=collision_body.global_position.direction_to(execute_target.exec_pos.global_position).angle()
+			print(rad_to_deg(body_direction))
+			sprite_body.global_rotation=body_direction
 		collision_body.global_position=execute_target.exec_pos.global_position
-		sprite_body.global_rotation=execute_target.sprite_legs.global_rotation
 		sprite_legs.visible=false
 		execute_target.can_get_up=false
 		state=ped_states.execute
-		
 		axis=Vector2(0,0)
 		my_velocity=Vector2(0,0)
 		execute_target.my_velocity=Vector2(0,0)
