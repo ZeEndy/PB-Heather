@@ -19,19 +19,29 @@ var time=1.0
 #config stuff
 
 
-var fullscreen=0
-var windowed_mouse=false
 
+
+
+
+
+
+
+var rend_method="mobile"
+var display_mode=0
+var curr_display_mode=-1
+var resolution=Vector2(1920,1080)
+var cur_resolution=Vector2(-1,-1)
 var particle_quality=0
+var light_quality=0
 #0 no particles
 #1 minimal particles
 #3 all particles
-var light_quality=0
-
 var music_volume=0
 var sfx_volume=0
 var mas_volume=0
 
+var cursor_sens=1.0
+var cursor_method=Input.MOUSE_MODE_CAPTURED
 
 var _saving=false
 
@@ -76,51 +86,74 @@ func _enter_tree():
 func _init():
 	configfile = ConfigFile.new()
 	if configfile.load("res://config.cfg") == OK:
-		music_volume=configfile.get_value("AUDIO","Music")
-		sfx_volume=configfile.get_value("AUDIO","SFX")
-		mas_volume=configfile.get_value("AUDIO","Master")
-		print("CONFIG: "+str(configfile.get_value("AUDIO","Master")))
-#		for quality in configfile.get_section_keys("QUALITY"):
-		particle_quality=configfile.get_value("QUALITY","particle_quality")
-		light_quality=configfile.get_value("QUALITY","light_quality")
+		
+		resolution=configfile.get_value("VIDEO","resolution",Vector2(1920,1080))
+		display_mode=configfile.get_value("VIDEO","display_mode",0)
+		particle_quality=configfile.get_value("VIDEO","particle_quality",0)
+		light_quality=configfile.get_value("VIDEO","light_quality",0)
+		
+		music_volume=configfile.get_value("AUDIO","Music",1.0)
+		sfx_volume=configfile.get_value("AUDIO","SFX",1.0)
+		mas_volume=configfile.get_value("AUDIO","Master",0.5)
+		
+		
+		
+		cursor_sens=configfile.get_value("CURSOR","cursor_sens",1.0)
 	else:
-		print(configfile.load("res://config.cfg"))
+		save_config()
 	var ovrd = ConfigFile.new()
-	if ovrd.load("res://override.cfg") == OK:
-		pass
-	else:
-		if !OS.is_debug_build():
-			ovrd.set_value("rendering","renderer/rendering_method","forward_plus")
-			ovrd.save("res://override.cfg")
+	if ovrd.load("res://override.cfg") != OK:
+		ovrd.set_value("rendering","renderer/rendering_method","mobile")
+		ovrd.save("res://override.cfg")
 #	InputMap
 #	await RenderingServer.frame_post_draw
 #	activate_discord()
 
-func _ready():
-#	get_node("CanvasLayer2/DEBUG_TEXT").visible=OS.is_debug_build()
-	configfile = ConfigFile.new()
-	if configfile.load("res://config.cfg") == OK:
-		for cursor in configfile.get_section_keys("CURSOR"):
-			GUI.set(cursor,configfile.get_value("CURSOR",cursor))
+
 
 func save_config():
 	var config=ConfigFile.new()
+	config.set_value("VIDEO","display_mode",display_mode)
+	config.set_value("VIDEO","resolution",resolution)
+	config.set_value("VIDEO","particle_quality",particle_quality)
+	config.set_value("VIDEO","light_quality",light_quality)
+	
+	config.set_value("AUDIO","Master",mas_volume)
 	config.set_value("AUDIO","Music",music_volume)
 	config.set_value("AUDIO","SFX",sfx_volume)
-	config.set_value("AUDIO","Master",mas_volume)
-	config.set_value("QUALITY","particle_quality",particle_quality)
-	config.set_value("QUALITY","light_quality",light_quality)
+	
+	config.set_value("CURSOR","cursor_sens",cursor_sens)
+	config.set_value("CURSOR","cursor_method",cursor_method)
+	
 	config.save("res://config.cfg")
-
-
-func override_renderer(method:String):
 	var ovrd=ConfigFile.new()
-	ovrd.set_value("rendering","renderer/rendering_method",method)
+	ovrd.set_value("rendering","renderer/rendering_method",rend_method)
 	ovrd.save("res://override.cfg")
+	
 
 
 
 func _process(delta):
+	if curr_display_mode!=display_mode:
+		match display_mode:
+			0:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			1:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
+			2:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
+			3:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
+		curr_display_mode=display_mode
+	
+	if cur_resolution!=resolution:
+		print(resolution)
+		DisplayServer.window_set_size(resolution)
+		cur_resolution=resolution
+	
 	var t_delta=delta/Engine.time_scale
 	if Input.is_action_just_pressed("Pause"):
 		paused=!paused
@@ -136,12 +169,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("Debug_exit"):
 		get_tree().quit()
-	if Input.is_action_just_pressed("DEBUG_FULLSCREEN"):
-		if fullscreen==DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-			fullscreen=DisplayServer.WINDOW_MODE_WINDOWED
-		else:
-			fullscreen=DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-		DisplayServer.window_set_mode(fullscreen)
+
 
 
 

@@ -3,6 +3,7 @@ extends Button
 @export var start_focus=false
 @onready var saved_text=text
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ResourceLoader.load_threaded_request("res://Data/Scenes/VFX/ENT_Transition.tscn")

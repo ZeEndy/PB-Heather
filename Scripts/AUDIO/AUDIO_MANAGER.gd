@@ -25,9 +25,9 @@ var paused=false
 func _process(delta):
 	var t_delta=delta/Engine.time_scale
 	paused=GAME.paused
-	mus_vol=GAME.music_volume
-	sfx_vol=GAME.sfx_volume
-	mas_vol=GAME.mas_volume
+	mus_vol=linear_to_db(GAME.music_volume)
+	sfx_vol=linear_to_db(GAME.sfx_volume)
+	mas_vol=linear_to_db(GAME.mas_volume)
 	AudioServer.set_bus_volume_db(0,mas_vol)
 	AudioServer.set_bus_volume_db(1,mus_vol)
 	AudioServer.set_bus_volume_db(2,sfx_vol)
