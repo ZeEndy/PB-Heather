@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bkmoclccdk3ip"]
+[gd_scene load_steps=31 format=3 uid="uid://bkmoclccdk3ip"]
 
 [ext_resource type="Texture2D" uid="uid://b32xo2axfseu1" path="res://Data/Sprites/Objects/Elevator/Body.png" id="1_x7m4m"]
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_Elevator.gd" id="2_bwpj3"]
@@ -388,7 +388,10 @@ polygon = PackedVector2Array(-20, -28, -28, -28, -28, -30, -36, -30, -36, -28, -
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_840ox"]
 polygon = PackedVector2Array(44, 36, 36, 36, 36, 35, 20, 35, 20.0478, 36, 12, 36, 12, 28, 20, 28, 20, 30, 36, 30, 36, 28, 38, 28, 38, -28, 36, -28, 36, -30, 20, -30, 20.0478, -28, 12, -28, 12, -36, 44, -36, 44, -28, 43, -28, 43, 28, 44, 28.094)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0cl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhnhu"]
+size = Vector2(32, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg1gw"]
 size = Vector2(32, 20)
 
 [node name="Elevator" type="Sprite2D"]
@@ -403,6 +406,12 @@ elevator_time = 5.0
 libraries = {
 "": SubResource("AnimationLibrary_wxl0t")
 }
+
+[node name="TopCheck" type="RayCast2D" parent="."]
+position = Vector2(-4, -32)
+rotation = 3.14159
+target_position = Vector2(0, 20)
+collision_mask = 64
 
 [node name="TopSounds" type="Node2D" parent="."]
 position = Vector2(-4, -32)
@@ -466,6 +475,11 @@ occluder = SubResource("OccluderPolygon2D_w8yyu")
 libraries = {
 "": SubResource("AnimationLibrary_qisci")
 }
+
+[node name="BottomCheck" type="RayCast2D" parent="."]
+position = Vector2(-4, 32)
+target_position = Vector2(0, 20)
+collision_mask = 64
 
 [node name="BottomSounds" type="Node2D" parent="."]
 position = Vector2(-4, 32)
@@ -635,7 +649,8 @@ collision_layer = 64
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopCol"]
-shape = SubResource("RectangleShape2D_yj0cl")
+position = Vector2(3.8147e-06, -1)
+shape = SubResource("RectangleShape2D_mhnhu")
 one_way_collision = true
 
 [node name="BottomCol" type="StaticBody2D" parent="."]
@@ -644,6 +659,6 @@ collision_layer = 64
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCol"]
-shape = SubResource("RectangleShape2D_yj0cl")
+shape = SubResource("RectangleShape2D_vg1gw")
 disabled = true
 one_way_collision = true

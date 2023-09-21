@@ -6,6 +6,10 @@ extends Sprite2D
 @onready var black_out=get_node("Node2d/ColorRect")
 @onready var area_check=get_node("Area2d") as Area2D
 
+@onready var top_check=get_node("TopCheck") as RayCast2D
+@onready var bottom_check=get_node("BottomCheck") as RayCast2D
+@onready var top_anim=get_node("TopAnim") as AnimationPlayer
+@onready var bottom_anim=get_node("BottomAnim") as AnimationPlayer
 @export var targets=[]
 var selected_floor=-1
 
@@ -18,16 +22,14 @@ var camera_shaking=false
 var elevator_shake=0.2
 
 func _ready():
-	
 	for i in targets.size():
-		var id=targets[i]
-		targets[i][0]=get_node(id[0])
-		targets[i][1]=get_node(id[1])
-		if get_viewport()==id[0]:
-			selected_floor=i
-			door_animation(id[1],"Open")
-		
+		targets[i]=get_node(targets[i])
+	if top_check.is_colliding()==false:
+		door_animation(top_anim,"Open")
+	if bottom_check.is_colliding()==false:
+		door_animation(bottom_anim,"Open")
 #	get_node("Button/CanvasLayer/Container/Control/ColorRect").size.y=100.0*(ceil(float(cunt_count)*0.5))
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -130,8 +132,10 @@ func next_floor():
 func arrive():
 	get_node("Ding").play()
 	await get_tree().create_timer(0.69).timeout
-	door_animation(targets[selected_floor][1],"Open")
-
+	if top_check.is_colliding()==false:
+		door_animation(top_anim,"Open")
+	if bottom_check.is_colliding()==false:
+		door_animation(bottom_anim,"Open")
 
 func stoping_sound():
 	get_node("Arrive").play()

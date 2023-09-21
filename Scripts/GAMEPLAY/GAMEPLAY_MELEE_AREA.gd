@@ -47,11 +47,11 @@ func _process(_delta):
 					if for_ped_parent.has_method("do_remove_health") && attack_type==at_types.lethal:
 						if for_ped_parent.state==0 || for_ped_parent.state==3:
 							if !("Lean" in for_ped_parent.sprite_legs.animation):
-								for_ped_parent.do_remove_health(1,death_sprite,(ped_parent.collision_body.global_position.direction_to(i.global_position).angle())-deg_to_rad(180),"rand",0.8)
+								for_ped_parent.do_remove_health(100,death_sprite,(ped_parent.collision_body.global_position.direction_to(i.global_position).angle())-deg_to_rad(180),"rand",0.8)
 								if sound_node!=null:
 									sound_node.play()
 							else:
-								for_ped_parent.do_remove_health(1,death_lean_sprite,for_ped_parent.sprite_legs.global_rotation,"rand",0.8)
+								for_ped_parent.do_remove_health(100,death_lean_sprite,for_ped_parent.sprite_legs.global_rotation,"rand",0.8)
 								if sound_node!=null:
 									sound_node.play()
 						break
