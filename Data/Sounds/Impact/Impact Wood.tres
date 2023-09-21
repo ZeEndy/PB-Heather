@@ -1,0 +1,41 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=13 format=3 uid="uid://bk8naioyko5xc"]
+
+[ext_resource type="AudioStream" uid="uid://c56ho3cg0c44u" path="res://Data/Sounds/Impact/Wood/Impact_1.wav" id="1_6qlyd"]
+[ext_resource type="AudioStream" uid="uid://crwr7kq5o0qdh" path="res://Data/Sounds/Impact/Wood/Impact_2.wav" id="2_k7ebv"]
+[ext_resource type="AudioStream" uid="uid://befcu0wu82uj4" path="res://Data/Sounds/Impact/Wood/Impact_11.wav" id="3_k46s5"]
+[ext_resource type="AudioStream" uid="uid://caa584aev8jvx" path="res://Data/Sounds/Impact/Wood/Impact_12.wav" id="4_e1630"]
+[ext_resource type="AudioStream" uid="uid://5y18hma1pny4" path="res://Data/Sounds/Impact/Wood/Impact_3.wav" id="5_54jsh"]
+[ext_resource type="AudioStream" uid="uid://ctyxj34y2hl2c" path="res://Data/Sounds/Impact/Wood/Impact_4.wav" id="6_qt322"]
+[ext_resource type="AudioStream" uid="uid://dvc0nll7vrx7p" path="res://Data/Sounds/Impact/Wood/Impact_5.wav" id="7_a8ibx"]
+[ext_resource type="AudioStream" uid="uid://cwky8g2hvnx12" path="res://Data/Sounds/Impact/Wood/Impact_6.wav" id="8_oa1hx"]
+[ext_resource type="AudioStream" uid="uid://s1ad0nn6meht" path="res://Data/Sounds/Impact/Wood/Impact_7.wav" id="9_k125u"]
+[ext_resource type="AudioStream" uid="uid://nc5w2ir4h54j" path="res://Data/Sounds/Impact/Wood/Impact_8.wav" id="10_blq3r"]
+[ext_resource type="AudioStream" uid="uid://dw6p5dnca0dhs" path="res://Data/Sounds/Impact/Wood/Impact_9.wav" id="11_y27xt"]
+[ext_resource type="AudioStream" uid="uid://p72b0iu4ps38" path="res://Data/Sounds/Impact/Wood/Impact_10.wav" id="12_f7f7t"]
+
+[resource]
+streams_count = 12
+stream_0/stream = ExtResource("1_6qlyd")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_k7ebv")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_54jsh")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_qt322")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_a8ibx")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_oa1hx")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("9_k125u")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("10_blq3r")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("11_y27xt")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("12_f7f7t")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("3_k46s5")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("4_e1630")
+stream_11/weight = 1.0

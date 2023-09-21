@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://btuy3yrdsrr8a"]
+[gd_scene load_steps=7 format=3 uid="uid://btuy3yrdsrr8a"]
 
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_BULLET.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://djguu8wleqt8y" path="res://Data/Sprites/VFX/sprBullet.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://34tkfsxjigyi" path="res://Data/Sounds/Impact/Impact Brick.tres" id="3_u8a7e"]
+[ext_resource type="AudioStream" uid="uid://m03ebpwh36ce" path="res://Data/Sounds/Impact/Impact Plaster.tres" id="4_uu5jn"]
+[ext_resource type="AudioStream" uid="uid://bk8naioyko5xc" path="res://Data/Sounds/Impact/Impact Wood.tres" id="5_ci1yr"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 blend_mode = 1
@@ -16,3 +19,18 @@ script = ExtResource("1")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(20, 0)
 collision_mask = 77
+
+[node name="Brick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_u8a7e")
+max_distance = 200.0
+
+[node name="Glass" type="AudioStreamPlayer2D" parent="."]
+max_distance = 200.0
+
+[node name="Plaster" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_uu5jn")
+max_distance = 200.0
+
+[node name="Wood" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ci1yr")
+max_distance = 200.0

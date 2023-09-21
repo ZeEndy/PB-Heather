@@ -209,7 +209,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.692308),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["DeadMachinegun", "DeadMachinegun"]
+"values": [&"Walk Legs", &"Walk Legs"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false

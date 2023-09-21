@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cyjjbtgq2bxwq"]
+[gd_scene load_steps=57 format=3 uid="uid://cyjjbtgq2bxwq"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5x4kg"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_nbniv"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dvn5q8fkjdcyf" path="res://Data/Sprites/Objects/Phone/PhoneOn_strip6.png" id="25_whcj5"]
 [ext_resource type="Texture2D" uid="uid://b3s01s7o0bsun" path="res://Data/Sprites/Objects/Heather Apartment/Kitchen bench.png" id="25_xi1ru"]
 [ext_resource type="Texture2D" uid="uid://c8iachob6uibs" path="res://Data/Sprites/Objects/Heather Apartment/Plant_small.png" id="26_82d0c"]
+[ext_resource type="Texture2D" uid="uid://c32ply4ebh2r" path="res://Data/Sprites/Objects/Heather Apartment/Curtains.png" id="31_b6jqc"]
 
 [sub_resource type="QuadMesh" id="1"]
 
@@ -482,16 +483,16 @@ collision_mask = 32
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_xdwv8")
 
-[node name="Bokshelf" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+[node name="Bookshelf" type="Sprite2D" parent="Floor 1/Viewport/Props"]
 position = Vector2(355, 143)
 rotation = 1.57079
 texture = ExtResource("16_lck42")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/Bokshelf"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/Bookshelf"]
 collision_layer = 32
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/Bokshelf/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/Bookshelf/StaticBody2D"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_6a5ed")
 
@@ -578,6 +579,33 @@ rotation = 1.57079
 texture = ExtResource("26_82d0c")
 hframes = 2
 frame = 1
+
+[node name="Curtains2" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 2
+z_as_relative = false
+position = Vector2(272, 42)
+texture = ExtResource("31_b6jqc")
+region_enabled = true
+region_rect = Rect2(0, 0, 96, 6)
+
+[node name="Curtains3" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 2
+z_as_relative = false
+position = Vector2(25, 102)
+rotation = 1.57079
+texture = ExtResource("31_b6jqc")
+
+[node name="Curtains" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 2
+z_as_relative = false
+position = Vector2(387, 43)
+texture = ExtResource("31_b6jqc")
+
+[node name="Curtains4" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 2
+z_as_relative = false
+position = Vector2(84, 42)
+texture = ExtResource("31_b6jqc")
 
 [node name="Elevator" parent="Floor 1/Viewport" instance=ExtResource("4_r2ule")]
 position = Vector2(716, 404)

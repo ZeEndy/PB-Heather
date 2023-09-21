@@ -1,0 +1,35 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=11 format=3 uid="uid://cexhiljcpyj7w"]
+
+[ext_resource type="AudioStream" uid="uid://b0h6ll7c104rx" path="res://Data/Sounds/Impact/Glass/Impact_1.wav" id="1_8x5tj"]
+[ext_resource type="AudioStream" uid="uid://2acgnuflgjt7" path="res://Data/Sounds/Impact/Glass/Impact_2.wav" id="2_7efgn"]
+[ext_resource type="AudioStream" uid="uid://chpqf4h6j384w" path="res://Data/Sounds/Impact/Glass/Impact_3.wav" id="3_kvy4v"]
+[ext_resource type="AudioStream" uid="uid://cuu81ol6v7gpy" path="res://Data/Sounds/Impact/Glass/Impact_4.wav" id="4_0d5ya"]
+[ext_resource type="AudioStream" uid="uid://bp1wristnnm45" path="res://Data/Sounds/Impact/Glass/Impact_5.wav" id="5_ttc8k"]
+[ext_resource type="AudioStream" uid="uid://cgi731kmn0nn1" path="res://Data/Sounds/Impact/Glass/Impact_6.wav" id="6_htnyb"]
+[ext_resource type="AudioStream" uid="uid://vhskm0v35xi3" path="res://Data/Sounds/Impact/Glass/Impact_7.wav" id="7_57pmf"]
+[ext_resource type="AudioStream" uid="uid://b3i8fhpinbjlt" path="res://Data/Sounds/Impact/Glass/Impact_8.wav" id="8_d7sgg"]
+[ext_resource type="AudioStream" uid="uid://bc20drskmua7f" path="res://Data/Sounds/Impact/Glass/Impact_9.wav" id="9_gfg5x"]
+[ext_resource type="AudioStream" uid="uid://bmd3g7t4jcava" path="res://Data/Sounds/Impact/Glass/Impact_10.wav" id="10_lsv1h"]
+
+[resource]
+streams_count = 10
+stream_0/stream = ExtResource("1_8x5tj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_7efgn")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_kvy4v")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_0d5ya")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_ttc8k")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_htnyb")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("7_57pmf")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("8_d7sgg")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("9_gfg5x")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("10_lsv1h")
+stream_9/weight = 1.0

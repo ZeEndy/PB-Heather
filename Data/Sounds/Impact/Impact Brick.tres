@@ -1,0 +1,56 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=18 format=3 uid="uid://34tkfsxjigyi"]
+
+[ext_resource type="AudioStream" uid="uid://djetsv3pirtf4" path="res://Data/Sounds/Impact/Brick/Impact_1.wav" id="1_dpu86"]
+[ext_resource type="AudioStream" uid="uid://3jij6iw552ms" path="res://Data/Sounds/Impact/Brick/Impact_2.wav" id="2_tmv3p"]
+[ext_resource type="AudioStream" uid="uid://bb1abu11ahqpb" path="res://Data/Sounds/Impact/Brick/Impact_11.wav" id="3_y70ws"]
+[ext_resource type="AudioStream" uid="uid://cte1hica5w4y5" path="res://Data/Sounds/Impact/Brick/Impact_12.wav" id="4_h6emp"]
+[ext_resource type="AudioStream" uid="uid://dyrld3ss01ux4" path="res://Data/Sounds/Impact/Brick/Impact_13.wav" id="5_tug4i"]
+[ext_resource type="AudioStream" uid="uid://dmdyypyg6c4b0" path="res://Data/Sounds/Impact/Brick/Impact_14.wav" id="6_5i53y"]
+[ext_resource type="AudioStream" uid="uid://dkibv8lwwyai" path="res://Data/Sounds/Impact/Brick/Impact_15.wav" id="7_s46st"]
+[ext_resource type="AudioStream" uid="uid://byeocisyvib1v" path="res://Data/Sounds/Impact/Brick/Impact_16.wav" id="8_2okou"]
+[ext_resource type="AudioStream" uid="uid://bvwcs73ig0ro" path="res://Data/Sounds/Impact/Brick/Impact_17.wav" id="9_yfsr6"]
+[ext_resource type="AudioStream" uid="uid://b8e3ao1slrl4u" path="res://Data/Sounds/Impact/Brick/Impact_3.wav" id="10_plguj"]
+[ext_resource type="AudioStream" uid="uid://t4a2d0xabi1m" path="res://Data/Sounds/Impact/Brick/Impact_4.wav" id="11_7a6ri"]
+[ext_resource type="AudioStream" uid="uid://dnqg77hdbpvpi" path="res://Data/Sounds/Impact/Brick/Impact_5.wav" id="12_nqigr"]
+[ext_resource type="AudioStream" uid="uid://dxbwpq8glybje" path="res://Data/Sounds/Impact/Brick/Impact_6.wav" id="13_7n8l3"]
+[ext_resource type="AudioStream" uid="uid://dqeo5snt8oraa" path="res://Data/Sounds/Impact/Brick/Impact_7.wav" id="14_s1ieg"]
+[ext_resource type="AudioStream" uid="uid://de51x78ue4h2s" path="res://Data/Sounds/Impact/Brick/Impact_8.wav" id="15_j6xsc"]
+[ext_resource type="AudioStream" uid="uid://dvgvq3k0qrycf" path="res://Data/Sounds/Impact/Brick/Impact_9.wav" id="16_bx6e4"]
+[ext_resource type="AudioStream" uid="uid://v2tf7h21au0k" path="res://Data/Sounds/Impact/Brick/Impact_10.wav" id="17_rft5q"]
+
+[resource]
+streams_count = 17
+stream_0/stream = ExtResource("1_dpu86")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_tmv3p")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("10_plguj")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("11_7a6ri")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("12_nqigr")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("13_7n8l3")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("14_s1ieg")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("15_j6xsc")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("16_bx6e4")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("17_rft5q")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("3_y70ws")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("4_h6emp")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("5_tug4i")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("6_5i53y")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("7_s46st")
+stream_14/weight = 1.0
+stream_15/stream = ExtResource("8_2okou")
+stream_15/weight = 1.0
+stream_16/stream = ExtResource("9_yfsr6")
+stream_16/weight = 1.0

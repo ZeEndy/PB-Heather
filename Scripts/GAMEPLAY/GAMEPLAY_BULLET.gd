@@ -7,6 +7,12 @@ class_name BULLET
 @onready var query = PhysicsShapeQueryParameters2D.new()
 @onready var space = get_world_2d().direct_space_state
 
+@onready var imp_sounds={
+	"Brick":get_node("Brick"),
+	"Plaster":get_node("Plaster"),
+	"Glass":get_node("Glass"),
+}
+
 var bullet
 var paused=false
 var speed = 3750
@@ -30,6 +36,8 @@ var death_sprite=""
 var death_lean_sprite=""
 
 func _ready():
+	for sound in imp_sounds:
+		imp_sounds[sound].finished.connect(queue_free)
 	speed = 1000+randf_range(-150,150)
 
 func _process(delta):
@@ -67,18 +75,24 @@ func _physics_process(delta):
 			collision[0].collider as TileMap
 			var store_pos=collision[0].collider.local_to_map(collision[1].point-collision[1].normal)
 			var data : TileData = collision[0].collider.get_cell_tile_data(1,store_pos)
-			if data!=null && data.get_custom_data_by_layer_id(1)==true:
-				if data.get_custom_data_by_layer_id(2)==false:
+			if data!=null:
+				if data.get_custom_data_by_layer_id(1)==true && data.get_custom_data_by_layer_id(2)==false:
 					var original_pos=collision[0].collider.get_cell_atlas_coords(1,store_pos)
 					collision[0].collider.set_cell(1,
 						store_pos,
 						collision[0].collider.get_cell_source_id(1,store_pos),
 						original_pos+Vector2i(3,0))
-				get_destroyed=false
+					get_destroyed=false
+				
+				
+				
 			else:
-#				collision[0].collider.get_cell_source_id()
-				if data!=null:
-					print(data)
+				var data2: TileData = collision[0].collider.get_cell_tile_data(0,store_pos)
+				if data2!=null:
+					var sound_obj=imp_sounds[data2.get_custom_data_by_layer_id(4)]
+					sound_obj.reparent(get_parent())
+					sound_obj.play()
+					sound_obj.global_position=collision[1].point-collision[1].normal
 				destroy()
 			
 		else:

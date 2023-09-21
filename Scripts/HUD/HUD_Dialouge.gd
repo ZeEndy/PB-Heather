@@ -24,7 +24,7 @@ func _process(delta):
 		change_delay=clamp(change_delay-delta,0.0,1.0)
 		text.visible=false
 	bounce=clamp(bounce-delta,0.0,0.1)
-	texture.scale=Vector2(2+bounce,2+bounce)
+	texture.scale=Vector2(1+bounce,1+bounce)
 
 func change_text(new_text:String):
 	change_delay=0.1

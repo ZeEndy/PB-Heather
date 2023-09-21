@@ -27,7 +27,6 @@ grow_vertical = 0
 
 [node name="Texture" type="Sprite2D" parent="Control/Spritepoint"]
 position = Vector2(320, -394)
-scale = Vector2(2, 2)
 texture = ExtResource("2_b1syq")
 
 [node name="Text" type="Label" parent="Control"]

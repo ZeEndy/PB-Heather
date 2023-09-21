@@ -6853,9 +6853,8 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Executing Lean"
-frame = 9
-offset = Vector2(-5, 0)
+animation = &"Dead Machine Gun"
+offset = Vector2(-4, -1)
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 

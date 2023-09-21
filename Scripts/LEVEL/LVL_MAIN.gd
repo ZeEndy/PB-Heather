@@ -187,11 +187,11 @@ func load_level(array):
 					id.set_cell(1,i["positions"][x],
 					id.get_cell_source_id(1,i["positions"][x]),
 					i["atlas_pos"][x])
-		if id==self:
-			combo_timer=i["combo_timer"]
-			held_points=i["held_points"]
-			points=i["points"]
-			combo=i["combo"]
+			if id==self:
+				combo_timer=i["combo_timer"]
+				held_points=i["held_points"]
+				points=i["points"]
+				combo=i["combo"]
 
 func add_kill():
 	combo+=1
