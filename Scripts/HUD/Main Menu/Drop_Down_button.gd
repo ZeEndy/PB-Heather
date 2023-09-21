@@ -11,7 +11,10 @@ func _ready():
 	for i in list.get_child(0).get_children():
 		if i is Button:
 			i.changed.connect(hide_me)
-			if GAME.get(i.change)==str_to_var(i.value):
+			if i.change=="cursor_method":
+				print(str(GAME.get(i.change)))
+				print(i.value)
+			if str(GAME.get(i.change))==i.value:
 				text=i.text+"↓"
 
 

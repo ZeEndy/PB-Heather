@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Cursor.gd" id="4_xaft8"]
 [ext_resource type="Texture2D" uid="uid://ymvkc6ufvkdm" path="res://Data/Sprites/Textures/Main Menu/Inter.png" id="5_ihvbn"]
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Drop_Down_button.gd" id="5_m5p1v"]
-[ext_resource type="Texture2D" uid="uid://mqu7kefiypx3" path="res://Data/Sprites/Textures/Main Menu/SGrabber.png" id="5_mqihm"]
+[ext_resource type="Texture2D" uid="uid://cadiiwqmm003h" path="res://Data/Sprites/Textures/Main Menu/SGrabber.png" id="5_mqihm"]
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Level_Button.gd" id="6_huwnp"]
 [ext_resource type="Script" path="res://Scripts/HUD/Main Menu/Menu_Slider.gd" id="6_wygwm"]
 [ext_resource type="AudioStream" uid="uid://bita5dlaw7hi5" path="res://Data/Sounds/UI/Menu/BG_Noise.ogg" id="7_sw72n"]
@@ -605,6 +605,7 @@ text = "MOUSE MODE"
 
 [node name="OptionButton" type="Button" parent="CanvasLayer/CanvasLayer2/Aspect/Options/Options/Window Based"]
 use_parent_material = true
+layout_mode = 0
 offset_left = 574.0
 offset_top = 4.0
 offset_right = 886.0
@@ -1534,7 +1535,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "CAPTURED  "
 script = ExtResource("10_k1hw1")
-change = "mouse_mode"
+change = "cursor_method"
 value = "4"
 
 [node name="OptionButton6" type="Button" parent="CanvasLayer/CanvasLayer2/Aspect/Mouse Mode/VBoxContainer"]
@@ -1550,7 +1551,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_prebn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_o4d2a")
 text = "HIDDEN    "
 script = ExtResource("10_k1hw1")
-change = "mouse_mode"
+change = "cursor_method"
 value = "1"
 
 [node name="Cursor" type="Label" parent="CanvasLayer/CanvasLayer2/Aspect"]
@@ -1707,3 +1708,4 @@ offset_bottom = 40.0
 [node name="BG" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_sw72n")
 autoplay = true
+bus = &"Music"

@@ -82,6 +82,8 @@ func save_level():
 						"delay":i.delay,
 						"groups":i.groups,
 						"col_groups":i.col_groups,
+						"path":i.path,
+						"path_index":i.path_index,
 						}
 					}
 					if i is Player:
@@ -93,6 +95,7 @@ func save_level():
 						"enemy_state":i.enemy_state,
 						"direction":i.direction,
 						"target_point":i.target_point,
+						"alert_timer":i.alert_timer,
 						"spawn_timer":0.01
 						})
 					save_array.append(dict)

@@ -15,6 +15,7 @@ func val_change():
 	var temp_val=value
 	if is_str==false:
 		temp_val=str_to_var(value)
+	print(temp_val)
 	GAME.set_deferred(change,temp_val)
 	print(GAME.get(change))
 	changed.emit(text)

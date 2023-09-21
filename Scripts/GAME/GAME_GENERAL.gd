@@ -97,12 +97,14 @@ func _init():
 		mas_volume=configfile.get_value("AUDIO","Master",0.5)
 		
 		
-		
+		cursor_method=configfile.get_value("CURSOR","cursor_method",2)
 		cursor_sens=configfile.get_value("CURSOR","cursor_sens",1.0)
 	else:
 		save_config()
 	var ovrd = ConfigFile.new()
-	if ovrd.load("res://override.cfg") != OK:
+	if ovrd.load("res://override.cfg") == OK:
+		rend_method=ovrd.get_value("rendering","renderer/rendering_method","mobile")
+	else:
 		ovrd.set_value("rendering","renderer/rendering_method","mobile")
 		ovrd.save("res://override.cfg")
 #	InputMap
@@ -202,8 +204,8 @@ func _process(delta):
 				emit_signal("fade_in")
 				fade_in_emitted=true
 	glob_fade.modulate.a=fade_color
-	get_node(
-		"CanvasLayer2/DEBUG_TEXT"	).text="Build version :"+str(Engine.get_version_info().string)+"\n"+"FPS:"+str(Performance.get_monitor(0))+"\n"+"Texture Memory used:"+str(Performance.get_monitor(21)/10000000)+"\n"+"Process time:"+str(Performance.get_monitor(1))+"\n"+"Physics process time:"+str(Performance.get_monitor(2))+"\n"+"Draw calls:"+str(Performance.get_monitor(19))+"\n"+"Objects in game"+str(Performance.get_monitor(8))
+#	get_node(
+#		"CanvasLayer2/DEBUG_TEXT"	).text="Build version :"+str(Engine.get_version_info().string)+"\n"+"FPS:"+str(Performance.get_monitor(0))+"\n"+"Texture Memory used:"+str(Performance.get_monitor(21)/10000000)+"\n"+"Process time:"+str(Performance.get_monitor(1))+"\n"+"Physics process time:"+str(Performance.get_monitor(2))+"\n"+"Draw calls:"+str(Performance.get_monitor(19))+"\n"+"Objects in game"+str(Performance.get_monitor(8))
 	pass
 #saves nodes and shit in the node tree
 func save_node_state(_file_name,node):

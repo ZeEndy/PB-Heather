@@ -12,3 +12,5 @@ data_*/
 *.sfk
 .godot
 *.import
+config.cfg
+override.cfg

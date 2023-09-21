@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://dvj8wuvgn4i2c"]
+[gd_scene load_steps=129 format=3 uid="uid://dvj8wuvgn4i2c"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Player.gd" id="1_lwlbx"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_6rt3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bh68dwnei86hy" path="res://Data/Sounds/Character/Movement/Cloth Thighs.tres" id="5_sw668"]
 [ext_resource type="SpriteFrames" uid="uid://dmry8jsypo6qe" path="res://Data/Sprites/Characters/Heather/Heather Body.tres" id="9_ub85d"]
 [ext_resource type="Texture2D" uid="uid://kk5wc73v60wd" path="res://Data/Sprites/Characters/Heather/Heads/Normal/Head_normal_strip2.png" id="10_1vfwn"]
+[ext_resource type="Texture2D" uid="uid://7r1kr4qyfu78" path="res://Data/Sprites/Characters/Heather/Heads/Mask_strip2.png" id="11_yioo4"]
 [ext_resource type="AudioStream" uid="uid://csnifdot34pnj" path="res://Data/Sounds/Character/Body Hit.tres" id="15_5pbmk"]
 [ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Character/PB/Sub.wav" id="18_fif4p"]
 [ext_resource type="AudioStream" uid="uid://b3mkekai76u16" path="res://Data/Sounds/Character/M4/Sub.wav" id="23_rqhg1"]
@@ -6384,6 +6385,14 @@ region = Rect2(0, 0, 8, 9)
 atlas = ExtResource("10_1vfwn")
 region = Rect2(8, 0, 8, 9)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m614k"]
+atlas = ExtResource("11_yioo4")
+region = Rect2(0, 0, 12, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jti6"]
+atlas = ExtResource("11_yioo4")
+region = Rect2(12, 0, 12, 10)
+
 [sub_resource type="SpriteFrames" id="205"]
 animations = [{
 "frames": [{
@@ -6395,6 +6404,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m614k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jti6")
+}],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }]
 
