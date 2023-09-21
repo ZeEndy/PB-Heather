@@ -47,10 +47,6 @@ var discord_rich
 
 var paused=false
 
-#func _ready():
-#	yield(get_tree().create_timer(0.1),"timeout")
-#	save_node_state("checkpoint",get_tree().get_nodes_in_group("Level")[0])
-#	save_node_state("restart_scene",get_tree().get_nodes_in_group("Level")[0])
 
 var fade=false
 var fade_color = 1
@@ -80,7 +76,6 @@ func _enter_tree():
 func _init():
 	configfile = ConfigFile.new()
 	if configfile.load("res://config.cfg") == OK:
-#		for audio in configfile.get_section_keys("AUDIO"):
 		music_volume=configfile.get_value("AUDIO","Music")
 		sfx_volume=configfile.get_value("AUDIO","SFX")
 		mas_volume=configfile.get_value("AUDIO","Master")
@@ -90,6 +85,13 @@ func _init():
 		light_quality=configfile.get_value("QUALITY","light_quality")
 	else:
 		print(configfile.load("res://config.cfg"))
+	var ovrd = ConfigFile.new()
+	if ovrd.load("res://override.cfg") == OK:
+		pass
+	else:
+		if !OS.is_debug_build():
+			ovrd.set_value("rendering","renderer/rendering_method","forward_plus")
+			ovrd.save("res://override.cfg")
 #	InputMap
 #	await RenderingServer.frame_post_draw
 #	activate_discord()
@@ -101,8 +103,20 @@ func _ready():
 		for cursor in configfile.get_section_keys("CURSOR"):
 			GUI.set(cursor,configfile.get_value("CURSOR",cursor))
 
+func save_config():
+	var config=ConfigFile.new()
+	config.set_value("AUDIO","Music",music_volume)
+	config.set_value("AUDIO","SFX",sfx_volume)
+	config.set_value("AUDIO","Master",mas_volume)
+	config.set_value("QUALITY","particle_quality",particle_quality)
+	config.set_value("QUALITY","light_quality",light_quality)
+	config.save("res://config.cfg")
 
 
+func override_renderer(method:String):
+	var ovrd=ConfigFile.new()
+	ovrd.set_value("rendering","renderer/rendering_method",method)
+	ovrd.save("res://override.cfg")
 
 
 

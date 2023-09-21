@@ -5,6 +5,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ResourceLoader.load_threaded_request("res://Data/Scenes/VFX/ENT_Transition.tscn")
 	text="  "+saved_text
 	if start_focus==true:
 		grab_focus()
@@ -23,8 +24,12 @@ func _process(delta):
 func button_action():
 	GUI.s_click.play()
 	if name=="PLAY":
-		get_tree().change_scene_to_file("res://Data/Scenes/VFX/ENT_Transition.tscn")
-		GUI.grab_mouse_back()
+			GUI.s_click.play()
+			var scene=ResourceLoader.load_threaded_get("res://Data/Scenes/VFX/ENT_Transition.tscn").instantiate()
+			scene.next_level="res://Data/Scenes/Levels/PanicRoom.tscn"
+			get_tree().root.add_child(scene)
+			owner.queue_free()
+			GUI.grab_mouse_back()
 	elif name=="CHAPTERS":
 		get_node("../../Recordings").visible=!get_node("../../Recordings").visible
 		get_node("../../Options").visible=false

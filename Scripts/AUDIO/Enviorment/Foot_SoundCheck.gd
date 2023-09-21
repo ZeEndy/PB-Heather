@@ -33,6 +33,8 @@ func _enter_tree():
 	tilemap=get_viewport().get_node("Tiles")
 
 func check_sound():
+	call_deferred("def_check")
+func def_check():
 	tilemap as TileMap
 	var touch = tilemap.local_to_map(global_position)
 	var data = tilemap.get_cell_tile_data(3, touch)

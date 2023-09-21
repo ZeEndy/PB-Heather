@@ -52,6 +52,7 @@ func _ready():
 	if alert_timer==-1:
 		alert_timer=alert_time()
 	collision_body.set_collision_layer_value(1,true)
+	pat_query.exclude.append(collision_body.get_rid())
 	enemy_state=-1
 
 func _process(_delta):
@@ -101,7 +102,6 @@ func _physics_process(delta):
 				pat_query.set_shape(pat_shape)
 				pat_query.collision_mask=32
 				pat_query.set_transform(Transform2D(direction,collision_body.global_position+Vector2(pat_shape.extents.x/2,0).rotated(direction)))
-				pat_query.exclude.append(collision_body.get_rid())
 				if space.intersect_shape(pat_query,1).size()>0:
 					direction -= deg_to_rad(10.0) * delta_time - delta
 				else:

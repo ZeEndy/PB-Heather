@@ -9,6 +9,9 @@ enum at_types{
 	lethal=1
 }
 
+@onready var space_state = get_world_2d().direct_space_state
+@onready var query= PhysicsRayQueryParameters2D.new()
+
 @onready var collision=get_node("CollisionShape2D")
 @onready var ped_parent=get_node("../../../")
 
@@ -30,9 +33,6 @@ func _process(_delta):
 			if i.get_parent()!=ped_parent:
 				var for_ped_parent=i.get_parent()
 				
-				
-				var space_state = get_world_2d().direct_space_state
-				var query= PhysicsRayQueryParameters2D.new()
 				query.from=ped_parent.collision_body.global_position
 				query.to=i.global_position
 				query.collision_mask=16
@@ -55,6 +55,4 @@ func _process(_delta):
 								if sound_node!=null:
 									sound_node.play()
 						break
-					if for_ped_parent is WINDOW:
-						for_ped_parent.destroy_window()
 
