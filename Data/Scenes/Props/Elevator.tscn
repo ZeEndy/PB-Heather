@@ -399,7 +399,7 @@ z_index = 2
 position = Vector2(44, 36)
 texture = ExtResource("1_x7m4m")
 script = ExtResource("2_bwpj3")
-targets = [[NodePath(""), NodePath("")], [NodePath(""), NodePath("")]]
+targets = [null, null]
 elevator_time = 5.0
 
 [node name="TopAnim" type="AnimationPlayer" parent="."]
@@ -643,6 +643,7 @@ stream = ExtResource("11_ttvwr")
 bus = &"SFX"
 
 [node name="TopCol" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-4, -40)
 rotation = 3.14159
 collision_layer = 64
@@ -654,6 +655,7 @@ shape = SubResource("RectangleShape2D_mhnhu")
 one_way_collision = true
 
 [node name="BottomCol" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-4, 38)
 collision_layer = 64
 collision_mask = 64
