@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cyjjbtgq2bxwq"]
+[gd_scene load_steps=57 format=3 uid="uid://cyjjbtgq2bxwq"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5x4kg"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_nbniv"]
@@ -8,29 +8,28 @@
 [ext_resource type="TileSet" uid="uid://bkamwwdusqxon" path="res://Data/Sprites/Tiles/Tiles.tres" id="5_0bmvq"]
 [ext_resource type="Script" path="res://Data/Scenes/Levels/Cutscenes/Cutscene_Item.gd" id="12_4v83j"]
 [ext_resource type="Script" path="res://Scripts/GAME/Game_Cutscene.gd" id="12_ay1kb"]
-[ext_resource type="Texture2D" uid="uid://d3eeewg4nw43x" path="res://Data/Scenes/Levels/Cutscenes/HotlineMiami2_CmfCgMLwcf.png" id="12_orakd"]
-[ext_resource type="Texture2D" uid="uid://4lv5mrbuif41" path="res://Data/Scenes/Levels/Cutscenes/HotlineMiami2_98ZWKN1Mcf.png" id="13_jr24w"]
-[ext_resource type="Texture2D" uid="uid://c71ey6laq16pr" path="res://Data/Sprites/Objects/Heather Apartment/Bed.png" id="15_1rfwv"]
-[ext_resource type="Texture2D" uid="uid://dvrgii12ug76n" path="res://Data/Sprites/Objects/Heather Apartment/Bokshelf.png" id="16_lck42"]
-[ext_resource type="Texture2D" uid="uid://ck5xyujklbq88" path="res://Data/Sprites/Objects/Heather Apartment/Couch.png" id="17_qasj5"]
-[ext_resource type="Texture2D" uid="uid://bhwd64lq4s7af" path="res://Data/Sprites/Objects/Heather Apartment/Table.png" id="18_a6p17"]
+[ext_resource type="Texture2D" uid="uid://dugp7cyfyjiwn" path="res://Data/Scenes/Levels/Cutscenes/HotlineMiami2_CmfCgMLwcf.png" id="12_orakd"]
+[ext_resource type="Texture2D" uid="uid://bacp377otr0pu" path="res://Data/Scenes/Levels/Cutscenes/HotlineMiami2_98ZWKN1Mcf.png" id="13_jr24w"]
+[ext_resource type="Texture2D" uid="uid://blnsrlndweg74" path="res://Data/Sprites/Objects/Heather Apartment/Bed.png" id="15_1rfwv"]
+[ext_resource type="Texture2D" uid="uid://ba3pkgpsm5c42" path="res://Data/Sprites/Objects/Heather Apartment/Bokshelf.png" id="16_lck42"]
+[ext_resource type="Texture2D" uid="uid://dfygnsfhil4q6" path="res://Data/Sprites/Objects/Heather Apartment/Couch.png" id="17_qasj5"]
+[ext_resource type="Texture2D" uid="uid://p2wopvu0dwn" path="res://Data/Sprites/Objects/Heather Apartment/Table.png" id="18_a6p17"]
 [ext_resource type="Texture2D" uid="uid://dt4xtnbg8ej6m" path="res://Data/Sprites/Tiles/DEVTEXTURES.png" id="19_inpsx"]
-[ext_resource type="Texture2D" uid="uid://cfbfr62axiyue" path="res://Data/Sprites/Objects/Heather Apartment/Mirror.png" id="20_7bu6j"]
+[ext_resource type="Texture2D" uid="uid://dbj3vhl367b2p" path="res://Data/Sprites/Objects/Heather Apartment/Mirror.png" id="20_7bu6j"]
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_ASTAR.gd" id="20_cgnie"]
-[ext_resource type="Texture2D" uid="uid://c5ty7cre62bwu" path="res://Data/Sprites/Objects/Heather Apartment/sink.png" id="21_g8bjw"]
+[ext_resource type="Texture2D" uid="uid://cr5wi0sx0ts6s" path="res://Data/Sprites/Objects/Heather Apartment/sink.png" id="21_g8bjw"]
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_CAMERA.gd" id="21_r1ydg"]
-[ext_resource type="Texture2D" uid="uid://dy4xyv4e3nkbv" path="res://Data/Sprites/Objects/Heather Apartment/Makeuptable.png" id="22_31vwm"]
+[ext_resource type="Texture2D" uid="uid://j7s0wm34sfxk" path="res://Data/Sprites/Objects/Heather Apartment/Makeuptable.png" id="22_31vwm"]
 [ext_resource type="PackedScene" uid="uid://yva00iplrwby" path="res://Data/Scenes/Entities/PART_Rain.tscn" id="22_n24wk"]
-[ext_resource type="Texture2D" uid="uid://8mn33crk8nu5" path="res://Data/Sprites/Objects/Heather Apartment/Kitchen.png" id="23_jej1y"]
+[ext_resource type="Texture2D" uid="uid://dggalw4pgxotp" path="res://Data/Sprites/Objects/Heather Apartment/Kitchen.png" id="23_jej1y"]
 [ext_resource type="PackedScene" uid="uid://bqyo8eokcablc" path="res://Data/DEFAULT/ENTS/ENT_DOOR.tscn" id="23_sf31q"]
 [ext_resource type="PackedScene" uid="uid://dvj8wuvgn4i2c" path="res://Data/DEFAULT/ENTS/PED_PLAYER.tscn" id="24_4xt3l"]
-[ext_resource type="Texture2D" uid="uid://dlan3okqmgr1m" path="res://Data/Sprites/Objects/Heather Apartment/Fridge.png" id="24_d4141"]
-[ext_resource type="Texture2D" uid="uid://cjdwnwo0ugqcc" path="res://Data/Sprites/Objects/Phone/PhoneOff_strip2.png" id="25_r3mys"]
-[ext_resource type="Texture2D" uid="uid://dvn5q8fkjdcyf" path="res://Data/Sprites/Objects/Phone/PhoneOn_strip6.png" id="25_whcj5"]
-[ext_resource type="Texture2D" uid="uid://b3s01s7o0bsun" path="res://Data/Sprites/Objects/Heather Apartment/Kitchen bench.png" id="25_xi1ru"]
-[ext_resource type="Texture2D" uid="uid://c8iachob6uibs" path="res://Data/Sprites/Objects/Heather Apartment/Plant_small.png" id="26_82d0c"]
-[ext_resource type="Texture2D" uid="uid://beakh87ea1dmt" path="res://Data/Sprites/Objects/Heather Apartment/sprELisVillaEntertainmentSystem_strip.png" id="29_5tmt1"]
-[ext_resource type="Texture2D" uid="uid://c32ply4ebh2r" path="res://Data/Sprites/Objects/Heather Apartment/Curtains.png" id="31_b6jqc"]
+[ext_resource type="Texture2D" uid="uid://bcpn6wil1b4vb" path="res://Data/Sprites/Objects/Heather Apartment/Fridge.png" id="24_d4141"]
+[ext_resource type="Texture2D" uid="uid://6sy4fajpga20" path="res://Data/Sprites/Objects/Phone/PhoneOff_strip2.png" id="25_r3mys"]
+[ext_resource type="Texture2D" uid="uid://b68h5jwbj5mfh" path="res://Data/Sprites/Objects/Phone/PhoneOn_strip6.png" id="25_whcj5"]
+[ext_resource type="Texture2D" uid="uid://ue8novaw5fyl" path="res://Data/Sprites/Objects/Heather Apartment/Kitchen bench.png" id="25_xi1ru"]
+[ext_resource type="Texture2D" uid="uid://3jvak5ic2fwl" path="res://Data/Sprites/Objects/Heather Apartment/Plant_small.png" id="26_82d0c"]
+[ext_resource type="Texture2D" uid="uid://bgfx7c4mebri4" path="res://Data/Sprites/Objects/Heather Apartment/Curtains.png" id="31_b6jqc"]
 
 [sub_resource type="QuadMesh" id="1"]
 
@@ -608,7 +607,6 @@ texture = ExtResource("31_b6jqc")
 [node name="Entertainment System" type="Sprite2D" parent="Floor 1/Viewport/Props"]
 position = Vector2(176, 75)
 rotation = -1.57079
-texture = ExtResource("29_5tmt1")
 offset = Vector2(0, 0.5)
 flip_h = true
 region_rect = Rect2(0, 0, 102, 31)
