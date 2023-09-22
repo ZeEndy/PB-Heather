@@ -24,10 +24,19 @@ var elevator_shake=0.2
 func _ready():
 	for i in targets.size():
 		targets[i]=get_node(targets[i])
+		if get_viewport()==targets[i]:
+			selected_floor=i
+	
 	if top_check.is_colliding()==false:
 		door_animation(top_anim,"Open")
+	else:
+		door_animation(top_anim,"Close")
+	
+	
 	if bottom_check.is_colliding()==false:
 		door_animation(bottom_anim,"Open")
+	else:
+		door_animation(bottom_anim,"Close")
 #	get_node("Button/CanvasLayer/Container/Control/ColorRect").size.y=100.0*(ceil(float(cunt_count)*0.5))
 
 
@@ -52,12 +61,12 @@ func _process(delta):
 			
 			z_index=8
 		
-		if timer<elevator_time*0.10+delta && get_parent() != targets[selected_floor][0]:
+		if timer<elevator_time*0.10+delta && get_parent() != targets[selected_floor]:
 			stoping_sound()
 		
 		if timer<elevator_time*0.10:
-			if get_parent() != targets[selected_floor][0]:
-				var floor=targets[selected_floor][0]
+			if get_parent() != targets[selected_floor]:
+				var floor=targets[selected_floor]
 				for i in area_check.get_overlapping_bodies():
 					var parent_obj=i.get_parent()
 					if parent_obj is PED:
