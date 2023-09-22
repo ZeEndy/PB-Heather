@@ -408,10 +408,11 @@ libraries = {
 }
 
 [node name="TopCheck" type="RayCast2D" parent="."]
-position = Vector2(-4, -32)
+position = Vector2(-4, -35)
 rotation = 3.14159
 target_position = Vector2(0, 20)
-collision_mask = 64
+collision_mask = 32
+hit_from_inside = true
 
 [node name="TopSounds" type="Node2D" parent="."]
 position = Vector2(-4, -32)
@@ -477,9 +478,10 @@ libraries = {
 }
 
 [node name="BottomCheck" type="RayCast2D" parent="."]
-position = Vector2(-4, 32)
+position = Vector2(-4, 35)
 target_position = Vector2(0, 20)
-collision_mask = 64
+collision_mask = 32
+hit_from_inside = true
 
 [node name="BottomSounds" type="Node2D" parent="."]
 position = Vector2(-4, 32)

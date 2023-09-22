@@ -27,6 +27,7 @@ func _ready():
 		if get_viewport()==targets[i]:
 			selected_floor=i
 	
+	await RenderingServer.frame_pre_draw
 	if top_check.is_colliding()==false:
 		door_animation(top_anim,"Open")
 	else:
