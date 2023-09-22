@@ -6089,12 +6089,39 @@ tracks/8/path = NodePath(".")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.846154),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.4614, 0.846154),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [0.7, true],
+"method": &"shake_screen"
+}, {
 "args": [Vector2(-19, -4)],
 "method": &"move_rot_relative"
 }]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Legs/Sound/Cloth Legs:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.0769, 0.3845),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sound/Unarmed/Execution/Impact:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.3845),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_64hdi"]
@@ -6592,9 +6619,8 @@ texture_filter = 1
 use_parent_material = true
 rotation = -0.000690252
 sprite_frames = ExtResource("9_ub85d")
-animation = &"Unarmed Execute Wall"
-frame = 10
-offset = Vector2(-12, 0.5)
+animation = &"Knife Attack 2"
+frame = 9
 
 [node name="Head" type="AnimatedSprite2D" parent="PED_SPRITES/Body/anim"]
 use_parent_material = true
@@ -6622,7 +6648,6 @@ death_lean_sprite = "DeadLeanMelee"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PED_SPRITES/Body/Melee_Area"]
 shape = SubResource("CapsuleShape2D_ys1x7")
-disabled = true
 
 [node name="CameraTrack" type="Marker2D" parent="PED_SPRITES/Body"]
 position = Vector2(-33, 28)
