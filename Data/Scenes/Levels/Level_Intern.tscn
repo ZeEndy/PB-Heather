@@ -299,7 +299,6 @@ rotation = -1.47683
 [node name="Office Chair10" parent="Floor 1/Viewport" instance=ExtResource("8_vqmdc")]
 position = Vector2(942, 529)
 rotation = -1.63238
-scale = Vector2(1, 1)
 
 [node name="Meeting Table2" parent="Floor 1/Viewport" instance=ExtResource("9_5qqo8")]
 position = Vector2(884, 472.932)
@@ -366,9 +365,9 @@ rotation = 0.543195
 
 [node name="Camera" type="Camera2D" parent="Floor 1/Viewport"]
 limit_left = 0
-limit_top = 78
-limit_right = 1088
-limit_bottom = 1280
+limit_top = 88
+limit_right = 2000
+limit_bottom = 1080
 script = ExtResource("21_qpmfn")
 show_below_target = NodePath("")
 
@@ -386,7 +385,6 @@ map_size = Vector2(1088, 768)
 collision_layer = 32
 
 [node name="Tiles" type="TileMap" parent="Floor 1/Viewport"]
-z_index = 1
 tile_set = ExtResource("6_owc5m")
 format = 2
 layer_0/name = "Walls"
@@ -437,6 +435,51 @@ render_target_update_mode = 4
 script = ExtResource("4_kcwh6")
 floor_clear = true
 astar = NodePath("Pathfind")
+
+[node name="Enemy" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(534, 760)
+enemy_type = 1
+desired_weapon = "AK-74U"
+
+[node name="Enemy2" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(535, 642)
+enemy_type = 1
+desired_weapon = "Knife"
+
+[node name="Enemy9" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(561, 341)
+enemy_type = 2
+desired_weapon = "OU-DB"
+
+[node name="Enemy3" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(1041, 443)
+enemy_type = 2
+desired_weapon = "OU-DB"
+
+[node name="Enemy4" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(817, 675)
+enemy_type = 2
+desired_weapon = "OU-DB"
+
+[node name="Enemy5" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(1038, 604)
+desired_weapon = "AR-15"
+
+[node name="Enemy6" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(1321, 507)
+rotation = 3.14159
+enemy_type = 1
+desired_weapon = "AK-74U"
+
+[node name="Enemy7" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(1296, 876)
+rotation = 3.14159
+desired_weapon = "Knife"
+
+[node name="Enemy8" parent="Floor 2/Viewport" instance=ExtResource("27_gysur")]
+position = Vector2(575, 867)
+rotation = 3.14159
+desired_weapon = "OU-DB"
 
 [node name="CubicleWall2" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(672, 704)
@@ -514,16 +557,8 @@ position = Vector2(704, 512)
 [node name="CubicleWall20" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(736, 512)
 
-[node name="CubicleWall21" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(707, 544)
-rotation = 1.57079
-
 [node name="CubicleWall22" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(707, 576)
-rotation = 1.57079
-
-[node name="CubicleWall23" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(707, 512)
 rotation = 1.57079
 
 [node name="CubicleWall24" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
@@ -536,14 +571,6 @@ position = Vector2(640, 579)
 [node name="Cubicle Desk6" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
 position = Vector2(708, 644)
 rotation = -1.57079
-
-[node name="Cubicle Desk7" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(771, 577)
-rotation = -3.14159
-
-[node name="Cubicle Desk8" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(704, 513)
-rotation = 1.57081
 
 [node name="CubicleWall49" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(864, 704)
@@ -569,16 +596,8 @@ position = Vector2(928, 640)
 [node name="CubicleWall56" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(960, 640)
 
-[node name="CubicleWall57" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(931, 672)
-rotation = 1.57079
-
 [node name="CubicleWall58" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(931, 704)
-rotation = 1.57079
-
-[node name="CubicleWall59" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(931, 640)
 rotation = 1.57079
 
 [node name="CubicleWall60" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
@@ -591,14 +610,6 @@ position = Vector2(864, 707)
 [node name="Cubicle Desk18" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
 position = Vector2(932, 772)
 rotation = -1.57079
-
-[node name="Cubicle Desk19" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(995, 705)
-rotation = -3.14159
-
-[node name="Cubicle Desk20" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(928, 641)
-rotation = 1.57081
 
 [node name="CubicleWall61" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(864, 576)
@@ -624,16 +635,8 @@ position = Vector2(928, 512)
 [node name="CubicleWall68" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(960, 512)
 
-[node name="CubicleWall69" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(931, 544)
-rotation = 1.57079
-
 [node name="CubicleWall70" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(931, 576)
-rotation = 1.57079
-
-[node name="CubicleWall71" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(931, 512)
 rotation = 1.57079
 
 [node name="CubicleWall72" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
@@ -646,14 +649,6 @@ position = Vector2(864, 579)
 [node name="Cubicle Desk22" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
 position = Vector2(932, 644)
 rotation = -1.57079
-
-[node name="Cubicle Desk23" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(995, 577)
-rotation = -3.14159
-
-[node name="Cubicle Desk24" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(928, 513)
-rotation = 1.57081
 
 [node name="CubicleWall97" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(1088, 704)
@@ -734,16 +729,8 @@ position = Vector2(1152, 512)
 [node name="CubicleWall116" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(1184, 512)
 
-[node name="CubicleWall117" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(1155, 544)
-rotation = 1.57079
-
 [node name="CubicleWall118" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(1155, 576)
-rotation = 1.57079
-
-[node name="CubicleWall119" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
-position = Vector2(1155, 512)
 rotation = 1.57079
 
 [node name="CubicleWall120" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
@@ -756,14 +743,6 @@ position = Vector2(1088, 579)
 [node name="Cubicle Desk38" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
 position = Vector2(1156, 644)
 rotation = -1.57079
-
-[node name="Cubicle Desk39" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(1219, 577)
-rotation = -3.14159
-
-[node name="Cubicle Desk40" parent="Floor 2/Viewport" instance=ExtResource("5_bsuen")]
-position = Vector2(1152, 513)
-rotation = 1.57081
 
 [node name="CubicleWall25" parent="Floor 2/Viewport" instance=ExtResource("6_ty8e7")]
 position = Vector2(640, 448)
@@ -949,7 +928,6 @@ position = Vector2(288, 384)
 position = Vector2(352, 384)
 
 [node name="Tiles" type="TileMap" parent="Floor 2/Viewport"]
-z_index = 1
 tile_set = ExtResource("6_owc5m")
 format = 2
 layer_0/name = "Walls"
@@ -995,8 +973,8 @@ collision_layer = 32
 [node name="Camera" type="Camera2D" parent="Floor 2/Viewport"]
 limit_left = 0
 limit_top = 88
-limit_right = 1088
-limit_bottom = 768
+limit_right = 2000
+limit_bottom = 1080
 script = ExtResource("21_qpmfn")
 show_below_target = NodePath("../../../Floor 1")
 
