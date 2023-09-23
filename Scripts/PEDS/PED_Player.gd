@@ -51,8 +51,8 @@ func _physics_process(delta):
 	glob_phys_delta=delta
 #	if Input.is_action_just_pressed("weapon_swap"):
 #		holster_weapon()
-	if Input.is_action_just_pressed("ui_accept"):
-		sprite_index="MaskOn"
+#	if Input.is_action_just_pressed("ui_accept"):
+#		sprite_index="MaskOn"
 	collision_body.global_rotation = 0
 	if state == ped_states.alive:
 		if in_combat==true && override_input==false:

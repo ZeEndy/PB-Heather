@@ -7656,10 +7656,15 @@ visible = false
 rect = Rect2(-32, -32, 64, 64)
 
 [node name="movement_check" type="RayCast2D" parent="PED_COL"]
+visible = false
 collision_mask = 32
 
 [node name="visibilty_check" type="RayCast2D" parent="PED_COL"]
+visible = false
 collision_mask = 16
+
+[node name="bullet_check" type="RayCast2D" parent="PED_COL"]
+collision_mask = 96
 
 [node name="PED_SPRITES" type="Node2D" parent="."]
 script = ExtResource("2_85y2x")

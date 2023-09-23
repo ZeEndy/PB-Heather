@@ -18,6 +18,7 @@ class_name PED
 @onready var mov_check=get_node("PED_COL/movement_check")
 @onready var wep_check=get_node("PED_COL/weapon_find")
 @onready var bullet_spawn = get_node("PED_SPRITES/Body/anim/Bullet_Spawn")
+@onready var bullet_check = get_node("PED_COL/bullet_check") as RayCast2D
 var viewp
 signal reached_point()
 
@@ -195,7 +196,7 @@ func _process(delta):
 		if copy_time==true:
 			execute_target.sprite_legs.speed_scale=sprite_body.speed_scale
 			var difference=execute_target.sprite_legs_anim.current_animation_position-sprite_body_anim.current_animation_position
-			if difference>0.01:
+			if difference>delta*2.0:
 				execute_target.sprite_legs_anim.advance(difference)
 
 
@@ -206,6 +207,7 @@ func _physics_process(delta):
 	col_shape.shape.height=lerp(col_shape.shape.height,16.0,10*delta)
 	if state == ped_states.alive:
 		weapon_logic(delta)
+		
 		if bAttack==true:
 			self.attack()
 	if state == ped_states.down:
@@ -326,6 +328,7 @@ func attack():
 
 
 func weapon_logic(delta):
+	bullet_check.target_position=(bullet_spawn.position+Vector2(1000*delta,0.0)).rotated(body_direction)
 	if weapon["Type"]=="Melee":
 		weapon["Swing timer"] = (weapon["Swing timer"]-delta)*float(weapon["Swing timer"]>0)
 #		print(weapon["Swing timer"])
@@ -374,7 +377,13 @@ func spawn_bullet(amoumt:int):
 	for i in amoumt:
 		var sus_bullet=def_bullet_ent.instantiate() as BULLET
 		#add da weapon spawn bullet
-		sus_bullet.global_position=bullet_spawn.global_position
+		
+		if bullet_check.is_colliding()==false:
+			sus_bullet.global_position=bullet_spawn.global_position
+		else:
+			sus_bullet.global_position=bullet_check.get_collision_point()+bullet_check.get_collision_normal()*(1000*g_pdelta)
+		sus_bullet.exclusion.append(collision_body.get_rid())
+		sus_bullet.g_pdelta=g_pdelta
 		var spawn_recoil_add=bullet_spawn.global_rotation
 		#add recoil
 		if weapon.has("Recoil"):

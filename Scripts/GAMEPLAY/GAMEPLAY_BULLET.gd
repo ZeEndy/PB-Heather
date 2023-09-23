@@ -24,14 +24,12 @@ var speed = 2700
 var get_destroyed=true
 var penetrate=false
 var last_position=Vector2()
-var hit_point=Vector2()
-var hit_rotation =0 
-var _wad=null
 var damage=1
 signal bullet_signal
 var ground_hole=""
 var exclusion=[]
-
+var collision=[]
+var g_pdelta=0.0
 
 var bullet_height=20
 var death_sprite=""
@@ -41,6 +39,7 @@ func _ready():
 	for sound in imp_sounds:
 		imp_sounds[sound].finished.connect(queue_free)
 	speed = 1000+randf_range(-150,150)
+	collision=check_collision(g_pdelta)
 
 func _process(delta):
 	region_rect.size.x=lerp(region_rect.size.x,14.0,clamp(15*delta,0,1))
@@ -49,25 +48,23 @@ func _process(delta):
 
 func _physics_process(delta):
 	var last_pos=global_position
-	global_position+=(velocity*delta)
-	var collision = check_collision(delta)
+	
+	
 	if collision.size()>0:
 		if collision[0].collider.get_parent().has_method("do_remove_health"):
-#			spawn_smoke(collision.normal.angle(),collision.position,Color.red,0)
-			if penetrate==true || collision[0].collider.get_parent().health==0:
-#				var exit_wound_pos = collision[0].collider.global_position+(Vector2(collision.collider.global_position.distance_to(collision[0].position),0).rotated((collision.collider.global_position-collision.position).angle()))
-#				spawn_smoke(-collision.normal.angle(),exit_wound_pos,Color.red,0)
+			var col_parent=collision[0].collider.get_parent()
+			if penetrate==true || col_parent.health==0:
 				get_destroyed=false
 			else:
 				get_destroyed=false
 				queue_free()
-			if !(collision[0].collider in exclusion) && collision[0].collider.get_parent().health>0:
-				if "Lean" in collision[0].collider.get_parent().sprites.get_node("Legs").animation:
-					collision[0].collider.get_parent().do_remove_health(damage,death_lean_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation)
-					exclusion.append(collision[0].collider)
+			if !(collision[0].collider in exclusion) && col_parent.health>0:
+				if "Lean" in col_parent.sprite_legs.animation:
+					col_parent.do_remove_health(damage,death_lean_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation)
+					exclusion.append(collision[0].collider.get_rid())
 				else:
-					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,global_rotation-PI,"rand")
-					exclusion.append(collision[0].collider)
+					col_parent.do_remove_health(damage,death_sprite,global_rotation-PI,"rand")
+					exclusion.append(collision[0].collider.get_rid())
 		elif collision[0].collider is TileMap:
 			collision[0].collider as TileMap
 			var store_pos=collision[0].collider.local_to_map(collision[1].point-collision[1].normal)
@@ -75,6 +72,7 @@ func _physics_process(delta):
 			if data!=null:
 				if data.get_custom_data_by_layer_id(1)==true && data.get_custom_data_by_layer_id(2)==false:
 					var original_pos=collision[0].collider.get_cell_atlas_coords(1,store_pos)
+					
 					collision[0].collider.set_cell(1,
 						store_pos,
 						collision[0].collider.get_cell_source_id(1,store_pos),
@@ -129,8 +127,10 @@ func _physics_process(delta):
 	bullet_height-=delta
 	modulate = Color.WHITE.lerp(Color.YELLOW, randf())
 	velocity = Vector2(speed, 0).rotated(rotation)
-#	get_node("Sprite_Bullet").scale.x=lerp(get_node("Sprite_Bullet").scale.x,1,0.3*delta*60)
 	global_position+=(velocity*delta)
+	collision = check_collision(delta)
+#	get_node("Sprite_Bullet").scale.x=lerp(get_node("Sprite_Bullet").scale.x,1,0.3*delta*60)
+	
 
 
 func destroy():
@@ -143,10 +143,11 @@ func destroy():
 
 func check_collision(delta):
 	var collision_objects=[]
-	shape.extents=Vector2(7.5,1)
+	shape.extents=Vector2(speed*delta,3)
 	query.set_shape(shape)
 	query.collision_mask=ray_check.collision_mask
 	query.set_transform(Transform2D(global_rotation,global_position+Vector2(shape.extents.x*2,0).rotated(global_rotation)))
+	query.exclude=exclusion
 	ray_check.target_position=Vector2(speed*delta,0.0)
 	if ray_check.is_colliding()==true:
 		collision_objects.append({

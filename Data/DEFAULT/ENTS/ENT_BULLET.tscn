@@ -45,3 +45,5 @@ bus = &"SFX"
 stream = ExtResource("5_ci1yr")
 max_distance = 200.0
 bus = &"SFX"
+
+[node name="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" type="Sprite2D" parent="."]

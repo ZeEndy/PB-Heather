@@ -84,7 +84,10 @@ func _enter_tree():
 	discord_rich==true
 
 func _init():
+	print(DisplayServer.window_get_vsync_mode())
+	Engine.max_fps = DisplayServer.screen_get_refresh_rate()
 	configfile = ConfigFile.new()
+	OS.low_processor_usage_mode=true
 	if configfile.load("res://config.cfg") == OK:
 		
 		resolution=configfile.get_value("VIDEO","resolution",Vector2(1920,1080))
@@ -216,9 +219,9 @@ func _process(delta):
 				emit_signal("fade_in")
 				fade_in_emitted=true
 	glob_fade.modulate.a=fade_color
-#	get_node(
-#		"CanvasLayer2/DEBUG_TEXT"	).text="Build version :"+str(Engine.get_version_info().string)+"\n"+"FPS:"+str(Performance.get_monitor(0))+"\n"+"Texture Memory used:"+str(Performance.get_monitor(21)/10000000)+"\n"+"Process time:"+str(Performance.get_monitor(1))+"\n"+"Physics process time:"+str(Performance.get_monitor(2))+"\n"+"Draw calls:"+str(Performance.get_monitor(19))+"\n"+"Objects in game"+str(Performance.get_monitor(8))
-	pass
+	get_node(
+		"CanvasLayer2/DEBUG_TEXT"	).text="Build version :"+str(Engine.get_version_info().string)+"\n"+"FPS:"+str(Performance.get_monitor(0))+"\n"+"Texture Memory used:"+str(Performance.get_monitor(21)/10000000)+"\n"+"Process time:"+str(Performance.get_monitor(1))+"\n"+"Physics process time:"+str(Performance.get_monitor(2))+"\n"+"Draw calls:"+str(Performance.get_monitor(19))+"\n"+"Objects in game"+str(Performance.get_monitor(8))
+		
 #saves nodes and shit in the node tree
 func save_node_state(_file_name,node):
 	_saving=true

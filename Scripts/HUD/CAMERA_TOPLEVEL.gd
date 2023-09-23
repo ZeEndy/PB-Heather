@@ -40,7 +40,7 @@ func _process(delta):
 	if show_case==false:
 		if target!=null:
 			global_position=target.global_position
-		zoom=Vector2(lerp(zoom.x,3.8*added_zoom,20*delta/Engine.time_scale),lerp(zoom.y,3.8*added_zoom,20*delta/Engine.time_scale))
+#		zoom=Vector2(lerp(zoom.x,3.8*added_zoom,20*delta/Engine.time_scale),lerp(zoom.y,3.8*added_zoom,20*delta/Engine.time_scale))
 	else:
 		if target!=null:
 			global_position=target.global_position
@@ -55,6 +55,6 @@ func _process(delta):
 	offset.y = (noise.get_noise_3d(0,time * time_scale,0) * max_y * shaking)
 	rot=(noise.get_noise_3d(time * time_scale,0,0) * max_r * shaking)
 	#
-	zoom=Vector2(lerp(zoom.x,3.8*added_zoom,20*delta/Engine.time_scale),lerp(zoom.y,3.8*added_zoom,20*delta/Engine.time_scale))
+	zoom=Vector2(3.8,3.8)
 	if shake > 0: 
 		shake = clamp(shake -(delta * timer),0,1)

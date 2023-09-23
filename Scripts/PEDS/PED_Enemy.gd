@@ -49,7 +49,7 @@ var spawn_timer=0.1
 var target_point=Vector2.ZERO
 var direction=0
 var focused_player=null
-
+var focused_direction=0.0
 func _ready():
 	super()
 #	get_node("pathline").global_position=Vector2(0,0)
@@ -81,7 +81,7 @@ func _physics_process(delta):
 			
 			visibilty_check.target_position=focused_player.global_position-collision_body.global_position
 			movement_check.target_position=focused_player.global_position-collision_body.global_position
-
+			focused_direction=visibilty_check.target_position.normalized().angle()
 	if state==ped_states.alive:
 		col_shape.disabled=false
 		if player_exists:
@@ -145,26 +145,32 @@ func _physics_process(delta):
 					enemy_state=enemy_s.neutral
 			else:
 				axis=Vector2.ZERO
+				if movement_check.target_position.length()<50:
+					axis=Vector2(0.5,0).rotated(focused_direction-PI)
+					
 				movement(null,delta)
 		else:
 			if player_exists:
 				if enemy_state==enemy_s.charging:
 					if player_vis:
-						if weapon["Type"]!="Melee":
+						if weapon["Type"]=="Firearm":
 							var clamped_rotation_speed=clamp(movement_check.target_position.length()*0.02,0.15,0.25)
-							body_direction=lerp_angle(body_direction,movement_check.target_position.angle(),clamped_rotation_speed*60*delta)
+							body_direction=lerp_angle(body_direction,focused_direction,clamped_rotation_speed*60*delta)
 							if alert_timer>0:
 								alert_timer-=1*delta_time
 							if movement_check.target_position.length()<280:
 								if alert_timer<=0:
 									attack()
-								axis=Vector2(0,0)
 								movement(null,delta)
+								if movement_check.target_position.length()<50:
+									axis=Vector2(1.0,0).rotated(focused_direction-PI)
+								else:
+									axis=Vector2(0,0)
 							else:
 								move_to_point(focused_player.global_position,1.0)
 						elif weapon["Type"]=="Melee":
 							if movement_check.target_position.length()<24:
-								body_direction=lerp_angle(body_direction,collision_body.global_position.direction_to(focused_player.global_position).angle(),0.25)
+								body_direction=lerp_angle(body_direction,focused_direction,0.25)
 								attack()
 								if focused_player.get_parent().state==ped_states.down:
 									do_execution()
@@ -242,7 +248,7 @@ func player_visibilty(mode=0):
 			vis_query.set_shape(vis_shape)
 			vis_query.collision_mask=16
 			
-			var angle=collision_body.global_position.direction_to(focused_player.global_position).angle()
+			var angle=focused_direction
 			vis_query.set_transform(Transform2D(angle,collision_body.global_position+Vector2(vis_shape.extents.x,0).rotated(angle)))
 			if space.intersect_shape(vis_query,1).size()>0:
 				seen=false
@@ -256,11 +262,11 @@ func player_visibilty(mode=0):
 func alert_time():
 	match alert_state:
 		alert_s.normal:
-			return 10
+			return 15
 		alert_s.alert:
-			return 7.5
+			return 10
 		alert_s.ready:
-			return 5
+			return 7.5
 
 
 
