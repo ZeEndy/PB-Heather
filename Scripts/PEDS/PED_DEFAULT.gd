@@ -195,8 +195,8 @@ func _process(delta):
 	elif state==ped_states.execute:
 		if copy_time==true:
 			execute_target.sprite_legs.speed_scale=sprite_body.speed_scale
-			var difference=execute_target.sprite_legs_anim.current_animation_position-sprite_body_anim.current_animation_position
-			if difference>delta*2.0:
+			var difference=sprite_body_anim.current_animation_position-execute_target.sprite_legs_anim.current_animation_position
+			if difference>delta:
 				execute_target.sprite_legs_anim.advance(difference)
 
 
