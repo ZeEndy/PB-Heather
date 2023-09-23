@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://btuy3yrdsrr8a"]
+[gd_scene load_steps=9 format=3 uid="uid://btuy3yrdsrr8a"]
 
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_BULLET.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://djguu8wleqt8y" path="res://Data/Sprites/VFX/sprBullet.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://34tkfsxjigyi" path="res://Data/Sounds/Impact/Impact Brick.tres" id="3_u8a7e"]
+[ext_resource type="AudioStream" uid="uid://cexhiljcpyj7w" path="res://Data/Sounds/Impact/Impact Glass.tres" id="4_cwghg"]
+[ext_resource type="AudioStream" uid="uid://ux4vnc26qb6v" path="res://Data/Sounds/Impact/Break Glass.tres" id="4_pm3yk"]
 [ext_resource type="AudioStream" uid="uid://m03ebpwh36ce" path="res://Data/Sounds/Impact/Impact Plaster.tres" id="4_uu5jn"]
 [ext_resource type="AudioStream" uid="uid://bk8naioyko5xc" path="res://Data/Sounds/Impact/Impact Wood.tres" id="5_ci1yr"]
 
@@ -23,14 +25,23 @@ collision_mask = 77
 [node name="Brick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_u8a7e")
 max_distance = 200.0
+bus = &"SFX"
 
 [node name="Glass" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cwghg")
 max_distance = 200.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Glass"]
+stream = ExtResource("4_pm3yk")
+bus = &"SFX"
 
 [node name="Plaster" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_uu5jn")
 max_distance = 200.0
+bus = &"SFX"
 
 [node name="Wood" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ci1yr")
 max_distance = 200.0
+bus = &"SFX"

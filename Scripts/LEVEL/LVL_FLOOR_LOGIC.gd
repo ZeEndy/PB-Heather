@@ -3,7 +3,7 @@ extends SubViewport
 
 @export var floor_clear=false
 @export var solid_collisions_list=[]
-@export_node_path("SubViewport") var path_to_surf
+@export_node_path("goresurf") var path_to_surf
 @export_node_path("TileMap") var astar
 var _astar=null
 var my_surface=null
@@ -54,8 +54,11 @@ func _process(delta):
 	size=parent.get_viewport_rect().size
 	if current==true && OS.get_name()!="HTML5":
 		intensity=clamp(intensity+(float(Input.is_action_just_pressed("ui_up"))-float(Input.is_action_just_pressed("ui_down")))*0.1,0,0.545)
-	
-	
+func _physics_process(delta):
+	floor_clear=true
+	for i in get_children():
+		if (i is Enemy && i.health!=0):
+			floor_clear=false
 
 
 

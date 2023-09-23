@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds72j4t2wt5w7"]
+
+[ext_resource type="Texture2D" uid="uid://b2yl5b2poiddx" path="res://Data/Sprites/Objects/Vehicles/Heather Car/HeatherCar_Body.png" id="1_fpysg"]
+[ext_resource type="Script" path="res://Scripts/LEVEL/LVL_PlayerCar.gd" id="2_0me8o"]
+[ext_resource type="Texture2D" uid="uid://di1dojglhwm1" path="res://Data/Sprites/Objects/Vehicles/Heather Car/HeatherCar_Floor.png" id="2_g6j0y"]
+[ext_resource type="Texture2D" uid="uid://5vt27hvr3gcv" path="res://Data/Sprites/Objects/Vehicles/Heather Car/HeatherCar_Door.png" id="3_2hhnn"]
+[ext_resource type="AudioStream" uid="uid://b3q25vtsx3rxi" path="res://Data/Sounds/Objects/Car/DoorOpen.wav" id="5_w731a"]
+[ext_resource type="AudioStream" uid="uid://4epmqb7qgokk" path="res://Data/Sounds/Objects/Car/DoorClose.wav" id="6_yu11x"]
+[ext_resource type="AudioStream" uid="uid://wk6cjffjnj6i" path="res://Data/Sounds/Objects/Car/EngineStart.wav" id="7_74g8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5a76b"]
+size = Vector2(45, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v087q"]
+size = Vector2(94, 40)
+
+[node name="HeatherCar" type="Sprite2D"]
+z_index = 2
+texture = ExtResource("1_fpysg")
+offset = Vector2(0.5, 0)
+script = ExtResource("2_0me8o")
+next_level = "res://Data/Scenes/Levels/PanicRoom.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-7, -23, -50, -23, -52, -21, -52, 17, -50, 19, 49, 19, 51, 15, 53, -2, 51, -19, 48, -23, 20, -23, 20, -20, 44, -20, 45, -2, 44, 17, -48, 17, -48, -20, -7, -20)
+
+[node name="Door" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-7, -23, -7, -20, 20, -20, 20, -23)
+
+[node name="Floor" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_g6j0y")
+offset = Vector2(0.5, 0)
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(21, -20)
+rotation = 1.00561
+texture = ExtResource("3_2hhnn")
+offset = Vector2(-14, 3)
+
+[node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-7, -20)
+stream = ExtResource("5_w731a")
+
+[node name="DoorClose" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-7, -20)
+stream = ExtResource("6_yu11x")
+
+[node name="EngineStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_74g8p")
+
+[node name="DoorCheck" type="Area2D" parent="."]
+position = Vector2(1, -20)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorCheck"]
+position = Vector2(1.5, -14)
+shape = SubResource("RectangleShape2D_5a76b")
+
+[node name="PullIn" type="Area2D" parent="."]
+position = Vector2(9, -4)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PullIn"]
+position = Vector2(-11, 2)
+shape = SubResource("RectangleShape2D_v087q")

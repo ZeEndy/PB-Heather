@@ -102,12 +102,11 @@ func _process(delta):
 #		GUI.ammo=weapon.ammo
 #		GUI.max_ammo=weapon.max_ammo
 #		get_node("PED_COL/Label").text=str(weapon["Ammo"])+"/"+str(weapon["Max ammo"])
-	debug_rand_weapon()
 	
-	Engine.time_scale=1-0.85*float(Input.is_action_pressed("DEBUG_ABILTY"))
+	if OS.is_debug_build():
+		Engine.time_scale=1-0.85*float(Input.is_action_pressed("DEBUG_ABILTY"))
+		debug_rand_weapon()
 	
-#	if weapon["Type"]=="Firearm":
-#		print(-80.0*(float(weapon["Ammo"])/float(weapon["Max ammo"])))
 	
 	GUI.health=health/100.0
 	if state == ped_states.alive:
@@ -120,15 +119,19 @@ func _process(delta):
 				rotation_multip=lerp(rotation_multip,1.0,clamp(25*delta,0,1))
 				given_height = cursor_pos.length()*0.0018
 				if CAMERA!=null:
-					if Input.is_action_pressed("far_look"):
-						cam_track.position=Vector2(32+given_height*70,0)
-					else:
-						cam_track.position=Vector2(24,0)
+					cam_track.position=Vector2(32+given_height*70,0)
+			else:
+				if CAMERA!=null:
+					cam_track.position=Vector2(0,0)
 		
 		sprite_body.global_rotation = body_direction
 		if weapon["Type"]=="Firearm":
 			GUI.ammo=weapon["Ammo"]
 			GUI.max_ammo=weapon["Max ammo"]
+		else:
+			GUI.ammo=-1
+			GUI.max_ammo=-1
+		GUI.in_combat=in_combat
 	elif state == ped_states.execute:
 		if CAMERA!=null:
 			cam_track.position=Vector2(0,0)

@@ -43,7 +43,8 @@ func _process(delta):
 			load_level(checkpoint)
 	if GAME.enemy_count==0 && level_complete==false:
 		level_complete=true
-		AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
+		if combat_level==true:
+			AudioManager.play_song("res://Data/Music/mu_Videodrome.ogg")
 	if level_complete==false:
 		time+=delta
 	combo_timer=clamp(combo_timer-delta,0,6)
@@ -121,6 +122,21 @@ func save_level():
 						"next_rot":i.next_rot,
 						"door_timer":i.door_timer
 #						"swingspeed":i.swingspeed
+					})
+				if i is Door:
+					save_array.append({
+						"id":i,
+						"door_rot":i.door_rot,
+						"player_turn":i.player_turn,
+						"next_rot":i.next_rot,
+						"door_timer":i.door_timer
+					})
+				if i is Elevator:
+					save_array.append({
+						"id":i,
+						"parent_id":i.get_parent(),
+						"selected_floor":i.selected_floor,
+						"timer":i.timer,
 					})
 				if i.name=="Tiles":
 					i as TileMap

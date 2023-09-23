@@ -26,10 +26,12 @@ func button_action():
 	GUI.s_click.play()
 	if name=="PLAY":
 			GUI.s_click.play()
-			var scene=ResourceLoader.load_threaded_get("res://Data/Scenes/VFX/ENT_Transition.tscn").instantiate()
-			scene.next_level="res://Data/Scenes/Levels/PanicRoom.tscn"
-			get_tree().root.add_child(scene)
-			owner.queue_free()
+			GUI.aspect.visible=true
+			get_tree().change_scene_to_file("res://Data/Scenes/Levels/Cutscenes/Cuscene_Home_1.tscn")
+#			var scene=ResourceLoader.load_threaded_get("res://Data/Scenes/VFX/ENT_Transition.tscn").instantiate()
+#			scene.next_level="res://Data/Scenes/Levels/PanicRoom.tscn"
+#			get_tree().root.add_child(scene)
+#			owner.queue_free()
 			GUI.grab_mouse_back()
 	elif name=="CHAPTERS":
 		get_node("../../Recordings").visible=!get_node("../../Recordings").visible

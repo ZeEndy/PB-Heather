@@ -1,5 +1,6 @@
 extends Sprite2D
 
+class_name Elevator
 
 
 @onready var node2d=get_node("Node2d")
@@ -38,8 +39,6 @@ func _ready():
 		door_animation(bottom_anim,"Open")
 	else:
 		door_animation(bottom_anim,"Close")
-#	get_node("Button/CanvasLayer/Container/Control/ColorRect").size.y=100.0*(ceil(float(cunt_count)*0.5))
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

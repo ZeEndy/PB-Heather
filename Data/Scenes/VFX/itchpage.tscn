@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgftwijdogs3"]
+
+[ext_resource type="FontFile" uid="uid://dqo5y8jcehxg2" path="res://Data/Font/VCR_OSD_MONO_1.001.ttf" id="2_7oegk"]
+
+[sub_resource type="GDScript" id="GDScript_c14wd"]
+script/source = "extends CanvasLayer
+
+var transition_time=5.0
+@onready var white_flash=get_node(\"ColorRect\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	GUI.aspect.visible=false
+	GAME.fade=false
+	GAME.fade_color=0
+	white_flash.visible=true
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	transition_time=clamp(transition_time-delta,0.0,3.0)
+	if transition_time<4.85:
+		white_flash.visible=false
+	if transition_time<0.3:
+		GAME.fade=true
+	if transition_time==0:
+		get_tree().quit()
+"
+
+[node name="Main" type="CanvasLayer"]
+script = SubResource("GDScript_c14wd")
+
+[node name="Aspect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 1, 1)
+
+[node name="Tape" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 184.0
+offset_right = 108.0
+offset_bottom = 241.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_7oegk")
+theme_override_font_sizes/font_size = 61
+text = "END OF DEMO"
+horizontal_alignment = 1
+
+[node name="Name" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -54.5
+offset_right = 210.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_7oegk")
+theme_override_font_sizes/font_size = 120
+text = "THANK YOU FOR PLAYING"
+horizontal_alignment = 1
+
+[node name="Song" type="Label" parent="Aspect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = 53.0
+offset_right = 360.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_7oegk")
+theme_override_font_sizes/font_size = 41
+text = "Release date coming soon"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

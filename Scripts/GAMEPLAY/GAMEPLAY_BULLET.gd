@@ -15,7 +15,7 @@ class_name BULLET
 
 var bullet
 var paused=false
-var speed = 3750
+var speed = 2700
 @export var velocity = Vector2()
 @export var size = Vector2(8,1)
 @export var force=0
@@ -82,8 +82,13 @@ func _physics_process(delta):
 						store_pos,
 						collision[0].collider.get_cell_source_id(1,store_pos),
 						original_pos+Vector2i(3,0))
+					var sound_obj=imp_sounds[data.get_custom_data_by_layer_id(4)]
+					sound_obj.reparent(get_parent())
+					sound_obj.play()
+					for i in sound_obj.get_children():
+						i.play()
+					sound_obj.global_position=collision[1].point-collision[1].normal
 					get_destroyed=false
-				
 				
 				
 			else:

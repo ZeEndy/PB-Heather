@@ -515,6 +515,7 @@ func do_execution():
 		else:
 			_play_animation("Unarmed/Execute Wall",0,true)
 			execute_target.sprite_legs.play("Executing/Lean",false,1.0)
+			execution["lock_rotation"]=true
 			drop_weapon()
 		await RenderingServer.frame_pre_draw
 		if execution["lock_rotation"]==true:
@@ -522,7 +523,6 @@ func do_execution():
 			body_direction=execute_target.sprite_legs.global_rotation
 		else:
 			body_direction=collision_body.global_position.direction_to(execute_target.exec_pos.global_position).angle()
-			print(rad_to_deg(body_direction))
 			sprite_body.global_rotation=body_direction
 		collision_body.global_position=execute_target.exec_pos.global_position
 		sprite_legs.visible=false

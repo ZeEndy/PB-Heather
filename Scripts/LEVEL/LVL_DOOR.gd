@@ -84,7 +84,7 @@ func _physics_process(delta):
 					var door_org=door_anc.global_position+Vector2(door_size.x*0.5,0).rotated(door_anc.global_rotation)
 					par.go_down(door_org.direction_to(i.global_position).angle())
 					par.my_velocity=door_org.direction_to(i.global_position)*300.0
-					
+					par.get_node("PED_SPRITES/Body/Sound/Unarmed/Hit").play()
 		
 		door_timer=clamp(door_timer+delta,0,1.0)
 		

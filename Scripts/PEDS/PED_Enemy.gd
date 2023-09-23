@@ -213,6 +213,7 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180
 		s_entry.play()
 		if randi()%6>4:
 			s_exit.play()
+	collision_body.set_collision_layer_value(1,false)
 	super(damage,killsprite,rot,frame,body_speed,_bleed)
 
 func player_visibilty(mode=0):
