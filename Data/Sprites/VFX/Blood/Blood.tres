@@ -422,7 +422,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Brains",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -585,7 +585,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Speck",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -599,7 +599,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Splat 1",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,

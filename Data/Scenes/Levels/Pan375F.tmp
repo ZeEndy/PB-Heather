@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cc81oacjxvdgt"]
+[gd_scene load_steps=73 format=3 uid="uid://cc81oacjxvdgt"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5bv03"]
 [ext_resource type="AudioStream" uid="uid://dgus68edgqu5q" path="res://Data/Music/mu_Matryoshka.ogg" id="2_6jl6m"]
@@ -34,7 +34,9 @@
 [ext_resource type="Texture2D" uid="uid://bmu70243wov72" path="res://Data/Sprites/Objects/Panic Room/sprELisBunkerEmptyBoxes_strip.png" id="30_2bslo"]
 [ext_resource type="Script" path="res://Scripts/VFX/VFX_SURFACE.gd" id="30_owxqy"]
 [ext_resource type="Texture2D" uid="uid://dgcx86x1jkj0r" path="res://Data/Sprites/Objects/Panic Room/sprElisDirtySink_strip.png" id="31_dvt6d"]
+[ext_resource type="PackedScene" uid="uid://24cje1dv5je" path="res://Data/Scenes/VFX/VFX_smokehit.tscn" id="31_s6ehc"]
 [ext_resource type="Texture2D" uid="uid://ca8ob0o6xyxdq" path="res://Data/Sprites/Objects/Panic Room/sprElisToilet.png" id="32_af8bp"]
+[ext_resource type="Texture2D" uid="uid://cihighahmcuj" path="res://Data/Sprites/VFX/sprSmokeHit_strip.png" id="32_inod8"]
 [ext_resource type="Texture2D" uid="uid://cwamogdqqbnn6" path="res://Data/Sprites/Objects/Panic Room/sprElisPlantBig_strip.png" id="33_cfc8o"]
 
 [sub_resource type="QuadMesh" id="1"]
@@ -187,6 +189,70 @@ size = Vector2(64, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yd8jl"]
 size = Vector2(49, 22)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7xpc"]
+atlas = ExtResource("32_inod8")
+region = Rect2(0, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q8ty"]
+atlas = ExtResource("32_inod8")
+region = Rect2(20, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvwra"]
+atlas = ExtResource("32_inod8")
+region = Rect2(40, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04gyf"]
+atlas = ExtResource("32_inod8")
+region = Rect2(60, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yll6"]
+atlas = ExtResource("32_inod8")
+region = Rect2(80, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogkgk"]
+atlas = ExtResource("32_inod8")
+region = Rect2(100, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maib0"]
+atlas = ExtResource("32_inod8")
+region = Rect2(120, 0, 20, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8y7c5"]
+atlas = ExtResource("32_inod8")
+region = Rect2(140, 0, 20, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgbul"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7xpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q8ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvwra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04gyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yll6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogkgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maib0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8y7c5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgut1"]
 size = Vector2(15, 18)
 
@@ -287,6 +353,11 @@ script = ExtResource("21_hw062")
 
 [node name="Rain" parent="Floor 1/Viewport/Camera" instance=ExtResource("22_yrudj")]
 emitting = false
+
+[node name="Floor Transition" parent="Floor 1/Viewport" instance=ExtResource("9_8j0v3")]
+position = Vector2(636, 192)
+targetPath = NodePath("../../../Floor 2/Viewport")
+next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
 
 [node name="Enemy" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(96, 184)
@@ -818,11 +889,6 @@ right = 110.0
 [node name="Door" parent="Floor 1/Viewport" instance=ExtResource("23_wbmdk")]
 position = Vector2(688, 384)
 
-[node name="Floor Transition" parent="Floor 1/Viewport" instance=ExtResource("9_8j0v3")]
-position = Vector2(649, 192)
-targetPath = NodePath("../../../Floor 2/Viewport")
-next_transiton = NodePath("../../../Floor 2/Viewport/Floor Transition2")
-
 [node name="Viewp" type="Node2D" parent="Floor 1/Viewport"]
 z_index = -4
 position = Vector2(64, 96)
@@ -847,6 +913,10 @@ rotation = -1.5708
 desired_weapon = "1911"
 sprite_index = "Unarmed/PutOnMask"
 sprite_based_on_export = true
+
+[node name="Smokehit" parent="Floor 1" instance=ExtResource("31_s6ehc")]
+sprite_frames = SubResource("SpriteFrames_jgbul")
+frame_progress = 0.0
 
 [node name="Floor 2" type="SubViewportContainer" parent="."]
 offset_right = 40.0
@@ -972,6 +1042,12 @@ position = Vector2(296, 176)
 
 [node name="Door15" parent="Floor 2/Viewport" instance=ExtResource("23_wbmdk")]
 position = Vector2(176, 152)
+
+[node name="Floor Transition2" parent="Floor 2/Viewport" instance=ExtResource("9_8j0v3")]
+position = Vector2(648, 192)
+rotation = -3.14159
+targetPath = NodePath("../../../Floor 1/Viewport")
+next_transiton = NodePath("../../../Floor 1/Viewport/Floor Transition")
 
 [node name="Props" type="Node2D" parent="Floor 2/Viewport"]
 
@@ -1648,12 +1724,6 @@ desired_weapon = "PB"
 position = Vector2(241, 505)
 rotation = 1.57079
 desired_weapon = "AR-15"
-
-[node name="Floor Transition2" parent="Floor 2/Viewport" instance=ExtResource("9_8j0v3")]
-position = Vector2(628, 192)
-rotation = -3.14159
-targetPath = NodePath("../../../Floor 1/Viewport")
-next_transiton = NodePath("../../../Floor 1/Viewport/Floor Transition")
 
 [node name="Viewp2" type="Node2D" parent="Floor 2/Viewport"]
 z_index = -4

@@ -1,9 +1,10 @@
-[gd_scene load_steps=377 format=3 uid="uid://h5egxor26nl0"]
+[gd_scene load_steps=380 format=3 uid="uid://h5egxor26nl0"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Enemy.gd" id="2"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_85y2x"]
 [ext_resource type="Script" path="res://Scripts/GAME/GAME_ANIM_NONWAD.gd" id="3_jyc6g"]
 [ext_resource type="Texture2D" uid="uid://brwvg76d2tr5j" path="res://Data/Sprites/Characters/Mafia/Dead/MachineGun_strip12.png" id="4_sx230"]
+[ext_resource type="Texture2D" uid="uid://b3h06jk6ee7rx" path="res://Data/Sprites/Characters/Mafia/Dead/MachineGunLean_strip.png" id="5_0pt6j"]
 [ext_resource type="Texture2D" uid="uid://b4mohp64ahfkr" path="res://Data/Sprites/Characters/Mafia/Get Up/Get_Up_Floor_strip8.png" id="5_e4wnv"]
 [ext_resource type="Texture2D" uid="uid://qmipntigl0w7" path="res://Data/Sprites/Characters/Mafia/Executing/DieLean_strip10.png" id="5_mg2yx"]
 [ext_resource type="Texture2D" uid="uid://tm5m2n45axgf" path="res://Data/Sprites/Characters/Mafia/Executing/Stomp_strip4.png" id="5_vaoba"]
@@ -23,10 +24,9 @@
 [ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Character/PB/Bang.tres" id="16_7wt3n"]
 [ext_resource type="AudioStream" uid="uid://xy12rdnhrcmn" path="res://Data/Sounds/Gore/Head Crusher/Crush_3.wav" id="16_ts86d"]
 [ext_resource type="AudioStream" uid="uid://b76c35gwhpuit" path="res://Data/Sounds/Gore/Bullet Entry.tres" id="17_fi2r7"]
-[ext_resource type="SpriteFrames" uid="uid://b8woonio04tls" path="res://Data/Sprites/VFX/Blood/Blood.tres" id="17_nbhrb"]
-[ext_resource type="Script" path="res://Scripts/VFX/VFX_Blood.gd" id="18_5lf85"]
 [ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Character/PB/Mech.tres" id="18_72tqt"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech_2D.gd" id="19_25un3"]
+[ext_resource type="PackedScene" uid="uid://ctyki6a22038u" path="res://Data/Scenes/VFX/ENT_blood.tscn" id="19_fmot6"]
 [ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Character/PB/Hammer.tres" id="20_tmt4k"]
 [ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Character/M4/Fire.tres" id="21_wfl3j"]
 [ext_resource type="AudioStream" uid="uid://bw58q3gdvaf3x" path="res://Data/Sounds/Character/M4/Mech.tres" id="23_1wxqc"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://xbw8ww7ipbuf" path="res://Data/Sprites/Characters/Mafia/Body/PB/Walk_PB_E_strip8.png" id="56_6s1b4"]
 [ext_resource type="Texture2D" uid="uid://dw0v253ddgchc" path="res://Data/Sprites/Characters/Mafia/Body/Unarmed/Walk_Unarmed_strip8.png" id="56_mfuxb"]
 [ext_resource type="Script" path="res://Scripts/PEDS/Head.gd" id="58_rwhe1"]
+[ext_resource type="Script" path="res://Data/DEFAULT/ENTS/BloodManager.gd" id="69_6jadu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atrh7"]
 resource_local_to_scene = true
@@ -92,7 +93,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BloodPool:position")
+tracks/1/path = NodePath("BLOODMANAGER/BloodPool:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -104,7 +105,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BloodPool/Blood:visible")
+tracks/2/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -333,7 +334,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BloodPool:position")
+tracks/6/path = NodePath("BLOODMANAGER/BloodPool:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -345,7 +346,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("BloodPool/Blood:visible")
+tracks/7/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -357,7 +358,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("BloodPool/Blood:pool_size")
+tracks/8/path = NodePath("BLOODMANAGER/BloodPool/Blood:pool_size")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -393,7 +394,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.153846),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["DeadLeanShotgun", "DeadLeanShotgun"]
+"values": [&"Dead Machine Gun Lean", &"Dead Machine Gun Lean"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -405,7 +406,43 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.153846),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(4, 0), Vector2(4, 0)]
+"values": [Vector2(-5, 0), Vector2(-5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BLOODMANAGER/BloodPool:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1538),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, -1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BLOODMANAGER/BloodPool/Blood:pool_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1538),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [36, 36]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1538),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_pkdef"]
@@ -718,7 +755,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BloodPool:position")
+tracks/6/path = NodePath("BLOODMANAGER/BloodPool:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -730,7 +767,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("BloodPool/Blood:visible")
+tracks/7/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -738,6 +775,48 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BLOODMANAGER")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.4614),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Brains", 0.0, -220.0, Vector2(0, 6), 6],
+"method": &"spawn_blood"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BLOODMANAGER")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.4614),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Big Splat", 0.0, -300.0, Vector2(0, 6), 4],
+"method": &"spawn_blood"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BLOODMANAGER")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.4614),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Squirt", 0.0, -600.0, Vector2(0, 6), 1],
+"method": &"spawn_blood"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_gnshy"]
@@ -828,7 +907,7 @@ tracks/3/path = NodePath("../..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.769),
+"times": PackedFloat32Array(0.784321),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [100.0, "Executing/Stomp"],
@@ -862,11 +941,11 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BloodPool:position")
+tracks/6/path = NodePath("BLOODMANAGER/BloodPool:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.769),
+"times": PackedFloat32Array(0.6921),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(23, 0)]
@@ -874,7 +953,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("BloodPool/Blood:visible")
+tracks/7/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -882,6 +961,48 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BLOODMANAGER")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.6152),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Brains", 0.0, 200.0, Vector2(0, 28), 15],
+"method": &"spawn_blood"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BLOODMANAGER")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.6152),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Squirt", 0.0, 200.0, Vector2(0, 28), 8],
+"method": &"spawn_blood"
+}]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BLOODMANAGER")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.6152),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Splat", 0.0, 200.0, Vector2(0, 28), 8],
+"method": &"spawn_blood"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b3xnd"]
@@ -1221,7 +1342,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("BloodPool/Blood:visible")
+tracks/10/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -1375,7 +1496,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("BloodPool/Blood:visible")
+tracks/11/path = NodePath("BLOODMANAGER/BloodPool/Blood:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -1387,7 +1508,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("BloodPool/Blood:frame")
+tracks/12/path = NodePath("BLOODMANAGER/BloodPool/Blood:frame")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1450,6 +1571,14 @@ region = Rect2(640, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sef4r"]
 atlas = ExtResource("4_sx230")
 region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uqv3"]
+atlas = ExtResource("5_0pt6j")
+region = Rect2(0, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwjad"]
+atlas = ExtResource("5_0pt6j")
+region = Rect2(26, 0, 26, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0ldj"]
 atlas = ExtResource("5_mg2yx")
@@ -1668,6 +1797,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dead Machine Gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uqv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwjad")
+}],
+"loop": true,
+"name": &"Dead Machine Gun Lean",
 "speed": 5.0
 }, {
 "frames": [{
@@ -7527,6 +7667,7 @@ target = NodePath("../PED_COL")
 flags = 51
 
 [node name="Legs" type="Node2D" parent="PED_SPRITES"]
+z_index = -4
 use_parent_material = true
 script = ExtResource("3_jyc6g")
 speed_scale = 0
@@ -7543,9 +7684,9 @@ libraries = {
 [node name="anim" type="AnimatedSprite2D" parent="PED_SPRITES/Legs"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_pjksh")
-animation = &"Walk Legs Start"
-frame = 6
-offset = Vector2(-0.5, 0)
+animation = &"Dead Machine Gun Lean"
+frame = 1
+offset = Vector2(-5, 0)
 
 [node name="ExecPos" type="Marker2D" parent="PED_SPRITES/Legs"]
 
@@ -7608,20 +7749,19 @@ stream = ExtResource("17_fi2r7")
 [node name="Bullet Exit" type="AudioStreamPlayer2D" parent="PED_SPRITES/Legs/Sound/Blood Impact"]
 stream = ExtResource("17_fi2r7")
 
-[node name="BloodPool" type="Marker2D" parent="PED_SPRITES/Legs"]
+[node name="BLOODMANAGER" type="Node2D" parent="PED_SPRITES/Legs"]
+z_index = -1
+script = ExtResource("69_6jadu")
+
+[node name="BloodPool" type="Marker2D" parent="PED_SPRITES/Legs/BLOODMANAGER"]
 position = Vector2(25, 1)
 
-[node name="Blood" type="AnimatedSprite2D" parent="PED_SPRITES/Legs/BloodPool"]
-visible = false
-modulate = Color(1, 1, 1, 0.784314)
-z_index = -1
-sprite_frames = ExtResource("17_nbhrb")
-animation = &"Pool"
-script = ExtResource("18_5lf85")
-input = "Pool"
-pool_size = 46
+[node name="Blood" parent="PED_SPRITES/Legs/BLOODMANAGER/BloodPool" instance=ExtResource("19_fmot6")]
+animation = &"Squirt 2"
+pool_size = 36
 
 [node name="Body" type="Node2D" parent="PED_SPRITES"]
+visible = false
 z_index = 1
 use_parent_material = true
 script = ExtResource("3_jyc6g")

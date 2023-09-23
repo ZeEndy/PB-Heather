@@ -100,7 +100,19 @@ func _init():
 		cursor_method=configfile.get_value("CURSOR","cursor_method",2)
 		cursor_sens=configfile.get_value("CURSOR","cursor_sens",1.0)
 	else:
+		resolution=Vector2(1920,1080)
+		display_mode=0
+		particle_quality=0
+		light_quality=0
+		
+		mas_volume=0.4
+		music_volume=0.7
+		sfx_volume=0.6
+		
+		cursor_method=2
+		cursor_sens=1.0
 		save_config()
+		
 	var ovrd = ConfigFile.new()
 	if ovrd.load("res://override.cfg") == OK:
 		rend_method=ovrd.get_value("rendering","renderer/rendering_method","mobile")

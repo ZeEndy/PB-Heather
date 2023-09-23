@@ -114,7 +114,9 @@ func _ready():
 		if sprite_based_on_export==false:
 			_play_animation("Walk")
 		else:
-			_play_animation(sprite_index)
+			_play_animation(sprite_index,0,true)
+			sprite_based_on_export=false
+		
 		sprite_legs.play(leg_index)
 	col_shape.disabled=false
 	
@@ -219,6 +221,7 @@ func _physics_process(delta):
 				sprite_legs.global_rotation=test_motion.get_normal().angle()-PI
 				sprite_legs.speed_scale=0
 				collision_body.global_position=test_motion.get_position()
+				collision_body.set_collision_layer_value(4,true)
 		collision_body.velocity=my_velocity
 		collision_body.move_and_slide()
 		if can_get_up==true:
@@ -378,7 +381,7 @@ func spawn_bullet(amoumt:int):
 			spawn_recoil_add+=deg_to_rad(randf_range(-weapon["Recoil"],weapon["Recoil"]))
 		sus_bullet.global_rotation=spawn_recoil_add
 		sus_bullet.death_sprite=Database.death_db[weapon["ID"]]["kill_sprite"]
-		sus_bullet.death_sprite=Database.death_db[weapon["ID"]]["kill_lean_sprite"]
+		sus_bullet.death_lean_sprite=Database.death_db[weapon["ID"]]["kill_lean_sprite"]
 		#check if AP ammo 
 		viewp.call_deferred("add_child",sus_bullet)
 		sus_bullet.damage=weapon["Damage"]
@@ -466,8 +469,8 @@ func do_remove_health(damage,killsprite:String="DeadBlunt",dead_rotation=null,fr
 				sprite_legs.seek(randf_range(0,sprite_legs_anim.current_animation_length))
 			else:
 				sprite_legs.seek(frame)
-			sprite_legs.global_rotation=rot-PI
 			if (state != ped_states.down):
+				sprite_legs.global_rotation=rot-PI
 				my_velocity=Vector2(damage,0).rotated(sprite_legs.global_rotation)
 			else:
 				my_velocity=Vector2(0,0)
@@ -489,6 +492,7 @@ func go_down(direction=randf()*PI,spd=MAX_SPEED):
 			sprite_body.visible=false
 			down_timer=3
 			my_velocity=Vector2(spd,0).rotated(direction)
+			collision_body.set_collision_layer_value(4,false)
 #			collision_body.set_collision_layer_bit(6,false)
 #			axis=Vector2(0.8,0).rotated(direction)
 #		collision_body.linear_damp=6
@@ -499,6 +503,7 @@ func go_down(direction=randf()*PI,spd=MAX_SPEED):
 func get_up():
 	state=ped_states.alive
 	sprite_body.visible=true
+	collision_body.set_collision_layer_value(4,true)
 	get_node("PED_SPRITES/Body/Melee_Area/CollisionShape2D").disabled=true
 
 

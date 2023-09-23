@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://24cje1dv5je"]
+
+[ext_resource type="Script" path="res://Scripts/VFX/VFX_Smokehit.gd" id="1_1gfr8"]
+[ext_resource type="Texture2D" uid="uid://cihighahmcuj" path="res://Data/Sprites/VFX/sprSmokeHit_strip.png" id="1_krm41"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7na7"]
+atlas = ExtResource("1_krm41")
+region = Rect2(0, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc3h4"]
+atlas = ExtResource("1_krm41")
+region = Rect2(18, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf8eg"]
+atlas = ExtResource("1_krm41")
+region = Rect2(36, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5l5q"]
+atlas = ExtResource("1_krm41")
+region = Rect2(54, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xyca"]
+atlas = ExtResource("1_krm41")
+region = Rect2(72, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km8mr"]
+atlas = ExtResource("1_krm41")
+region = Rect2(90, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyhdp"]
+atlas = ExtResource("1_krm41")
+region = Rect2(108, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef3ag"]
+atlas = ExtResource("1_krm41")
+region = Rect2(126, 0, 18, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh8m6"]
+atlas = ExtResource("1_krm41")
+region = Rect2(144, 0, 18, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usrw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7na7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc3h4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf8eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5l5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xyca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km8mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyhdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef3ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh8m6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="Smokehit" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_usrw1")
+autoplay = "default"
+frame_progress = 1.0
+offset = Vector2(-9, 0)
+script = ExtResource("1_1gfr8")

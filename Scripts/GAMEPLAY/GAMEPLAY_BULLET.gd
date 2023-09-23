@@ -6,6 +6,8 @@ class_name BULLET
 @onready var shape = RectangleShape2D.new()
 @onready var query = PhysicsShapeQueryParameters2D.new()
 @onready var space = get_world_2d().direct_space_state
+@onready var glass_shit=preload("res://Data/Scenes/VFX/GlassShit.tscn")
+@onready var smoke_hit=preload("res://Data/Scenes/VFX/VFX_smokehit.tscn")
 
 @onready var imp_sounds={
 	"Brick":get_node("Brick"),
@@ -61,14 +63,9 @@ func _physics_process(delta):
 				queue_free()
 			if !(collision[0].collider in exclusion) && collision[0].collider.get_parent().health>0:
 				if "Lean" in collision[0].collider.get_parent().sprites.get_node("Legs").animation:
-					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation)
+					collision[0].collider.get_parent().do_remove_health(damage,death_lean_sprite,collision[0].collider.get_parent().sprites.get_node("Legs").global_rotation)
 					exclusion.append(collision[0].collider)
 				else:
-#					if collision[0].collider.get_parent().armour>0:
-#						if GAME.particle_quality<2:
-#							for i in randi_range(4,8):
-#								spawn_armour_imp(collision[1].normal.angle(),collision[1].point)
-#						destroy()
 					collision[0].collider.get_parent().do_remove_health(damage,death_sprite,global_rotation-PI,"rand")
 					exclusion.append(collision[0].collider)
 		elif collision[0].collider is TileMap:
@@ -82,6 +79,19 @@ func _physics_process(delta):
 						store_pos,
 						collision[0].collider.get_cell_source_id(1,store_pos),
 						original_pos+Vector2i(3,0))
+					for i in randi_range(10,17):
+						var fuck=glass_shit.instantiate()
+						fuck.global_position=collision[1].point-collision[1].normal
+						fuck.velocity=Vector2(160+600*randf(),0).rotated(collision[1].normal.angle()-PI).rotated(randf_range(-PI*0.05,PI*0.05))
+						fuck.rotation=randf()*PI
+						get_parent().add_child(fuck)
+					for i in randi_range(7,10):
+						var fuck=glass_shit.instantiate()
+						fuck.global_position=collision[1].point-collision[1].normal
+						fuck.velocity=Vector2(160+100*randf(),0).rotated(collision[1].normal.angle()).rotated(randf_range(-PI*0.05,PI*0.05))
+						fuck.rotation=randf()*PI
+						get_parent().add_child(fuck)
+					
 					var sound_obj=imp_sounds[data.get_custom_data_by_layer_id(4)]
 					sound_obj.reparent(get_parent())
 					sound_obj.play()
@@ -98,6 +108,15 @@ func _physics_process(delta):
 					sound_obj.reparent(get_parent())
 					sound_obj.play()
 					sound_obj.global_position=collision[1].point-collision[1].normal
+				
+				for i in randi_range(4,6):
+					var fuck=smoke_hit.instantiate()
+					fuck.global_position=collision[1].point+collision[1].normal
+					var ang=collision[1].normal.angle()-PI
+					fuck.velocity=Vector2(160+100*randf(),0).rotated(ang)
+					fuck.rotation=ang
+					fuck.speed_scale=0.6+0.2*randf()
+					get_parent().add_child(fuck)
 				destroy()
 			
 		else:

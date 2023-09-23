@@ -7,6 +7,7 @@ var held_points=0
 var combo=0
 var combo_timer=0.0
 var time=0.0
+var retard_timer=0.0
 @export var point_stuff=[]
 @export var saved=false
 @export var level_complete=false
@@ -24,8 +25,6 @@ func _ready():
 	GUI.play_timer=1.0
 	if saved==false:
 		saved=true
-		await RenderingServer.frame_post_draw
-		await RenderingServer.frame_post_draw
 		checkpoint=save_level()
 		restart=save_level()
 	if level_complete==false && song!=null:
@@ -35,12 +34,17 @@ func _process(delta):
 	if Input.is_action_just_pressed("DEBUG_SAVE"):
 		_save_checkpoint()
 	
-	if Input.is_action_just_pressed("reload") && GUI.health_iterp>0.9:
+	if Input.is_action_pressed("reload") && GUI.health_iterp>0.9:
+		retard_timer+=delta
+	
+	if Input.is_action_just_released("reload") && GUI.health_iterp>0.9:
 		GAME.cursor_position=GUI.real_mouse
-		if Input.is_action_pressed("far_look"):
+		if retard_timer>0.5:
 			load_level(restart)
+			checkpoint=restart.duplicate(true)
 		else:
 			load_level(checkpoint)
+		retard_timer=0.0
 	if GAME.enemy_count==0 && level_complete==false:
 		level_complete=true
 		if combat_level==true:

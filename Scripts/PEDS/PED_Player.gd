@@ -108,7 +108,7 @@ func _process(delta):
 		debug_rand_weapon()
 	
 	
-	GUI.health=health/100.0
+	GUI.health=clamp(health,0,100)/100.0
 	if state == ped_states.alive:
 		cursor_pos=GUI.mouse
 		GUI.p_pos=sprite_body.get_screen_transform().origin

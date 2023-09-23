@@ -300,27 +300,27 @@ var execution_db={
 var death_db={
 	"PB":{
 		"kill_sprite":"Dead/Machinegun",
-		"kill_lean_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun Lean",
 	},
 	"1911":{
 		"kill_sprite":"Dead/Machinegun",
-		"kill_lean_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun Lean",
 	},
 	"AK-74U":{
 		"kill_sprite":"Dead/Machinegun",
-		"kill_lean_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun Lean",
 	},
 	"AR-15":{
 		"kill_sprite":"Dead/Machinegun",
-		"kill_lean_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun Lean",
 	},
 	"OU-DB":{
 		"kill_sprite":"Dead/Machinegun",
-		"kill_lean_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun Lean",
 	},
 	"MAC-10":{
 		"kill_sprite":"Dead/Machinegun",
-		"kill_lean_sprite":"Dead/Machinegun",
+		"kill_lean_sprite":"Dead/Machinegun Lean",
 	},
 }
 

@@ -12,7 +12,7 @@ var glob_camera
 
 @export var speed_scale=1
 @export var frame=0
-@export var animation=""
+var animation=""
 @export var saved_var={}
 @export var add_to_surface=false
 @export_node_path var spawn_pos_on_tree

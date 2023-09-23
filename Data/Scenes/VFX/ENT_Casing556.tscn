@@ -20,7 +20,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.100287, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.746094, 0.746094, 0.746094, 1, 1, 1, 1, 0)
 
-[node name="Casing" type="RigidBody2D"]
+[node name="Casing" type="RigidBody2D" groups=["Particles"]]
 z_index = 1
 rotation = 6.28318
 collision_layer = 2

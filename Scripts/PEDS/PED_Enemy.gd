@@ -2,6 +2,8 @@ extends PED
 
 class_name Enemy
 
+
+
 #reference variables
 @onready var visibilty_check=get_node("PED_COL/visibilty_check")
 @onready var movement_check=get_node("PED_COL/movement_check")
@@ -12,6 +14,9 @@ class_name Enemy
 @onready var pat_query = PhysicsShapeQueryParameters2D.new()
 @onready var pat_shape = RectangleShape2D.new()
 @onready var space = get_world_2d().direct_space_state
+
+@onready var blood_fuck=get_node("PED_SPRITES/Legs/BLOODMANAGER")
+
 #states
 enum Enemy_t {
 	RANDOM,
@@ -54,6 +59,7 @@ func _ready():
 	collision_body.set_collision_layer_value(1,true)
 	pat_query.exclude.append(collision_body.get_rid())
 	enemy_state=-1
+	blood_fuck.clear()
 
 func _process(_delta):
 	super(_delta)
@@ -77,6 +83,7 @@ func _physics_process(delta):
 			movement_check.target_position=focused_player.global_position-collision_body.global_position
 
 	if state==ped_states.alive:
+		col_shape.disabled=false
 		if player_exists:
 			player_vis=player_visibilty()
 		if weapon["ID"]=="Unarmed":
@@ -194,7 +201,8 @@ func _physics_process(delta):
 	elif state==ped_states.execute:
 		if execute_click==true:
 			sprite_body.speed_scale=1
-
+#	elif state==ped_states.down:
+#
 func get_up():
 	collision_body.set_collision_layer_value(1,true)
 	super()
@@ -202,19 +210,29 @@ func get_up():
 func go_down(down_dir=randi(),spd=MAX_SPEED):
 	if state == ped_states.alive:
 		collision_body.set_collision_layer_value(1,false)
+		collision_body.set_collision_layer_value(4,false)
 	super(down_dir,spd)
 
 func kys(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
-	do_remove_health(damage,killsprite,rot,frame,body_speed,_bleed)
+	sprite_legs.speed_scale=0
+	health=0
+	sprite_body.visible=false
+	state=ped_states.dead
+	axis=Vector2.ZERO
+	my_velocity=Vector2(0.0,0.0)
 
 func do_remove_health(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
-	owner.add_kill()
-	if "gun" in killsprite:
+	super(damage,killsprite,rot,frame,body_speed,_bleed)
+	if "gun" in killsprite && health==0 && state==ped_states.dead:
+		owner.add_kill()
 		s_entry.play()
 		if randi()%6>4:
 			s_exit.play()
-	collision_body.set_collision_layer_value(1,false)
-	super(damage,killsprite,rot,frame,body_speed,_bleed)
+		blood_fuck.spawn_blood("Splat",0.0,200.0,Vector2.ZERO,randi_range(5,12))
+		blood_fuck.spawn_blood("Squirt",0.0,600.0,Vector2.ZERO,randi_range(4,8))
+		blood_fuck.spawn_blood("Speck",0.0,800.0,Vector2.ZERO,randi_range(12,25))
+		collision_body.set_collision_layer_value(1,false)
+	
 
 func player_visibilty(mode=0):
 	var seen=true
@@ -232,7 +250,6 @@ func player_visibilty(mode=0):
 	else:
 		seen=false
 	return seen
-
 
 
 

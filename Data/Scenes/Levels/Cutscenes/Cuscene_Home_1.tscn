@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://cyjjbtgq2bxwq"]
+[gd_scene load_steps=115 format=3 uid="uid://cyjjbtgq2bxwq"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5x4kg"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_nbniv"]
@@ -176,6 +176,9 @@ size = Vector2(24, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dsnv"]
 size = Vector2(22, 49)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq2i3"]
+size = Vector2(3.00006, 64)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo7fw"]
 size = Vector2(48, 17)
 
@@ -297,16 +300,16 @@ tracks/0/keys = {
 "args": [NodePath("../../Player"), "Unarmed/Answer Phone", "Unarmed/Listen Phone"],
 "method": &"actor_play_anim"
 }, {
-"args": ["This is Marc from Wyatt & Wyatt law offices."],
+"args": ["Hey there, it's Hugh over at AGC construction. Need you to help me out."],
 "method": &"show_dialouge"
 }, {
-"args": ["I'm calling to let you know you've got a metting with us tonight."],
+"args": ["A house over on 132 SW 3rd street. Bit of a fixer-upper,"],
 "method": &"show_dialouge"
 }, {
-"args": ["Due to the sensitive nature of your case, we ask that you be discrete."],
+"args": ["but it's in a really good spot. We still have to talk plans-"],
 "method": &"show_dialouge"
 }, {
-"args": ["We're at 44 Aldeson road. Dress sharp!"],
+"args": ["so be sure to let the owner know about the outline for the renovation!"],
 "method": &"show_dialouge"
 }, {
 "args": [NodePath("../../Player"), "Unarmed/Putaway Phone", "Unarmed/Walk"],
@@ -691,29 +694,6 @@ script = ExtResource("21_r1ydg")
 [node name="Rain" parent="Floor 1/Viewport/Camera" instance=ExtResource("22_n24wk")]
 emitting = false
 
-[node name="Door" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
-position = Vector2(192, 352)
-locked = true
-
-[node name="Door9" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
-position = Vector2(512, 352)
-locked = true
-
-[node name="Door2" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
-position = Vector2(64, 192)
-
-[node name="Door5" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
-position = Vector2(192, 32)
-locked = true
-
-[node name="Door3" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
-position = Vector2(128, 256)
-rotation = -1.57079
-
-[node name="Door6" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
-position = Vector2(328, 64)
-rotation = 1.5708
-
 [node name="Props" type="Node2D" parent="Floor 1/Viewport"]
 
 [node name="Sprite2D2" type="Sprite2D" parent="Floor 1/Viewport/Props"]
@@ -723,12 +703,17 @@ texture = ExtResource("11_nm1qp")
 hframes = 2
 
 [node name="BunkerCounter" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 1
 position = Vector2(34, 244)
 texture = ExtResource("12_3uj0q")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/BunkerCounter"]
+z_index = 1
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/BunkerCounter/StaticBody2D"]
+z_index = 1
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_8o7sj")
 
@@ -794,6 +779,7 @@ position = Vector2(-7.62939e-06, -0.5)
 shape = SubResource("RectangleShape2D_5dsnv")
 
 [node name="Mirror" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 1
 position = Vector2(24, 242)
 texture = ExtResource("20_7bu6j")
 offset = Vector2(0.5, 0.5)
@@ -804,7 +790,16 @@ rotation = 1.57079
 texture = ExtResource("20_7bu6j")
 offset = Vector2(0.5, 0.5)
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/Mirror2"]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/Mirror2/StaticBody2D"]
+position = Vector2(0.499969, 1.52588e-05)
+shape = SubResource("RectangleShape2D_dq2i3")
+
 [node name="Sink" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 1
 position = Vector2(38, 246)
 texture = ExtResource("21_g8bjw")
 hframes = 9
@@ -816,6 +811,8 @@ texture = ExtResource("22_31vwm")
 offset = Vector2(0.5, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/Makeuptable"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/Makeuptable/StaticBody2D"]
 position = Vector2(-4.57764e-05, -1.49994)
@@ -827,6 +824,8 @@ texture = ExtResource("23_jej1y")
 offset = Vector2(0, 0.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/Kitchen"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/Kitchen/StaticBody2D"]
 position = Vector2(-6.5, 0)
@@ -838,6 +837,7 @@ rotation = 3.14159
 texture = ExtResource("24_d4141")
 
 [node name="PlantSmall" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 1
 position = Vector2(31, 209)
 rotation = 1.57079
 texture = ExtResource("26_82d0c")
@@ -888,6 +888,7 @@ position = Vector2(-3, 0.499985)
 shape = SubResource("RectangleShape2D_iujge")
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor 1/Viewport/Props"]
+z_index = 1
 position = Vector2(36, 267)
 rotation = -0.726338
 texture = ExtResource("26_ysqtq")
@@ -921,10 +922,11 @@ texture = ExtResource("29_pxlsv")
 hframes = 8
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/OfficeDesk"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/OfficeDesk/StaticBody2D"]
 position = Vector2(0.102448, -3.49884)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tinfo")
 
 [node name="FToiletStrip2" type="Sprite2D" parent="Floor 1/Viewport/Props"]
@@ -934,6 +936,8 @@ texture = ExtResource("30_6kxhh")
 hframes = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/FToiletStrip2"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/FToiletStrip2/StaticBody2D"]
 shape = SubResource("CircleShape2D_8ro6q")
@@ -945,6 +949,8 @@ hframes = 3
 frame = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/SprElisLaundryMachineStrip"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/SprElisLaundryMachineStrip/StaticBody2D"]
 position = Vector2(0, -7)
@@ -962,6 +968,8 @@ offset = Vector2(0, 0.5)
 hframes = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor 1/Viewport/Props/KitchenBench"]
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor 1/Viewport/Props/KitchenBench/StaticBody2D"]
 position = Vector2(-3.05176e-05, -6.50002)
@@ -1037,6 +1045,29 @@ bus = &"Radio"
 position = Vector2(380, 87)
 rotation = 1.57079
 in_combat = false
+
+[node name="Door" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
+position = Vector2(192, 352)
+locked = true
+
+[node name="Door9" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
+position = Vector2(512, 352)
+locked = true
+
+[node name="Door2" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
+position = Vector2(64, 192)
+
+[node name="Door5" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
+position = Vector2(192, 32)
+locked = true
+
+[node name="Door3" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
+position = Vector2(136, 224)
+rotation = 1.5708
+
+[node name="Door6" parent="Floor 1/Viewport" instance=ExtResource("23_sf31q")]
+position = Vector2(328, 64)
+rotation = 1.5708
 
 [node name="Floor 2" type="SubViewportContainer" parent="."]
 visible = false

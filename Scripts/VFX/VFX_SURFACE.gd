@@ -49,7 +49,7 @@ func add_to_surface(obj_path,pos=Vector2(0,0),rot=0):
 	
 	
 	saved_node.global_rotation=rot-global_rotation
-	print(saved_node.global_position)
+#	print(saved_node.global_position)
 	saved_node.scale*=4
 #	print(saved_node.global_position)
 	if saved_node is AnimatedSprite2D:
