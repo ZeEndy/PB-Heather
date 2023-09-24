@@ -6708,7 +6708,6 @@ offset_bottom = 67.0
 
 [node name="bullet_check" type="RayCast2D" parent="PED_COL"]
 collision_mask = 97
-hit_from_inside = true
 
 [node name="PED_SPRITES" type="Node2D" parent="."]
 script = ExtResource("2_6rt3n")

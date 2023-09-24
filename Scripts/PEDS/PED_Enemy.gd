@@ -82,6 +82,8 @@ func _physics_process(delta):
 			visibilty_check.target_position=focused_player.global_position-collision_body.global_position
 			movement_check.target_position=focused_player.global_position-collision_body.global_position
 			focused_direction=visibilty_check.target_position.normalized().angle()
+	var len_check=movement_check.target_position.length()
+	var axis_angle=axis.angle()
 	if state==ped_states.alive:
 		col_shape.disabled=false
 		if player_exists:
@@ -103,7 +105,7 @@ func _physics_process(delta):
 				axis=Vector2(0.35,0).rotated(direction)
 				#get_node("PED_SPRITES/Label").text=str(rad_to_deg(direction))
 				direction=fmod(direction,PI*2.0)
-				body_direction=lerp_angle(body_direction,axis.angle(),0.15)
+				body_direction=lerp_angle(body_direction,axis_angle,0.15)
 				var v = Vector2(my_velocity.length()*0.35,0).rotated(direction)
 				pat_shape.extents=Vector2(v.length(),col_shape.shape.radius)
 				pat_query.set_shape(pat_shape)
@@ -140,41 +142,42 @@ func _physics_process(delta):
 			var found=weapon_finder(100*100)
 			if found!=null:
 				move_to_point(found.global_position,1.0)
+				body_direction=lerp(body_direction,axis_angle,clamp(10*delta,0,1))
 				if collision_body.global_position.distance_to(found.global_position)<5:
 					switch_weapon()
 					enemy_state=enemy_s.neutral
 			else:
 				axis=Vector2.ZERO
-				if movement_check.target_position.length()<50:
+				if len_check<50:
 					axis=Vector2(0.5,0).rotated(focused_direction-PI)
-					
+					body_direction=lerp(body_direction,axis_angle+PI,clamp(10*delta,0,1))
 				movement(null,delta)
 		else:
 			if player_exists:
 				if enemy_state==enemy_s.charging:
 					if player_vis:
 						if weapon["Type"]=="Firearm":
-							var clamped_rotation_speed=clamp(movement_check.target_position.length()*0.02,0.15,0.25)
+							var clamped_rotation_speed=clamp(len_check*0.02,0.15,0.25)
 							body_direction=lerp_angle(body_direction,focused_direction,clamped_rotation_speed*60*delta)
 							if alert_timer>0:
 								alert_timer-=1*delta_time
-							if movement_check.target_position.length()<280:
+							if len_check<280:
 								if alert_timer<=0:
 									attack()
 								movement(null,delta)
-								if movement_check.target_position.length()<50:
+								if len_check<50:
 									axis=Vector2(1.0,0).rotated(focused_direction-PI)
 								else:
 									axis=Vector2(0,0)
 							else:
 								move_to_point(focused_player.global_position,1.0)
 						elif weapon["Type"]=="Melee":
-							if movement_check.target_position.length()<24:
+							if len_check<24:
 								body_direction=lerp_angle(body_direction,focused_direction,0.25)
 								attack()
 								if focused_player.get_parent().state==ped_states.down:
 									do_execution()
-							if movement_check.target_position.length()>10:
+							if len_check>10:
 								move_to_point(focused_player.global_position,1.0)
 							else:
 								axis=lerp(axis,Vector2.ZERO,1.0)
@@ -185,7 +188,7 @@ func _physics_process(delta):
 						target_point=focused_player.global_position
 						alert_timer=alert_time()
 				elif enemy_state==enemy_s.chasing:
-					body_direction=lerp_angle(body_direction,axis.angle(),0.25)
+					body_direction=lerp_angle(body_direction,axis_angle,0.25)
 					move_to_point(target_point,0.95)
 					if player_vis:
 						if alert_timer<0:
@@ -218,6 +221,21 @@ func go_down(down_dir=randi(),spd=MAX_SPEED):
 		collision_body.set_collision_layer_value(1,false)
 		collision_body.set_collision_layer_value(4,false)
 	super(down_dir,spd)
+
+func weapon_finder(pickup_dist=40*40):
+	var dropped_weapons = get_tree().get_nodes_in_group("Weapon")
+	
+	for weapon in dropped_weapons:
+		# filter weapons that cannot be picked up
+		if weapon.pick_up == true && weapon.viewp==viewp && weapon.linear_velocity.length()<200:
+			# filter weapons within certain distance
+			if weapon.global_position.distance_squared_to(sprites.global_position) < pickup_dist:
+				# filter weapons behind walls
+				wep_check.target_position = weapon.global_position - sprites.global_position
+				if !wep_check.is_colliding():
+					closest_weapon = weapon
+					return weapon
+	return null
 
 func kys(damage,killsprite:String="DeadBlunt",rot:float=randf()*180,frame="rand",body_speed=2,_bleed=false):
 	sprite_legs.speed_scale=0

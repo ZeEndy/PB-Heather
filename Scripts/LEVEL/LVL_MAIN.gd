@@ -76,6 +76,7 @@ func save_level():
 						"parent_id":i.get_parent(),
 						"variables":{
 						"state":i.state,
+						"axis":i.axis,
 						"sprite_index":i.sprite_index,
 						"leg_index":i.leg_index,
 						"body_direction":i.body_direction,
@@ -172,8 +173,9 @@ func load_level(array):
 #	print("fuck")
 #	print(save_CUNT)
 	GUI.play_timer=3.0
-	for i in get_group("Weapon")+get_group("Particles"):
-		i.queue_free()
+	for i in get_group("Weapon")+get_group("Particles")+get_group("Bullets"):
+		i.set_physics_process(false)
+		i.call_deferred("queue_free")
 	for i in array:
 		var id = i["id"]
 		if id is String:

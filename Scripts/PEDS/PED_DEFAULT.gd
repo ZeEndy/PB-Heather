@@ -212,17 +212,20 @@ func _physics_process(delta):
 			self.attack()
 	if state == ped_states.down:
 #		axis=lerp(axis,Vector2.ZERO,0.1)
-		my_velocity=my_velocity.lerp(Vector2.ZERO,clamp(5*delta,0,1))
+		if sprite_legs.animation!="Get Up/Lean":
+			my_velocity=my_velocity.lerp(Vector2.ZERO,clamp(5*delta,0,1))
 		if my_velocity.length()>0.1:
-			
 			var test_motion=collision_body.move_and_collide(Vector2(16,0).rotated(my_velocity.angle()),true)
 			if test_motion && !(test_motion.get_collider().get_parent().get_parent() is Door):
-				my_velocity=Vector2.ZERO
+				
 				axis=Vector2.ZERO
 				sprite_legs.play("Get Up/Lean")
+#				col_shape.shape.radius=11.0
+#				col_shape.shape.height=56.0
 				sprite_legs.global_rotation=test_motion.get_normal().angle()-PI
 				sprite_legs.speed_scale=0
-				collision_body.global_position=test_motion.get_position()
+				collision_body.global_position=test_motion.get_position()-test_motion.get_normal()
+				my_velocity=-test_motion.get_normal()
 				collision_body.set_collision_layer_value(4,true)
 		collision_body.velocity=my_velocity
 		collision_body.move_and_slide()
@@ -381,9 +384,10 @@ func spawn_bullet(amoumt:int):
 		if bullet_check.is_colliding()==false:
 			sus_bullet.global_position=bullet_spawn.global_position
 		else:
-			sus_bullet.global_position=bullet_check.get_collision_point()+bullet_check.get_collision_normal()*(1000*g_pdelta)
-		sus_bullet.exclusion.append(collision_body.get_rid())
-		sus_bullet.g_pdelta=g_pdelta
+			sus_bullet.global_position=collision_body.global_position
+			sus_bullet.spawn_position=bullet_check.get_collision_point()-bullet_check.get_collision_normal()
+			
+		sus_bullet.exclusion.append(collision_body)
 		var spawn_recoil_add=bullet_spawn.global_rotation
 		#add recoil
 		if weapon.has("Recoil"):
@@ -525,12 +529,12 @@ func do_execution():
 			if execution["ID"]=="Unarmed":
 				_play_animation("Unarmed/Execute",0,true)
 				execute_target.sprite_legs.play("Executing/Stomp",false,1.0)
-				drop_weapon()
+				drop_weapon(0.1)
 		else:
 			_play_animation("Unarmed/Execute Wall",0,true)
 			execute_target.sprite_legs.play("Executing/Lean",false,1.0)
 			execution["lock_rotation"]=true
-			drop_weapon()
+			drop_weapon(0.1)
 		await RenderingServer.frame_pre_draw
 		if execution["lock_rotation"]==true:
 			sprite_body.global_rotation=execute_target.sprite_legs.global_rotation
