@@ -1,40 +1,41 @@
-[gd_scene load_steps=132 format=3 uid="uid://dvj8wuvgn4i2c"]
+[gd_scene load_steps=133 format=3 uid="uid://dvj8wuvgn4i2c"]
 
 [ext_resource type="Script" path="res://Scripts/PEDS/PED_Player.gd" id="1_lwlbx"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="2_6rt3n"]
 [ext_resource type="Script" path="res://Scripts/GAME/GAME_ANIM_NONWAD.gd" id="3_ksk7x"]
 [ext_resource type="SpriteFrames" uid="uid://b5b64g0esjrvl" path="res://Data/Sprites/Characters/Heather/Heather_Legs.tres" id="4_jm88s"]
-[ext_resource type="AudioStream" uid="uid://b0rw48svxkh3r" path="res://Data/Sounds/Character/Movement/Cloth Knee.tres" id="4_wd0le"]
-[ext_resource type="AudioStream" uid="uid://bh68dwnei86hy" path="res://Data/Sounds/Character/Movement/Cloth Thighs.tres" id="5_sw668"]
+[ext_resource type="AudioStream" uid="uid://dcad5uuossf4o" path="res://Data/Sounds/Combat/Movement/Foot/Step Wood.tres" id="6_chpul"]
+[ext_resource type="AudioStream" uid="uid://b0rw48svxkh3r" path="res://Data/Sounds/Combat/Movement/Cloth Knee.tres" id="7_1fe0k"]
+[ext_resource type="AudioStream" uid="uid://bh68dwnei86hy" path="res://Data/Sounds/Combat/Movement/Cloth Thighs.tres" id="8_dnh6m"]
 [ext_resource type="SpriteFrames" uid="uid://dmry8jsypo6qe" path="res://Data/Sprites/Characters/Heather/Heather Body.tres" id="9_ub85d"]
 [ext_resource type="Texture2D" uid="uid://kk5wc73v60wd" path="res://Data/Sprites/Characters/Heather/Heads/Normal/Head_normal_strip2.png" id="10_1vfwn"]
-[ext_resource type="Texture2D" uid="uid://7r1kr4qyfu78" path="res://Data/Sprites/Characters/Heather/Heads/Mask_strip2.png" id="11_yioo4"]
-[ext_resource type="AudioStream" uid="uid://csnifdot34pnj" path="res://Data/Sounds/Character/Body Hit.tres" id="15_5pbmk"]
-[ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Character/PB/Sub.wav" id="18_fif4p"]
+[ext_resource type="Texture2D" uid="uid://7r1kr4qyfu78" path="res://Data/Sprites/Characters/Heather/Heads/Mask_strip2.png" id="11_feuf6"]
+[ext_resource type="Script" path="res://Scripts/PEDS/Head.gd" id="12_563ne"]
+[ext_resource type="AudioStream" uid="uid://m2j5y2n0lexf" path="res://Data/Sounds/Combat/Unarmed/Hand Swing.tres" id="14_jpmqd"]
+[ext_resource type="AudioStream" uid="uid://3w2umaldmxrb" path="res://Data/Sounds/Combat/Unarmed/Hand Hit.tres" id="15_nvfi3"]
+[ext_resource type="AudioStream" uid="uid://btboum63yvwf5" path="res://Data/Sounds/Combat/Unarmed/Arm Cloth.tres" id="16_2cqv3"]
+[ext_resource type="AudioStream" uid="uid://csnifdot34pnj" path="res://Data/Sounds/Combat/Body Hit.tres" id="17_6p4qb"]
 [ext_resource type="AudioStream" uid="uid://c3tsw7adeced8" path="res://Data/Sounds/Objects/Phone/PickUp.wav" id="18_qjsgf"]
 [ext_resource type="AudioStream" uid="uid://dem0vylxbgb2c" path="res://Data/Sounds/Objects/Phone/PutDown.wav" id="19_srfo7"]
-[ext_resource type="AudioStream" uid="uid://b3mkekai76u16" path="res://Data/Sounds/Character/M4/Sub.wav" id="23_rqhg1"]
-[ext_resource type="AudioStream" uid="uid://dcad5uuossf4o" path="res://Data/Sounds/Character/Movement/Foot/Step Wood.tres" id="24_cqocp"]
+[ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Combat/PB/Bang.tres" id="20_qq8c7"]
+[ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Combat/PB/Sub.wav" id="21_7j6fw"]
+[ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Combat/PB/Mech.tres" id="22_u2lvc"]
+[ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Combat/PB/Hammer.tres" id="24_xk04m"]
+[ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Combat/M4/Fire.tres" id="25_ji5qq"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Foot_SoundCheck.gd" id="26_jsgrj"]
-[ext_resource type="AudioStream" uid="uid://bml8enar35sin" path="res://Data/Sounds/Character/AK-74U/Sub.wav" id="26_u5ixf"]
-[ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Character/PB/Bang.tres" id="27_mceon"]
-[ext_resource type="AudioStream" uid="uid://m2j5y2n0lexf" path="res://Data/Sounds/Character/Unarmed/Hand Swing.tres" id="27_uvhpf"]
-[ext_resource type="AudioStream" uid="uid://c70lmxv8st1y3" path="res://Data/Sounds/Character/OU-DB/Fire.tres" id="28_km6xx"]
-[ext_resource type="AudioStream" uid="uid://3w2umaldmxrb" path="res://Data/Sounds/Character/Unarmed/Hand Hit.tres" id="28_m7fpa"]
-[ext_resource type="AudioStream" uid="uid://btboum63yvwf5" path="res://Data/Sounds/Character/Unarmed/Arm Cloth.tres" id="29_cb6nw"]
-[ext_resource type="AudioStream" uid="uid://bc6siynbqyblx" path="res://Data/Sounds/Character/OU-DB/Sub.tres" id="29_f7bgt"]
-[ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Character/PB/Mech.tres" id="29_k30rw"]
-[ext_resource type="AudioStream" uid="uid://dl81ojjbv8384" path="res://Data/Sounds/Character/OU-DB/First Hammer.tres" id="30_7f57o"]
-[ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Character/PB/Hammer.tres" id="30_o2wvb"]
-[ext_resource type="AudioStream" uid="uid://d36tgylo2gq26" path="res://Data/Sounds/Character/1911/Fire.tres" id="31_i25tw"]
-[ext_resource type="AudioStream" uid="uid://dtsyaasem1jaf" path="res://Data/Sounds/Character/1911/Sub.wav" id="32_2s0x3"]
-[ext_resource type="AudioStream" uid="uid://bjusqq3pwuejb" path="res://Data/Sounds/Character/1911/Mech.tres" id="33_1gbtl"]
+[ext_resource type="AudioStream" uid="uid://b3mkekai76u16" path="res://Data/Sounds/Combat/M4/Sub.wav" id="26_wujcf"]
+[ext_resource type="AudioStream" uid="uid://bw58q3gdvaf3x" path="res://Data/Sounds/Combat/M4/Mech.tres" id="27_vprtp"]
+[ext_resource type="AudioStream" uid="uid://culpw1habs7sv" path="res://Data/Sounds/Combat/AK-74U/Fire.tres" id="28_28gxi"]
+[ext_resource type="AudioStream" uid="uid://bml8enar35sin" path="res://Data/Sounds/Combat/AK-74U/Sub.wav" id="29_6xowf"]
+[ext_resource type="AudioStream" uid="uid://ck314longpnf8" path="res://Data/Sounds/Combat/AK-74U/Mech.tres" id="30_j2w2e"]
+[ext_resource type="AudioStream" uid="uid://c70lmxv8st1y3" path="res://Data/Sounds/Combat/OU-DB/Fire.tres" id="31_ty3a5"]
+[ext_resource type="AudioStream" uid="uid://bc6siynbqyblx" path="res://Data/Sounds/Combat/OU-DB/Sub.tres" id="32_wgw0w"]
+[ext_resource type="AudioStream" uid="uid://dl81ojjbv8384" path="res://Data/Sounds/Combat/OU-DB/First Hammer.tres" id="33_iq3tc"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech.gd" id="33_qn6oc"]
-[ext_resource type="AudioStream" uid="uid://baq1vejt57np2" path="res://Data/Sounds/Character/1911/Mech Last.tres" id="34_ij64n"]
-[ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Character/M4/Fire.tres" id="34_m4dgu"]
-[ext_resource type="AudioStream" uid="uid://bw58q3gdvaf3x" path="res://Data/Sounds/Character/M4/Mech.tres" id="36_fihb0"]
-[ext_resource type="AudioStream" uid="uid://culpw1habs7sv" path="res://Data/Sounds/Character/AK-74U/Fire.tres" id="37_5xb3e"]
-[ext_resource type="AudioStream" uid="uid://ck314longpnf8" path="res://Data/Sounds/Character/AK-74U/Mech.tres" id="39_ihrdl"]
+[ext_resource type="AudioStream" uid="uid://d36tgylo2gq26" path="res://Data/Sounds/Combat/1911/Fire.tres" id="34_xftdu"]
+[ext_resource type="AudioStream" uid="uid://dtsyaasem1jaf" path="res://Data/Sounds/Combat/1911/Sub.wav" id="35_mt0ts"]
+[ext_resource type="AudioStream" uid="uid://bjusqq3pwuejb" path="res://Data/Sounds/Combat/1911/Mech.tres" id="36_2g5h4"]
+[ext_resource type="AudioStream" uid="uid://baq1vejt57np2" path="res://Data/Sounds/Combat/1911/Mech Last.tres" id="37_8fdgp"]
 [ext_resource type="Texture2D" uid="uid://bjh7m4x6p15wl" path="res://Data/DEFAULT/SPRITES/Char/Execute/bat/Char_ExecuteBat_high_strip7.png" id="62_qe28y"]
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_MELEE_AREA.gd" id="66_1vi4r"]
 
@@ -6581,30 +6582,144 @@ _data = {
 "Walk": SubResource("Animation_kmlj4")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3t6fu"]
-atlas = ExtResource("10_1vfwn")
-region = Rect2(0, 0, 8, 9)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_avjls"]
 atlas = ExtResource("10_1vfwn")
 region = Rect2(8, 0, 8, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m614k"]
-atlas = ExtResource("11_yioo4")
-region = Rect2(0, 0, 12, 10)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t6fu"]
+atlas = ExtResource("10_1vfwn")
+region = Rect2(0, 0, 8, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0jti6"]
-atlas = ExtResource("11_yioo4")
-region = Rect2(12, 0, 12, 10)
+[sub_resource type="AtlasTexture" id="AtlasTexture_blmcj"]
+atlas = ExtResource("11_feuf6")
+region = Rect2(14, 0, 14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdjlb"]
+atlas = ExtResource("11_feuf6")
+region = Rect2(0, 0, 14, 11)
 
 [sub_resource type="SpriteFrames" id="205"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_avjls")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3t6fu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_avjls")
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t6fu")
 }],
 "loop": true,
 "name": &"default",
@@ -6612,10 +6727,124 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m614k")
+"texture": SubResource("AtlasTexture_blmcj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0jti6")
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdjlb")
 }],
 "loop": true,
 "name": &"new_animation",
@@ -6742,19 +6971,19 @@ offset = Vector2(-0.5, 0)
 position = Vector2(8, 0)
 script = ExtResource("26_jsgrj")
 sound_list = {
-"Blood": "res://Data/Sounds/Character/Movement/Foot/Step Carpet.tres",
-"Broken Glass": "res://Data/Sounds/Character/Movement/Foot/Step Carpet.tres",
-"Carpet": "res://Data/Sounds/Character/Movement/Foot/Step Carpet.tres",
-"Concrete": "res://Data/Sounds/Character/Movement/Foot/Step Concrete.tres",
-"Concrete Road": "res://Data/Sounds/Character/Movement/Foot/Step Concrete Road.tres",
-"Tile": "res://Data/Sounds/Character/Movement/Foot/Step Tile.tres",
-"Wood": "res://Data/Sounds/Character/Movement/Foot/Step Wood.tres"
+"Blood": "res://Data/Sounds/Combat/Movement/Foot/Step Carpet.tres",
+"Broken Glass": "res://Data/Sounds/Combat/Movement/Foot/Step Carpet.tres",
+"Carpet": "res://Data/Sounds/Combat/Movement/Foot/Step Carpet.tres",
+"Concrete": "res://Data/Sounds/Combat/Movement/Foot/Step Concrete.tres",
+"Concrete Road": "res://Data/Sounds/Combat/Movement/Foot/Step Concrete Road.tres",
+"Tile": "res://Data/Sounds/Combat/Movement/Foot/Step Tile.tres",
+"Wood": "res://Data/Sounds/Combat/Movement/Foot/Step Wood.tres"
 }
 foot_player_path = NodePath("../Foot")
 foot_overlay_player_path = NodePath("../Foot Overlay")
 
 [node name="Foot" type="AudioStreamPlayer" parent="PED_SPRITES/Legs/Sound"]
-stream = ExtResource("24_cqocp")
+stream = ExtResource("6_chpul")
 max_polyphony = 5
 bus = &"SFX"
 
@@ -6763,13 +6992,13 @@ max_polyphony = 5
 bus = &"SFX"
 
 [node name="Cloth Knee" type="AudioStreamPlayer" parent="PED_SPRITES/Legs/Sound"]
-stream = ExtResource("4_wd0le")
+stream = ExtResource("7_1fe0k")
 volume_db = -15.0
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Cloth Legs" type="AudioStreamPlayer" parent="PED_SPRITES/Legs/Sound"]
-stream = ExtResource("5_sw668")
+stream = ExtResource("8_dnh6m")
 volume_db = -15.0
 max_polyphony = 10
 bus = &"SFX"
@@ -6801,13 +7030,14 @@ texture_filter = 1
 use_parent_material = true
 rotation = -0.000690252
 sprite_frames = ExtResource("9_ub85d")
-animation = &"1911 Attack"
-offset = Vector2(11, 0)
+animation = &"Unarmed Walk"
 
 [node name="Head" type="AnimatedSprite2D" parent="PED_SPRITES/Body/anim"]
 use_parent_material = true
 sprite_frames = SubResource("205")
+autoplay = "default"
 offset = Vector2(-1, -0.5)
+script = ExtResource("12_563ne")
 
 [node name="execution_arms" type="AnimatedSprite2D" parent="PED_SPRITES/Body/anim"]
 visible = false
@@ -6841,23 +7071,23 @@ gizmo_extents = 2.4
 [node name="Unarmed" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Attack" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("27_uvhpf")
+stream = ExtResource("14_jpmqd")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Hit" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("28_m7fpa")
+stream = ExtResource("15_nvfi3")
 bus = &"SFX"
 
 [node name="Cloth" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("29_cb6nw")
+stream = ExtResource("16_2cqv3")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Execution" type="Node2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
 
 [node name="Impact" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/Unarmed/Execution"]
-stream = ExtResource("15_5pbmk")
+stream = ExtResource("17_6p4qb")
 max_polyphony = 5
 bus = &"SFX"
 
@@ -6872,42 +7102,42 @@ bus = &"SFX"
 [node name="PB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB"]
-stream = ExtResource("27_mceon")
+stream = ExtResource("20_qq8c7")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Fire"]
-stream = ExtResource("18_fif4p")
+stream = ExtResource("21_7j6fw")
 volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Fire"]
-stream = ExtResource("29_k30rw")
+stream = ExtResource("22_u2lvc")
 max_polyphony = 10
 bus = &"SFX"
 script = ExtResource("33_qn6oc")
 
 [node name="Hammer" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/PB/Fire"]
-stream = ExtResource("30_o2wvb")
+stream = ExtResource("24_xk04m")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="AR-15" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15"]
-stream = ExtResource("34_m4dgu")
+stream = ExtResource("25_ji5qq")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Fire"]
-stream = ExtResource("23_rqhg1")
+stream = ExtResource("26_wujcf")
 volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AR-15/Fire"]
-stream = ExtResource("36_fihb0")
+stream = ExtResource("27_vprtp")
 max_polyphony = 10
 bus = &"SFX"
 script = ExtResource("33_qn6oc")
@@ -6915,17 +7145,17 @@ script = ExtResource("33_qn6oc")
 [node name="AK-74U" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U"]
-stream = ExtResource("37_5xb3e")
+stream = ExtResource("28_28gxi")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
-stream = ExtResource("26_u5ixf")
+stream = ExtResource("29_6xowf")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
-stream = ExtResource("39_ihrdl")
+stream = ExtResource("30_j2w2e")
 max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("33_qn6oc")
@@ -6933,17 +7163,17 @@ script = ExtResource("33_qn6oc")
 [node name="OU-DB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/OU-DB"]
-stream = ExtResource("28_km6xx")
+stream = ExtResource("31_ty3a5")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/OU-DB/Fire"]
-stream = ExtResource("29_f7bgt")
+stream = ExtResource("32_wgw0w")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/OU-DB/Fire"]
-stream = ExtResource("30_7f57o")
+stream = ExtResource("33_iq3tc")
 max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("33_qn6oc")
@@ -6951,23 +7181,23 @@ script = ExtResource("33_qn6oc")
 [node name="1911" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911"]
-stream = ExtResource("31_i25tw")
+stream = ExtResource("34_xftdu")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911/Fire"]
-stream = ExtResource("32_2s0x3")
+stream = ExtResource("35_mt0ts")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911/Fire"]
-stream = ExtResource("33_1gbtl")
+stream = ExtResource("36_2g5h4")
 max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("33_qn6oc")
 
 [node name="Mech Last" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911/Fire"]
-stream = ExtResource("34_ij64n")
+stream = ExtResource("37_8fdgp")
 max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("33_qn6oc")

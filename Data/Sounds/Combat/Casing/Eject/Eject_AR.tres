@@ -1,0 +1,35 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=11 format=3 uid="uid://i5iov0luwwir"]
+
+[ext_resource type="AudioStream" uid="uid://sae76a7ui7et" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_01.wav" id="1_sx1pk"]
+[ext_resource type="AudioStream" uid="uid://bxadn40fyq4lc" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_02.wav" id="2_5utcq"]
+[ext_resource type="AudioStream" uid="uid://dph45d3cybyff" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_03.wav" id="3_3we7c"]
+[ext_resource type="AudioStream" uid="uid://biineuochlith" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_04.wav" id="4_3t68w"]
+[ext_resource type="AudioStream" uid="uid://bsrkinddshlh" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_05.wav" id="5_xfqsm"]
+[ext_resource type="AudioStream" uid="uid://cd1gmw1tvf27c" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_06.wav" id="6_qomk5"]
+[ext_resource type="AudioStream" uid="uid://dgg8pp86typye" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_07.wav" id="7_yp10b"]
+[ext_resource type="AudioStream" uid="uid://dtan64li172tu" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_08.wav" id="8_txa3a"]
+[ext_resource type="AudioStream" uid="uid://b7ar5k0ynoe8y" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_09.wav" id="9_u3wd5"]
+[ext_resource type="AudioStream" uid="uid://11s64vmwue0l" path="res://Data/Sounds/Combat/Casing/Eject/AR/casing_eject_556_10.wav" id="10_yuqn6"]
+
+[resource]
+streams_count = 10
+stream_0/stream = ExtResource("1_sx1pk")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_5utcq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_3we7c")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_3t68w")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_xfqsm")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_qomk5")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("7_yp10b")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("8_txa3a")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("9_u3wd5")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("10_yuqn6")
+stream_9/weight = 1.0

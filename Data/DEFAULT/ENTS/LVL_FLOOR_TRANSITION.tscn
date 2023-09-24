@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://24kfuh2yvkg7"]
+[gd_scene load_steps=4 format=3 uid="uid://24kfuh2yvkg7"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_FLOOR_TRANSITON.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://chh2ilxfxxh6p" path="res://Data/Sprites/Textures/UI/Arrow.png" id="2_4u5pw"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(24, 32)
@@ -25,5 +26,9 @@ disabled = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, -32)
 collision_mask = 4
+
+[node name="Arrow" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_4u5pw")
 
 [connection signal="body_exited" from="." to="." method="_on_NextFloor_body_exited"]

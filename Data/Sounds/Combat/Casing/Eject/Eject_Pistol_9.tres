@@ -1,0 +1,65 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=21 format=3 uid="uid://cjh7b767mab5l"]
+
+[ext_resource type="AudioStream" uid="uid://5a60h5c2g2am" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_01.wav" id="1_g7bfd"]
+[ext_resource type="AudioStream" uid="uid://q6cgyemgep4r" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_02.wav" id="2_wlmps"]
+[ext_resource type="AudioStream" uid="uid://dj8s2ij5o4eps" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_11.wav" id="3_3utc0"]
+[ext_resource type="AudioStream" uid="uid://beix1a4cn4tlm" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_12.wav" id="4_rs8s2"]
+[ext_resource type="AudioStream" uid="uid://dn4lhq2u66fl4" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_13.wav" id="5_jpfbs"]
+[ext_resource type="AudioStream" uid="uid://c7aq4djkq1i10" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_14.wav" id="6_kpkrx"]
+[ext_resource type="AudioStream" uid="uid://b75afvt64w2ft" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_15.wav" id="7_wqe5l"]
+[ext_resource type="AudioStream" uid="uid://vfy5f0vt7ih6" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_16.wav" id="8_526ug"]
+[ext_resource type="AudioStream" uid="uid://b1jumc31mpkhn" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_17.wav" id="9_gopn4"]
+[ext_resource type="AudioStream" uid="uid://b1mbnlhvtdbhh" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_18.wav" id="10_qp4c0"]
+[ext_resource type="AudioStream" uid="uid://ddpcqd3dx7wkn" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_19.wav" id="11_qy2tm"]
+[ext_resource type="AudioStream" uid="uid://cllw7tedpi6mm" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_20.wav" id="12_elj1g"]
+[ext_resource type="AudioStream" uid="uid://dexspvhtyq1a1" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_03.wav" id="13_ec6k1"]
+[ext_resource type="AudioStream" uid="uid://7ym0wiff3hd2" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_04.wav" id="14_2pudv"]
+[ext_resource type="AudioStream" uid="uid://bjyg0tew05pmu" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_05.wav" id="15_1s5ix"]
+[ext_resource type="AudioStream" uid="uid://0v2dy0hnmib" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_06.wav" id="16_0rcat"]
+[ext_resource type="AudioStream" uid="uid://ggsuryka13nf" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_07.wav" id="17_sxdoa"]
+[ext_resource type="AudioStream" uid="uid://bpqody6c65cif" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_08.wav" id="18_c7p78"]
+[ext_resource type="AudioStream" uid="uid://d863u26kp7eo" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_09.wav" id="19_cwe60"]
+[ext_resource type="AudioStream" uid="uid://cclsvnu4uu1xd" path="res://Data/Sounds/Combat/Casing/Eject/PISTOL/casing_eject_9mm_10.wav" id="20_bdqhi"]
+
+[resource]
+streams_count = 20
+stream_0/stream = ExtResource("1_g7bfd")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_wlmps")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("13_ec6k1")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("14_2pudv")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("15_1s5ix")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("16_0rcat")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("17_sxdoa")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("18_c7p78")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("19_cwe60")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("20_bdqhi")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("3_3utc0")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("4_rs8s2")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("5_jpfbs")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("6_kpkrx")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("7_wqe5l")
+stream_14/weight = 1.0
+stream_15/stream = ExtResource("8_526ug")
+stream_15/weight = 1.0
+stream_16/stream = ExtResource("9_gopn4")
+stream_16/weight = 1.0
+stream_17/stream = ExtResource("10_qp4c0")
+stream_17/weight = 1.0
+stream_18/stream = ExtResource("11_qy2tm")
+stream_18/weight = 1.0
+stream_19/stream = ExtResource("12_elj1g")
+stream_19/weight = 1.0

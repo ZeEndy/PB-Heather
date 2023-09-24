@@ -1,0 +1,41 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=13 format=3 uid="uid://bys3wfke6f673"]
+
+[ext_resource type="AudioStream" uid="uid://5sysf15111t8" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_0.wav" id="1_uq3cj"]
+[ext_resource type="AudioStream" uid="uid://b2jbqv88emy4c" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_1.wav" id="2_2hju4"]
+[ext_resource type="AudioStream" uid="uid://biq86sely8qlq" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_10.wav" id="3_xmu6d"]
+[ext_resource type="AudioStream" uid="uid://dil657n733kqp" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_11.wav" id="4_w1w25"]
+[ext_resource type="AudioStream" uid="uid://cwym81dq4x0li" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_2.wav" id="5_mhfv1"]
+[ext_resource type="AudioStream" uid="uid://bip53po0s0lml" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_3.wav" id="6_cn7rx"]
+[ext_resource type="AudioStream" uid="uid://cjsccawm3lkva" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_4.wav" id="7_kjqyk"]
+[ext_resource type="AudioStream" uid="uid://dji15dhpjs84b" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_5.wav" id="8_htxda"]
+[ext_resource type="AudioStream" uid="uid://brlytkqrseva0" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_6.wav" id="9_hh31s"]
+[ext_resource type="AudioStream" uid="uid://sakk8qq3j5tx" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_7.wav" id="10_d1evw"]
+[ext_resource type="AudioStream" uid="uid://btwnux7hpnmia" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_8.wav" id="11_5oscc"]
+[ext_resource type="AudioStream" uid="uid://qh3xyrusr6f" path="res://Data/Sounds/Combat/Movement/Foot/Tile/step_tile_9.wav" id="12_qtpiq"]
+
+[resource]
+streams_count = 12
+stream_0/stream = ExtResource("1_uq3cj")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_2hju4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_mhfv1")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_cn7rx")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_kjqyk")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_htxda")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("9_hh31s")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("10_d1evw")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("11_5oscc")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("12_qtpiq")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("3_xmu6d")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("4_w1w25")
+stream_11/weight = 1.0

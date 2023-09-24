@@ -1,0 +1,32 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=10 format=3 uid="uid://buio2jt1oje0e"]
+
+[ext_resource type="AudioStream" uid="uid://ciu3mkg8khoq1" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_01.wav" id="1_a64e6"]
+[ext_resource type="AudioStream" uid="uid://bjel17gmtkp5p" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_03.wav" id="2_v7ks5"]
+[ext_resource type="AudioStream" uid="uid://bp4mrgh1h53k0" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_04.wav" id="3_j7e8o"]
+[ext_resource type="AudioStream" uid="uid://c0uxc8l3cn5o2" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_06.wav" id="4_7wrfi"]
+[ext_resource type="AudioStream" uid="uid://li0fvkwrv8j0" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_07.wav" id="5_i3x4h"]
+[ext_resource type="AudioStream" uid="uid://cu42pu4koyjvb" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_08.wav" id="6_8cad5"]
+[ext_resource type="AudioStream" uid="uid://bpfik35eo4ndc" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_10.wav" id="7_m2x2i"]
+[ext_resource type="AudioStream" uid="uid://chw3vxre88dn2" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_11.wav" id="8_psaci"]
+[ext_resource type="AudioStream" uid="uid://bmq02nfvj5yeu" path="res://Data/Sounds/Combat/Casing/Bounce/Pistol/Wood/blt_case_bounce_9_wood_hollow_close_lrg_12.wav" id="9_fsi70"]
+
+[resource]
+streams_count = 9
+stream_0/stream = ExtResource("1_a64e6")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_v7ks5")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_j7e8o")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_7wrfi")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_i3x4h")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_8cad5")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("7_m2x2i")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("8_psaci")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("9_fsi70")
+stream_8/weight = 1.0

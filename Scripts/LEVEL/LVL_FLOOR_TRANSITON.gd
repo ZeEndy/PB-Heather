@@ -5,6 +5,8 @@ extends Area2D
 var x_pos = 0
 @export var let_trough=false
 @export var pull_out=false
+@onready var arrow=get_node("Arrow") as Sprite2D
+var anim_pos=0.0
 
 #func _process(delta):
 #	if let_trough==true:
@@ -20,18 +22,26 @@ var x_pos = 0
 
 func _physics_process(_delta):
 	let_trough=get_parent().floor_clear
+	if let_trough==true:
+		anim_pos=fmod(anim_pos+_delta*2.0,2.0)
+		arrow.visible=true
+		arrow.position=Vector2(-14+sin(anim_pos*PI)*2.0,0.0)
+	else:
+		arrow.visible=false
+
 	$StaticBody2D/CollisionShape2D.disabled=let_trough
 	var bodies = get_overlapping_bodies()
 	for b in bodies:
-		if b.get_parent() is Player:
+		var parent=b.get_parent()
+		if parent is Player:
 			if $StaticBody2D/CollisionShape2D.disabled==true:
 				if b in GAME.player_group && pull_out==false:
-					b.get_parent().override_input=true
-					b.get_parent().movement((Vector2(160,0)).rotated(global_rotation),_delta)
+					parent.override_input=true
+					parent.movement((Vector2(160,0)).rotated(global_rotation),_delta)
 #					b.linear_velocity=(Vector2(0.5,0)).rotated(global_rotation)
 					GAME.fade=true
 					if $RayCast2D.is_colliding()==true:
-						var fart=b.get_parent()
+						var fart=parent
 						get_parent().remove_child(fart)
 						get_node(targetPath).add_child(fart)
 

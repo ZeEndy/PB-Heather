@@ -8,6 +8,7 @@ extends Button
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pressed.connect(vis_change,0)
+	mouse_entered.connect(hover)
 	for i in list.get_child(0).get_children():
 		if i is Button:
 			i.changed.connect(hide_me)
@@ -24,9 +25,11 @@ func _ready():
 #		list.visible=false
 #	if list.visible==false:
 #		button_pressed=false
-
+func hover():
+	GUI.s_hover.play()
 func vis_change():
 	list.visible=!list.visible
+	GUI.s_click.play()
 func hide_me(value):
 	list.visible=false
 	text=value+"↓"

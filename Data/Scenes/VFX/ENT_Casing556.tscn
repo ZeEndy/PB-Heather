@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://2bfte35uv8o8"]
+[gd_scene load_steps=9 format=3 uid="uid://2bfte35uv8o8"]
 
 [ext_resource type="Script" path="res://Scripts/VFX/VFX_Casing.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://djk02aqnc4382" path="res://Data/Sprites/Objects/Weapons/sprCasing556.png" id="2_wl84a"]
 [ext_resource type="Texture2D" uid="uid://cf7mn054kmtah" path="res://Data/Sprites/VFX/sprBulletSmoke_strip27.png" id="3"]
+[ext_resource type="Script" path="res://Scripts/VFX/VFX_Bounce.gd" id="4_u6inv"]
 
 [sub_resource type="PhysicsMaterial" id="2"]
 bounce = 0.7
@@ -52,3 +53,19 @@ gravity = Vector2(0, 0)
 color_ramp = SubResource("4")
 anim_speed_min = 0.6
 anim_speed_max = 2.0
+
+[node name="Bounce" type="Marker2D" parent="."]
+script = ExtResource("4_u6inv")
+sound_list = {
+"Blood": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Concrete.tres",
+"Broken Glass": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Concrete.tres",
+"Carpet": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Carpet.tres",
+"Concrete": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Concrete.tres",
+"Concrete Road": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Concrete.tres",
+"Tile": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Concrete.tres",
+"Wood": "res://Data/Sounds/Combat/Casing/Bounce/AR/Bounce_AR_Wood.tres"
+}
+bounce_path = NodePath("Sound")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="Bounce"]
+bus = &"SFX"

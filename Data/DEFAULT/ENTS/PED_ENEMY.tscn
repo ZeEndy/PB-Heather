@@ -12,52 +12,52 @@
 [ext_resource type="Texture2D" uid="uid://dunqn8iajlupu" path="res://Data/Sprites/Characters/Mafia/Legs/legs_start_strip7.png" id="7_i1aab"]
 [ext_resource type="Texture2D" uid="uid://c3rli1cc8ilw8" path="res://Data/Sprites/Characters/Mafia/Get Up/Get_Up_Lean_strip5.png" id="7_ww0kg"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Foot_SoundCheck_2D.gd" id="8_exnro"]
-[ext_resource type="AudioStream" uid="uid://dcad5uuossf4o" path="res://Data/Sounds/Character/Movement/Foot/Step Wood.tres" id="9_gqv66"]
-[ext_resource type="AudioStream" uid="uid://b0rw48svxkh3r" path="res://Data/Sounds/Character/Movement/Cloth Knee.tres" id="10_ervbh"]
-[ext_resource type="AudioStream" uid="uid://bh68dwnei86hy" path="res://Data/Sounds/Character/Movement/Cloth Thighs.tres" id="11_quhfv"]
-[ext_resource type="AudioStream" uid="uid://m2j5y2n0lexf" path="res://Data/Sounds/Character/Unarmed/Hand Swing.tres" id="12_07hxe"]
-[ext_resource type="AudioStream" uid="uid://3w2umaldmxrb" path="res://Data/Sounds/Character/Unarmed/Hand Hit.tres" id="13_6u5wy"]
+[ext_resource type="AudioStream" uid="uid://dcad5uuossf4o" path="res://Data/Sounds/Combat/Movement/Foot/Step Wood.tres" id="13_1y2i6"]
 [ext_resource type="AudioStream" uid="uid://b72r5s6sroja" path="res://Data/Sounds/Gore/Head Crusher/Crush_1.wav" id="14_lyy7f"]
-[ext_resource type="AudioStream" uid="uid://btboum63yvwf5" path="res://Data/Sounds/Character/Unarmed/Arm Cloth.tres" id="14_wba4e"]
+[ext_resource type="AudioStream" uid="uid://b0rw48svxkh3r" path="res://Data/Sounds/Combat/Movement/Cloth Knee.tres" id="14_yetp4"]
+[ext_resource type="AudioStream" uid="uid://bh68dwnei86hy" path="res://Data/Sounds/Combat/Movement/Cloth Thighs.tres" id="15_fehay"]
 [ext_resource type="AudioStream" uid="uid://b5qhujaaog28b" path="res://Data/Sounds/Gore/Head Crusher/Crush_2.wav" id="15_khgw4"]
-[ext_resource type="AudioStream" uid="uid://csnifdot34pnj" path="res://Data/Sounds/Character/Body Hit.tres" id="15_vlokg"]
-[ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Character/PB/Bang.tres" id="16_7wt3n"]
 [ext_resource type="AudioStream" uid="uid://xy12rdnhrcmn" path="res://Data/Sounds/Gore/Head Crusher/Crush_3.wav" id="16_ts86d"]
 [ext_resource type="AudioStream" uid="uid://b76c35gwhpuit" path="res://Data/Sounds/Gore/Bullet Entry.tres" id="17_fi2r7"]
-[ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Character/PB/Mech.tres" id="18_72tqt"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech_2D.gd" id="19_25un3"]
 [ext_resource type="PackedScene" uid="uid://ctyki6a22038u" path="res://Data/Scenes/VFX/ENT_blood.tscn" id="19_fmot6"]
-[ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Character/PB/Hammer.tres" id="20_tmt4k"]
-[ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Character/M4/Fire.tres" id="21_wfl3j"]
-[ext_resource type="AudioStream" uid="uid://bw58q3gdvaf3x" path="res://Data/Sounds/Character/M4/Mech.tres" id="23_1wxqc"]
-[ext_resource type="AudioStream" uid="uid://culpw1habs7sv" path="res://Data/Sounds/Character/AK-74U/Fire.tres" id="24_fby2i"]
-[ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Character/PB/Sub.wav" id="25_7n8qc"]
+[ext_resource type="AudioStream" uid="uid://m2j5y2n0lexf" path="res://Data/Sounds/Combat/Unarmed/Hand Swing.tres" id="22_7kv7x"]
+[ext_resource type="AudioStream" uid="uid://3w2umaldmxrb" path="res://Data/Sounds/Combat/Unarmed/Hand Hit.tres" id="23_8ifml"]
+[ext_resource type="AudioStream" uid="uid://btboum63yvwf5" path="res://Data/Sounds/Combat/Unarmed/Arm Cloth.tres" id="24_5henq"]
 [ext_resource type="Texture2D" uid="uid://fhnjg1obhhes" path="res://Data/DEFAULT/SPRITES/Char/Attack/Char_AttackBat_strip9.png" id="25_ta3ws"]
+[ext_resource type="AudioStream" uid="uid://csnifdot34pnj" path="res://Data/Sounds/Combat/Body Hit.tres" id="25_tyn0x"]
 [ext_resource type="Texture2D" uid="uid://bu5lvxeofn6yh" path="res://Data/DEFAULT/SPRITES/Char/Execute/bat/Char_ExecuteBat_low_strip7.png" id="26_hg8vj"]
-[ext_resource type="AudioStream" uid="uid://ck314longpnf8" path="res://Data/Sounds/Character/AK-74U/Mech.tres" id="26_v77yq"]
+[ext_resource type="AudioStream" uid="uid://vexgxcuivrjd" path="res://Data/Sounds/Combat/PB/Bang.tres" id="26_x1n82"]
 [ext_resource type="Texture2D" uid="uid://d3aekdf3ektue" path="res://Data/DEFAULT/SPRITES/Char/Walk/Char_WalkBat_strip8.png" id="27_365d2"]
+[ext_resource type="AudioStream" uid="uid://u5ps3ex56ymq" path="res://Data/Sounds/Combat/PB/Sub.wav" id="27_bj25k"]
+[ext_resource type="AudioStream" uid="uid://wo2thng2cude" path="res://Data/Sounds/Combat/PB/Mech.tres" id="28_f1aik"]
 [ext_resource type="Texture2D" uid="uid://c1lncfatykqoj" path="res://Data/Sprites/Characters/Mafia/Body/AK-47u/Attack_AK_74U_E_strip4.png" id="28_m1rxa"]
 [ext_resource type="Texture2D" uid="uid://cprakjs352cab" path="res://Data/DEFAULT/SPRITES/Char/Attack/Char_AttackKnife_strip9.png" id="28_pjavw"]
 [ext_resource type="Texture2D" uid="uid://bhcmxqgfw7om3" path="res://Data/Sprites/Characters/Mafia/Body/AK-47u/Walk_AK_74U_strip8.png" id="29_3wjvx"]
 [ext_resource type="Texture2D" uid="uid://dtg63hdvbg76l" path="res://Data/DEFAULT/SPRITES/Char/Execute/Char_ExecuteKnife_strip8.png" id="29_t6cit"]
-[ext_resource type="AudioStream" uid="uid://b3mkekai76u16" path="res://Data/Sounds/Character/M4/Sub.wav" id="30_7lusl"]
 [ext_resource type="Texture2D" uid="uid://dresp4j5a7mgx" path="res://Data/Sprites/Characters/Mafia/Body/AR-15/Attack_AR_15_F_strip4.png" id="30_ajw0n"]
 [ext_resource type="Texture2D" uid="uid://ktwtdmw8v4sn" path="res://Data/DEFAULT/SPRITES/Char/Walk/Char_WalkKnife_strip8.png" id="30_ig0tp"]
+[ext_resource type="AudioStream" uid="uid://7nes3shb28ou" path="res://Data/Sounds/Combat/PB/Hammer.tres" id="30_pjrch"]
 [ext_resource type="Texture2D" uid="uid://dk6v2ebn46fhn" path="res://Data/Sprites/Characters/Mafia/Body/AR-15/Attack_AR_15_E_strip4.png" id="31_2s188"]
+[ext_resource type="AudioStream" uid="uid://cgh0i2ell6w6e" path="res://Data/Sounds/Combat/M4/Fire.tres" id="31_oero2"]
 [ext_resource type="Texture2D" uid="uid://cfu1w05x0u6fs" path="res://Data/Sprites/Characters/Mafia/Body/AR-15/Walk_AR_15_F_strip8.png" id="32_oi2qd"]
-[ext_resource type="AudioStream" uid="uid://bml8enar35sin" path="res://Data/Sounds/Character/AK-74U/Sub.wav" id="33_i5r44"]
+[ext_resource type="AudioStream" uid="uid://b3mkekai76u16" path="res://Data/Sounds/Combat/M4/Sub.wav" id="32_s6e6k"]
+[ext_resource type="AudioStream" uid="uid://bw58q3gdvaf3x" path="res://Data/Sounds/Combat/M4/Mech.tres" id="33_gm87w"]
 [ext_resource type="Texture2D" uid="uid://crmjdpwq6lyh1" path="res://Data/Sprites/Characters/Mafia/Body/AR-15/Walk_AR_15_E_strip8.png" id="33_u45ua"]
-[ext_resource type="AudioStream" uid="uid://d36tgylo2gq26" path="res://Data/Sounds/Character/1911/Fire.tres" id="36_bjt1y"]
+[ext_resource type="AudioStream" uid="uid://culpw1habs7sv" path="res://Data/Sounds/Combat/AK-74U/Fire.tres" id="34_2chhj"]
+[ext_resource type="AudioStream" uid="uid://bml8enar35sin" path="res://Data/Sounds/Combat/AK-74U/Sub.wav" id="35_c7vo0"]
 [ext_resource type="Texture2D" uid="uid://dwxm0h2sr4fc7" path="res://Data/Sprites/Characters/Mafia/Body/1911/Attack_19111_strip5.png" id="36_nlf86"]
 [ext_resource type="Texture2D" uid="uid://w4jcpir1f140" path="res://Data/DEFAULT/SPRITES/Char/Char_MaskOn_strip4.png" id="36_wfiuh"]
+[ext_resource type="AudioStream" uid="uid://ck314longpnf8" path="res://Data/Sounds/Combat/AK-74U/Mech.tres" id="36_y2hjx"]
+[ext_resource type="AudioStream" uid="uid://d36tgylo2gq26" path="res://Data/Sounds/Combat/1911/Fire.tres" id="37_hb8vh"]
 [ext_resource type="Texture2D" uid="uid://dj3wurdn66fot" path="res://Data/Sprites/Characters/Mafia/Body/1911/Attack_1911_E_strip5.png" id="37_l5gag"]
-[ext_resource type="AudioStream" uid="uid://dtsyaasem1jaf" path="res://Data/Sounds/Character/1911/Sub.wav" id="37_lkb7a"]
 [ext_resource type="Texture2D" uid="uid://bp5regnlgo35m" path="res://Data/Sprites/Characters/Mafia/Body/1911/Walk_1911_E_strip8.png" id="38_a7ipv"]
-[ext_resource type="AudioStream" uid="uid://bjusqq3pwuejb" path="res://Data/Sounds/Character/1911/Mech.tres" id="38_mxglf"]
+[ext_resource type="AudioStream" uid="uid://dtsyaasem1jaf" path="res://Data/Sounds/Combat/1911/Sub.wav" id="38_kehx0"]
 [ext_resource type="Script" path="res://Scripts/AUDIO/Enviorment/Weapon_Mech.gd" id="39_24upq"]
 [ext_resource type="Texture2D" uid="uid://duki3qij0ujd5" path="res://Data/Sprites/Characters/Mafia/Body/1911/Walk_1911_strip8.png" id="39_tyqta"]
+[ext_resource type="AudioStream" uid="uid://bjusqq3pwuejb" path="res://Data/Sounds/Combat/1911/Mech.tres" id="39_y6d17"]
 [ext_resource type="Texture2D" uid="uid://c3wo0vuyloj50" path="res://Data/DEFAULT/SPRITES/Char/Attack/Char_AttackUnarmed_strip7.png" id="40_5elma"]
-[ext_resource type="AudioStream" uid="uid://baq1vejt57np2" path="res://Data/Sounds/Character/1911/Mech Last.tres" id="40_5lhot"]
+[ext_resource type="AudioStream" uid="uid://baq1vejt57np2" path="res://Data/Sounds/Combat/1911/Mech Last.tres" id="41_hhkf2"]
 [ext_resource type="Texture2D" uid="uid://b67gis2oa027n" path="res://Data/DEFAULT/SPRITES/Char/Execute/Char_ExecuteWall_strip10.png" id="42_f5qg2"]
 [ext_resource type="Texture2D" uid="uid://bjh7m4x6p15wl" path="res://Data/DEFAULT/SPRITES/Char/Execute/bat/Char_ExecuteBat_high_strip7.png" id="45_kx42t"]
 [ext_resource type="Script" path="res://Scripts/GAMEPLAY/GAMEPLAY_MELEE_AREA.gd" id="46_wxqx7"]
@@ -7701,19 +7701,19 @@ offset = Vector2(-5, 0)
 position = Vector2(8, 0)
 script = ExtResource("8_exnro")
 sound_list = {
-"Blood": "res://Data/Sounds/Character/Movement/Foot/Step Carpet.tres",
-"Broken Glass": "res://Data/Sounds/Character/Movement/Foot/Step Carpet.tres",
-"Carpet": "res://Data/Sounds/Character/Movement/Foot/Step Carpet.tres",
-"Concrete": "res://Data/Sounds/Character/Movement/Foot/Step Concrete.tres",
-"Concrete Road": "res://Data/Sounds/Character/Movement/Foot/Step Concrete Road.tres",
-"Tile": "res://Data/Sounds/Character/Movement/Foot/Step Tile.tres",
-"Wood": "res://Data/Sounds/Character/Movement/Foot/Step Wood.tres"
+"Blood": "res://Data/Sounds/Combat/Movement/Foot/Step Carpet.tres",
+"Broken Glass": "res://Data/Sounds/Combat/Movement/Foot/Step Carpet.tres",
+"Carpet": "res://Data/Sounds/Combat/Movement/Foot/Step Carpet.tres",
+"Concrete": "res://Data/Sounds/Combat/Movement/Foot/Step Concrete.tres",
+"Concrete Road": "res://Data/Sounds/Combat/Movement/Foot/Step Concrete Road.tres",
+"Tile": "res://Data/Sounds/Combat/Movement/Foot/Step Tile.tres",
+"Wood": "res://Data/Sounds/Combat/Movement/Foot/Step Wood.tres"
 }
 foot_player_path = NodePath("../Foot")
 foot_overlay_player_path = NodePath("../Foot Overlay")
 
 [node name="Foot" type="AudioStreamPlayer2D" parent="PED_SPRITES/Legs/Sound"]
-stream = ExtResource("9_gqv66")
+stream = ExtResource("13_1y2i6")
 max_distance = 600.0
 attenuation = 3.24901
 max_polyphony = 5
@@ -7726,7 +7726,7 @@ max_polyphony = 5
 bus = &"SFX"
 
 [node name="Cloth Knee" type="AudioStreamPlayer2D" parent="PED_SPRITES/Legs/Sound"]
-stream = ExtResource("10_ervbh")
+stream = ExtResource("14_yetp4")
 volume_db = -15.0
 max_distance = 600.0
 attenuation = 3.24901
@@ -7734,7 +7734,7 @@ max_polyphony = 10
 bus = &"SFX"
 
 [node name="Cloth Legs" type="AudioStreamPlayer2D" parent="PED_SPRITES/Legs/Sound"]
-stream = ExtResource("11_quhfv")
+stream = ExtResource("15_fehay")
 volume_db = -15.0
 max_distance = 600.0
 attenuation = 3.24901
@@ -7791,64 +7791,64 @@ libraries = {
 [node name="Unarmed" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("12_07hxe")
+stream = ExtResource("22_7kv7x")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("13_6u5wy")
+stream = ExtResource("23_8ifml")
 bus = &"SFX"
 
 [node name="Cloth" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
-stream = ExtResource("14_wba4e")
+stream = ExtResource("24_5henq")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Execution" type="Node2D" parent="PED_SPRITES/Body/Sound/Unarmed"]
 
 [node name="Impact" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/Unarmed/Execution"]
-stream = ExtResource("15_vlokg")
+stream = ExtResource("25_tyn0x")
 max_polyphony = 5
 
 [node name="PB" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/PB"]
-stream = ExtResource("16_7wt3n")
+stream = ExtResource("26_x1n82")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/PB/Attack"]
-stream = ExtResource("25_7n8qc")
+stream = ExtResource("27_bj25k")
 volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/PB/Attack"]
-stream = ExtResource("18_72tqt")
+stream = ExtResource("28_f1aik")
 max_polyphony = 10
 bus = &"SFX"
 script = ExtResource("19_25un3")
 
 [node name="Hammer" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/PB/Attack"]
-stream = ExtResource("20_tmt4k")
+stream = ExtResource("30_pjrch")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="AR-15" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Attack" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AR-15"]
-stream = ExtResource("21_wfl3j")
+stream = ExtResource("31_oero2")
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
-stream = ExtResource("30_7lusl")
+stream = ExtResource("32_s6e6k")
 volume_db = -20.0
 max_polyphony = 10
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AR-15/Attack"]
-stream = ExtResource("23_1wxqc")
+stream = ExtResource("33_gm87w")
 max_polyphony = 10
 bus = &"SFX"
 script = ExtResource("19_25un3")
@@ -7856,38 +7856,38 @@ script = ExtResource("19_25un3")
 [node name="AK-74U" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AK-74U"]
-stream = ExtResource("24_fby2i")
+stream = ExtResource("34_2chhj")
 max_polyphony = 5
 
 [node name="Bass" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
-stream = ExtResource("33_i5r44")
+stream = ExtResource("35_c7vo0")
 max_polyphony = 5
 
 [node name="Mech" type="AudioStreamPlayer2D" parent="PED_SPRITES/Body/Sound/AK-74U/Fire"]
-stream = ExtResource("26_v77yq")
+stream = ExtResource("36_y2hjx")
 max_polyphony = 5
 script = ExtResource("19_25un3")
 
 [node name="1911" type="Node2D" parent="PED_SPRITES/Body/Sound"]
 
 [node name="Fire" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911"]
-stream = ExtResource("36_bjt1y")
+stream = ExtResource("37_hb8vh")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Bass" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911/Fire"]
-stream = ExtResource("37_lkb7a")
+stream = ExtResource("38_kehx0")
 max_polyphony = 5
 bus = &"SFX"
 
 [node name="Mech" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911/Fire"]
-stream = ExtResource("38_mxglf")
+stream = ExtResource("39_y6d17")
 max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("39_24upq")
 
 [node name="Mech Last" type="AudioStreamPlayer" parent="PED_SPRITES/Body/Sound/1911/Fire"]
-stream = ExtResource("40_5lhot")
+stream = ExtResource("41_hhkf2")
 max_polyphony = 5
 bus = &"SFX"
 script = ExtResource("39_24upq")

@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://culpw1habs7sv"]
+
+[ext_resource type="AudioStream" uid="uid://b0jkv7ag4adh8" path="res://Data/Sounds/Combat/AK-74U/Fire/Fire_0.wav" id="1_h4sa7"]
+[ext_resource type="AudioStream" uid="uid://xuogjjdqhvlt" path="res://Data/Sounds/Combat/AK-74U/Fire/Fire_1.wav" id="2_gb41w"]
+[ext_resource type="AudioStream" uid="uid://dtpwp8u3hqsba" path="res://Data/Sounds/Combat/AK-74U/Fire/Fire_2.wav" id="3_8ekma"]
+[ext_resource type="AudioStream" uid="uid://cpo0ap2kmpu22" path="res://Data/Sounds/Combat/AK-74U/Fire/Fire_3.wav" id="4_bdfvu"]
+[ext_resource type="AudioStream" uid="uid://bb185lqjltjxj" path="res://Data/Sounds/Combat/AK-74U/Fire/Fire_4.wav" id="5_4n0mj"]
+[ext_resource type="AudioStream" uid="uid://b3cxhkj746f8k" path="res://Data/Sounds/Combat/AK-74U/Fire/Fire_5.wav" id="6_7oav0"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_h4sa7")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_gb41w")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_8ekma")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_bdfvu")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_4n0mj")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_7oav0")
+stream_5/weight = 1.0

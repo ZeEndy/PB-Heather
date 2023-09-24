@@ -1,7 +1,7 @@
 [gd_scene load_steps=62 format=3 uid="uid://cc81oacjxvdgt"]
 
 [ext_resource type="Script" path="res://Scripts/LEVEL/LVL_MAIN.gd" id="1_5bv03"]
-[ext_resource type="AudioStream" uid="uid://dgus68edgqu5q" path="res://Data/Music/mu_Matryoshka.ogg" id="2_6jl6m"]
+[ext_resource type="AudioStream" uid="uid://dgus68edgqu5q" path="res://Data/Music/mu_Matryoshka.ogg" id="2_3iw48"]
 [ext_resource type="Script" path="res://Scripts/HUD/HUD_BG.gd" id="2_ah3jq"]
 [ext_resource type="Script" path="res://Scripts/HUD/CAMERA_TOPLEVEL.gd" id="3_7kbga"]
 [ext_resource type="Texture2D" uid="uid://dvrgii12ug76n" path="res://Data/Sprites/Objects/Heather Apartment/Bokshelf.png" id="3_41dfg"]
@@ -203,7 +203,7 @@ size = Vector2(18, 15)
 script = ExtResource("1_5bv03")
 n_level = "Panic Room"
 n_song = "Hachi - Matryoshka"
-song = ExtResource("2_6jl6m")
+song = ExtResource("2_3iw48")
 
 [node name="Editing" type="Node" parent="."]
 
@@ -308,7 +308,7 @@ position = Vector2(156, 400)
 [node name="Enemy5" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(97, 339)
 enemy_type = 1
-desired_weapon = "PB"
+desired_weapon = "1911"
 
 [node name="Enemy13" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(216, 225)
@@ -340,6 +340,7 @@ desired_weapon = "PB"
 [node name="Enemy9" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(719, 333)
 enemy_type = 2
+desired_weapon = "1911"
 
 [node name="Enemy10" parent="Floor 1/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(480, 144)
@@ -1642,7 +1643,7 @@ desired_weapon = "AR-15"
 
 [node name="Enemy11" parent="Floor 2/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(564, 143)
-desired_weapon = "PB"
+desired_weapon = "1911"
 
 [node name="Enemy12" parent="Floor 2/Viewport" instance=ExtResource("25_ryrgk")]
 position = Vector2(241, 505)

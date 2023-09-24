@@ -1,0 +1,41 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=13 format=3 uid="uid://3r0bcmaepl3l"]
+
+[ext_resource type="AudioStream" uid="uid://c5r42rrbur8bm" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_0.wav" id="1_k0vkr"]
+[ext_resource type="AudioStream" uid="uid://cq1yvdshvvql1" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_1.wav" id="2_xbc6g"]
+[ext_resource type="AudioStream" uid="uid://cm1oywlmv5sx2" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_10.wav" id="3_fn8xs"]
+[ext_resource type="AudioStream" uid="uid://c1ebux5n2xre1" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_11.wav" id="4_rc73a"]
+[ext_resource type="AudioStream" uid="uid://bnrp50s11ibes" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_2.wav" id="5_q84op"]
+[ext_resource type="AudioStream" uid="uid://dg18qpplckqcj" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_3.wav" id="6_bayjl"]
+[ext_resource type="AudioStream" uid="uid://bjnl8b664wvy7" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_4.wav" id="7_x7rul"]
+[ext_resource type="AudioStream" uid="uid://dkdsiv7ac2gnc" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_5.wav" id="8_m14m0"]
+[ext_resource type="AudioStream" uid="uid://j7px8nyqta0h" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_6.wav" id="9_ugne3"]
+[ext_resource type="AudioStream" uid="uid://7j5sxr2gjyvs" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_7.wav" id="10_a5u1s"]
+[ext_resource type="AudioStream" uid="uid://bshi02hsopv6o" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_8.wav" id="11_0unul"]
+[ext_resource type="AudioStream" uid="uid://b4k135p68q51n" path="res://Data/Sounds/Combat/Movement/Foot/Concrete Road/step_concrete_road_9.wav" id="12_iqv5o"]
+
+[resource]
+streams_count = 12
+stream_0/stream = ExtResource("1_k0vkr")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_xbc6g")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_q84op")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_bayjl")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("7_x7rul")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("8_m14m0")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("9_ugne3")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("10_a5u1s")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("11_0unul")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("12_iqv5o")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("3_fn8xs")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("4_rc73a")
+stream_11/weight = 1.0

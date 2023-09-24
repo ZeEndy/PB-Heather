@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://d36tgylo2gq26"]
+
+[ext_resource type="AudioStream" uid="uid://b678abe7yslht" path="res://Data/Sounds/Combat/1911/Fire/Fire_1.wav" id="1_y7oyv"]
+[ext_resource type="AudioStream" uid="uid://brpn4avlke5j1" path="res://Data/Sounds/Combat/1911/Fire/Fire_2.wav" id="2_8j7be"]
+[ext_resource type="AudioStream" uid="uid://c1o0wvq8cej33" path="res://Data/Sounds/Combat/1911/Fire/Fire_3.wav" id="3_q8waq"]
+[ext_resource type="AudioStream" uid="uid://bfhsq3arb83lj" path="res://Data/Sounds/Combat/1911/Fire/Fire_4.wav" id="4_o21q3"]
+[ext_resource type="AudioStream" uid="uid://burs7dknb08jr" path="res://Data/Sounds/Combat/1911/Fire/Fire_5.wav" id="5_re3ni"]
+[ext_resource type="AudioStream" uid="uid://c1ax56nn8h6rw" path="res://Data/Sounds/Combat/1911/Fire/Fire_6.wav" id="6_o30yb"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_y7oyv")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_8j7be")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_q8waq")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_o21q3")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_re3ni")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_o30yb")
+stream_5/weight = 1.0

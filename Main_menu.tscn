@@ -259,6 +259,7 @@ alignment = 0
 script = ExtResource("3_m6y3f")
 
 [node name="Options" type="ScrollContainer" parent="CanvasLayer/CanvasLayer2/Aspect"]
+visible = false
 use_parent_material = true
 layout_mode = 1
 anchors_preset = -1

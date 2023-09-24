@@ -7,7 +7,9 @@ extends RigidBody2D
 var z_ready=false
 @onready var saved_z=z_index
 var change_z=0.15
-var heat=1
+var bounce_speed=0.6+randf()*1.4
+@onready var audio = get_node("Bounce")
+var bounce_timer=0.2
 
 
 func _ready():
@@ -29,6 +31,15 @@ func _physics_process(delta):
 		z_ready=true
 #		print(z_index)
 		z_index=saved_z-2
+	
+	
+	if bounce_timer>0:
+		bounce_timer-=delta*bounce_speed
+	else:
+		if bounce_speed>0.5:
+			audio.play()
+		bounce_speed*=0.5
+		bounce_timer=0.2
 	if linear_velocity.length()<10:
 		if get_node_or_null("CPUParticles2D"):
 			get_node("CPUParticles2D").emitting=false

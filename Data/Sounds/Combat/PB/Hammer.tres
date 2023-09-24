@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://7nes3shb28ou"]
+
+[ext_resource type="AudioStream" uid="uid://cvvelvk4ryxwg" path="res://Data/Sounds/Combat/PB/Hammer/Hammer_0.wav" id="1_341gi"]
+[ext_resource type="AudioStream" uid="uid://b1bm3g5ouifhe" path="res://Data/Sounds/Combat/PB/Hammer/Hammer_1.wav" id="2_x0x0d"]
+[ext_resource type="AudioStream" uid="uid://bhj7chtpjon50" path="res://Data/Sounds/Combat/PB/Hammer/Hammer_2.wav" id="3_bbsbu"]
+[ext_resource type="AudioStream" uid="uid://qe5huup714xe" path="res://Data/Sounds/Combat/PB/Hammer/Hammer_3.wav" id="4_j6ffc"]
+[ext_resource type="AudioStream" uid="uid://cawcmv3ps4mgn" path="res://Data/Sounds/Combat/PB/Hammer/Hammer_4.wav" id="5_or1iv"]
+[ext_resource type="AudioStream" uid="uid://b0hvjt6150d1r" path="res://Data/Sounds/Combat/PB/Hammer/Hammer_5.wav" id="6_mbyms"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_341gi")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_x0x0d")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_bbsbu")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_j6ffc")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_or1iv")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_mbyms")
+stream_5/weight = 1.0

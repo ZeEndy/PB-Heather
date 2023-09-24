@@ -1,0 +1,47 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=15 format=3 uid="uid://cx7tcmrlyb7y2"]
+
+[ext_resource type="AudioStream" uid="uid://hksrn0u168hh" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_01.wav" id="1_f6vpg"]
+[ext_resource type="AudioStream" uid="uid://b6128ueod2qo0" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_02.wav" id="2_635ua"]
+[ext_resource type="AudioStream" uid="uid://bhc4llio8fqv7" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_11.wav" id="3_yckmj"]
+[ext_resource type="AudioStream" uid="uid://0kxh172jstb8" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_12.wav" id="4_7bs2h"]
+[ext_resource type="AudioStream" uid="uid://bpmqp0hanw0fi" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_14.wav" id="5_dl34k"]
+[ext_resource type="AudioStream" uid="uid://cd1uybehqwejf" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_16.wav" id="6_lpujp"]
+[ext_resource type="AudioStream" uid="uid://bmqunxweg684w" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_03.wav" id="7_jysst"]
+[ext_resource type="AudioStream" uid="uid://bn3mh6be7svye" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_04.wav" id="8_wm3p3"]
+[ext_resource type="AudioStream" uid="uid://bw0sb87kg7x3w" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_05.wav" id="9_powd3"]
+[ext_resource type="AudioStream" uid="uid://drpqgigq67iy6" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_06.wav" id="10_7ihhv"]
+[ext_resource type="AudioStream" uid="uid://if73dssn0dm3" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_07.wav" id="11_glb6d"]
+[ext_resource type="AudioStream" uid="uid://mgl6uy3cvpjb" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_08.wav" id="12_ehyxt"]
+[ext_resource type="AudioStream" uid="uid://b842qm0jjuhid" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_09.wav" id="13_tx3l3"]
+[ext_resource type="AudioStream" uid="uid://bmrr5c6st5hgn" path="res://Data/Sounds/Combat/Casing/Bounce/AR/Carpet/blt_case_bounce_556_carpet_close_lrg_10.wav" id="14_mm8w7"]
+
+[resource]
+streams_count = 14
+stream_0/stream = ExtResource("1_f6vpg")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_635ua")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("7_jysst")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("8_wm3p3")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("9_powd3")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("10_7ihhv")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("11_glb6d")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("12_ehyxt")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("13_tx3l3")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("14_mm8w7")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("3_yckmj")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("4_7bs2h")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("5_dl34k")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("6_lpujp")
+stream_13/weight = 1.0

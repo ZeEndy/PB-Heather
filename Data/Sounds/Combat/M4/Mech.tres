@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://bw58q3gdvaf3x"]
+
+[ext_resource type="AudioStream" uid="uid://d155ody6hdoyu" path="res://Data/Sounds/Combat/M4/Mech/Mech_0.wav" id="1_pyhy4"]
+[ext_resource type="AudioStream" uid="uid://hgb07xi7albe" path="res://Data/Sounds/Combat/M4/Mech/Mech_1.wav" id="2_f646o"]
+[ext_resource type="AudioStream" uid="uid://cmjc5mnlyinng" path="res://Data/Sounds/Combat/M4/Mech/Mech_2.wav" id="3_imlg0"]
+[ext_resource type="AudioStream" uid="uid://baappmeghm6cn" path="res://Data/Sounds/Combat/M4/Mech/Mech_3.wav" id="4_8u8va"]
+[ext_resource type="AudioStream" uid="uid://w0uloi0xhuv8" path="res://Data/Sounds/Combat/M4/Mech/Mech_4.wav" id="5_dywdt"]
+[ext_resource type="AudioStream" uid="uid://cy8ok2io3cpmh" path="res://Data/Sounds/Combat/M4/Mech/Mech_5.wav" id="6_pueuo"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_pyhy4")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_f646o")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_imlg0")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_8u8va")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_dywdt")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_pueuo")
+stream_5/weight = 1.0
