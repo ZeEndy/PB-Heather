@@ -1,12 +1,13 @@
 
 ZeEndy - Animations, Programming
-Dappy - Sprites, Level Design, Boss design
+Elysa - Sprites, Level Design
 Plank - Level Design
 Besauce - Stomp Animation
-Asire - Visual guidance,UI Sound design
+MEKU-RIA - Visual guidance,UI Sound design
+Orchid - Heather dialog art
 
 
-SOUNDS USED
+SOUNDS USED from
 Infinty Ward
 DICE
 Magmacow
